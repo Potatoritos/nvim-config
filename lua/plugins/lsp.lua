@@ -1,6 +1,13 @@
 return {
     {
         'neovim/nvim-lspconfig',
+        event = {
+            'BufReadPre',
+            'BufNewFile',
+        },
+        config = function()
+            require('lspconfig').lua_ls.setup({})
+        end,
     },
     {
         'williamboman/mason.nvim',
@@ -30,3 +37,4 @@ return {
         },
     },
 }
+

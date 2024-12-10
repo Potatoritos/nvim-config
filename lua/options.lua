@@ -45,3 +45,4 @@ vim.opt.shortmess = vim.opt.shortmess + { c = true }
 vim.opt.cursorline = false
 
 vim.opt.pumheight = 10
+
