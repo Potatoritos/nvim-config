@@ -1,14 +1,15 @@
 local line_colors = {
-    fg = colors.fg,
-    bg = colors.bg,
-    lightbg = colors.lightbg,
-    pink = colors.pink,
-    darkpink = colors.darkpink,
-    blue = colors.blue,
-    blue2 = colors.blue2,
-    cyan = colors.cyan,
-    green = colors.green,
-    purple = colors.purple,
+    fg = COLORS.fg,
+    darkfg = COLORS.darkfg,
+    bg = COLORS.bg,
+    lightbg = COLORS.lightbg,
+    pink = COLORS.pink,
+    darkpink = COLORS.darkpink,
+    blue = COLORS.blue,
+    blue2 = COLORS.blue2,
+    cyan = COLORS.cyan,
+    green = COLORS.green,
+    purple = COLORS.purple,
 }
 
 local mode_colors = {
@@ -46,7 +47,7 @@ local line = {
         provider = 'git_branch',
         hl = {
             bg = 'bg',
-            fg = 'fg',
+            fg = 'darkfg',
         },
         left_sep = 'block',
         right_sep = 'block',
@@ -54,27 +55,30 @@ local line = {
 	git_diff_added = {
 		provider = 'git_diff_added',
 		hl = {
-			fg = 'green',
+			fg = 'cyan',
 			bg = 'bg',
 		},
+        icon = '+',
 		left_sep = 'block',
 		right_sep = 'block',
 	},
 	git_diff_removed = {
 		provider = 'git_diff_removed',
 		hl = {
-			fg = 'red',
+			fg = 'darkfg',
 			bg = 'bg',
 		},
+        icon = '-',
 		left_sep = 'block',
 		right_sep = 'block',
 	},
 	git_diff_changed = {
 		provider = 'git_diff_changed',
 		hl = {
-			fg = 'fg',
+			fg = 'pink',
 			bg = 'bg',
 		},
+        icon = '~',
 		left_sep = 'block',
 		right_sep = 'right_filled',
 	},
@@ -95,7 +99,7 @@ local line = {
     file_encoding = {
 		provider = 'file_encoding',
 		hl = {
-			fg = 'fg',
+			fg = 'darkfg',
 			bg = 'bg',
 		},
 		left_sep = 'block',
@@ -104,7 +108,7 @@ local line = {
 	position = {
 		provider = 'position',
 		hl = {
-			fg = 'fg',
+			fg = 'darkfg',
 			bg = 'bg',
 		},
 		left_sep = 'block',
@@ -156,7 +160,8 @@ return {
     'freddiehaddad/feline.nvim',
     opts = {
         components = components,
-        theme = colors,
-        vi_mode_colors = mode_colors,           
+        theme = line_colors,
+        vi_mode_colors = mode_colors,
     },
 }
+

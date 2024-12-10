@@ -1,8 +1,9 @@
-colors = {
+COLORS = {
     bg = '#161616',
     bg2 = '#262626',
     bg3 = '#393939',
     lightbg = '#525252',
+    darkfg = '#b2b4b8',
     fg = '#dde1e6',
     fg2 = '#f2f4f8',
     fg3 = '#ffffff',
@@ -15,6 +16,6 @@ colors = {
     green = '#42be65',
     purple = '#be95ff',
     lightblue = '#82cfff',
-    black = '#131313' 
+    black = '#131313',
 }
 
