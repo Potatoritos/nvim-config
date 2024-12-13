@@ -19,7 +19,7 @@ vim.opt.signcolumn = 'yes'
 
 vim.opt.updatetime = 250
 
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 500
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -45,4 +45,6 @@ vim.opt.shortmess = vim.opt.shortmess + { c = true }
 vim.opt.cursorline = false
 
 vim.opt.pumheight = 10
+
+vim.opt.conceallevel = 1
 
