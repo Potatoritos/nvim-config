@@ -13,5 +13,5 @@ require('lazy').setup({
         { import = 'plugins' },
     },
     install = { colorscheme = { 'oxocarbon' } },
-    checker = { enabled = true },
+    checker = { enabled = false },
 })

@@ -9,6 +9,7 @@ return {
                 'html',
                 'java',
                 'javascript',
+                'latex',
                 'lua',
                 'markdown',
                 'python',
