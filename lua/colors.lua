@@ -44,3 +44,57 @@ vim.api.nvim_set_hl(0, 'HopPreview', { fg = COLORS.bg, bg = COLORS.darkpink })
 
 vim.api.nvim_set_hl(0, 'TelescopeMatching', { fg = COLORS.darkpink, bg = 'NONE', bold = true })
 
+vim.api.nvim_set_hl(0, 'MarkviewBlockQuoteWarn', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewBlockQuoteSpecial', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewBlockQuoteNote', { fg = COLORS.blue2, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewBlockQuoteDefault', { fg = COLORS.blue2, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewBlockQuoteOk', { fg = COLORS.blue2, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewBlockQuoteError', { fg = COLORS.darkpink, bg = 'NONE' })
+
+vim.api.nvim_set_hl(0, 'MarkviewCheckboxCancelled', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewCheckboxChecked', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewCheckboxPending', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewCheckboxProgress', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewCheckboxUnchecked', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewCheckboxStriked', { fg = COLORS.pink, bg = 'NONE' })
+
+vim.api.nvim_set_hl(0, 'MarkviewInlineCode', { fg = COLORS.pink, bg = COLORS.bg2 })
+vim.api.nvim_set_hl(0, 'MarkviewCodeInfo', { fg = COLORS.pink, bg = COLORS.bg1 })
+vim.api.nvim_set_hl(0, 'MarkviewCode', { fg = 'NONE', bg = COLORS.bg1 })
+
+vim.api.nvim_set_hl(0, 'MarkviewIcon1', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewIcon1Sign', { fg = COLORS.pink, bg = COLORS.bg3 })
+vim.api.nvim_set_hl(0, 'MarkviewIcon1Fg', { fg = COLORS.pink, bg = 'NONE' })
+
+vim.api.nvim_set_hl(0, 'MarkviewHeading1', { fg = COLORS.pink, bg = COLORS.bg2, bold = true })
+vim.api.nvim_set_hl(0, 'MarkviewHeading2', { fg = COLORS.darkcyan, bg = COLORS.bg2, bold = true })
+vim.api.nvim_set_hl(0, 'MarkviewHeading3', { fg = COLORS.blue2, bg = COLORS.bg2, bold = true })
+vim.api.nvim_set_hl(0, 'MarkviewHeading4', { fg = COLORS.blue2, bg = COLORS.bg2, bold = true })
+vim.api.nvim_set_hl(0, 'MarkviewHeading5', { fg = COLORS.blue2, bg = COLORS.bg2, bold = true })
+vim.api.nvim_set_hl(0, 'MarkviewHeading6', { fg = COLORS.blue2, bg = COLORS.bg2, bold = true })
+
+vim.api.nvim_set_hl(0, 'MarkviewListItemStar', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewListItemPlus', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewListItemMinus', { fg = COLORS.pink, bg = 'NONE' })
+
+vim.api.nvim_set_hl(0, 'MarkviewEmail', { fg = COLORS.purple, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewImageLink', { fg = COLORS.purple, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewHyperlink', { fg = COLORS.pink, bg = 'NONE', underline = true })
+
+vim.api.nvim_set_hl(0, 'MarkviewTableHeader', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewTableBorder', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewTableAlignCenter', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewTableAlignLeft', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'MarkviewTableAlignRight', { fg = COLORS.pink, bg = 'NONE' })
+
+vim.api.nvim_set_hl(0, '@markup.heading.1.markdown', { fg = COLORS.pink, bold = true })
+vim.api.nvim_set_hl(0, '@markup.heading.2.markdown', { fg = COLORS.darkcyan, bold = true })
+vim.api.nvim_set_hl(0, '@markup.heading.3.markdown', { fg = COLORS.blue2, bold = true })
+vim.api.nvim_set_hl(0, '@markup.heading.4.markdown', { fg = COLORS.blue2, bold = true })
+vim.api.nvim_set_hl(0, '@markup.heading.5.markdown', { fg = COLORS.blue2, bold = true })
+vim.api.nvim_set_hl(0, '@markup.heading.6.markdown', { fg = COLORS.blue2, bold = true })
+vim.api.nvim_set_hl(0, '@markup.raw.markdown_inline', { fg = COLORS.pink, bg = COLORS.bg2 })
+vim.api.nvim_set_hl(0, '@markup.list.markdown', { fg = COLORS.pink })
+
+vim.api.nvim_set_hl(0, 'MdHighlight', { fg = COLORS.bg, bg = COLORS.blue2 })
+
