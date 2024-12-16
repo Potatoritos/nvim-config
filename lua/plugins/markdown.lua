@@ -59,9 +59,9 @@ return {
             filetypes = { 'markdown' },
             code_blocks = {
                 enable = true,
-                icons = '',
-                sign = false,
                 style = 'language',
+                sign = false,
+                icons = 'internal',
             },
             latex = { enable = false },
             links = {
