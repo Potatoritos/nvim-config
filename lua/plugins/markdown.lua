@@ -41,7 +41,8 @@ return {
     },
     {
         'OXY2DEV/markview.nvim',
-        lazy = false,
+        ft = 'markdown',
+        -- lazy = false,
         dependencies = {
             'nvim-treesitter/nvim-treesitter',
             'nvim-tree/nvim-web-devicons',
@@ -55,6 +56,20 @@ return {
                 heading_4 = { style = 'simple' },
                 heading_5 = { style = 'simple' },
                 heading_6 = { style = 'simple' },
+            },
+            horizontal_rules = {
+                enable = true,
+                parts = {
+                    {
+                        type = 'repeating',
+                        repeat_amount = function (buffer)
+                            local textoff = vim.fn.getwininfo(vim.api.nvim_get_current_win())[1].textoff
+                            return math.floor((vim.o.columns - textoff - 3) / 2)
+                        end,
+                        text = "─",
+                        hl = 'MarkviewGradient1',
+                    },
+                },
             },
             filetypes = { 'markdown' },
             code_blocks = {

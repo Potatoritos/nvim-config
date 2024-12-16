@@ -65,6 +65,8 @@ vim.api.nvim_set_hl(0, 'MarkviewInlineCode', { fg = COLORS.pink, bg = COLORS.bg2
 vim.api.nvim_set_hl(0, 'MarkviewCodeInfo', { fg = COLORS.pink, bg = COLORS.bg1 })
 vim.api.nvim_set_hl(0, 'MarkviewCode', { fg = 'NONE', bg = COLORS.bg1 })
 
+vim.api.nvim_set_hl(0, 'MarkviewGradient1', { fg = COLORS.bg3, bg = 'NONE' })
+
 vim.api.nvim_set_hl(0, 'MarkviewIcon1', { fg = COLORS.bg1, bg = COLORS.bg1 })
 vim.api.nvim_set_hl(0, 'MarkviewIcon1Fg', { fg = COLORS.bg1, bg = COLORS.bg1 })
 vim.api.nvim_set_hl(0, 'MarkviewIcon2', { fg = COLORS.bg1, bg = COLORS.bg1 })
