@@ -14,4 +14,5 @@ require('lazy').setup({
     },
     install = { colorscheme = { 'oxocarbon' } },
     checker = { enabled = false },
+    change_detection = { enabled = false },
 })

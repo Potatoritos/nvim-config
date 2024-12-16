@@ -6,7 +6,10 @@ return {
             'BufNewFile',
         },
         config = function()
-            require('lspconfig').lua_ls.setup({})
+            local capabilities = require('blink.cmp').get_lsp_capabilities()
+            local lsp = require('lspconfig')
+            lsp.lua_ls.setup({ capabilities = capabilities })
+            lsp.basedpyright.setup({ capabilities = capabilities })
         end,
     },
     {
@@ -17,6 +20,7 @@ return {
         'williamboman/mason-lspconfig.nvim',
         opts = {
             ensure_installed = {
+                'basedpyright',
                 'lua_ls',
                 'rust_analyzer',
             },

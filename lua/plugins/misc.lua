@@ -14,6 +14,10 @@ return {
         },
     },
     {
+        'lervag/vimtex',
+        lazy = false,
+    },
+    {
         'nyoom-engineering/oxocarbon.nvim'
     },
     {
