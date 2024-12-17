@@ -9,7 +9,6 @@ return {
         },
         dependencies = {
             'nvim-lua/plenary.nvim',
-            'hrsh7th/nvim-cmp',
             'nvim-telescope/telescope.nvim',
             'nvim-treesitter/nvim-treesitter',
         },
@@ -21,8 +20,7 @@ return {
                 },
             },
             completion = {
-                nvim_cmp = true,
-                min_chars = 1,
+                nvim_cmp = false,
             },
             picker = {
                 name = 'telescope.nvim',
@@ -62,7 +60,7 @@ return {
                 parts = {
                     {
                         type = 'repeating',
-                        repeat_amount = function (buffer)
+                        repeat_amount = function(_)
                             local textoff = vim.fn.getwininfo(vim.api.nvim_get_current_win())[1].textoff
                             return math.floor((vim.o.columns - textoff - 3) / 2)
                         end,
