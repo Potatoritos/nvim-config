@@ -14,8 +14,17 @@ vim.keymap.set('n', '<leader>c', '<cmd>ColorizerToggle<CR>', { desc = 'Toggle co
 vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'Toggle comment', remap = true })
 vim.keymap.set('v', '<leader>/', '<ESC>gvgc', { desc = 'Toggle comment', remap = true })
 
-vim.keymap.set('n', '\'', '`', { desc = 'Jump to mark', remap = true })
-vim.keymap.set('o', '\'', '`', { desc = 'To mark', remap = true })
+vim.keymap.set({'n', 'o'}, '\'', '`', { desc = 'Jump to mark', remap = true })
+
+vim.keymap.set('i', '<Tab>', function()
+    local ls = require('luasnip')
+    if ls.expandable() then
+        ls.expand()
+    else
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+    end
+end, { silent = true })
+
 
 -- vim.keymap.set('n', '<S-h>', '^', { desc = 'Start of line', remap = true })
 -- vim.keymap.set('n', '<S-l>', '$', { desc = 'End of line', remap = true })

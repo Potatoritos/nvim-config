@@ -1,3 +1,17 @@
+-- vim.g.rustaceanvim = {
+--     server = {
+--         capabilities = {
+--             textDocument = {
+--                 completion = {
+--                     completionItem = {
+--                         snippetSupport = false,
+--                     },
+--                 },
+--             },
+--         },
+--     },
+-- }
+
 return {
     {
         'neovim/nvim-lspconfig',
@@ -7,6 +21,8 @@ return {
         },
         config = function()
             local capabilities = require('blink.cmp').get_lsp_capabilities()
+            -- capabilities.textDocument.completion.completionItem.snippetSupport = false
+
             local lsp = require('lspconfig')
             lsp.lua_ls.setup({ capabilities = capabilities })
             lsp.basedpyright.setup({ capabilities = capabilities })
