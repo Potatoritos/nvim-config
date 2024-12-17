@@ -20,6 +20,11 @@ vim.keymap.set('o', '\'', '`', { desc = 'To mark', remap = true })
 -- vim.keymap.set('n', '<S-h>', '^', { desc = 'Start of line', remap = true })
 -- vim.keymap.set('n', '<S-l>', '$', { desc = 'End of line', remap = true })
 
+vim.keymap.set('n', '<leader>ta', '<cmd>Trouble diagnostics toggle<CR>',
+    { desc = 'Diagnostics (Trouble)' })
+vim.keymap.set('n', '<leader>tb', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>',
+    { desc = 'Buffer Diagnostics (Trouble)' })
+
 vim.keymap.set('n', '<F1>', '<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>')
 vim.keymap.set('n', '<F2>', '<cmd>Telescope buffers<CR>')
 

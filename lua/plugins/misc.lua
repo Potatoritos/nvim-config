@@ -7,6 +7,11 @@ return {
         },
     },
     {
+        'folke/trouble.nvim',
+        opts = {},
+        cmd = 'Trouble',
+    },
+    {
         'akinsho/toggleterm.nvim',
         version = "*",
         opts = {
