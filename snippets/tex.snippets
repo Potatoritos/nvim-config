@@ -1,0 +1,418 @@
+snippet lk
+    ${$1 }$$2
+snippet lj
+    $$
+    $1
+    $$
+snippet beg
+    \begin{$1}
+    $2
+    \end{$1}$3
+snippet st
+    \text{ s.t. }$1
+snippet v
+    \mathbf $1
+snippet r2
+    \sqrt{$1}$2
+snippet r3
+    \sqrt[3]{$1}$2
+snippet rn
+    \sqrt[$1]{$2}$3
+snippet tx
+    \text{$1} $2
+snippet lim
+    \lim_{$1 \to $2}$3
+snippet dx
+    \frac{\mathrm{d}$1}{\mathrm{d}$2}$3
+snippet par
+    \frac{\partial $1}{\partial $2}$3
+snippet fj
+    \frac{$1}{$2}$3
+snippet bx
+    \boxed{$1}$2
+snippet vo
+    \overline{$1}$2
+snippet voi
+    \overline $1
+snippet if
+    \text{if }$1
+snippet ds
+    \displaystyle{$1}$2
+snippet lag
+    \mathcal{L}$1
+snippet tfo
+    $\therefore$ $1
+snippet since
+    \text{ (since }$1\text{)}$2
+snippet enums
+    \begin{enumerate}[$1]
+        $2
+    \end{enumerate}$3
+snippet vd
+    \vdash $1
+snippet ra
+    \Rightarrow $1
+snippet template
+    \documentclass[11pt]{article}
+    \usepackage{amsmath, amsfonts, amsthm, amssymb, color, fullpage, hyperref}
+    \setlength{\parindent}{0pt}
+    \begin{document}
+    $1
+    \end{document}
+snippet bb
+    \mathbb{$1}$2
+snippet bf
+    \mathbf{$1}$2
+snippet cal
+    \mathcal{$1}$2
+snippet rm
+    \mathrm{$1}$2
+snippet cc
+    \mathbb{C}$1
+snippet ff
+    \mathbb{F}$1
+snippet ii
+    \mathbb{I}$1
+snippet nn
+    \mathbb{N}$1
+snippet qq
+    \mathbb{Q}$1
+snippet rr
+    \mathbb{R}$1
+snippet zz
+    \mathbb{Z}$1
+snippet va
+    \mathbf{a}$1
+snippet vb
+    \mathbf{b}$1
+snippet vc
+    \mathbf{c}$1
+snippet vi
+    \mathbf{i}$1
+snippet vj
+    \mathbf{j}$1
+snippet vk
+    \mathbf{k}$1
+snippet vx
+    \mathbf{x}$1
+snippet vy
+    \mathbf{y}$1
+snippet vz
+    \mathbf{z}$1
+snippet cale
+    \mathcal{E}$1
+snippet calp
+    \mathcal{P}$1
+snippet ker
+    \mathrm{ker}\left($1\right)
+snippet image
+    \mathrm{image}\left($1\right)
+snippet dim
+    \mathrm{dim}\left($1\right)
+snippet det
+    \mathrm{det}\left($1\right)
+snippet rev
+    \mathrm{rev}\left($1\right)
+snippet max
+    \mathrm{max}\{$1\}$2
+snippet min
+    \mathrm{min}\{$1\}$2
+snippet sin
+    \sin{\left($1\right)}$2
+snippet arcsin
+    \arcsin{\left($1\right)}$2
+snippet sin2
+    \sin^2{\left($1\right)}$2
+snippet sin3
+    \sin^3{\left($1\right)}$2
+snippet sinn
+    \sin^$1{\left($2\right)}$3
+snippet cos
+    \cos{\left($1\right)}$2
+snippet arccos
+    \arccos{\left($1\right)}$2
+snippet cos2
+    \cos^2{\left($1\right)}$2
+snippet cos3
+    \cos^3{\left($1\right)}$2
+snippet cosn
+    \cos^$1{\left($2\right)}$3
+snippet tan
+    \tan{\left($1\right)}$2
+snippet arctan
+    \arctan{\left($1\right)}$2
+snippet tan2
+    \tan^2{\left($1\right)}$2
+snippet tan3
+    \tan^3{\left($1\right)}$2
+snippet tann
+    \tan^$1{\left($2\right)}$3
+snippet csc
+    \csc{\left($1\right)}$2
+snippet arccsc
+    \arccsc{\left($1\right)}$2
+snippet csc2
+    \csc^2{\left($1\right)}$2
+snippet csc3
+    \csc^3{\left($1\right)}$2
+snippet cscn
+    \csc^$1{\left($2\right)}$3
+snippet sec
+    \sec{\left($1\right)}$2
+snippet arcsec
+    \arcsec{\left($1\right)}$2
+snippet sec2
+    \sec^2{\left($1\right)}$2
+snippet sec3
+    \sec^3{\left($1\right)}$2
+snippet secn
+    \sec^$1{\left($2\right)}$3
+snippet cot
+    \cot{\left($1\right)}$2
+snippet arccot
+    \arccot{\left($1\right)}$2
+snippet cot2
+    \cot^2{\left($1\right)}$2
+snippet cot3
+    \cot^3{\left($1\right)}$2
+snippet cotn
+    \cot^$1{\left($2\right)}$3
+snippet 1/
+    \frac{1}{$1}$2
+snippet 2/
+    \frac{2}{$1}$2
+snippet 3/
+    \frac{3}{$1}$2
+snippet 4/
+    \frac{4}{$1}$2
+snippet 5/
+    \frac{5}{$1}$2
+snippet 6/
+    \frac{6}{$1}$2
+snippet 7/
+    \frac{7}{$1}$2
+snippet 8/
+    \frac{8}{$1}$2
+snippet 9/
+    \frac{9}{$1}$2
+snippet pa
+    \left( $1 \right)$2
+snippet br
+    \left[ $1 \right]$2
+snippet set
+    \left\{ $1 \right\}$2
+snippet abs
+    \left\lvert $1 \right\rvert $2
+snippet nor
+    \left\lVert $1 \right\rVert $2
+snippet a*
+    \begin{align*}
+        $1
+    \end{align*}$2
+snippet e*
+    \begin{eqnarray*}
+        $1
+    \end{eqnarray*}$2
+snippet enum
+    \begin{enumerate}
+        $1
+    \end{enumerate}$2
+snippet item
+    \begin{itemize}
+        $1
+    \end{itemize}$2
+snippet pf
+    \begin{proof}
+        $1
+    \end{proof}$2
+snippet ca
+    \begin{cases}
+    $1
+    \end{cases}
+snippet pma
+    \begin{pmatrix}
+    $1
+    \end{pmatrix}
+snippet bma
+    \begin{bmatrix}
+    $1
+    \end{bmatrix}
+snippet Bma
+    \begin{Bmatrix}
+    $1
+    \end{Bmatrix}
+snippet vma
+    \begin{vmatrix}
+    $1
+    \end{vmatrix}
+snippet Vma
+    \begin{Vmatrix}
+    $1
+    \end{Vmatrix}
+snippet ma
+    \begin{matrix}
+    $1
+    \end{matrix}
+snippet sum
+    \sum_{$1}^{$2}$3
+snippet prod
+    \prod_{$1}^{$2}$3
+snippet int
+    \int_{$1}^{$2}$3
+snippet bwe
+    \bigwedge_{$1}^{$2}$3
+snippet bve
+    \bigvee_{$1}^{$2}$3
+snippet bcup
+    \bigcup_{$1}^{$2}$3
+snippet bcap
+    \bigcap_{$1}^{$2}$3
+snippet fa
+    \forall $1
+snippet ex
+    \exists $1
+snippet im
+    \implies $1
+snippet emps
+    \emptyset $1
+snippet neg
+    \neg $1
+snippet sub
+    \subseteq $1
+snippet nsub
+    \nsubseteq $1
+snippet psub
+    \subsetneq $1
+snippet inf
+    \infty $1
+snippet na
+    \nabla $1
+snippet eq
+    \={}& $1
+snippet tf
+    \therefore $1
+snippet bc
+    \because $1
+snippet cd
+    \cdot $1
+snippet cds
+    \cdots $1
+snippet bp
+    \boxplus $1
+snippet op
+    \oplus $1
+snippet bd
+    \boxdot $1
+snippet od
+    \odot $1
+snippet in
+    \in $1
+snippet ti
+    \times $1
+snippet ci
+    \circ $1
+snippet sig
+    \Sigma $1
+snippet sia
+    \Sigma^* $1
+snippet ome
+    \Omega $1
+snippet we
+    \wedge $1
+snippet ve
+    \vee $1
+snippet cup
+    \cup $1
+snippet cap
+    \cap $1
+snippet geq
+    \geq $1
+snippet leq
+    \leq $1
+snippet ga
+    \alpha $1
+snippet gb
+    \beta $1
+snippet gg
+    \gamma $1
+snippet GG
+    \Gamma $1
+snippet Gg
+    \Gamma $1
+snippet gd
+    \delta $1
+snippet GD
+    \Delta $1
+snippet Gd
+    \Delta $1
+snippet ge
+    \epsilon $1
+snippet gz
+    \zeta $1
+snippet gh
+    \eta $1
+snippet gt
+    \theta $1
+snippet GT
+    \Theta $1
+snippet Gt
+    \Theta $1
+snippet gi
+    \iota $1
+snippet gk
+    \kappa $1
+snippet gl
+    \lambda $1
+snippet GL
+    \Lambda $1
+snippet Gl
+    \Lambda $1
+snippet gm
+    \mu $1
+snippet gn
+    \nu $1
+snippet gx
+    \xi $1
+snippet GX
+    \Xi $1
+snippet Gx
+    \Xi $1
+snippet gp
+    \pi $1
+snippet GP
+    \Pi $1
+snippet Gp
+    \Pi $1
+snippet gr
+    \rho $1
+snippet gs
+    \sigma $1
+snippet GS
+    \Sigma $1
+snippet Gs
+    \Sigma $1
+snippet gta
+    \tau $1
+snippet gy
+    \upsilon $1
+snippet gf
+    \phi $1
+snippet GF
+    \Phi $1
+snippet Gf
+    \Phi $1
+snippet gc
+    \chi $1
+snippet gps
+    \psi $1
+snippet GPS
+    \Psi $1
+snippet Gps
+    \Psi $1
+snippet go
+    \omega $1
+snippet GO
+    \Omega $1
+snippet Go
+    \Omega $1
+

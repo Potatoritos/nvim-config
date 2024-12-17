@@ -44,12 +44,38 @@ return {
             ['<C-e>'] = { 'hide', 'show', 'fallback' },
         },
         sources = {
-            default = {
-                'lsp',
-                'path',
-                'snippets',
-                'buffer',
-                'lazydev',
+            completion = {
+                enabled_providers = {
+                    'lsp',
+                    'path',
+                    'luasnip',
+                    -- 'snippets',
+                    'buffer',
+                    'lazydev',
+                },
+            },
+            providers = {
+                lsp = {
+                    fallback_for = { "lazydev" }
+                },
+                lazydev = {
+                    name = "LazyDev",
+                    module = "lazydev.integrations.blink"
+                },
+                luasnip = {
+                    name = 'luasnip',
+                    module = 'blink.compat.source',
+                    score_offset = 10,
+                    -- score_offset = function()
+                    --     if require('luasnip').expandable() then
+                    --         return 100
+                    --     end
+                    --     return 0
+                    -- end,
+                    -- enabled = function(ctx)
+                    --     return not (ctx ~= nil and ctx.trigger.kind == vim.lsp.protocol.CompletionTriggerKind.TriggerCharacter)
+                    -- end,
+                },
             },
         },
         completion = {
@@ -95,7 +121,34 @@ return {
         appearance = {
             kind_icons = kind_icons,
         },
+        snippets = {
+            expand = function(snippet)
+                require('luasnip').lsp_expand(snippet)
+            end,
+            active = function(filter)
+                if filter and filter.direction then
+                    return require('luasnip').jumpable(filter.direction)
+                end
+                return require('luasnip').in_snippet()
+            end,
+            jump = function(direction)
+                require('luasnip').jump(direction)
+            end,
+        },
     },
-    opts_extend = { "sources.default" },
+    dependencies = {
+        {
+            'saghen/blink.compat',
+            opts = {
+                impersonate_nvim_cmp = true,
+            },
+        },
+        {
+            'saadparwaiz1/cmp_luasnip',
+        },
+        {
+            'L3MON4D3/LuaSnip',
+            version = 'v2.*',
+        },
+    },
 }
-
