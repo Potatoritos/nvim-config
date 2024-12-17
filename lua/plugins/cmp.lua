@@ -54,7 +54,11 @@ return {
         },
         completion = {
             list = {
-                selection = 'manual',
+                selection = 'preselect',
+                cycle = {
+                    from_bottom = true,
+                    from_top = true,
+                },
             },
             accept = {
                 create_undo_point = true,
@@ -64,12 +68,11 @@ return {
                 menu = {
                     enabled = true,
                     max_height = 10,
-
                 }
             },
             documentation = {
                 auto_show = true,
-                auto_show_delay_ms = 300,
+                auto_show_delay_ms = 500,
                 update_delay_ms = 50,
                 treesitter_highlighting = true,
             },
