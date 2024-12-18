@@ -14,6 +14,10 @@ vim.keymap.set('n', '<leader>c', '<cmd>ColorizerToggle<CR>', { desc = 'Toggle co
 vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'Toggle comment', remap = true })
 vim.keymap.set('v', '<leader>/', '<ESC>gvgc', { desc = 'Toggle comment', remap = true })
 
+vim.keymap.set('n', '<leader>6', function()
+    require('luasnip.loaders.from_snipmate').lazy_load()
+end, { desc = 'Reload snippets' })
+
 vim.keymap.set({'n', 'o'}, '\'', '`', { desc = 'Jump to mark', remap = true })
 
 vim.keymap.set('i', '<Tab>', function()

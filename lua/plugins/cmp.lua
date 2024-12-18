@@ -12,15 +12,15 @@ local kind_icons = {
     Function = ' 󰊕 ',
     Interface = ' 󱐝 ',
     Keyword = ' 󰌋 ',
-    Method = ' 󰊕 ', -- ' 󰡱 ',
+    Method = ' 󰊕 ',
     Module = ' 󰆦 ',
     Operator = ' 󰦒 ',
     Property = ' 󰜢 ',
-    Reference = '  ', -- ' 󰪍 ',
-    Snippet = ' 󰗀 ', -- ' 󰨾 ',
+    Reference = '  ',
+    Snippet = ' 󰩫 ',
     Struct = ' 󰆧 ',
     Text = ' 󰦨 ',
-    TypeParameter = ' 󰬛 ',
+    TypeParameter = ' 󰮄 ',
     Unit = '  ',
     Value = ' 󰎠 ',
     Variable = ' 󰫧 ',
@@ -54,27 +54,34 @@ return {
                     'lazydev',
                 },
             },
+            transform_items = function(_, items)
+                for _, item in ipairs(items) do
+                    if item.kind == require('blink.cmp.types').CompletionItemKind.Snippet then
+                        item.score_offset = item.score_offset - 3
+                    end
+                end
+                return items
+            end,
             providers = {
                 lsp = {
-                    fallback_for = { "lazydev" }
+                    fallback_for = { 'lazydev' }
                 },
                 lazydev = {
-                    name = "LazyDev",
-                    module = "lazydev.integrations.blink"
+                    name = 'LazyDev',
+                    module = 'lazydev.integrations.blink'
                 },
                 luasnip = {
                     name = 'luasnip',
                     module = 'blink.compat.source',
-                    score_offset = 10,
-                    -- score_offset = function()
-                    --     if require('luasnip').expandable() then
-                    --         return 100
-                    --     end
-                    --     return 0
-                    -- end,
-                    -- enabled = function(ctx)
-                    --     return not (ctx ~= nil and ctx.trigger.kind == vim.lsp.protocol.CompletionTriggerKind.TriggerCharacter)
-                    -- end,
+                    transform_items = function(ctx, items)
+                        local word = string.sub(ctx.line, ctx.bounds.start_col, ctx.bounds.end_col)
+                        for _, item in ipairs(items) do
+                            if word == item.word then
+                                item.score_offset = item.score_offset + 1000
+                            end
+                        end
+                        return items
+                    end,
                 },
             },
         },
@@ -146,9 +153,10 @@ return {
         {
             'saadparwaiz1/cmp_luasnip',
         },
-        {
-            'L3MON4D3/LuaSnip',
-            version = 'v2.*',
-        },
+        -- {
+        --     'L3MON4D3/LuaSnip',
+        --     version = 'v2.*',
+        -- },
     },
 }
+
