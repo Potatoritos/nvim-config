@@ -16,6 +16,11 @@ vim.keymap.set('v', '<leader>/', '<Esc>gvgc', { desc = 'Toggle comment', remap =
 
 vim.keymap.set('n', '<leader>6', function()
     require('luasnip.loaders.from_snipmate').lazy_load()
+
+    require('luasnip.loaders.from_lua').load({
+        ---@diagnostic disable-next-line: assign-type-mismatch
+        paths = '~/.config/nvim/snippets'
+    })
 end, { desc = 'Reload snippets' })
 
 vim.keymap.set({'n', 'o'}, '\'', '`', { desc = 'Jump to mark', remap = true })
