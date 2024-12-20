@@ -14,9 +14,36 @@ return {
             'VeryLazy',
         },
         config = function()
+            require('luasnip').config.set_config({
+                enable_autosnippets = true,
+            })
             require('luasnip.loaders.from_snipmate').lazy_load()
+            require('luasnip.loaders.from_lua').load({
+                ---@diagnostic disable-next-line: assign-type-mismatch
+                paths = '~/.config/nvim/snippets'
+            })
         end,
     },
+    -- {
+    --     'stevearc/oil.nvim',
+    --     ---@module 'oil'
+    --     ---@type oil.SetupOpts
+    --     opts = {
+    --         default_file_explorer = true,
+    --         columns = {
+    --             'icon',
+    --             'size',
+    --         },
+    --         delete_to_trash = true,
+    --         skip_confirm_for_simple_edits = false,
+    --         view_options = {
+    --             show_hidden = true,
+    --         },
+    --     },
+    --     dependencies = {
+    --         'nvim-tree/nvim-web-devicons',
+    --     },
+    -- },
     {
         'folke/trouble.nvim',
         opts = {},

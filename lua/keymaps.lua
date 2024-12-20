@@ -12,7 +12,7 @@ vim.keymap.set('n', '<leader>f', '<cmd>HopWord<CR>', { desc = 'Hop to word' })
 vim.keymap.set('n', '<leader>c', '<cmd>ColorizerToggle<CR>', { desc = 'Toggle colorizer' })
 
 vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'Toggle comment', remap = true })
-vim.keymap.set('v', '<leader>/', '<ESC>gvgc', { desc = 'Toggle comment', remap = true })
+vim.keymap.set('v', '<leader>/', '<Esc>gvgc', { desc = 'Toggle comment', remap = true })
 
 vim.keymap.set('n', '<leader>6', function()
     require('luasnip.loaders.from_snipmate').lazy_load()
