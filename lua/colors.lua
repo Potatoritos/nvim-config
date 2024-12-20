@@ -37,7 +37,7 @@ vim.api.nvim_set_hl(0, 'BlinkCmpKindProperty', { fg = COLORS.bg, bg = COLORS.pur
 vim.api.nvim_set_hl(0, 'BlinkCmpKindReference', { fg = COLORS.bg, bg = COLORS.purple })
 vim.api.nvim_set_hl(0, 'BlinkCmpKindSnippet', { fg = COLORS.bg, bg = COLORS.blue })
 vim.api.nvim_set_hl(0, 'BlinkCmpKindStruct', { fg = COLORS.bg, bg = COLORS.blue2 })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindText', { fg = COLORS.bg, bg = COLORS.darkcyan })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindText', { fg = COLORS.bg, bg = COLORS.darkfg })
 vim.api.nvim_set_hl(0, 'BlinkCmpKindTypeParameter', { fg = COLORS.bg, bg = COLORS.blue2 })
 vim.api.nvim_set_hl(0, 'BlinkCmpKindUnit', { fg = COLORS.bg, bg = COLORS.blue2 })
 vim.api.nvim_set_hl(0, 'BlinkCmpKindValue', { fg = COLORS.bg, bg = COLORS.purple })
