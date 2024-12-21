@@ -64,14 +64,5 @@ return {
             return string.format('\\lim_{%s \\to %s}', spl.left, spl.right)
         end),
     }),
-    postfix({ trig = ';it', snippetType = 'autosnippet', match_pattern = after_space }, {
-        f(function(_, parent)
-            local spl = split(parent.snippet.env.POSTFIX_MATCH)
-            if spl.right == 'inf' then
-                spl.right = '\\infty'
-            end
-            return string.format('\\lim_{%s \\to %s}', spl.left, spl.right)
-        end),
-    }),
 }
 

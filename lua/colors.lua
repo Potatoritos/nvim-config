@@ -6,6 +6,8 @@ vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = COLORS.cyan })
 vim.api.nvim_set_hl(0, 'PmenuSel', { fg = 'NONE', bg = COLORS.bg3 })
 vim.api.nvim_set_hl(0, 'Pmenu', { fg = 'NONE', bg = COLORS.bg2 })
 
+vim.api.nvim_set_hl(0, 'Special', { fg = COLORS.pink })
+
 vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', { fg = 'NONE', bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'SnippetTabStop', { bg = COLORS.bg2 })
 
@@ -48,7 +50,25 @@ vim.api.nvim_set_hl(0, 'HopNextKey1', { fg = COLORS.cyan, bg = 'NONE', bold = tr
 vim.api.nvim_set_hl(0, 'HopNextKey2', { fg = COLORS.darkcyan, bg = 'NONE', bold = false })
 vim.api.nvim_set_hl(0, 'HopPreview', { fg = COLORS.bg, bg = COLORS.darkpink })
 
-vim.api.nvim_set_hl(0, 'TelescopeMatching', { fg = COLORS.darkpink, bg = 'NONE', bold = true, italic = false })
+vim.api.nvim_set_hl(0, 'FzfLuaBorder', { fg = COLORS.bg3 })
+vim.api.nvim_set_hl(0, 'FzfLuaTitle', { fg = COLORS.pink })
+vim.api.nvim_set_hl(0, 'FzfLuaHeaderBind', { fg = COLORS.purple })
+vim.api.nvim_set_hl(0, 'FzfLuaHeaderText', { fg = COLORS.darkfg })
+vim.api.nvim_set_hl(0, 'FzfLuaPathColNr', { fg = COLORS.lightblue })
+vim.api.nvim_set_hl(0, 'FzfLuaPathLineNr', { fg = COLORS.blue })
+vim.api.nvim_set_hl(0, 'FzfLuaBufNr', { fg = COLORS.lightblue })
+vim.api.nvim_set_hl(0, 'FzfLuaBufLineNr', { fg = COLORS.lightblue })
+
+vim.api.nvim_set_hl(0, 'FzfLuaBufFlagCur', { fg = COLORS.purple })
+vim.api.nvim_set_hl(0, 'FzfLuaBufFlagAlt', { fg = COLORS.blue })
+vim.api.nvim_set_hl(0, 'FzfLuaTabTitle', { fg = COLORS.lightblue })
+vim.api.nvim_set_hl(0, 'FzfLuaTabMarker', { fg = COLORS.darkfg })
+vim.api.nvim_set_hl(0, 'FzfLuaLiveSym', { fg = COLORS.darkfg })
+
+vim.api.nvim_set_hl(0, 'FzfLuaSearch', { fg = COLORS.pink })
+vim.api.nvim_set_hl(0, 'FzfLuaFzfCursorLine', { bold = false })
+vim.api.nvim_set_hl(0, 'FzfLuaFzfMatch', { fg = COLORS.pink, bold = true })
+vim.api.nvim_set_hl(0, 'FzfLuaFzfPrompt', { fg = COLORS.pink, bold = true })
 
 vim.api.nvim_set_hl(0, 'MarkviewBlockQuoteWarn', { fg = COLORS.pink, bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'MarkviewBlockQuoteSpecial', { fg = COLORS.pink, bg = 'NONE' })

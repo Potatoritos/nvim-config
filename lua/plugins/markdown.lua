@@ -9,7 +9,7 @@ return {
         },
         dependencies = {
             'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope.nvim',
+            'ibhagwan/fzf-lua',
             'nvim-treesitter/nvim-treesitter',
         },
         opts = {
@@ -20,10 +20,10 @@ return {
                 },
             },
             completion = {
-                nvim_cmp = false,
+                nvim_cmp = true,
             },
             picker = {
-                name = 'telescope.nvim',
+                name = 'fzf-lua',
             },
             ui = {
                 bullets = { hl_group = 'MarkviewListItemMinus' },
