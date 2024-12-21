@@ -24,38 +24,54 @@ return {
             })
         end,
     },
-    -- {
-    --     'stevearc/oil.nvim',
-    --     ---@module 'oil'
-    --     ---@type oil.SetupOpts
-    --     opts = {
-    --         default_file_explorer = true,
-    --         columns = {
-    --             'icon',
-    --             'size',
-    --         },
-    --         delete_to_trash = true,
-    --         skip_confirm_for_simple_edits = false,
-    --         view_options = {
-    --             show_hidden = true,
-    --         },
-    --     },
-    --     dependencies = {
-    --         'nvim-tree/nvim-web-devicons',
-    --     },
-    -- },
+    {
+        'stevearc/oil.nvim',
+        ---@module 'oil'
+        ---@type oil.SetupOpts
+        opts = {
+            default_file_explorer = true,
+            columns = {
+                'icon',
+                -- 'size',
+            },
+            delete_to_trash = true,
+            skip_confirm_for_simple_edits = false,
+            view_options = {
+                show_hidden = true,
+            },
+        },
+        dependencies = {
+            'nvim-tree/nvim-web-devicons',
+        },
+    },
+    {
+        'ibhagwan/fzf-lua',
+        config = function()
+            require('fzf-lua').setup({
+                highlights = {
+                    fzf_colors = {
+                        ['hl'] = false,
+                        ['hl+'] = false,
+                    },
+                },
+            })
+        end,
+        dependencies = {
+            'nvim-tree/nvim-web-devicons',
+        },
+    },
     {
         'folke/trouble.nvim',
         opts = {},
         cmd = 'Trouble',
     },
-    {
-        'akinsho/toggleterm.nvim',
-        version = "*",
-        opts = {
-            open_mapping = '<F3>',
-        },
-    },
+    -- {
+    --     'akinsho/toggleterm.nvim',
+    --     version = '*',
+    --     opts = {
+    --         open_mapping = '<F3>',
+    --     },
+    -- },
     {
         'lervag/vimtex',
         lazy = false,

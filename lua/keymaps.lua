@@ -30,7 +30,7 @@ vim.keymap.set('i', '<Tab>', function()
     if ls.expandable() then
         ls.expand()
     else
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', false)
     end
 end, { silent = true })
 
@@ -43,8 +43,13 @@ vim.keymap.set('n', '<leader>ta', '<cmd>Trouble diagnostics toggle<CR>',
 vim.keymap.set('n', '<leader>tb', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>',
     { desc = 'Buffer Diagnostics (Trouble)' })
 
-vim.keymap.set('n', '<F1>', '<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>')
-vim.keymap.set('n', '<F2>', '<cmd>Telescope buffers<CR>')
+vim.keymap.set('n', '<F1>', function()
+    require('fzf-lua').files({ fzf_colors = true })
+end)
+vim.keymap.set('n', '<F2>', '<cmd>Oil<CR>')
+vim.keymap.set('n', '<F3>', function()
+    require('fzf-lua').buffers({ fzf_colors = true })
+end)
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
