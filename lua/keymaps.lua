@@ -66,6 +66,7 @@ vim.keymap.set('n', '<F3>', function()
     require('fzf-lua').buffers({ fzf_colors = true })
 end)
 vim.keymap.set('n', '<F8>', '<cmd>ObsidianQuickSwitch<CR>', { desc = 'Switch to note (Obsidian)' })
+vim.keymap.set('n', '<F12>', '<cmd>Lazy<CR>', { desc = 'Open Lazy menu' })
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 

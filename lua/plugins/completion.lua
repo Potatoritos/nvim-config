@@ -26,12 +26,11 @@ local kind_icons = {
     Variable = ' 󰫧 ',
 }
 
--- 󱥌 󱥒 󱥔 󱥍 󱥏 󱥎 
-
 return {
     'saghen/blink.cmp',
-    lazy = false,
     version = 'v0.*',
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
     opts = {
         keymap = {
             ['<C-j>'] = { 'select_next', 'fallback' },
@@ -44,16 +43,17 @@ return {
             ['<C-space>'] = { 'hide', 'show', 'fallback' },
         },
         sources = {
-            completion = {
-                enabled_providers = {
-                    'lsp',
-                    'path',
-                    'luasnip',
-                    -- 'snippets',
-                    'buffer',
-                    'lazydev',
-                    'markdown',
-                },
+            default = {
+                'lsp',
+                'path',
+                'luasnip',
+                -- 'snippets',
+                'buffer',
+                'lazydev',
+                -- 'markdown',
+                'obsidian',
+                'obsidian_new',
+                'obsidian_tags',
             },
             transform_items = function(_, items)
                 -- for _, item in ipairs(items) do
@@ -64,12 +64,23 @@ return {
                 return items
             end,
             providers = {
-                markdown = {
-                    name = 'RenderMarkdown',
-                    module = 'render-markdown.integ.blink',
+                obsidian = {
+                    name = 'obsidian',
+                    module = 'blink.compat.source',
                 },
+                obsidian_new = {
+                    name = 'obsidian_new',
+                    module = 'blink.compat.source',
+                },
+                obsidian_tags = {
+                    name = 'obsidian_tags',
+                    module = 'blink.compat.source',
+                },
+                -- markdown = {
+                --     name = 'RenderMarkdown',
+                --     module = 'render-markdown.integ.blink',
+                -- },
                 lsp = {
-                    fallback_for = { 'lazydev' },
                     transform_items = function(_, items)
                         return vim.tbl_filter(function(item)
                             return item.kind ~= require('blink.cmp.types').CompletionItemKind.Snippet
@@ -78,7 +89,8 @@ return {
                 },
                 lazydev = {
                     name = 'LazyDev',
-                    module = 'lazydev.integrations.blink'
+                    module = 'lazydev.integrations.blink',
+                    fallbacks = { 'lsp' },
                 },
                 luasnip = {
                     name = 'luasnip',
@@ -110,10 +122,6 @@ return {
                 auto_brackets = {
                     enabled = true,
                 },
-                menu = {
-                    enabled = true,
-                    max_height = 10,
-                }
             },
             documentation = {
                 auto_show = true,
@@ -158,6 +166,7 @@ return {
     dependencies = {
         {
             'saghen/blink.compat',
+            version = false,
             opts = {
                 impersonate_nvim_cmp = true,
             },
