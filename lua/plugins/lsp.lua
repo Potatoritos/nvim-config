@@ -33,6 +33,9 @@ return {
             lsp.lua_ls.setup({ capabilities = capabilities })
             lsp.basedpyright.setup({ capabilities = capabilities })
         end,
+        dependencies = {
+            'saghen/blink.cmp',
+        },
     },
     {
         'williamboman/mason.nvim',
