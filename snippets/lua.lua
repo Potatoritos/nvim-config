@@ -1,16 +1,20 @@
 ---@diagnostic disable: undefined-global
 
+local not_after_dot = function(line)
+    return string.find(line, '%.[%w_]*$') == nil
+end
+
 return {
-    s('then', {
+    s({ trig = 'then', show_condition = not_after_dot }, {
         t({'then', '\t'}), i(0), t({'', 'end'})
     }),
-    s('do', {
+    s({ trig = 'do', show_condition = not_after_dot }, {
         t({'do', '\t'}), i(0), t({'', 'end'})
     }),
-    s('fn', {
+    s({ trig = 'fn', show_condition = not_after_dot }, {
         t('function('), i(1), t({')', '\t'}), i(0), t({'', 'end'})
     }),
-    s('fe', {
+    s({ trig = 'fe', show_condition = not_after_dot }, {
         t({'function()', '\t'}), i(0), t({'', 'end'})
     }),
 }
