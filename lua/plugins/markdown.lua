@@ -1,98 +1,83 @@
 return {
-    {
-        'epwalsh/obsidian.nvim',
-        version = '*',
-        lazy = true,
-        event = {
-            'BufReadPre /home/potatoritos/notes/*.md',
-            'BufNewFile /home/potatoritos/notes/*.md',
-        },
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-            'ibhagwan/fzf-lua',
-            'nvim-treesitter/nvim-treesitter',
-        },
-        opts = {
-            workspaces = {
-                {
-                    name = 'notes',
-                    path = '~/notes',
-                },
-            },
-            completion = {
-                nvim_cmp = true,
-            },
-            picker = {
-                name = 'fzf-lua',
-            },
-            ui = {
-                bullets = { hl_group = 'MarkviewListItemMinus' },
-                external_link_icon = { char = '' },
-                reference_text = { hl_group = 'MarkviewHyperlink' },
-                highlight_text = { hl_group = 'MdHighlight' },
-            },
-        },
-    },
+    -- {
+    --     'epwalsh/obsidian.nvim',
+    --     version = '*',
+    --     lazy = true,
+    --     event = {
+    --         'BufReadPre /home/potatoritos/notes/*.md',
+    --         'BufNewFile /home/potatoritos/notes/*.md',
+    --     },
+    --     dependencies = {
+    --         'nvim-lua/plenary.nvim',
+    --         'ibhagwan/fzf-lua',
+    --         'nvim-treesitter/nvim-treesitter',
+    --     },
+    --     opts = {
+    --         workspaces = {
+    --             {
+    --                 name = 'notes',
+    --                 path = '~/notes',
+    --             },
+    --         },
+    --         completion = {
+    --             nvim_cmp = true,
+    --         },
+    --         picker = {
+    --             name = 'fzf-lua',
+    --         },
+    --         ui = {
+    --             bullets = { hl_group = 'MarkviewListItemMinus' },
+    --             external_link_icon = { char = '' },
+    --             reference_text = { hl_group = 'MarkviewHyperlink' },
+    --             highlight_text = { hl_group = 'MdHighlight' },
+    --         },
+    --     },
+    -- },
     {
         'jbyuki/nabla.nvim',
         ft = 'markdown',
     },
     {
-        'OXY2DEV/markview.nvim',
-        ft = 'markdown',
-        -- lazy = false,
+        'MeanderingProgrammer/render-markdown.nvim',
         dependencies = {
             'nvim-treesitter/nvim-treesitter',
             'nvim-tree/nvim-web-devicons',
         },
+        ---@module 'render-markdown'
+        ---@type render.md.UserConfig
         opts = {
-            headings = {
-                enable = true,
-                heading_1 = { style = 'simple' },
-                heading_2 = { style = 'simple' },
-                heading_3 = { style = 'simple' },
-                heading_4 = { style = 'simple' },
-                heading_5 = { style = 'simple' },
-                heading_6 = { style = 'simple' },
-            },
-            horizontal_rules = {
-                enable = true,
-                parts = {
-                    {
-                        type = 'repeating',
-                        repeat_amount = function(_)
-                            local textoff = vim.fn.getwininfo(vim.api.nvim_get_current_win())[1].textoff
-                            return math.floor((vim.o.columns - textoff - 3) / 2)
-                        end,
-                        text = "─",
-                        hl = 'MarkviewGradient1',
-                    },
-                },
-            },
-            filetypes = { 'markdown' },
-            code_blocks = {
-                enable = true,
-                style = 'language',
+            heading = {
+                enabled = true,
                 sign = false,
-                icons = 'internal',
+                icons = { '# ', '## ', '### ', '#### ', '##### ', '###### ' },
+                width = 'full',
+                border = false,
             },
-            latex = { enable = false },
-            links = {
-                enable = true,
-                hyperlinks = {
-                    enable = true,
-                    icon = '',
-                },
-                internal_links = {
-                    enable = true,
-                    icon = '',
-                },
+            code = {
+                enabled = true,
+                sign = false,
+                style = 'normal',
+                width = 'block',
+                min_width = 50,
             },
-            list_items = {
-                enable = true,
-                indent_size = 4,
+            sign = {
+                enabled = false,
+            },
+            latex = {
+                enabled = true,
+            },
+            bullet = {
+                enabled = true,
+                icons = { '●' },
+                -- icons = { '●', '■', '◆' },
+            },
+            win_options = {
+                conceallevel = {
+                    default = vim.api.nvim_get_option_value('conceallevel', {}),
+                    rendered = 2,
+                },
             },
         },
-    },
+    }
 }
 

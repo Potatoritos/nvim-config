@@ -18,5 +18,9 @@ COLORS = {
     purple = '#be95ff',
     lightblue = '#82cfff',
     black = '#131313',
+
+    bg_darkpink = '#442431',
+    bg_darkcyan = '#153332',
+    bg_blue2 = '#232e44'
 }
 

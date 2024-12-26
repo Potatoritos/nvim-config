@@ -1,6 +1,7 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear highlights' })
 
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Save file' })
+vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = 'Quit file' })
 
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Focus left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Focus right window' })
@@ -44,14 +45,44 @@ vim.keymap.set('n', '<leader>tb', '<cmd>Trouble diagnostics toggle filter.buf=0<
     { desc = 'Buffer Diagnostics (Trouble)' })
 
 vim.keymap.set('n', '<F1>', function()
-    require('fzf-lua').files({ fzf_colors = true })
+    require('fzf-lua').files({
+        fzf_colors = true,
+        actions = {
+            ['ctrl-h'] = {
+                function(_, args)
+                    if args.cmd:find('--hidden') then
+                        args.cmd = args.cmd:gsub('--hidden', '', 1)
+                    else
+                        args.cmd = args.cmd .. ' --hidden'
+                    end
+                    require('fzf-lua').files(args)
+                end
+            }
+        }
+    })
 end)
 vim.keymap.set('n', '<F2>', '<cmd>Oil<CR>')
 vim.keymap.set('n', '<F3>', function()
     require('fzf-lua').buffers({ fzf_colors = true })
 end)
+vim.keymap.set('n', '<F8>', '<cmd>ObsidianQuickSwitch<CR>', { desc = 'Switch to note (Obsidian)' })
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+
+vim.keymap.set('n', '<leader>x', function()
+    local word = vim.fn.expand('<cword>')
+    local res = ''
+    if word == 'true' then
+        res = 'ciwfalse<Esc>'
+    elseif word == 'false' then
+        res = 'ciwtrue<Esc>'
+    elseif word == 'True' then
+        res = 'ciwFalse<Esc>'
+    elseif word == 'False' then
+        res = 'ciwTrue<Esc>'
+    end
+    return res
+end, { expr = true, desc = 'Toggle boolean' })
 
 vim.keymap.set('n', 'ZZ', '')
 
