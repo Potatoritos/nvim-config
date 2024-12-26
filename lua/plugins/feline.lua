@@ -80,8 +80,35 @@ local line = {
 		},
         icon = '~',
 		left_sep = 'block',
-		right_sep = 'right_filled',
+		right_sep = 'block',
 	},
+    diagnostic_errors = {
+        provider = 'diagnostic_errors',
+        hl = {
+            fg = 'pink',
+            bg = 'bg',
+        },
+        left_sep = 'block',
+        right_sep = 'block',
+    },
+    diagonstic_warnings = {
+        provider = 'diagnostic_warnings',
+        hl = {
+            fg = 'cyan',
+            bg = 'bg',
+        },
+        left_sep = 'block',
+        right_sep = 'block',
+    },
+    diagnostic_hints = {
+        provider = 'diagnostic_hints',
+        hl = {
+            fg = 'darkfg',
+            bg = 'bg',
+        },
+        left_sep = 'block',
+        right_sep = 'block',
+    },
     file_info = {
         provider = {
             name = 'file_info',
@@ -137,6 +164,9 @@ local left = {
 local middle = {}
 
 local right = {
+    line.diagnostic_errors,
+    line.diagonstic_warnings,
+    line.diagnostic_hints,
     line.git_branch,
     line.file_encoding,
     line.position,
