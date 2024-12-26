@@ -52,6 +52,7 @@ return {
                     -- 'snippets',
                     'buffer',
                     'lazydev',
+                    'markdown',
                 },
             },
             transform_items = function(_, items)
@@ -63,6 +64,10 @@ return {
                 return items
             end,
             providers = {
+                markdown = {
+                    name = 'RenderMarkdown',
+                    module = 'render-markdown.integ.blink',
+                },
                 lsp = {
                     fallback_for = { 'lazydev' },
                     transform_items = function(_, items)

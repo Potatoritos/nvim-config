@@ -5,7 +5,6 @@ local keymaps = function()
 
     local brackets = {
         { '(', ')' },
-        { '[', ']' },
         { '{', '}' },
     }
     local brackets_concat = {}
