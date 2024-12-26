@@ -80,7 +80,7 @@ vim.api.nvim_set_hl(0, 'RenderMarkdownError', { fg = COLORS.pink, bg = 'NONE' })
 
 vim.api.nvim_set_hl(0, 'RenderMarkdownQuote', { fg = COLORS.darkfg })
 
-vim.api.nvim_set_hl(0, 'RenderMarkdownBullet', { fg = COLORS.darkfg, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'RenderMarkdownBullet', { fg = COLORS.lightbg, bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'RenderMarkdownInlineHighlight', { fg = COLORS.blue, bg = COLORS.bg_blue2 })
 vim.api.nvim_set_hl(0, 'RenderMarkdownDash', { fg = COLORS.bg3, bg = 'NONE' })
 
@@ -100,9 +100,9 @@ vim.api.nvim_set_hl(0, 'RenderMarkdownH4Bg', { bg = COLORS.bg_blue2 })
 vim.api.nvim_set_hl(0, 'RenderMarkdownH5Bg', { bg = COLORS.bg_blue2 })
 vim.api.nvim_set_hl(0, 'RenderMarkdownH6Bg', { bg = COLORS.bg_blue2 })
 
-vim.api.nvim_set_hl(0, 'RenderMarkdownTableHead', { fg = COLORS.bg3, bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'RenderMarkdownTableRow', { fg = COLORS.bg3, bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'RenderMarkdownTableFill', { fg = COLORS.bg3, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'RenderMarkdownTableHead', { fg = COLORS.lightbg, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'RenderMarkdownTableRow', { fg = COLORS.lightbg, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'RenderMarkdownTableFill', { fg = COLORS.lightbg, bg = 'NONE' })
 
 vim.api.nvim_set_hl(0, '@markup.raw.markdown_inline', { fg = COLORS.pink, bg = COLORS.bg2 })
 vim.api.nvim_set_hl(0, '@markup.list.markdown', { fg = COLORS.pink })

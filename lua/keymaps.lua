@@ -15,14 +15,11 @@ vim.keymap.set('n', '<leader>c', '<cmd>ColorizerToggle<CR>', { desc = 'Toggle co
 vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'Toggle comment', remap = true })
 vim.keymap.set('v', '<leader>/', '<Esc>gvgc', { desc = 'Toggle comment', remap = true })
 
-vim.keymap.set('n', '<leader>6', function()
-    require('luasnip.loaders.from_snipmate').lazy_load()
+vim.keymap.set({'i', 'n'}, '<C-p>', function()
+    require('nvim-autopairs').toggle()
+end, { desc = 'Toggle autopairs' })
 
-    require('luasnip.loaders.from_lua').load({
-        ---@diagnostic disable-next-line: assign-type-mismatch
-        paths = '~/.config/nvim/snippets'
-    })
-end, { desc = 'Reload snippets' })
+vim.keymap.set('n', '<leader>P', 'ggVG"+p', { remap = true })
 
 vim.keymap.set({'n', 'o'}, '\'', '`', { desc = 'Jump to mark', remap = true })
 
@@ -66,6 +63,14 @@ vim.keymap.set('n', '<F3>', function()
     require('fzf-lua').buffers({ fzf_colors = true })
 end)
 vim.keymap.set('n', '<F8>', '<cmd>ObsidianQuickSwitch<CR>', { desc = 'Switch to note (Obsidian)' })
+vim.keymap.set('n', '<F11>', function()
+    require('luasnip.loaders.from_snipmate').lazy_load()
+
+    require('luasnip.loaders.from_lua').load({
+        ---@diagnostic disable-next-line: assign-type-mismatch
+        paths = '~/.config/nvim/snippets'
+    })
+end, { desc = 'Reload snippets' })
 vim.keymap.set('n', '<F12>', '<cmd>Lazy<CR>', { desc = 'Open Lazy menu' })
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
