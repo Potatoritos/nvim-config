@@ -4,6 +4,7 @@ vim.api.nvim_set_hl(0, 'Normal', { fg = COLORS.fg, bg = 'NONE' })
 
 vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = COLORS.pink })
 vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = COLORS.cyan })
+vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = COLORS.darkfg })
 
 vim.api.nvim_set_hl(0, 'PmenuSel', { fg = 'NONE', bg = COLORS.bg3 })
 vim.api.nvim_set_hl(0, 'Pmenu', { fg = 'NONE', bg = COLORS.bg2 })
@@ -109,6 +110,5 @@ vim.api.nvim_set_hl(0, '@markup.link.label.markdown_inline', { fg = COLORS.pink,
 vim.api.nvim_set_hl(0, '@markup.list.checked', { fg = COLORS.pink })
 vim.api.nvim_set_hl(0, '@markup.list.unchecked', { fg = COLORS.darkfg })
 
-vim.api.nvim_set_hl(0, 'ObsidianTodo', { fg = COLORS.bg3, bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'ObsidianDone', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'ObsidianTag', { fg = COLORS.pink, bg = COLORS.bg_darkpink })
 
