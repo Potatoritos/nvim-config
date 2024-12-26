@@ -35,6 +35,10 @@ return {
                 ObsidianHighlightText = { fg = 'NONE', bg = 'NONE' },
             },
         },
+        note_id_func = function(title)
+            return title
+        end,
+        mappings = {},
     },
     config = function(_, opts)
         require('obsidian').setup(opts)
