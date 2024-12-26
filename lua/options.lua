@@ -4,9 +4,10 @@ vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
 vim.opt.showmode = false
 
-vim.schedule(function()
-    vim.opt.clipboard = 'unnamedplus'
-end)
+-- for some reason this significantly slows down deleting / macros
+-- vim.schedule(function()
+--     vim.opt.clipboard = 'unnamedplus'
+-- end)
 
 vim.opt.breakindent = true
 
@@ -47,4 +48,3 @@ vim.opt.cursorline = false
 vim.opt.pumheight = 10
 
 vim.opt.conceallevel = 2
-
