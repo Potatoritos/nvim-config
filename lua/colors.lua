@@ -2,6 +2,8 @@ vim.api.nvim_set_hl(0, 'Comment', { fg = COLORS.purple, bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'NormalNC', { fg = COLORS.fg, bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'Normal', { fg = COLORS.fg, bg = 'NONE' })
 
+vim.api.nvim_set_hl(0, 'CurSearch', { fg = COLORS.bg, bg = COLORS.darkpink })
+
 vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = COLORS.pink })
 vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = COLORS.cyan })
 vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = COLORS.darkfg })

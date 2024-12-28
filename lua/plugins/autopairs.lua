@@ -50,11 +50,19 @@ return {
                 disable_in_macro = true,
             })
             keymaps()
-        end
+        end,
     },
     {
         'windwp/nvim-ts-autotag',
-        event = 'InsertEnter',
+        event = {
+            'BufReadPre',
+            'BufNewFile',
+        },
+        opts = {
+            enable_close = true,
+            enable_rename = true,
+            enable_close_on_slash = false,
+        },
     },
 }
 

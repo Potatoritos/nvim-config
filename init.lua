@@ -6,6 +6,6 @@ vim.opt.termguicolors = true
 require 'globals'
 require 'lazy_setup'
 require 'options'
-require 'commands'
+require 'autocmds'
 require 'keymaps'
 require 'colors'

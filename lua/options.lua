@@ -4,7 +4,7 @@ vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
 vim.opt.showmode = false
 
--- for some reason this significantly slows down deleting / macros
+-- this significantly slows down y/d/macro execution
 -- vim.schedule(function()
 --     vim.opt.clipboard = 'unnamedplus'
 -- end)
