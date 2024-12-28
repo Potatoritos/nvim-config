@@ -1,4 +1,4 @@
-local keymaps = function()
+local rules = function()
     local pairs = require('nvim-autopairs')
     local Rule = require('nvim-autopairs.rule')
     local cond = require('nvim-autopairs.conds')
@@ -36,7 +36,7 @@ local keymaps = function()
                 :with_move(function(opts) return opts.char == bracket[2] end)
                 :with_del(cond.none())
                 :use_key(bracket[2])
-                :replace_map_cr(function(_) return '<C-c>2xi<CR><C-c>O' end)
+                :replace_map_cr(function(_) return '<Esc>"_2xi<CR><Esc>O' end)
         })
     end
 end
@@ -48,8 +48,11 @@ return {
         config = function()
             require('nvim-autopairs').setup({
                 disable_in_macro = true,
+                fast_wrap = {
+                    map = '<C-0>',
+                }
             })
-            keymaps()
+            rules()
         end,
     },
     {
