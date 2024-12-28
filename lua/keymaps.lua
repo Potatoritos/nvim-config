@@ -19,17 +19,19 @@ vim.keymap.set('n', '<leader>c', '<cmd>ColorizerToggle<CR>', { desc = 'Toggle co
 vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'Toggle comment', remap = true })
 vim.keymap.set('v', '<leader>/', '<Esc>gvgc', { desc = 'Toggle comment', remap = true })
 
-vim.keymap.set({'i', 'n'}, '<C-p>', function()
+vim.keymap.set({ 'i', 'n' }, '<C-p>', function()
     require('nvim-autopairs').toggle()
 end, { desc = 'Toggle autopairs' })
 
 vim.keymap.set('n', '<leader>P', 'ggVG"+p', { remap = true })
+vim.keymap.set('n', '<leader>J', '[{a<CR><Esc>]}i<CR><Esc>kg_a <Esc>"_D',
+    { desc = '{x} -> {↵x↵}', remap = true })
 
-vim.keymap.set({'n', 'o'}, '\'', '`', { desc = 'Jump to mark', remap = true })
+vim.keymap.set({ 'n', 'o' }, '\'', '`', { desc = 'Jump to mark', remap = true })
 
-vim.keymap.set('n', '<leader>F', function()
+vim.keymap.set('n', '<leader>p', function()
     if vim.lsp.buf.format ~= nil then
-        vim.lsp.buf.format()
+        vim.lsp.buf.format({ async = true })
     end
 end, { desc = 'Format buffer' })
 
@@ -106,4 +108,3 @@ vim.keymap.set('n', '<F12>', '<cmd>Lazy<CR>', { desc = 'Open Lazy menu' })
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 vim.keymap.set('n', 'ZZ', '')
-
