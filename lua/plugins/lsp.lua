@@ -24,14 +24,15 @@ return {
             capabilities.textDocument.completion.completionItem.snippetSupport = false
 
             -- disable lua_ls snippets
-            ---@diagnostic disable-next-line inject-field
-            capabilities.textDocument.completion.callSnippet = 'Disable'
-            ---@diagnostic disable-next-line inject-field
-            capabilities.textDocument.completion.keywordSnippet = 'Disable'
+            -- ---@diagnostic disable-next-line inject-field
+            -- capabilities.textDocument.completion.callSnippet = 'Disable'
+            -- ---@diagnostic disable-next-line inject-field
+            -- capabilities.textDocument.completion.keywordSnippet = 'Disable'
 
             local lsp = require('lspconfig')
             lsp.lua_ls.setup({ capabilities = capabilities })
             lsp.basedpyright.setup({ capabilities = capabilities })
+            lsp.volar.setup({ capabilities = capabilities })
         end,
         dependencies = {
             'saghen/blink.cmp',
@@ -48,6 +49,7 @@ return {
                 'basedpyright',
                 'lua_ls',
                 'rust_analyzer',
+                'volar',
             },
         },
     },
@@ -66,4 +68,3 @@ return {
         },
     },
 }
-
