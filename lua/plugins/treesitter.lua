@@ -34,11 +34,20 @@ return {
                 enable = true,
             },
             autopairs = {
-                enable = true,
+                enable = false,
             },
             autotag = {
                 enable = false,
             },
+            incremental_selection = {
+                enable = true,
+                keymaps = {
+                    init_selection = "gnn",
+                    node_incremental = "grn",
+                    scope_incremental = "grc",
+                    node_decremental = "grm",
+                }
+            }
         })
     end,
 }

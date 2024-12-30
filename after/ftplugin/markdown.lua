@@ -14,6 +14,8 @@ vim.keymap.set('n', '<leader>b', '<cmd>ObsidianBacklinks<CR>',
     { desc = 'Pick backlinks', buffer = true })
 vim.keymap.set('n', '<leader>o', '<cmd>ObsidianOpen<CR>',
     { desc = 'Open note in obsidian', buffer = true })
+vim.keymap.set('n', '<F8>', '<cmd>ObsidianQuickSwitch<CR>',
+    { desc = 'Switch to note', buffer = true })
 
 vim.keymap.set('n', '<leader>x', function()
     require('obsidian').util.toggle_checkbox()

@@ -48,3 +48,5 @@ vim.opt.cursorline = false
 vim.opt.pumheight = 10
 
 vim.opt.conceallevel = 2
+
+vim.opt.autoindent = true
