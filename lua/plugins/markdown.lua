@@ -25,7 +25,7 @@ return {
                 sign = false,
                 style = 'normal',
                 width = 'block',
-                min_width = 50,
+                min_width = 80,
             },
             sign = {
                 enabled = false,

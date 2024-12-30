@@ -3,6 +3,14 @@ local rules = function()
     local Rule = require('nvim-autopairs.rule')
     local cond = require('nvim-autopairs.conds')
 
+    pairs.remove_rule("'")
+    pairs.add_rules({
+        Rule("'", "'")
+            :with_pair(cond.not_filetypes({ 'rust' }))
+            :with_move(cond.done())
+            :with_cr(cond.done())
+    })
+
     local brackets = {
         { '(', ')' },
         { '{', '}' },
@@ -59,9 +67,20 @@ return {
     },
     {
         'windwp/nvim-ts-autotag',
-        event = {
-            'BufReadPre',
-            'BufNewFile',
+        -- event = {
+        --     'BufReadPre',
+        --     'BufNewFile',
+        -- },
+        ft = {
+            'html',
+            'javascript',
+            'jsx',
+            'markdown',
+            'svelte',
+            'tsx',
+            'typescript',
+            'vue',
+            'xml',
         },
         opts = {
             enable_close = true,

@@ -1,5 +1,13 @@
 return {
     {
+        "kylechui/nvim-surround",
+        version = "*",
+        event = "VeryLazy",
+        opts = {
+            move_cursor = 'sticky',
+        },
+    },
+    {
         'smoka7/hop.nvim',
         version = '*',
         opts = {

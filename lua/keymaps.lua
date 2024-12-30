@@ -23,10 +23,6 @@ vim.keymap.set({ 'i', 'n' }, '<C-p>', function()
     require('nvim-autopairs').toggle()
 end, { desc = 'Toggle autopairs' })
 
-vim.keymap.set('n', '<leader>P', 'ggVG"+p', { remap = true })
-vim.keymap.set('n', '<leader>J', '[{a<CR><Esc>]}i<CR><Esc>kg_a <Esc>"_D',
-    { desc = '{x} -> {↵x↵}', remap = true })
-
 vim.keymap.set({ 'n', 'o' }, '\'', '`', { desc = 'Jump to mark', remap = true })
 
 vim.keymap.set('n', '<leader>lf', function()
@@ -38,6 +34,22 @@ end, { desc = 'Rename (LSP)' })
 vim.keymap.set('n', '<leader>la', function()
     vim.lsp.buf.code_action()
 end, { desc = 'Code action (LSP)' })
+
+vim.keymap.set('n', 'gp', '`[v`]', { desc = 'Select last paste' })
+vim.keymap.set('n', 'ga', 'ggVG', { desc = 'Select all' })
+
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y',
+    { noremap = true, silent = true })
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>Y', '"+Y',
+    { noremap = true, silent = true })
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"+p',
+    { noremap = true, silent = true })
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>P', '"+P',
+    { noremap = true, silent = true })
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d',
+    { noremap = true, silent = true })
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>D', '"+D',
+    { noremap = true, silent = true })
 
 vim.keymap.set('n', '<leader>x', function()
     local word = vim.fn.expand('<cword>')
@@ -53,7 +65,7 @@ vim.keymap.set('n', '<leader>x', function()
     if res == nil then
         return ''
     end
-    return string.format('ciw%s<Esc>', res)
+    return string.format('ciw%s<Esc>b', res)
 end, { expr = true, desc = 'Toggle boolean' })
 
 -- enable lazyredraw, disable autocmds during macro execution
@@ -101,7 +113,6 @@ vim.keymap.set('n', '<F2>', '<cmd>Oil<CR>')
 vim.keymap.set('n', '<F3>', function()
     require('fzf-lua').buffers({ fzf_colors = true })
 end)
-vim.keymap.set('n', '<F8>', '<cmd>ObsidianQuickSwitch<CR>', { desc = 'Switch to note (Obsidian)' })
 vim.keymap.set('n', '<F11>', function()
     require('luasnip.loaders.from_snipmate').lazy_load()
 
