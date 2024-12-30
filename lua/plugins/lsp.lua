@@ -47,6 +47,7 @@ return {
         opts = {
             ensure_installed = {
                 'basedpyright',
+                'eslint',
                 'lua_ls',
                 'rust_analyzer',
                 'volar',
