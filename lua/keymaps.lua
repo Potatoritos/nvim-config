@@ -51,6 +51,15 @@ vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d',
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>D', '"+D',
     { noremap = true, silent = true })
 
+local enclose = function(l, r)
+    if r == nil then
+        r = l
+    end
+    return string.format('<Esc>`>a%s<Esc>`<i%s<Esc>w', r, l)
+end
+
+vim.keymap.set('v', '<leader><CR>', enclose('<CR>'), { desc = 'x -> ↵x↵' })
+
 vim.keymap.set('n', '<leader>x', function()
     local word = vim.fn.expand('<cword>')
     local replace = {

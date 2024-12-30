@@ -30,8 +30,29 @@ return {
             -- capabilities.textDocument.completion.keywordSnippet = 'Disable'
 
             local lsp = require('lspconfig')
-            lsp.lua_ls.setup({ capabilities = capabilities })
             lsp.basedpyright.setup({ capabilities = capabilities })
+            lsp.eslint.setup({ capabilities = capabilities })
+            lsp.lua_ls.setup({ capabilities = capabilities })
+            lsp.ts_ls.setup({
+                capabilities = capabilities,
+                init_options = {
+                    plugins = {
+                        -- 'npm install -g @vue/language-server @vue/typescript-plugin'
+                        {
+                            name = '@vue/typescript-plugin',
+                            location = '/usr/local/lib/node_modules/@vue/language-server',
+                            languages = { 'vue' },
+                        },
+                    },
+                },
+                filetypes = {
+                    'javascript',
+                    'javascriptreact',
+                    'typescript',
+                    'typescriptreact',
+                    'vue',
+                },
+            })
             lsp.volar.setup({ capabilities = capabilities })
         end,
         dependencies = {
@@ -50,6 +71,7 @@ return {
                 'eslint',
                 'lua_ls',
                 'rust_analyzer',
+                'ts_ls',
                 'volar',
             },
         },

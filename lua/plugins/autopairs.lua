@@ -3,14 +3,6 @@ local rules = function()
     local Rule = require('nvim-autopairs.rule')
     local cond = require('nvim-autopairs.conds')
 
-    pairs.remove_rule("'")
-    pairs.add_rules({
-        Rule("'", "'")
-            :with_pair(cond.not_filetypes({ 'rust' }))
-            :with_move(cond.done())
-            :with_cr(cond.done())
-    })
-
     local brackets = {
         { '(', ')' },
         { '{', '}' },
