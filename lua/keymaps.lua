@@ -29,11 +29,15 @@ vim.keymap.set('n', '<leader>J', '[{a<CR><Esc>]}i<CR><Esc>kg_a <Esc>"_D',
 
 vim.keymap.set({ 'n', 'o' }, '\'', '`', { desc = 'Jump to mark', remap = true })
 
-vim.keymap.set('n', '<leader>p', function()
-    if vim.lsp.buf.format ~= nil then
-        vim.lsp.buf.format({ async = true })
-    end
-end, { desc = 'Format buffer' })
+vim.keymap.set('n', '<leader>lf', function()
+    vim.lsp.buf.format({ async = true })
+end, { desc = 'Format (LSP)' })
+vim.keymap.set('n', '<leader>lr', function()
+    vim.lsp.buf.rename()
+end, { desc = 'Rename (LSP)' })
+vim.keymap.set('n', '<leader>la', function()
+    vim.lsp.buf.code_action()
+end, { desc = 'Code action (LSP)' })
 
 vim.keymap.set('n', '<leader>x', function()
     local word = vim.fn.expand('<cword>')
@@ -42,6 +46,8 @@ vim.keymap.set('n', '<leader>x', function()
         ['false'] = 'true',
         ['True'] = 'False',
         ['False'] = 'True',
+        ['0'] = '1',
+        ['1'] = '0',
     }
     local res = replace[word]
     if res == nil then

@@ -44,7 +44,9 @@ end
 return {
     {
         'windwp/nvim-autopairs',
-        event = 'InsertEnter',
+        event = {
+            'InsertEnter',
+        },
         config = function()
             require('nvim-autopairs').setup({
                 disable_in_macro = true,
@@ -65,6 +67,9 @@ return {
             enable_close = true,
             enable_rename = true,
             enable_close_on_slash = false,
+        },
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
         },
     },
 }
