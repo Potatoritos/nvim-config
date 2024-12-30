@@ -162,6 +162,9 @@ return {
                 require('luasnip').jump(direction)
             end,
         },
+        signature = {
+            enabled = true,
+        },
     },
     dependencies = {
         {

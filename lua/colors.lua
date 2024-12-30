@@ -8,6 +8,22 @@ vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = COLORS.pink })
 vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = COLORS.cyan })
 vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = COLORS.darkfg })
 
+vim.api.nvim_set_hl(0, 'GitSignsStagedAdd', { fg = COLORS.cyan })
+vim.api.nvim_set_hl(0, 'GitSignsStagedChange', { fg = COLORS.pink })
+vim.api.nvim_set_hl(0, 'GitSignsStagedDelete', { fg = COLORS.darkfg })
+vim.api.nvim_set_hl(0, 'GitSignsStagedChangedelete', { fg = COLORS.darkfg })
+
+vim.api.nvim_set_hl(0, 'DiffChange', { fg = COLORS.pink })
+vim.api.nvim_set_hl(0, 'DiffChanged', { fg = COLORS.pink })
+vim.api.nvim_set_hl(0, 'DiffAdd', { fg = COLORS.cyan })
+vim.api.nvim_set_hl(0, 'DiffAdded', { fg = COLORS.cyan })
+vim.api.nvim_set_hl(0, 'DiffDelete', { fg = COLORS.darkfg })
+vim.api.nvim_set_hl(0, 'DiffRemoved', { fg = COLORS.darkfg })
+
+vim.api.nvim_set_hl(0, 'Added', { fg = COLORS.cyan })
+vim.api.nvim_set_hl(0, 'Changed', { fg = COLORS.pink })
+vim.api.nvim_set_hl(0, 'Removed', { fg = COLORS.darkfg })
+
 vim.api.nvim_set_hl(0, 'PmenuSel', { fg = 'NONE', bg = COLORS.bg3 })
 vim.api.nvim_set_hl(0, 'Pmenu', { fg = 'NONE', bg = COLORS.bg2 })
 
