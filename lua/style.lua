@@ -8,6 +8,7 @@ end
 vim.api.nvim_set_hl(0, 'Comment', { fg = COLORS.darkfg2, bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'NormalNC', { fg = COLORS.fg, bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'Normal', { fg = COLORS.fg, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'NormalFloat', { fg = COLORS.darkfg, bg = COLORS.bg1 })
 
 vim.api.nvim_set_hl(0, 'LineNr', { fg = COLORS.darkfg2, bg = 'NONE' })
 
@@ -40,6 +41,9 @@ vim.api.nvim_set_hl(0, 'Pmenu', { fg = 'NONE', bg = COLORS.bg2 })
 vim.api.nvim_set_hl(0, 'Special', { fg = COLORS.pink })
 
 vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', { fg = 'NONE', bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'DiagnosticUnderlineHint', { fg = 'NONE', bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'DiagnosticUnderlineInfo', { fg = 'NONE', bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'DiagnosticUnderlineWarn', { fg = 'NONE', bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { fg = 'NONE', bg = 'NONE' })
 
 vim.api.nvim_set_hl(0, 'SnippetTabStop', { bg = COLORS.bg2 })
@@ -51,6 +55,7 @@ vim.api.nvim_set_hl(0, 'BlinkCmpLabelDeprecated', { fg = COLORS.darkfg, bg = 'NO
 vim.api.nvim_set_hl(0, 'BlinkCmpLabelMatch', { fg = COLORS.pink, bg = 'NONE', bold = true })
 vim.api.nvim_set_hl(0, 'BlinkCmpMenu', { fg = 'NONE', bg = COLORS.bg1 })
 vim.api.nvim_set_hl(0, 'BlinkCmpMenuSelection', { fg = 'NONE', bg = COLORS.bg3 })
+vim.api.nvim_set_hl(0, 'BlinkCmpDocSeparator', { fg = COLORS.bg3 })
 
 vim.api.nvim_set_hl(0, 'BlinkCmpKindClass', { fg = COLORS.bg, bg = COLORS.blue2 })
 vim.api.nvim_set_hl(0, 'BlinkCmpKindColor', { fg = COLORS.bg, bg = COLORS.darkpink })
@@ -77,6 +82,8 @@ vim.api.nvim_set_hl(0, 'BlinkCmpKindTypeParameter', { fg = COLORS.bg, bg = COLOR
 vim.api.nvim_set_hl(0, 'BlinkCmpKindUnit', { fg = COLORS.bg, bg = COLORS.blue2 })
 vim.api.nvim_set_hl(0, 'BlinkCmpKindValue', { fg = COLORS.bg, bg = COLORS.purple })
 vim.api.nvim_set_hl(0, 'BlinkCmpKindVariable', { fg = COLORS.bg, bg = COLORS.purple })
+
+vim.api.nvim_set_hl(0, 'LspSignatureActiveParameter', { fg = 'NONE', bg = COLORS.bg3 })
 
 vim.api.nvim_set_hl(0, 'HopNextKey', { fg = COLORS.darkpink, bg = 'NONE', bold = true })
 vim.api.nvim_set_hl(0, 'HopNextKey1', { fg = COLORS.cyan, bg = 'NONE', bold = true })

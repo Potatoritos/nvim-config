@@ -38,6 +38,9 @@ return {
                 icons = { '●' },
                 -- icons = { '●', '■', '◆' },
             },
+            link = {
+                enabled = true,
+            },
             win_options = {
                 conceallevel = {
                     default = vim.api.nvim_get_option_value('conceallevel', {}),

@@ -1,13 +1,5 @@
 return {
     {
-        'lukas-reineke/indent-blankline.nvim',
-        main = 'ibl',
-        ---@module 'ibl'
-        ---@type ibl.config
-        opts = {},
-        enabled = false,
-    },
-    {
         'kylechui/nvim-surround',
         version = '*',
         event = 'VeryLazy',
