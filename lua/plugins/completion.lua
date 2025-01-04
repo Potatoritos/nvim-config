@@ -38,8 +38,17 @@ return {
             ['<C-l>'] = { 'snippet_forward', 'fallback' },
             ['<C-h>'] = { 'snippet_backward', 'fallback' },
             ['<Tab>'] = { 'select_and_accept', 'fallback' },
-            ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
-            ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+            ['<C-u>'] = {
+                function(cmp)
+                    return cmp.scroll_documentation_up(8)
+                end,
+            },
+            ['<C-d>'] = {
+                function(cmp)
+                    return cmp.scroll_documentation_down(8)
+                end,
+            },
+            ['<C-s>'] = { 'hide_documentation', 'show_documentation', 'fallback' },
             ['<C-space>'] = { 'hide', 'show', 'fallback' },
         },
         sources = {
@@ -71,6 +80,7 @@ return {
                 obsidian_new = {
                     name = 'obsidian_new',
                     module = 'blink.compat.source',
+                    score_offset = -1,
                 },
                 obsidian_tags = {
                     name = 'obsidian_tags',

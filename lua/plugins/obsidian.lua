@@ -10,6 +10,7 @@ return {
         'nvim-lua/plenary.nvim',
         'ibhagwan/fzf-lua',
         'nvim-treesitter/nvim-treesitter',
+        'saghen/blink.cmp',
     },
     opts = {
         workspaces = {
@@ -31,7 +32,7 @@ return {
                 ObsidianTodo = { fg = 'NONE', bg = 'NONE' },
                 ObsidianDone = { fg = 'NONE', bg = 'NONE' },
                 ObsidianBullet = { fg = 'NONE', bg = 'NONE' },
-                ObsidianRefText = { fg = 'NONE', bg = 'NONE' },
+                ObsidianRefText = { fg = COLORS.pink, bg = 'NONE', underline = true },
                 ObsidianHighlightText = { fg = 'NONE', bg = 'NONE' },
             },
         },
