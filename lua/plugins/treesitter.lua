@@ -17,6 +17,7 @@ return {
                 'latex',
                 'lua',
                 'markdown',
+                'markdown_inline',
                 'python',
                 'rust',
                 'toml',
@@ -40,12 +41,12 @@ return {
                 enable = false,
             },
             incremental_selection = {
-                enable = true,
+                enable = false,
                 keymaps = {
-                    init_selection = "gnn",
-                    node_incremental = "grn",
-                    scope_incremental = "grc",
-                    node_decremental = "grm",
+                    init_selection = 'gnn',
+                    node_incremental = 'grn',
+                    scope_incremental = 'grc',
+                    node_decremental = 'grm',
                 }
             }
         })
