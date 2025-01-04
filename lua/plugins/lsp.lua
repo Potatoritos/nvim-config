@@ -67,7 +67,7 @@ return {
         },
         config = function()
             local capabilities = require('blink.cmp').get_lsp_capabilities()
-            capabilities.textDocument.completion.completionItem.snippetSupport = false
+            -- capabilities.textDocument.completion.completionItem.snippetSupport = false
 
             -- disable lua_ls snippets
             -- ---@diagnostic disable-next-line inject-field

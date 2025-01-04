@@ -1,12 +1,22 @@
-vim.api.nvim_set_hl(0, 'Comment', { fg = COLORS.purple, bg = 'NONE' })
+local symbols = { Error = '󰅙', Info = 'i', Hint = '󰌵', Warn = '' }
+
+for name, icon in pairs(symbols) do
+    local hl = 'DiagnosticSign' .. name
+    vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
+end
+
+vim.api.nvim_set_hl(0, 'Comment', { fg = COLORS.darkfg2, bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'NormalNC', { fg = COLORS.fg, bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'Normal', { fg = COLORS.fg, bg = 'NONE' })
+
+vim.api.nvim_set_hl(0, 'LineNr', { fg = COLORS.darkfg2, bg = 'NONE' })
 
 vim.api.nvim_set_hl(0, 'CurSearch', { fg = COLORS.bg, bg = COLORS.darkpink })
 
 vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = COLORS.pink })
 vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = COLORS.cyan })
 vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = COLORS.darkfg })
+vim.api.nvim_set_hl(0, 'GitSignsCurrentLineBlame', { fg = COLORS.darkfg2 })
 
 vim.api.nvim_set_hl(0, 'GitSignsStagedAdd', { fg = COLORS.cyan })
 vim.api.nvim_set_hl(0, 'GitSignsStagedChange', { fg = COLORS.pink })
@@ -30,6 +40,8 @@ vim.api.nvim_set_hl(0, 'Pmenu', { fg = 'NONE', bg = COLORS.bg2 })
 vim.api.nvim_set_hl(0, 'Special', { fg = COLORS.pink })
 
 vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', { fg = 'NONE', bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { fg = 'NONE', bg = 'NONE' })
+
 vim.api.nvim_set_hl(0, 'SnippetTabStop', { bg = COLORS.bg2 })
 
 vim.api.nvim_set_hl(0, 'BlinkCmpLabel', { fg = COLORS.darkfg, bg = 'NONE' })
@@ -130,3 +142,8 @@ vim.api.nvim_set_hl(0, '@markup.list.unchecked', { fg = COLORS.darkfg })
 
 vim.api.nvim_set_hl(0, 'ObsidianTag', { fg = COLORS.pink, bg = COLORS.bg_darkpink })
 
+vim.api.nvim_set_hl(0, '@punctuation.delimiter', { fg = COLORS.darkfg2, bg = 'NONE' })
+vim.api.nvim_set_hl(0, '@punctuation.bracket', { fg = COLORS.darkfg2, bg = 'NONE' })
+vim.api.nvim_set_hl(0, '@constructor.lua', { fg = COLORS.darkfg2, bg = 'NONE' })
+vim.api.nvim_set_hl(0, '@constructor', { fg = COLORS.pink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'Number', { fg = COLORS.blue2, bg = 'NONE' })

@@ -15,6 +15,7 @@ vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = 'Vertical split' })
 vim.keymap.set('n', '<leader>f', '<cmd>HopWord<CR>', { desc = 'Hop to word' })
 
 vim.keymap.set('n', '<leader>c', '<cmd>ColorizerToggle<CR>', { desc = 'Toggle colorizer' })
+vim.keymap.set('n', '<leader>b', '<cmd>Gitsigns toggle_current_line_blame<CR>', { desc = 'Toggle git blame' })
 
 vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'Toggle comment', remap = true })
 vim.keymap.set('v', '<leader>/', '<Esc>gvgc', { desc = 'Toggle comment', remap = true })
@@ -59,23 +60,6 @@ local enclose = function(l, r)
 end
 
 vim.keymap.set('v', '<leader><CR>', enclose('<CR>'), { desc = 'x -> ↵x↵' })
-
-vim.keymap.set('n', '<leader>x', function()
-    local word = vim.fn.expand('<cword>')
-    local replace = {
-        ['true'] = 'false',
-        ['false'] = 'true',
-        ['True'] = 'False',
-        ['False'] = 'True',
-        ['0'] = '1',
-        ['1'] = '0',
-    }
-    local res = replace[word]
-    if res == nil then
-        return ''
-    end
-    return string.format('ciw%s<Esc>b', res)
-end, { expr = true, desc = 'Toggle boolean' })
 
 -- enable lazyredraw, disable autocmds during macro execution
 vim.keymap.set('n', '@', function()

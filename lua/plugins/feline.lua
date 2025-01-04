@@ -15,12 +15,13 @@ local line_colors = {
 local mode_colors = {
     NORMAL = 'pink',
     INSERT = 'blue2',
-    REPLACE = 'green',
+    REPLACE = 'blue',
     VISUAL = 'darkpink',
     COMMAND = 'purple',
     LINES = 'darkpink',
     BLOCK = 'darkpink',
-    OP = 'darkpink',
+    OP = 'cyan',
+    TERM = 'blue'
 }
 
 local line = {
