@@ -86,7 +86,7 @@ local line = {
     diagnostic_errors = {
         provider = 'diagnostic_errors',
         hl = {
-            fg = 'pink',
+            fg = 'darkpink',
             bg = 'bg',
         },
         left_sep = 'block',
@@ -95,7 +95,7 @@ local line = {
     diagonstic_warnings = {
         provider = 'diagnostic_warnings',
         hl = {
-            fg = 'cyan',
+            fg = 'purple',
             bg = 'bg',
         },
         left_sep = 'block',
