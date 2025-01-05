@@ -12,6 +12,58 @@ return {
         'nvim-treesitter/nvim-treesitter',
         'saghen/blink.cmp',
     },
+    keys = {
+        {
+            '<leader>oj',
+            '<cmd>ObsidianFollowLink<CR>',
+            mode = 'n',
+            desc = 'Follow link',
+            ft = 'markdown',
+        },
+        {
+            '<leader>of',
+            '<cmd>ObsidianLinks<CR>',
+            mode = 'n',
+            desc = 'Pick buffer links',
+            ft = 'markdown',
+        },
+        {
+            '<leader>ob',
+            '<cmd>ObsidianBacklinks<CR>',
+            mode = 'n',
+            desc = 'Pick backlinks',
+            ft = 'markdown',
+        },
+        {
+            '<leader>oo',
+            '<cmd>ObsidianOpen<CR>',
+            mode = 'n',
+            desc = 'Open note in obsidian',
+            ft = 'markdown',
+        },
+        {
+            '<F8>',
+            '<cmd>ObsidianQuickSwitch<CR>',
+            mode = 'n',
+            desc = 'Switch to note',
+        },
+        {
+            '<leader>ox',
+            function()
+                require('obsidian').util.toggle_checkbox()
+            end,
+            mode = 'n',
+            desc = 'Toggle checkbox',
+            ft = 'markdown',
+        },
+        {
+            '<leader>on',
+            '<cmd>ObsidianLinkNew<CR>',
+            mode = 'n',
+            desc = 'Create and link note',
+            ft = 'markdown',
+        },
+    },
     -- ---@module 'obsidian'
     -- ---@type obsidian.config.ClientOpts
     opts = {
@@ -49,7 +101,7 @@ return {
             local out = {
                 id = note.id,
                 aliases = note.aliases,
-                tags = note.tags
+                tags = note.tags,
             }
             -- `note.metadata` contains any manually added fields in the frontmatter.
             -- So here we just make sure those fields are kept in the frontmatter.

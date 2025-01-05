@@ -107,6 +107,13 @@ return {
     {
         'williamboman/mason.nvim',
         opts = {},
+        keys = {
+            {
+                '<F5>',
+                '<cmd>Mason<CR>',
+                mode = 'n',
+            },
+        },
     },
     {
         'williamboman/mason-lspconfig.nvim',
@@ -131,7 +138,7 @@ return {
         ft = 'lua',
         opts = {
             library = {
-                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
             },
         },
     },
