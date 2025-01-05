@@ -26,17 +26,21 @@ local rules = function()
                 local col = vim.api.nvim_win_get_cursor(0)[2]
                 local context = opts.line:sub(col - 1, col + 2)
                 return vim.tbl_contains(brackets_spaced, context)
-            end)
+            end),
     })
 
     for _, bracket in ipairs(brackets) do
         pairs.add_rules({
             Rule(bracket[1] .. ' ', ' ' .. bracket[2])
                 :with_pair(cond.none())
-                :with_move(function(opts) return opts.char == bracket[2] end)
+                :with_move(function(opts)
+                    return opts.char == bracket[2]
+                end)
                 :with_del(cond.none())
                 :use_key(bracket[2])
-                :replace_map_cr(function(_) return '<Esc>"_2xi<CR><Esc>O' end)
+                :replace_map_cr(function(_)
+                    return '<Esc>"_2xi<CR><Esc>O'
+                end),
         })
     end
 end
@@ -47,12 +51,22 @@ return {
         event = {
             'InsertEnter',
         },
+        keys = {
+            {
+                '<C-p>',
+                function()
+                    require('nvim-autopairs').toggle()
+                end,
+                mode = { 'i', 'n' },
+                desc = 'Toggle autopairs',
+            },
+        },
         config = function()
             require('nvim-autopairs').setup({
                 disable_in_macro = true,
                 fast_wrap = {
                     map = '<C-0>',
-                }
+                },
             })
             rules()
         end,
@@ -80,4 +94,3 @@ return {
         },
     },
 }
-
