@@ -109,7 +109,7 @@ end)
 vim.keymap.set('n', '<F11>', function()
     require('luasnip.loaders.from_snipmate').lazy_load()
 
-    require('luasnip.loaders.from_lua').load({
+    require('luasnip.loaders.from_lua').lazy_load({
         ---@diagnostic disable-next-line: assign-type-mismatch
         paths = '~/.config/nvim/snippets'
     })
