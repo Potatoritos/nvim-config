@@ -1,17 +1,3 @@
-vim.g.rustaceanvim = {
-    server = {
-        capabilities = {
-            textDocument = {
-                completion = {
-                    completionItem = {
-                        snippetSupport = false,
-                    },
-                },
-            },
-        },
-    },
-}
-
 local show_only_one_sign_in_sign_column = function()
     -- custom namespace
     local ns = vim.api.nvim_create_namespace('severe-diagnostics')
@@ -58,6 +44,51 @@ local show_only_one_sign_in_sign_column = function()
     }
 end
 
+local ls_setup = function()
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
+
+    local lsp = require('lspconfig')
+    lsp.basedpyright.setup({ capabilities = capabilities })
+    lsp.eslint.setup({
+        capabilities = capabilities,
+        settings = {
+            rulesCustomizations = {
+                -- { rule = '@typescript-eslint/no-misused-promises', severity = 'off' },
+                -- { rule = '@typescript-eslint/no-unsafe-argument', severity = 'off' },
+                -- { rule = '@typescript-eslint/no-unsafe-assignment', severity = 'off' },
+                -- { rule = 'import/defaults', severity = 'off' },
+                -- { rule = 'import/extensions', severity = 'off' },
+                -- { rule = 'import/namespace', severity = 'off' },
+                -- { rule = 'import/no-cycle', severity = 'off' },
+                -- { rule = 'import/no-unresolved', severity = 'off' },
+                { rule = '*no-unused-vars', severity = 'off' },
+            },
+        },
+    })
+    lsp.lua_ls.setup({ capabilities = capabilities })
+    lsp.ts_ls.setup({
+        capabilities = capabilities,
+        init_options = {
+            plugins = {
+                -- npm install -g @vue/language-server @vue/typescript-plugin
+                {
+                    name = '@vue/typescript-plugin',
+                    location = '/usr/local/lib/node_modules/@vue/language-server',
+                    languages = { 'vue' },
+                },
+            },
+        },
+        filetypes = {
+            'javascript',
+            'javascriptreact',
+            'typescript',
+            'typescriptreact',
+            'vue',
+        },
+    })
+    lsp.volar.setup({ capabilities = capabilities })
+end
+
 return {
     {
         'neovim/nvim-lspconfig',
@@ -66,41 +97,7 @@ return {
             'BufNewFile',
         },
         config = function()
-            local capabilities = require('blink.cmp').get_lsp_capabilities()
-            -- capabilities.textDocument.completion.completionItem.snippetSupport = false
-
-            -- disable lua_ls snippets
-            -- ---@diagnostic disable-next-line inject-field
-            -- capabilities.textDocument.completion.callSnippet = 'Disable'
-            -- ---@diagnostic disable-next-line inject-field
-            -- capabilities.textDocument.completion.keywordSnippet = 'Disable'
-
-            local lsp = require('lspconfig')
-            lsp.basedpyright.setup({ capabilities = capabilities })
-            lsp.eslint.setup({ capabilities = capabilities })
-            lsp.lua_ls.setup({ capabilities = capabilities })
-            lsp.ts_ls.setup({
-                capabilities = capabilities,
-                init_options = {
-                    plugins = {
-                        -- 'npm install -g @vue/language-server @vue/typescript-plugin'
-                        {
-                            name = '@vue/typescript-plugin',
-                            location = '/usr/local/lib/node_modules/@vue/language-server',
-                            languages = { 'vue' },
-                        },
-                    },
-                },
-                filetypes = {
-                    'javascript',
-                    'javascriptreact',
-                    'typescript',
-                    'typescriptreact',
-                    'vue',
-                },
-            })
-            lsp.volar.setup({ capabilities = capabilities })
-
+            ls_setup()
             show_only_one_sign_in_sign_column()
         end,
         dependencies = {
