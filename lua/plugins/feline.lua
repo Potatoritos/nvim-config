@@ -52,6 +52,8 @@ local line = {
         },
         left_sep = 'block',
         right_sep = 'block',
+        truncate_hide = true,
+        priority = 3,
     },
 	git_diff_added = {
 		provider = 'git_diff_added',
@@ -117,6 +119,12 @@ local line = {
         provider = {
             name = 'file_info',
             opts = {
+                type = 'relative',
+            },
+        },
+        short_provider = {
+            name = 'file_info',
+            opts = {
                 type = 'relative-short',
             },
         },
@@ -126,6 +134,7 @@ local line = {
         },
         left_sep = ' ',
         right_sep = ' ',
+        priority = 0,
     },
     file_encoding = {
 		provider = 'file_encoding',
@@ -135,6 +144,8 @@ local line = {
 		},
 		left_sep = 'block',
 		right_sep = 'block',
+        truncate_hide = true,
+        priority = 1,
 	},
 	position = {
 		provider = 'position',
@@ -144,6 +155,8 @@ local line = {
 		},
 		left_sep = 'block',
 		right_sep = 'block',
+        truncate_hide = true,
+        priority = 2,
 	},
 	line_percentage = {
 		provider = 'line_percentage',
