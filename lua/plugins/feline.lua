@@ -91,6 +91,7 @@ local line = {
         },
         left_sep = 'block',
         right_sep = 'block',
+        icon = '󰅙 ',
     },
     diagonstic_warnings = {
         provider = 'diagnostic_warnings',
@@ -100,6 +101,7 @@ local line = {
         },
         left_sep = 'block',
         right_sep = 'block',
+        icon = ' ',
     },
     diagnostic_hints = {
         provider = 'diagnostic_hints',
@@ -109,6 +111,7 @@ local line = {
         },
         left_sep = 'block',
         right_sep = 'block',
+        icon = '󰌵 ',
     },
     file_info = {
         provider = {
