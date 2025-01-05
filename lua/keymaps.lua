@@ -26,9 +26,6 @@ end, { desc = 'Toggle autopairs' })
 
 vim.keymap.set({ 'n', 'o' }, '\'', '`', { desc = 'Jump to mark', remap = true })
 
-vim.keymap.set('n', '<leader>lf', function()
-    vim.lsp.buf.format({ async = true })
-end, { desc = 'Format (LSP)' })
 vim.keymap.set('n', '<leader>lr', function()
     vim.lsp.buf.rename()
 end, { desc = 'Rename (LSP)' })
