@@ -2,6 +2,7 @@ return {
     {
         'jbyuki/nabla.nvim',
         ft = 'markdown',
+        enabled = true,
     },
     {
         'MeanderingProgrammer/render-markdown.nvim',
@@ -40,6 +41,9 @@ return {
             },
             link = {
                 enabled = true,
+                wiki = {
+                    icon = '',
+                },
             },
             win_options = {
                 conceallevel = {
