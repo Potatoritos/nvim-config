@@ -1,14 +1,26 @@
-local symbols = { Error = '󰅙', Info = 'i', Hint = '󰌵', Warn = '' }
-
-for name, icon in pairs(symbols) do
-    local hl = 'DiagnosticSign' .. name
-    vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
-end
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = '󰅙',
+            [vim.diagnostic.severity.WARN] = '',
+            [vim.diagnostic.severity.INFO] = 'i',
+            [vim.diagnostic.severity.HINT] = '󰌵',
+        },
+        linehl = {},
+        numhl = {
+            [vim.diagnostic.severity.ERROR] = 'LineNr',
+            [vim.diagnostic.severity.WARN] = 'LineNr',
+            [vim.diagnostic.severity.INFO] = 'LineNr',
+            [vim.diagnostic.severity.HINT] = 'LineNr',
+        },
+    },
+    severity_sort = true,
+})
 
 vim.api.nvim_set_hl(0, 'Comment', { fg = COLORS.darkfg2, bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'NormalNC', { fg = COLORS.fg, bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'Normal', { fg = COLORS.fg, bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'NormalFloat', { fg = COLORS.darkfg, bg = COLORS.bg1 })
+vim.api.nvim_set_hl(0, 'NormalFloat', { fg = COLORS.darkfg, bg = COLORS.bg })
 
 vim.api.nvim_set_hl(0, 'LineNr', { fg = COLORS.darkfg2, bg = 'NONE' })
 
@@ -56,6 +68,9 @@ vim.api.nvim_set_hl(0, 'BlinkCmpLabelMatch', { fg = COLORS.pink, bg = 'NONE', bo
 vim.api.nvim_set_hl(0, 'BlinkCmpMenu', { fg = 'NONE', bg = COLORS.bg1 })
 vim.api.nvim_set_hl(0, 'BlinkCmpMenuSelection', { fg = 'NONE', bg = COLORS.bg3 })
 vim.api.nvim_set_hl(0, 'BlinkCmpDocSeparator', { fg = COLORS.bg3 })
+vim.api.nvim_set_hl(0, 'BlinkCmpDoc', { fg = COLORS.darkfg, bg = COLORS.bg1 })
+vim.api.nvim_set_hl(0, 'BlinkCmpDocBorder', { fg = COLORS.darkfg, bg = COLORS.bg1 })
+vim.api.nvim_set_hl(0, 'BlinkCmpSignatureHelpBorder', { fg = COLORS.darkfg, bg = COLORS.bg1 })
 
 vim.api.nvim_set_hl(0, 'BlinkCmpKindClass', { fg = COLORS.bg, bg = COLORS.blue2 })
 vim.api.nvim_set_hl(0, 'BlinkCmpKindColor', { fg = COLORS.bg, bg = COLORS.darkpink })
