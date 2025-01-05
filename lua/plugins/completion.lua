@@ -95,7 +95,7 @@ return {
                         return vim.tbl_filter(function(item)
                             return item.kind ~= require('blink.cmp.types').CompletionItemKind.Snippet
                         end, items)
-                    end
+                    end,
                 },
                 lazydev = {
                     name = 'LazyDev',
@@ -105,7 +105,7 @@ return {
                 luasnip = {
                     name = 'luasnip',
                     module = 'blink.compat.source',
-                    score_offset = 1
+                    score_offset = 1,
                     -- transform_items = function(ctx, items)
                     --     local word = string.sub(ctx.line, ctx.bounds.start_col, ctx.bounds.end_col)
                     --     print(vim.inspect(word))
@@ -193,4 +193,3 @@ return {
         -- },
     },
 }
-
