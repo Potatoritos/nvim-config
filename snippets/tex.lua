@@ -75,7 +75,7 @@ end
 
 local after_space = '[%w%c%p]+$'
 
-local bisplit = function(trig, format)
+local s_split = function(trig, format)
     return postfix({ trig = trig, snippetType = 'autosnippet', match_pattern = after_space }, {
         f(function(_, parent)
             local spl = split(parent.snippet.env.POSTFIX_MATCH)
@@ -84,7 +84,7 @@ local bisplit = function(trig, format)
     })
 end
 
-local equals_bisplit = function(trig, left, right)
+local s_equals_split = function(trig, left, right)
     return postfix({ trig = trig, snippetType = 'autosnippet', match_pattern = after_space }, {
         f(function(_, parent)
             local spl = equals_split(parent.snippet.env.POSTFIX_MATCH)
@@ -105,9 +105,9 @@ local wrap = function(trig, left, right)
 end
 
 local snippets = {
-    bisplit(';f', '\\frac{%s}{%s}'),
-    bisplit(';li', '\\lim{%s \\to %s}'),
-    bisplit(';it', '\\int_{%s}^{%s}'),
+    s_split(';f', '\\frac{%s}{%s}'),
+    s_split(';li', '\\lim{%s \\to %s}'),
+    s_split(';it', '\\int_{%s}^{%s}'),
     postfix({ trig = ';dx', snippetType = 'autosnippet', match_pattern = after_space }, {
         f(function(_, parent)
             local spl = split(parent.snippet.env.POSTFIX_MATCH)
@@ -118,15 +118,15 @@ local snippets = {
             return string.format('\\frac{\\mathrm{d}%s}{\\mathrm{d}%s}', spl.left, spl.right)
         end),
     }),
-    equals_bisplit(';su', '\\sum_{%s}', '^{%s}'),
-    equals_bisplit(';pr', '\\prod_{%s}', '^{%s}'),
-    equals_bisplit(';bu', '\\bigcup_{%s}', '^{%s}'),
-    equals_bisplit(';ba', '\\bigcap_{%s}', '^{%s}'),
-    equals_bisplit(';bw', '\\bigwedge_{%s}', '^{%s}'),
-    equals_bisplit(';bv', '\\bigvee_{%s}', '^{%s}'),
+    s_equals_split(';su', '\\sum_{%s}', '^{%s}'),
+    s_equals_split(';pr', '\\prod_{%s}', '^{%s}'),
+    s_equals_split(';bu', '\\bigcup_{%s}', '^{%s}'),
+    s_equals_split(';ba', '\\bigcap_{%s}', '^{%s}'),
+    s_equals_split(';bw', '\\bigwedge_{%s}', '^{%s}'),
+    s_equals_split(';bv', '\\bigvee_{%s}', '^{%s}'),
     wrap(';v', '\\mathbf{', '}'),
     wrap(';ca', '\\mathcal{', '}'),
-    wrap(';bv', '\\mathbb{', '}'),
+    wrap(';bb', '\\mathbb{', '}'),
     wrap(';ab', '\\left\\lvert', '\\right\\rvert'),
     wrap(';nr', '\\left\\lVert', '\\right\\rVert'),
 }

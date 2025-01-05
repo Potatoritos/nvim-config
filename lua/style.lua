@@ -146,6 +146,7 @@ vim.api.nvim_set_hl(0, '@markup.list.markdown', { fg = COLORS.pink })
 vim.api.nvim_set_hl(0, '@markup.link.label.markdown_inline', { fg = COLORS.pink, underline = true })
 vim.api.nvim_set_hl(0, '@markup.list.checked', { fg = COLORS.pink })
 vim.api.nvim_set_hl(0, '@markup.list.unchecked', { fg = COLORS.darkfg })
+vim.api.nvim_set_hl(0, '@markup.quote.markdown', { fg = COLORS.darkfg })
 
 vim.api.nvim_set_hl(0, 'ObsidianTag', { fg = COLORS.pink, bg = COLORS.bg_darkpink })
 

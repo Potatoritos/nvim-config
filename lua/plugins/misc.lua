@@ -15,24 +15,6 @@ return {
         },
     },
     {
-        'L3MON4D3/LuaSnip',
-        version = 'v2.*',
-        event = {
-            'InsertEnter',
-            'VeryLazy',
-        },
-        config = function()
-            require('luasnip').config.set_config({
-                enable_autosnippets = true,
-            })
-            require('luasnip.loaders.from_snipmate').lazy_load()
-            require('luasnip.loaders.from_lua').load({
-                ---@diagnostic disable-next-line: assign-type-mismatch
-                paths = '~/.config/nvim/snippets'
-            })
-        end,
-    },
-    {
         'stevearc/oil.nvim',
         ---@module 'oil'
         ---@type oil.SetupOpts
