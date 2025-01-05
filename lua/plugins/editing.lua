@@ -28,23 +28,21 @@ return {
             {
                 '<leader>j',
                 function()
-                    require('treesj').join()
+                    require('treesj').toggle({
+                        join = {
+                            space_in_brackets = true,
+                        },
+                    })
                 end,
                 mode = 'n',
                 desc = 'Join block',
-            },
-            {
-                '<leader>k',
-                function()
-                    require('treesj').split()
-                end,
-                mode = 'n',
-                desc = 'Split block',
             },
         },
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
         opts = {
             use_default_keymaps = false,
+            max_join_length = 120,
+            notify = false,
         },
     },
 }
