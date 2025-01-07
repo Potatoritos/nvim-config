@@ -1,17 +1,25 @@
 ---@diagnostic disable: undefined-global
 
-local split_char = function(str, char)
+local split = function(str)
     local res = {}
     local token = {}
     local index = 1
 
+    local open = 0
+
     while index <= #str do
-        local c = string.sub(str, index, index)
-        if c == char then
+        local c = str:sub(index, index)
+        if c == ' ' and open == 0 then
             table.insert(res, table.concat(token, ''))
             token = {}
         else
             table.insert(token, c)
+
+            if c == '{' then
+                open = open + 1
+            elseif c == '}' then
+                open = math.max(open - 1, 0)
+            end
         end
 
         if index == #str then
@@ -24,17 +32,22 @@ local split_char = function(str, char)
 end
 
 return {
-    postfix({ trig = ';ma', snippetType = 'autosnippet', match_pattern = '^.*$' }, {
+    postfix(
+        {
+            trig = ';ma',
+            snippetType = 'autosnippet',
+            match_pattern = '^.*$',
+        },
         f(function(_, parent)
             local match = parent.snippet.env.POSTFIX_MATCH
-            local spl = split_char(match, ' ')
+            local spl = split(match)
 
-            local info = table.remove(spl, #spl)
+            local info = table.remove(spl, 1)
             local index = 1
 
             local cols
-            if string.match(info, '^%d') then
-                cols = tonumber(string.sub(info, 1, 1))
+            if info:match('^%d') then
+                cols = tonumber(info:sub(1, 1))
                 index = index + 1
             else
                 cols = 1
@@ -43,8 +56,8 @@ return {
             local rows = math.floor(#spl / cols)
 
             local type
-            if string.match(info, '^%a', index) then
-                type = string.sub(info, index, index)
+            if info:match('^%a', index) then
+                type = info:sub(index, index)
             else
                 type = 'b'
             end
@@ -74,6 +87,6 @@ return {
 
             table.insert(res, '\\end{' .. type .. 'matrix}')
             return res
-        end),
-    }),
+        end)
+    ),
 }
