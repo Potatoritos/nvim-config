@@ -1,6 +1,0 @@
-vim.keymap.set('n', '<leader>la', function()
-    vim.cmd.RustLsp('codeAction')
-end, { desc = 'Code action (LSP)', silent = true, buffer = true })
-vim.keymap.set('n', 'K', function()
-    vim.cmd.RustLsp({'hover', 'actions'})
-end, { silent = true, buffer = true })
