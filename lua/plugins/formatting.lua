@@ -17,18 +17,24 @@ return {
         ---@type conform.setupOpts
         opts = {
             formatters_by_ft = {
-                lua = { 'stylua' },
-                python = { 'isort', 'black' },
+                c = { lsp_format = 'first' },
+                cpp = { lsp_format = 'first' },
                 javascript = { 'prettierd' },
+                lua = { 'stylua' },
+                markdown = { 'prettierd' },
+                python = { 'isort', 'black' },
+                rust = { lsp_format = 'first' },
                 typescript = { 'prettierd' },
+                vue = { 'prettierd' },
             },
             default_format_opts = {
                 lsp_format = 'fallback',
             },
             format_on_save = {
+                lsp_format = 'fallback',
                 timeout_ms = 500,
-                lsp_format = 'never',
             },
+            log_level = vim.log.levels.DEBUG,
         },
         init = function()
             vim.o.formatexpr = 'v:lua.require("conform").formatexpr()'

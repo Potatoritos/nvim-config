@@ -34,15 +34,6 @@ vim.keymap.set({ 'n', 'v', 'x' }, '<leader>P', '"+P', { noremap = true, silent =
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d', { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>D', '"+D', { noremap = true, silent = true })
 
-local enclose = function(l, r)
-    if r == nil then
-        r = l
-    end
-    return string.format('<Esc>`>a%s<Esc>`<i%s<Esc>w', r, l)
-end
-
-vim.keymap.set('v', '<leader><CR>', enclose('<CR>'), { desc = 'x -> ↵x↵' })
-
 -- enable lazyredraw, disable autocmds during macro execution
 vim.keymap.set('n', '@', function()
     local count = vim.v.count1
@@ -52,15 +43,6 @@ vim.keymap.set('n', '@', function()
     vim.api.nvim_command(string.format('noa norm! %d@%s', count, register))
     vim.opt.lazyredraw = lazyredraw
 end, { noremap = true })
-
--- vim.keymap.set('i', '<Tab>', function()
---     local ls = require('luasnip')
---     if ls.expandable() then
---         ls.expand()
---     else
---         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', false)
---     end
--- end, { silent = true })
 
 vim.keymap.set('n', '<F12>', '<cmd>Lazy<CR>', { desc = 'Open Lazy menu' })
 

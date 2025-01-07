@@ -1,8 +1,6 @@
 local show_only_one_sign_in_sign_column = function()
-    -- custom namespace
     local ns = vim.api.nvim_create_namespace('severe-diagnostics')
 
-    -- reference to the original handler
     local orig_signs_handler = vim.diagnostic.handlers.signs
 
     local filter_diagnostics = function(diagnostics)
@@ -10,31 +8,23 @@ local show_only_one_sign_in_sign_column = function()
             return {}
         end
 
-        -- find the "worst" diagnostic per line
         local most_severe = {}
         for _, cur in pairs(diagnostics) do
             local max = most_severe[cur.lnum]
 
-            -- higher severity has lower value (`:h diagnostic-severity`)
             if not max or cur.severity < max.severity then
                 most_severe[cur.lnum] = cur
             end
         end
 
-        -- return list of diagnostics
         return vim.tbl_values(most_severe)
     end
 
     vim.diagnostic.handlers.signs = {
         show = function(_, bufnr, _, opts)
-            -- get all diagnostics from the whole buffer rather
-            -- than just the diagnostics passed to the handler
             local diagnostics = vim.diagnostic.get(bufnr)
-
             local filtered_diagnostics = filter_diagnostics(diagnostics)
 
-            -- pass the filtered diagnostics (with the
-            -- custom namespace) to the original handler
             orig_signs_handler.show(ns, bufnr, filtered_diagnostics, opts)
         end,
 
@@ -49,6 +39,7 @@ local ls_setup = function()
 
     local lsp = require('lspconfig')
     lsp.basedpyright.setup({ capabilities = capabilities })
+    lsp.clangd.setup({ capabilities = capabilities })
     lsp.eslint.setup({
         capabilities = capabilities,
         settings = {
@@ -120,6 +111,7 @@ return {
         opts = {
             ensure_installed = {
                 'basedpyright',
+                'clangd',
                 'eslint',
                 'lua_ls',
                 'rust_analyzer',
@@ -132,6 +124,25 @@ return {
         'mrcjkb/rustaceanvim',
         version = '^5',
         lazy = false,
+        keys = {
+            {
+                '<leader>la',
+                function()
+                    vim.cmd.RustLsp('codeAction')
+                end,
+                mode = 'n',
+                ft = 'rust',
+                desc = 'Code action (LSP)',
+            },
+            {
+                '<leader>K',
+                function()
+                    vim.cmd.RustLsp({ 'hover', 'actions' })
+                end,
+                mode = 'n',
+                ft = 'rust',
+            },
+        },
     },
     {
         'folke/lazydev.nvim',
