@@ -55,8 +55,7 @@ return {
             default = {
                 'lsp',
                 'path',
-                'luasnip',
-                -- 'snippets',
+                'snippets',
                 'buffer',
                 'lazydev',
                 -- 'markdown',
@@ -102,26 +101,14 @@ return {
                     module = 'lazydev.integrations.blink',
                     fallbacks = { 'lsp' },
                 },
-                luasnip = {
-                    name = 'luasnip',
-                    module = 'blink.compat.source',
-                    score_offset = 1,
-                    -- transform_items = function(ctx, items)
-                    --     local word = string.sub(ctx.line, ctx.bounds.start_col, ctx.bounds.end_col)
-                    --     print(vim.inspect(word))
-                    --     for _, item in ipairs(items) do
-                    --         if word == item.word then
-                    --             item.score_offset = item.score_offset + 1000
-                    --         end
-                    --     end
-                    --     return items
-                    -- end,
-                },
             },
         },
         completion = {
             list = {
-                selection = 'preselect',
+                selection = {
+                    preselect = true,
+                    auto_insert = false,
+                },
                 cycle = {
                     from_bottom = true,
                     from_top = true,
@@ -159,18 +146,7 @@ return {
             kind_icons = kind_icons,
         },
         snippets = {
-            expand = function(snippet)
-                require('luasnip').lsp_expand(snippet)
-            end,
-            active = function(filter)
-                if filter and filter.direction then
-                    return require('luasnip').jumpable(filter.direction)
-                end
-                return require('luasnip').in_snippet()
-            end,
-            jump = function(direction)
-                require('luasnip').jump(direction)
-            end,
+            preset = 'luasnip',
         },
         signature = {
             enabled = true,
@@ -185,11 +161,8 @@ return {
             },
         },
         {
-            'saadparwaiz1/cmp_luasnip',
+            'L3MON4D3/LuaSnip',
+            version = 'v2.*',
         },
-        -- {
-        --     'L3MON4D3/LuaSnip',
-        --     version = 'v2.*',
-        -- },
     },
 }
