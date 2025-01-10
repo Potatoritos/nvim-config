@@ -1,5 +1,3 @@
----@diagnostic disable missing-fields
-
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear highlights' })
 
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Save file' })
@@ -18,7 +16,11 @@ vim.keymap.set('v', '<leader>/', '<Esc>gvgc', { desc = 'Toggle comment', remap =
 vim.keymap.set({ 'n', 'o' }, "'", '`', { desc = 'Jump to mark', remap = true })
 
 vim.keymap.set('n', '<leader>lr', function()
-    vim.lsp.buf.rename()
+    vim.ui.input({ prompt = 'New name: ' }, function(input)
+        if input ~= nil and input ~= '' then
+            vim.lsp.buf.rename(input)
+        end
+    end)
 end, { desc = 'Rename (LSP)' })
 vim.keymap.set('n', '<leader>la', function()
     vim.lsp.buf.code_action()

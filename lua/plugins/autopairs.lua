@@ -50,6 +50,7 @@ return {
         'windwp/nvim-autopairs',
         event = {
             'InsertEnter',
+            'VeryLazy',
         },
         keys = {
             {
