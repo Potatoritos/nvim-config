@@ -20,11 +20,14 @@ vim.diagnostic.config({
 vim.api.nvim_set_hl(0, 'Comment', { fg = COLORS.darkfg2, bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'NormalNC', { fg = COLORS.fg, bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'Normal', { fg = COLORS.fg, bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'NormalFloat', { fg = COLORS.darkfg, bg = COLORS.bg })
+vim.api.nvim_set_hl(0, 'NormalFloat', { fg = COLORS.darkfg, bg = COLORS.bg1 })
 
 vim.api.nvim_set_hl(0, 'LineNr', { fg = COLORS.darkfg2, bg = 'NONE' })
 
 vim.api.nvim_set_hl(0, 'CurSearch', { fg = COLORS.bg, bg = COLORS.darkpink })
+
+vim.api.nvim_set_hl(0, 'LazyNormal', { fg = COLORS.darkfg, bg = COLORS.bg })
+vim.api.nvim_set_hl(0, 'MasonNormal', { fg = COLORS.darkfg, bg = COLORS.bg })
 
 vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = COLORS.pink })
 vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = COLORS.cyan })
@@ -33,6 +36,7 @@ vim.api.nvim_set_hl(0, 'GitSignsCurrentLineBlame', { fg = COLORS.darkfg2 })
 
 vim.api.nvim_set_hl(0, 'GitSignsStagedAdd', { fg = COLORS.cyan })
 vim.api.nvim_set_hl(0, 'GitSignsStagedChange', { fg = COLORS.pink })
+
 vim.api.nvim_set_hl(0, 'GitSignsStagedDelete', { fg = COLORS.darkfg })
 vim.api.nvim_set_hl(0, 'GitSignsStagedChangedelete', { fg = COLORS.darkfg })
 
@@ -60,6 +64,12 @@ vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { fg = 'NONE', bg = 'NONE' })
 
 vim.api.nvim_set_hl(0, 'SnippetTabStop', { bg = COLORS.bg2 })
 
+vim.api.nvim_set_hl(0, 'TroubleNormal', { fg = COLORS.darkfg, bg = COLORS.bg })
+vim.api.nvim_set_hl(0, 'TroubleNormalNC', { fg = COLORS.darkfg, bg = COLORS.bg })
+vim.api.nvim_set_hl(0, 'TroubleText', { fg = COLORS.darkfg, bg = COLORS.bg })
+vim.api.nvim_set_hl(0, 'TroubleDiagnosticsCount', { fg = COLORS.darkfg, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'TroubleFsCount', { fg = COLORS.darkfg, bg = 'NONE' })
+
 vim.api.nvim_set_hl(0, 'BlinkCmpLabel', { fg = COLORS.darkfg, bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'BlinkCmpLabelDescription', { fg = COLORS.darkfg, bg = 'NONE', italic = true })
 vim.api.nvim_set_hl(0, 'BlinkCmpLabelDetail', { fg = COLORS.darkfg, bg = 'NONE', italic = true })
@@ -70,6 +80,7 @@ vim.api.nvim_set_hl(0, 'BlinkCmpMenuSelection', { fg = 'NONE', bg = COLORS.bg3 }
 vim.api.nvim_set_hl(0, 'BlinkCmpDocSeparator', { fg = COLORS.bg3 })
 vim.api.nvim_set_hl(0, 'BlinkCmpDoc', { fg = COLORS.darkfg, bg = COLORS.bg1 })
 vim.api.nvim_set_hl(0, 'BlinkCmpDocBorder', { fg = COLORS.darkfg, bg = COLORS.bg1 })
+vim.api.nvim_set_hl(0, 'BlinkCmpSignatureHelp', { fg = COLORS.darkfg, bg = COLORS.bg1 })
 vim.api.nvim_set_hl(0, 'BlinkCmpSignatureHelpBorder', { fg = COLORS.darkfg, bg = COLORS.bg1 })
 
 vim.api.nvim_set_hl(0, 'BlinkCmpKindClass', { fg = COLORS.bg, bg = COLORS.blue2 })

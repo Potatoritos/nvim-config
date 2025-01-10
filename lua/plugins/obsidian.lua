@@ -74,7 +74,7 @@ return {
             },
         },
         completion = {
-            nvim_cmp = false,
+            nvim_cmp = true,
         },
         picker = {
             name = 'fzf-lua',
@@ -115,13 +115,4 @@ return {
         end,
         mappings = {},
     },
-    config = function(_, opts)
-        require('obsidian').setup(opts)
-
-        -- manually register sources until obsidian.nvim supports blink.cmp
-        local cmp = require('cmp')
-        cmp.register_source('obsidian', require('cmp_obsidian').new())
-        cmp.register_source('obsidian_new', require('cmp_obsidian_new').new())
-        cmp.register_source('obsidian_tags', require('cmp_obsidian_tags').new())
-    end,
 }

@@ -2,6 +2,7 @@ return {
     {
         'smoka7/hop.nvim',
         version = '*',
+        event = 'VeryLazy',
         keys = {
             {
                 '<leader>f',
@@ -17,13 +18,18 @@ return {
     {
         'kylechui/nvim-surround',
         version = '*',
-        event = 'VeryLazy',
+        event = {
+            'BufReadPost',
+            'BufNewFile',
+            'VeryLazy',
+        },
         opts = {
             move_cursor = 'sticky',
         },
     },
     {
         'Wansmer/treesj',
+        event = 'VeryLazy',
         keys = {
             {
                 '<leader>j',

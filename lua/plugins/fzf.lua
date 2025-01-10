@@ -9,6 +9,7 @@ end
 
 return {
     'ibhagwan/fzf-lua',
+    event = 'VeryLazy',
     keys = {
         {
             '<F1>',
