@@ -52,6 +52,7 @@ local ls_setup = function()
                 -- { rule = 'import/namespace', severity = 'off' },
                 -- { rule = 'import/no-cycle', severity = 'off' },
                 -- { rule = 'import/no-unresolved', severity = 'off' },
+                { rule = '*', severity = 'warn' },
                 { rule = '*no-unused-vars', severity = 'off' },
             },
         },
