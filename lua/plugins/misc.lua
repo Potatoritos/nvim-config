@@ -1,5 +1,17 @@
 return {
     {
+        'rmagatti/auto-session',
+        lazy = false,
+        ---@module 'auto-session'
+        ---@type AutoSession.Config
+        opts = {
+            allowed_dirs = {
+                '~/p/*',
+                '~/.config/nvim',
+            },
+        },
+    },
+    {
         'lervag/vimtex',
         lazy = false,
         config = function()
