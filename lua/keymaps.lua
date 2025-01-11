@@ -8,9 +8,6 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Focus right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Focus lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Focus upper window' })
 
-vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'Toggle comment', remap = true })
-vim.keymap.set('v', '<leader>/', '<Esc>gvgc', { desc = 'Toggle comment', remap = true })
-
 vim.keymap.set({ 'n', 'o' }, "'", '`', { desc = 'Jump to mark', remap = true })
 
 vim.keymap.set('n', '<leader>lr', function()

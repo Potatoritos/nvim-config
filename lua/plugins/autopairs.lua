@@ -85,11 +85,14 @@ return {
             'vue',
             'xml',
         },
-        opts = {
-            enable_close = true,
-            enable_rename = true,
-            enable_close_on_slash = false,
-        },
+        config = function()
+            ---@diagnostic disable-next-line missing-fields
+            require('nvim-ts-autotag').setup({
+                enable_close = true,
+                enable_rename = true,
+                enable_close_on_slash = false,
+            })
+        end,
         dependencies = {
             'nvim-treesitter/nvim-treesitter',
         },
