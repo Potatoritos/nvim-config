@@ -2,6 +2,7 @@ return {
     {
         'smoka7/hop.nvim',
         version = '*',
+        enabled = false,
         event = 'VeryLazy',
         keys = {
             {
@@ -14,6 +15,13 @@ return {
         opts = {
             keys = 'sdklqwertyuiopzxcvnmbhgfja;',
         },
+    },
+    {
+        'ggandor/leap.nvim',
+        lazy = false,
+        config = function()
+            require('leap').create_default_mappings()
+        end,
     },
     {
         'kylechui/nvim-surround',

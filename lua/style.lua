@@ -1,7 +1,7 @@
 vim.diagnostic.config({
     signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = '󰅙',
+            [vim.diagnostic.severity.ERROR] = '',
             [vim.diagnostic.severity.WARN] = '',
             [vim.diagnostic.severity.INFO] = 'i',
             [vim.diagnostic.severity.HINT] = '󰌵',
@@ -57,10 +57,18 @@ vim.api.nvim_set_hl(0, 'Pmenu', { fg = 'NONE', bg = COLORS.bg2 })
 vim.api.nvim_set_hl(0, 'Special', { fg = COLORS.pink })
 
 vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', { fg = 'NONE', bg = 'NONE' })
+-- vim.api.nvim_set_hl(0, 'DiagnosticSignHint', { fg = COLORS.darkfg, bg = 'NONE', bold = true })
+-- vim.api.nvim_set_hl(0, 'DiagnosticSignInfo', { fg = COLORS.darkfg, bg = 'NONE', bold = true })
+-- vim.api.nvim_set_hl(0, 'DiagnosticSignWarn', { fg = COLORS.purple, bg = 'NONE', bold = true })
+-- vim.api.nvim_set_hl(0, 'DiagnosticSignError', { fg = COLORS.darkpink, bg = 'NONE', bold = true })
 vim.api.nvim_set_hl(0, 'DiagnosticUnderlineHint', { fg = 'NONE', bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'DiagnosticUnderlineInfo', { fg = 'NONE', bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'DiagnosticUnderlineWarn', { fg = 'NONE', bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { fg = 'NONE', bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextHint', { fg = COLORS.darkfg, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextInfo', { fg = COLORS.darkfg, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextWarn', { fg = COLORS.purple, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextError', { fg = COLORS.darkpink, bg = 'NONE' })
 
 vim.api.nvim_set_hl(0, 'SnippetTabStop', { bg = COLORS.bg2 })
 

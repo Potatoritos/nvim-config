@@ -21,7 +21,7 @@ local mode_colors = {
     LINES = 'darkpink',
     BLOCK = 'darkpink',
     OP = 'cyan',
-    TERM = 'blue'
+    TERM = 'blue',
 }
 
 local line = {
@@ -37,7 +37,7 @@ local line = {
                 fg = 'bg',
                 bg = require('feline.providers.vi_mode').get_mode_color(),
                 style = 'bold',
-                name = require('feline.providers.vi_mode').get_mode_highlight_name()
+                name = require('feline.providers.vi_mode').get_mode_highlight_name(),
             }
         end,
         left_sep = 'block',
@@ -55,36 +55,36 @@ local line = {
         truncate_hide = true,
         priority = 3,
     },
-	git_diff_added = {
-		provider = 'git_diff_added',
-		hl = {
-			fg = 'cyan',
-			bg = 'bg',
-		},
+    git_diff_added = {
+        provider = 'git_diff_added',
+        hl = {
+            fg = 'cyan',
+            bg = 'bg',
+        },
         icon = '+',
-		left_sep = 'block',
-		right_sep = 'block',
-	},
-	git_diff_removed = {
-		provider = 'git_diff_removed',
-		hl = {
-			fg = 'darkfg',
-			bg = 'bg',
-		},
+        left_sep = 'block',
+        right_sep = 'block',
+    },
+    git_diff_removed = {
+        provider = 'git_diff_removed',
+        hl = {
+            fg = 'darkfg',
+            bg = 'bg',
+        },
         icon = '-',
-		left_sep = 'block',
-		right_sep = 'block',
-	},
-	git_diff_changed = {
-		provider = 'git_diff_changed',
-		hl = {
-			fg = 'pink',
-			bg = 'bg',
-		},
+        left_sep = 'block',
+        right_sep = 'block',
+    },
+    git_diff_changed = {
+        provider = 'git_diff_changed',
+        hl = {
+            fg = 'pink',
+            bg = 'bg',
+        },
         icon = '~',
-		left_sep = 'block',
-		right_sep = 'block',
-	},
+        left_sep = 'block',
+        right_sep = 'block',
+    },
     diagnostic_errors = {
         provider = 'diagnostic_errors',
         hl = {
@@ -93,7 +93,7 @@ local line = {
         },
         left_sep = 'block',
         right_sep = 'block',
-        icon = '󰅙 ',
+        icon = ' ',
     },
     diagonstic_warnings = {
         provider = 'diagnostic_warnings',
@@ -137,37 +137,37 @@ local line = {
         priority = 0,
     },
     file_encoding = {
-		provider = 'file_encoding',
-		hl = {
-			fg = 'darkfg',
-			bg = 'bg',
-		},
-		left_sep = 'block',
-		right_sep = 'block',
+        provider = 'file_encoding',
+        hl = {
+            fg = 'darkfg',
+            bg = 'bg',
+        },
+        left_sep = 'block',
+        right_sep = 'block',
         truncate_hide = true,
         priority = 1,
-	},
-	position = {
-		provider = 'position',
-		hl = {
-			fg = 'darkfg',
-			bg = 'bg',
-		},
-		left_sep = 'block',
-		right_sep = 'block',
+    },
+    position = {
+        provider = 'position',
+        hl = {
+            fg = 'darkfg',
+            bg = 'bg',
+        },
+        left_sep = 'block',
+        right_sep = 'block',
         truncate_hide = true,
         priority = 2,
-	},
-	line_percentage = {
-		provider = 'line_percentage',
-		hl = {
-			fg = 'darkpink',
-			bg = 'bg',
-			style = 'bold',
-		},
-		left_sep = 'block',
-		right_sep = 'block',
-	},
+    },
+    line_percentage = {
+        provider = 'line_percentage',
+        hl = {
+            fg = 'darkpink',
+            bg = 'bg',
+            style = 'bold',
+        },
+        left_sep = 'block',
+        right_sep = 'block',
+    },
 }
 
 local left = {
@@ -211,4 +211,3 @@ return {
         vi_mode_colors = mode_colors,
     },
 }
-
