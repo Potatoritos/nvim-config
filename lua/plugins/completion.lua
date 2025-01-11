@@ -89,10 +89,14 @@ return {
                 --     name = 'RenderMarkdown',
                 --     module = 'render-markdown.integ.blink',
                 -- },
+                snippets = {
+                    score_offset = 1,
+                },
                 lsp = {
                     transform_items = function(_, items)
+                        local kind = require('blink.cmp.types').CompletionItemKind
                         return vim.tbl_filter(function(item)
-                            return item.kind ~= require('blink.cmp.types').CompletionItemKind.Snippet
+                            return item.kind ~= kind.Snippet and item.kind ~= kind.Keyword
                         end, items)
                     end,
                 },
@@ -141,6 +145,8 @@ return {
         },
         fuzzy = {
             use_typo_resistance = false,
+            use_frecency = false,
+            use_proximity = false,
         },
         appearance = {
             kind_icons = kind_icons,
