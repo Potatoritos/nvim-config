@@ -4,11 +4,6 @@ vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
 vim.opt.showmode = false
 
--- this significantly slows down y/d/macro execution
--- vim.schedule(function()
---     vim.opt.clipboard = 'unnamedplus'
--- end)
-
 vim.opt.breakindent = true
 
 vim.opt.undofile = true
@@ -39,9 +34,8 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.background = 'dark'
-vim.cmd.colorscheme 'oxocarbon'
 
-vim.opt.completeopt = {'menuone', 'noinsert'}
+vim.opt.completeopt = { 'menuone', 'noinsert' }
 vim.opt.shortmess = vim.opt.shortmess + { c = true }
 vim.opt.cursorline = false
 
@@ -52,3 +46,5 @@ vim.opt.conceallevel = 2
 vim.opt.autoindent = true
 
 vim.opt.signcolumn = 'yes:2'
+
+vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'

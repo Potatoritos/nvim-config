@@ -7,8 +7,6 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Focus left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Focus right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Focus lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Focus upper window' })
-vim.keymap.set('n', '<leader>s', '<C-w>s', { desc = 'Horizontal split' })
-vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = 'Vertical split' })
 
 vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'Toggle comment', remap = true })
 vim.keymap.set('v', '<leader>/', '<Esc>gvgc', { desc = 'Toggle comment', remap = true })

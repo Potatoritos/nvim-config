@@ -1,3 +1,5 @@
+vim.cmd.colorscheme('oxocarbon')
+
 vim.diagnostic.config({
     signs = {
         text = {
@@ -24,7 +26,9 @@ vim.api.nvim_set_hl(0, 'NormalFloat', { fg = COLORS.darkfg, bg = COLORS.bg1 })
 
 vim.api.nvim_set_hl(0, 'LineNr', { fg = COLORS.darkfg2, bg = 'NONE' })
 
-vim.api.nvim_set_hl(0, 'CurSearch', { fg = COLORS.bg, bg = COLORS.darkpink })
+vim.api.nvim_set_hl(0, 'Search', { fg = COLORS.bg, bg = COLORS.cyan, bold = true })
+vim.api.nvim_set_hl(0, 'IncSearch', { fg = COLORS.bg, bg = COLORS.pink, bold = true })
+vim.api.nvim_set_hl(0, 'CurSearch', { fg = COLORS.bg, bg = COLORS.pink, bold = true })
 
 vim.api.nvim_set_hl(0, 'LazyNormal', { fg = COLORS.darkfg, bg = COLORS.bg })
 vim.api.nvim_set_hl(0, 'MasonNormal', { fg = COLORS.darkfg, bg = COLORS.bg })
@@ -36,7 +40,6 @@ vim.api.nvim_set_hl(0, 'GitSignsCurrentLineBlame', { fg = COLORS.darkfg2 })
 
 vim.api.nvim_set_hl(0, 'GitSignsStagedAdd', { fg = COLORS.cyan })
 vim.api.nvim_set_hl(0, 'GitSignsStagedChange', { fg = COLORS.pink })
-
 vim.api.nvim_set_hl(0, 'GitSignsStagedDelete', { fg = COLORS.darkfg })
 vim.api.nvim_set_hl(0, 'GitSignsStagedChangedelete', { fg = COLORS.darkfg })
 
@@ -118,11 +121,6 @@ vim.api.nvim_set_hl(0, 'BlinkCmpKindValue', { fg = COLORS.bg, bg = COLORS.purple
 vim.api.nvim_set_hl(0, 'BlinkCmpKindVariable', { fg = COLORS.bg, bg = COLORS.purple })
 
 vim.api.nvim_set_hl(0, 'LspSignatureActiveParameter', { fg = 'NONE', bg = COLORS.bg3 })
-
-vim.api.nvim_set_hl(0, 'HopNextKey', { fg = COLORS.darkpink, bg = 'NONE', bold = true })
-vim.api.nvim_set_hl(0, 'HopNextKey1', { fg = COLORS.cyan, bg = 'NONE', bold = true })
-vim.api.nvim_set_hl(0, 'HopNextKey2', { fg = COLORS.darkcyan, bg = 'NONE', bold = false })
-vim.api.nvim_set_hl(0, 'HopPreview', { fg = COLORS.bg, bg = COLORS.darkpink })
 
 vim.api.nvim_set_hl(0, 'FzfLuaBorder', { fg = COLORS.bg3 })
 vim.api.nvim_set_hl(0, 'FzfLuaTitle', { fg = COLORS.pink })

@@ -1,26 +1,11 @@
 return {
     {
-        'smoka7/hop.nvim',
-        version = '*',
-        enabled = false,
-        event = 'VeryLazy',
-        keys = {
-            {
-                '<leader>f',
-                '<cmd>HopWord<CR>',
-                mode = 'n',
-                desc = 'Hop to word',
-            },
-        },
-        opts = {
-            keys = 'sdklqwertyuiopzxcvnmbhgfja;',
-        },
-    },
-    {
         'ggandor/leap.nvim',
         lazy = false,
         config = function()
-            require('leap').create_default_mappings()
+            vim.keymap.set({ 'n', 'x', 'o' }, '<leader>f', '<Plug>(leap-forward)', { desc = 'Leap forward' })
+            vim.keymap.set({ 'n', 'x', 'o' }, '<leader>s', '<Plug>(leap-backward)', { desc = 'Leap backward' })
+            vim.keymap.set({ 'n', 'x', 'o' }, 'gs', '<Plug>(leap-from-window)', { desc = 'Leap all windows' })
         end,
     },
     {
