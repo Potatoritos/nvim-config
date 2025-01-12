@@ -90,13 +90,18 @@ return {
                 --     module = 'render-markdown.integ.blink',
                 -- },
                 snippets = {
-                    score_offset = 1,
+                    score_offset = 1000,
                 },
                 lsp = {
                     transform_items = function(_, items)
                         local kind = require('blink.cmp.types').CompletionItemKind
+                        for _, item in ipairs(items) do
+                            if item.kind == kind.Keyword then
+                                item.score_offset = item.score_offset - 1
+                            end
+                        end
                         return vim.tbl_filter(function(item)
-                            return item.kind ~= kind.Snippet and item.kind ~= kind.Keyword
+                            return item.kind ~= kind.Snippet
                         end, items)
                     end,
                 },
@@ -145,8 +150,6 @@ return {
         },
         fuzzy = {
             use_typo_resistance = false,
-            use_frecency = false,
-            use_proximity = false,
         },
         appearance = {
             kind_icons = kind_icons,

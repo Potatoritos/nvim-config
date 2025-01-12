@@ -32,7 +32,14 @@ return {
     },
     config = function()
         local ls = require('luasnip')
-        ls.config.set_config({
+        local s = ls.snippet
+        local fmt = require('luasnip.extras.fmt').fmt
+        ls.setup({
+            snip_env = {
+                sfmt = function(name, text, nodes)
+                    return s(name, fmt(text, nodes, { indent_string = '    ' }))
+                end,
+            },
             enable_autosnippets = true,
         })
         ls.filetype_extend('markdown', { 'tex' })
