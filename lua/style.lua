@@ -20,7 +20,7 @@ vim.diagnostic.config({
 })
 
 vim.api.nvim_set_hl(0, 'YankHighlight', { bg = COLORS.lightbg_darkpink })
-vim.api.nvim_set_hl(0, 'Visual', { bg = COLORS.lightbg_blue2 })
+-- vim.api.nvim_set_hl(0, 'Visual', { bg = COLORS.lightbg_blue2 })
 
 vim.api.nvim_set_hl(0, 'Comment', { fg = COLORS.darkfg2, bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'NormalNC', { fg = COLORS.fg, bg = 'NONE' })
@@ -123,7 +123,7 @@ vim.api.nvim_set_hl(0, 'BlinkCmpKindUnit', { fg = COLORS.bg, bg = COLORS.blue2 }
 vim.api.nvim_set_hl(0, 'BlinkCmpKindValue', { fg = COLORS.bg, bg = COLORS.purple })
 vim.api.nvim_set_hl(0, 'BlinkCmpKindVariable', { fg = COLORS.bg, bg = COLORS.purple })
 
-vim.api.nvim_set_hl(0, 'LspSignatureActiveParameter', { fg = 'NONE', bg = COLORS.lightbg_blue2 })
+vim.api.nvim_set_hl(0, 'LspSignatureActiveParameter', { fg = 'NONE', bg = COLORS.bg3 })
 
 vim.api.nvim_set_hl(0, 'FzfLuaBorder', { fg = COLORS.bg3 })
 vim.api.nvim_set_hl(0, 'FzfLuaTitle', { fg = COLORS.pink })
