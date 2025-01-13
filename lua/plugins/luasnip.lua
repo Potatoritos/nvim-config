@@ -39,6 +39,9 @@ return {
                 sfmt = function(name, text, nodes)
                     return s(name, fmt(text, nodes, { indent_string = '    ' }))
                 end,
+                sfmta = function(name, text, nodes)
+                    return s(name, fmt(text, nodes, { indent_string = '    ', delimeters = '<>' }))
+                end,
             },
             enable_autosnippets = true,
         })
