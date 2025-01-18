@@ -91,6 +91,7 @@ return {
                 -- },
                 snippets = {
                     score_offset = 1000,
+                    max_items = 1,
                 },
                 lsp = {
                     transform_items = function(_, items)
@@ -150,6 +151,7 @@ return {
         },
         fuzzy = {
             use_typo_resistance = false,
+            use_frecency = false,
         },
         appearance = {
             kind_icons = kind_icons,

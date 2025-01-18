@@ -97,31 +97,6 @@ return {
         },
     },
     {
-        'williamboman/mason.nvim',
-        opts = {},
-        keys = {
-            {
-                '<F5>',
-                '<cmd>Mason<CR>',
-                mode = 'n',
-            },
-        },
-    },
-    {
-        'williamboman/mason-lspconfig.nvim',
-        opts = {
-            ensure_installed = {
-                'basedpyright',
-                'clangd',
-                'eslint',
-                'lua_ls',
-                'rust_analyzer',
-                'ts_ls',
-                'volar',
-            },
-        },
-    },
-    {
         'mrcjkb/rustaceanvim',
         version = '^5',
         lazy = false,

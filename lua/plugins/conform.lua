@@ -2,9 +2,6 @@ return {
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
-    dependencies = {
-        'stevearc/mason.nvim',
-    },
     keys = {
         {
             '<leader>lf',
@@ -19,8 +16,8 @@ return {
     ---@type conform.setupOpts
     opts = {
         formatters_by_ft = {
-            c = { lsp_format = 'first' },
-            cpp = { lsp_format = 'first' },
+            c = { 'clang-format' },
+            cpp = { 'clang-format' },
             javascript = { 'prettierd' },
             lua = { 'stylua' },
             markdown = { 'prettierd' },
@@ -28,6 +25,13 @@ return {
             rust = { lsp_format = 'first' },
             typescript = { 'prettierd' },
             vue = { 'prettierd' },
+        },
+        formatters = {
+            ['clang-format'] = {
+                prepend_args = {
+                    '--style={"PenaltyReturnTypeOnItsOwnLine":1000,"BinPackParameters":false,"BinPackArguments":false,"AlignAfterOpenBracket":"BlockIndent","IndentWidth":4,"AllowShortFunctionsOnASingleLine":"Empty"}',
+                },
+            },
         },
         default_format_opts = {
             lsp_format = 'fallback',

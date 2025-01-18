@@ -7,6 +7,8 @@ return {
         opts = {
             allowed_dirs = {
                 '~/p/*',
+                '~/p/*/*',
+                '~/p/*/*/*',
                 '~/.config/nvim',
             },
         },
