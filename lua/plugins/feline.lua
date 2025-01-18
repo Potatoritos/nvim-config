@@ -21,6 +21,7 @@ local mode_colors = {
     LINES = 'darkpink',
     BLOCK = 'darkpink',
     OP = 'cyan',
+    SELECT = 'cyan',
     TERM = 'blue',
 }
 
@@ -60,6 +61,7 @@ local line = {
         hl = {
             fg = 'cyan',
             bg = 'bg',
+            style = 'bold',
         },
         icon = '+',
         left_sep = 'block',
@@ -70,6 +72,7 @@ local line = {
         hl = {
             fg = 'darkfg',
             bg = 'bg',
+            style = 'bold',
         },
         icon = '-',
         left_sep = 'block',
@@ -80,6 +83,7 @@ local line = {
         hl = {
             fg = 'pink',
             bg = 'bg',
+            style = 'bold',
         },
         icon = '~',
         left_sep = 'block',
@@ -90,6 +94,7 @@ local line = {
         hl = {
             fg = 'darkpink',
             bg = 'bg',
+            style = 'bold',
         },
         left_sep = 'block',
         right_sep = 'block',
@@ -100,6 +105,7 @@ local line = {
         hl = {
             fg = 'purple',
             bg = 'bg',
+            style = 'bold',
         },
         left_sep = 'block',
         right_sep = 'block',
@@ -110,6 +116,7 @@ local line = {
         hl = {
             fg = 'darkfg',
             bg = 'bg',
+            style = 'bold',
         },
         left_sep = 'block',
         right_sep = 'block',
@@ -120,20 +127,22 @@ local line = {
             name = 'file_info',
             opts = {
                 type = 'relative',
+                file_readonly_icon = '',
             },
         },
         short_provider = {
             name = 'file_info',
             opts = {
                 type = 'relative-short',
+                file_readonly_icon = '',
             },
         },
         hl = {
             bg = 'bg',
             fg = 'fg',
         },
-        left_sep = ' ',
-        right_sep = ' ',
+        left_sep = 'block',
+        right_sep = 'block',
         priority = 0,
     },
     file_encoding = {
@@ -152,6 +161,7 @@ local line = {
         hl = {
             fg = 'darkfg',
             bg = 'bg',
+            style = 'bold',
         },
         left_sep = 'block',
         right_sep = 'block',

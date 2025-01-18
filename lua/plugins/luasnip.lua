@@ -46,6 +46,7 @@ return {
             enable_autosnippets = true,
         })
         ls.filetype_extend('markdown', { 'tex' })
+        ls.filetype_extend('cpp', { 'c' })
 
         -- require('luasnip.loaders.from_snipmate').lazy_load()
         require('luasnip.loaders.from_lua').lazy_load({
