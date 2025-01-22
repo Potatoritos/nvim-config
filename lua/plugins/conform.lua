@@ -20,7 +20,6 @@ return {
             cpp = { 'clang-format' },
             javascript = { 'prettierd' },
             lua = { 'stylua' },
-            markdown = { 'prettierd' },
             python = { 'isort', 'black' },
             rust = { lsp_format = 'first' },
             typescript = { 'prettierd' },

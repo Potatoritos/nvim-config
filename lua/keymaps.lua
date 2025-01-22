@@ -27,7 +27,7 @@ vim.keymap.set('n', '<leader>ld', function()
     vim.diagnostic.open_float()
 end, { desc = 'Show diagnostics float' })
 
-vim.keymap.set('n', 'gp', '`[v`]', { desc = 'Select last paste' })
+vim.keymap.set('n', '<leader>vp', '`[v`]', { desc = 'Select last change' })
 
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y', { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>Y', '"+Y', { noremap = true, silent = true })

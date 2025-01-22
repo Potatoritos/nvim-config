@@ -40,6 +40,15 @@ local ls_setup = function()
     local lsp = require('lspconfig')
     lsp.basedpyright.setup({ capabilities = capabilities })
     lsp.clangd.setup({ capabilities = capabilities })
+    lsp.tinymist.setup({
+        capabilities = capabilities,
+        settings = {
+            formatterMode = 'typstyle',
+            semanticTokens = 'disable',
+            exportPdf = 'onSave',
+            rootPath = '/home/potatoritos/notes/',
+        },
+    })
     lsp.eslint.setup({
         capabilities = capabilities,
         settings = {

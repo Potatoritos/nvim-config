@@ -91,6 +91,8 @@ local start_index = function(line)
             if open == 0 then
                 return last_viable
             end
+        elseif c == '$' then
+            return last_viable
         end
 
         if open == 0 then

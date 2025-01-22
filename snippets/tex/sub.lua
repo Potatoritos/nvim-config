@@ -17,7 +17,7 @@ local snippets = {
     s('ex', t('\\exists ')),
     s('im', t('\\implies ')),
     s('emps', t('\\emptyset ')),
-    s('neg', t('\\neg ')),
+    s('not', t('\\neg ')),
     s('sub', t('\\subseteq ')),
     s('nsub', t('\\nsubseteq ')),
     s('psub', t('\\subsetneq ')),
@@ -35,10 +35,10 @@ local snippets = {
     s('in', t('\\in ')),
     s('ti', t('\\times ')),
     s('ci', t('\\circ ')),
-    s('we', t('\\wedge ')),
-    s('ve', t('\\vee ')),
-    s('cup', t('\\cup ')),
-    s('cap', t('\\cap ')),
+    s('and', t('\\wedge ')),
+    s('or', t('\\vee ')),
+    s('un', t('\\cup ')),
+    s('itr', t('\\cap ')),
     s('geq', t('\\geq ')),
     s('leq', t('\\leq ')),
     s('vd', t('\\vdash ')),
@@ -56,36 +56,36 @@ for c in ('cfinqrz'):gmatch('.') do
 end
 
 local greek = {
-    { 'a', 'alpha' },
-    { 'b', 'beta' },
-    { 'g', 'gamma', true },
-    { 'd', 'delta', true },
-    { 'e', 'epsilon' },
-    { 'z', 'zeta' },
-    { 'h', 'eta' },
-    { 't', 'theta', true },
-    { 'i', 'iota' },
-    { 'k', 'kappa' },
-    { 'l', 'lambda' },
-    { 'm', 'mu' },
-    { 'n', 'nu' },
-    { 'x', 'xi', true },
-    { 'p', 'pi', true },
-    { 'r', 'rho' },
-    { 's', 'sigma', true },
+    { 'al', 'alpha' },
+    { 'be', 'beta' },
+    { 'ga', 'gamma', true },
+    { 'de', 'delta', true },
+    { 'ep', 'epsilon' },
+    { 'ze', 'zeta' },
+    { 'et', 'eta' },
+    { 'th', 'theta', true },
+    { 'io', 'iota' },
+    { 'ka', 'kappa' },
+    { 'la', 'lambda' },
+    { 'mu', 'mu' },
+    { 'nu', 'nu' },
+    { 'xi', 'xi', true },
+    { 'pi', 'pi', true },
+    { 'rh', 'rho' },
+    { 'si', 'sigma', true },
     { 'ta', 'tau' },
-    { 'y', 'upsilon' },
-    { 'f', 'phi', true },
-    { 'c', 'chi' },
+    { 'up', 'upsilon' },
+    { 'ph', 'phi', true },
+    { 'ch', 'chi' },
     { 'ps', 'psi' },
-    { 'o', 'omega', true },
+    { 'om', 'omega', true },
 }
 
 for _, x in ipairs(greek) do
     local trig, sub, has_capital = unpack(x)
-    add('g' .. trig, ('\\%s '):format(sub))
+    add(trig, ('\\%s '):format(sub))
     if has_capital then
-        add('G' .. trig:upper(), ('\\%s '):format(sub:gsub('^%l', string.upper)))
+        add(trig:upper(), ('\\%s '):format(sub:gsub('^%l', string.upper)))
     end
 end
 

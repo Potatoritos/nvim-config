@@ -18,6 +18,7 @@ local opts = {
         'rust',
         'toml',
         'typescript',
+        'typst',
         'vim',
         'vimdoc',
         'vue',
@@ -28,7 +29,7 @@ local opts = {
         enable = true,
     },
     indent = {
-        enable = true,
+        enable = false,
     },
     autopairs = {
         enable = false,
