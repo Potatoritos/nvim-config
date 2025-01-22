@@ -40,8 +40,11 @@ return {
             sign = {
                 enabled = false,
             },
-            latex = {
-                enabled = true,
+            latex = { enabled = false },
+            on = {
+                attach = function()
+                    require('nabla').enable_virt({ autogen = true })
+                end,
             },
             bullet = {
                 enabled = true,
@@ -56,7 +59,7 @@ return {
             },
             win_options = {
                 conceallevel = {
-                    default = vim.api.nvim_get_option_value('conceallevel', {}),
+                    -- default = vim.api.nvim_get_option_value('conceallevel', {}),
                     rendered = 2,
                 },
             },
