@@ -40,11 +40,11 @@ local config = function()
                 rm = '---',
                 ['r?'] = '?',
                 ['!'] = '!',
-                t = 'TERMINAL',
+                t = 'TERM',
             },
             mode_colors = {
-                n = COLORS.pink,
-                i = COLORS.blue,
+                n = COLORS.darkcyan,
+                i = COLORS.blue2,
                 v = COLORS.darkpink,
                 V = COLORS.darkpink,
                 ['\22'] = COLORS.darkpink,
@@ -63,10 +63,11 @@ local config = function()
         end,
         hl = function(self)
             local mode = self.mode:sub(1, 1)
-            return { fg = COLORS.bg, bg = self.mode_colors[mode], bold = true }
+            return { fg = '#000000', bg = self.mode_colors[mode], bold = true }
         end,
         update = {
             'ModeChanged',
+            'BufEnter',
             pattern = '*:*',
             callback = vim.schedule_wrap(function()
                 vim.cmd('redrawstatus')
@@ -124,14 +125,14 @@ local config = function()
                 return vim.bo.modified
             end,
             provider = ' ●',
-            hl = { fg = COLORS.darkfg },
+            hl = { fg = COLORS.fg },
         },
         {
             condition = function()
                 return not vim.bo.modifiable or vim.bo.readonly
             end,
-            provider = '',
-            hl = { fg = COLORS.darkfg },
+            provider = ' ',
+            hl = { fg = COLORS.fg },
         },
     }
 
