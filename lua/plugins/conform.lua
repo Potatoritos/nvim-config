@@ -18,17 +18,23 @@ return {
         formatters_by_ft = {
             c = { 'clang-format' },
             cpp = { 'clang-format' },
-            javascript = { 'prettierd' },
+            javascript = { 'biome' },
             lua = { 'stylua' },
             python = { 'isort', 'black' },
             rust = { lsp_format = 'first' },
-            typescript = { 'prettierd' },
-            vue = { 'prettierd' },
+            typescript = { 'biome' },
+            vue = { 'biome' },
+            json = { lsp_format = 'never' },
         },
         formatters = {
             ['clang-format'] = {
                 prepend_args = {
                     '--style={"PenaltyReturnTypeOnItsOwnLine":1000,"BinPackParameters":false,"BinPackArguments":false,"AlignAfterOpenBracket":"BlockIndent","IndentWidth":4,"AllowShortFunctionsOnASingleLine":"Empty"}',
+                },
+            },
+            ['biome'] = {
+                append_args = {
+                    '--indent-style=space',
                 },
             },
         },
