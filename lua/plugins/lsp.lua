@@ -87,7 +87,14 @@ local ls_setup = function()
             'vue',
         },
     })
-    lsp.volar.setup({ capabilities = capabilities })
+    lsp.volar.setup({
+        capabilities = capabilities,
+        init_options = {
+            typescript = {
+                tsdk = '/usr/local/lib/node_modules/typescript/lib/',
+            },
+        },
+    })
 end
 
 return {
