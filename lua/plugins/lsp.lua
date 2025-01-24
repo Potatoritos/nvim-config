@@ -125,10 +125,10 @@ return {
                 end,
                 mode = 'n',
                 ft = 'rust',
-                desc = 'Code action (LSP)',
+                desc = 'Code action',
             },
             {
-                '<leader>K',
+                'K',
                 function()
                     vim.cmd.RustLsp({ 'hover', 'actions' })
                 end,
@@ -136,6 +136,7 @@ return {
                 ft = 'rust',
             },
         },
+        dependencies = { 'saghen/blink.cmp' },
     },
     {
         'folke/lazydev.nvim',
