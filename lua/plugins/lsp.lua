@@ -38,6 +38,7 @@ local ls_setup = function()
     local capabilities = require('blink.cmp').get_lsp_capabilities()
 
     local lsp = require('lspconfig')
+    local util = require('lspconfig.util')
     lsp.basedpyright.setup({ capabilities = capabilities })
     lsp.clangd.setup({ capabilities = capabilities })
     lsp.tinymist.setup({
@@ -49,42 +50,42 @@ local ls_setup = function()
             rootPath = '/home/potatoritos/notes/',
         },
     })
-    lsp.eslint.setup({
+    local find = function(to_find, startpath)
+        return vim.fs.dirname(vim.fs.find(to_find, { path = startpath, upward = true })[1])
+    end
+    lsp.biome.setup({
         capabilities = capabilities,
-        settings = {
-            rulesCustomizations = {
-                -- { rule = '@typescript-eslint/no-misused-promises', severity = 'off' },
-                -- { rule = '@typescript-eslint/no-unsafe-argument', severity = 'off' },
-                -- { rule = '@typescript-eslint/no-unsafe-assignment', severity = 'off' },
-                -- { rule = 'import/defaults', severity = 'off' },
-                -- { rule = 'import/extensions', severity = 'off' },
-                -- { rule = 'import/namespace', severity = 'off' },
-                -- { rule = 'import/no-cycle', severity = 'off' },
-                -- { rule = 'import/no-unresolved', severity = 'off' },
-                { rule = '*', severity = 'warn' },
-                { rule = '*no-unused-vars', severity = 'off' },
-            },
-        },
+        root_dir = function(fname)
+            return util.root_pattern('biome.json', 'biome.jsonc')(fname)
+                or find('package.json', fname)
+                or find('node_modules', fname)
+                or find('.git', fname)
+        end,
     })
     lsp.lua_ls.setup({ capabilities = capabilities })
-    lsp.ts_ls.setup({
+    lsp.vtsls.setup({
         capabilities = capabilities,
-        init_options = {
-            plugins = {
-                -- npm install -g @vue/language-server @vue/typescript-plugin
-                {
-                    name = '@vue/typescript-plugin',
-                    location = '/usr/local/lib/node_modules/@vue/language-server',
-                    languages = { 'vue' },
-                },
-            },
-        },
         filetypes = {
             'javascript',
             'javascriptreact',
             'typescript',
             'typescriptreact',
             'vue',
+        },
+        settings = {
+            vtsls = {
+                tsserver = {
+                    globalPlugins = {
+                        {
+                            name = '@vue/typescript-plugin',
+                            location = '/usr/local/lib/node_modules/@vue/language-server',
+                            languages = { 'vue' },
+                            configNamespace = 'typescript',
+                            enableForWorkspaceTypeScriptVersions = true,
+                        },
+                    },
+                },
+            },
         },
     })
     lsp.volar.setup({
