@@ -192,3 +192,6 @@ vim.api.nvim_set_hl(0, '@punctuation.bracket', { fg = COLORS.darkfg2, bg = 'NONE
 vim.api.nvim_set_hl(0, '@constructor.lua', { fg = COLORS.darkfg2, bg = 'NONE' })
 vim.api.nvim_set_hl(0, '@constructor', { fg = COLORS.pink, bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'Number', { fg = COLORS.blue2, bg = 'NONE' })
+
+vim.api.nvim_set_hl(0, 'TreesitterContext', { bg = COLORS.bg })
+vim.api.nvim_set_hl(0, 'TreesitterContextBottom', { sp = COLORS.lightbg, underline = true })

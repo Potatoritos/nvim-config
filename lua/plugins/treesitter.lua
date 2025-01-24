@@ -122,4 +122,34 @@ return {
             vim.keymap.set({ 'n', 'x', 'o' }, 'T', ts_repeat_move.builtin_T_expr, { expr = true })
         end,
     },
+    {
+        'nvim-treesitter/nvim-treesitter-context',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+        },
+        event = {
+            'BufReadPre',
+            'BufNewFile',
+        },
+        keys = {
+            {
+                '<leader>u',
+                function()
+                    require('treesitter-context').go_to_context(vim.v.count1)
+                end,
+                mode = 'n',
+                desc = 'Jump to context',
+            },
+            {
+                '<leader>z',
+                '<cmd>TSContextToggle<CR>',
+                mode = 'n',
+                desc = 'Toggle context',
+            },
+        },
+        opts = {
+            max_lines = 12,
+            trim_scope = 'outer',
+        },
+    },
 }
