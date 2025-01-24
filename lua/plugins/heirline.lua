@@ -284,47 +284,29 @@ local config = function()
                 require('nvim-web-devicons').get_icon_color(self.filename, extension, { default = true })
         end,
         {
-            provider = '▎',
-            hl = function(self)
-                if self.is_active then
-                    return { fg = COLORS.darkpink }
-                else
-                    return { fg = COLORS.lightbg }
-                end
-            end,
-        },
-        {
             provider = function(self)
                 return ' ' .. self.tabnr .. ' '
             end,
-            hl = function(self)
-                if self.is_active then
-                    return { fg = COLORS.darkpink, bold = true }
-                else
-                    return { fg = COLORS.darkfg, bold = true }
+            hl = { bold = true },
+        },
+        {
+            provider = function(self)
+                local name = vim.fn.fnamemodify(self.filename, ':t')
+                if name == '' then
+                    name = self.filename
                 end
+                if name:len() >= 17 then
+                    name = name:sub(1, 15) .. '..'
+                end
+                return name .. '  '
             end,
+            hl = { bold = false },
         },
-        {
-            provider = function(self)
-                return self.icon .. ' '
-            end,
-            hl = function(self)
-                return { fg = self.icon_color }
-            end,
-        },
-        {
-            provider = function(self)
-                return vim.fn.fnamemodify(self.filename, ':t') .. ' '
-            end,
-            hl = { fg = COLORS.darkfg, bold = false },
-        },
-
         hl = function(self)
             if self.is_active then
-                return { bg = COLORS.bg2 }
+                return { fg = COLORS.darkfg }
             else
-                return { bg = COLORS.bg }
+                return { fg = COLORS.darkfg2 }
             end
         end,
     }
