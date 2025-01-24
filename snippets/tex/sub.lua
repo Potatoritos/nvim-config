@@ -55,37 +55,11 @@ for c in ('cfinqrz'):gmatch('.') do
     add(c .. c, ('\\mathbb{%s}'):format(c))
 end
 
-local greek = {
-    { 'al', 'alpha' },
-    { 'be', 'beta' },
-    { 'ga', 'gamma', true },
-    { 'de', 'delta', true },
-    { 'ep', 'epsilon' },
-    { 'ze', 'zeta' },
-    { 'et', 'eta' },
-    { 'th', 'theta', true },
-    { 'io', 'iota' },
-    { 'ka', 'kappa' },
-    { 'la', 'lambda' },
-    { 'mu', 'mu' },
-    { 'nu', 'nu' },
-    { 'xi', 'xi', true },
-    { 'pi', 'pi', true },
-    { 'rh', 'rho' },
-    { 'si', 'sigma', true },
-    { 'ta', 'tau' },
-    { 'up', 'upsilon' },
-    { 'ph', 'phi', true },
-    { 'ch', 'chi' },
-    { 'ps', 'psi' },
-    { 'om', 'omega', true },
-}
-
-for _, x in ipairs(greek) do
-    local trig, sub, has_capital = unpack(x)
-    add(trig, ('\\%s '):format(sub))
-    if has_capital then
-        add(trig:upper(), ('\\%s '):format(sub:gsub('^%l', string.upper)))
+for _, l in ipairs(greek_letters) do
+    local trig = l.name:sub(1, 2)
+    add(trig, ('\\%s '):format(l.name))
+    if l.has_capital then
+        add(trig:upper(), ('\\%s '):format(capitalize(l.name)))
     end
 end
 
