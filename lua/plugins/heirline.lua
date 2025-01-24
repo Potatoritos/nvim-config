@@ -246,6 +246,30 @@ local config = function()
         },
     }
 
+    local lsp_active = {
+        condition = conditions.lsp_attached,
+        flexible = 3,
+        {
+            update = { 'LspAttach', 'LspDetach' },
+            {
+                provider = function()
+                    local names = {}
+                    for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
+                        table.insert(names, server.name)
+                    end
+                    return '  ' .. table.concat(names, ' ') .. ' '
+                end,
+            },
+        },
+        {
+            update = { 'LspAttach', 'LspDetach' },
+            {
+                provider = '  ',
+            },
+        },
+        hl = { fg = COLORS.darkfg },
+    }
+
     local tabpage = {
         init = function(self)
             local win = vim.api.nvim_tabpage_get_win(self.tabpage)
@@ -324,6 +348,7 @@ local config = function()
             git_changes,
             align,
             diagnostics,
+            lsp_active,
             git_branch,
             file_encoding,
             surround(position),
