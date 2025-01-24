@@ -1,6 +1,6 @@
 ---@diagnostic disable: undefined-global
 
-return {
+local snippets = {
     sfmt(
         'tm',
         [[
@@ -19,3 +19,17 @@ return {
         }
     ),
 }
+
+local add = function(trig, sub)
+    table.insert(snippets, s(trig, t(sub)))
+end
+
+for _, l in ipairs(greek_letters) do
+    local trig = l.name:sub(1, 2)
+    add(trig, l.name .. ' ')
+    if l.has_capital then
+        add(trig:upper(), capitalize(l.name) .. ' ')
+    end
+end
+
+return snippets

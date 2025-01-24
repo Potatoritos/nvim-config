@@ -5,7 +5,8 @@ COLORS = {
     bg3 = '#393939',
     lightbg = '#525252',
     darkfg = '#b2b4b8',
-    darkfg2 = '#7d707d',
+    darkfg2 = '#77707d',
+    -- darkfg2 = '#7d707d',
     fg = '#dde1e6',
     fg2 = '#f2f4f8',
     fg3 = '#ffffff',
@@ -22,10 +23,9 @@ COLORS = {
     bg_darkpink = '#442431',
     bg_darkcyan = '#153332',
     bg_blue2 = '#232e44',
-    lightbg_pink = '#7d3e59',
+    lightbg_pink = '7d3e59',
     lightbg_darkpink = '#752b49',
     lightbg_blue2 = '#3b537d',
     lightbg_blue = '#1e577d',
     lightbg_darkcyan = '#145c5b',
 }
-

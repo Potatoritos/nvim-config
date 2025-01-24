@@ -36,6 +36,18 @@ vim.keymap.set({ 'n', 'v', 'x' }, '<leader>P', '"+P', { noremap = true, silent =
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d', { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>D', '"+D', { noremap = true, silent = true })
 
+vim.keymap.set('n', '<leader>1', '1gt')
+vim.keymap.set('n', '<leader>2', '2gt')
+vim.keymap.set('n', '<leader>3', '3gt')
+vim.keymap.set('n', '<leader>4', '4gt')
+vim.keymap.set('n', '<leader>5', '5gt')
+vim.keymap.set('n', '<leader>6', '6gt')
+vim.keymap.set('n', '<leader>7', '7gt')
+vim.keymap.set('n', '<leader>8', '8gt')
+vim.keymap.set('n', '<leader>9', '9gt')
+vim.keymap.set('n', '<leader>tn', '<cmd>tabnew<CR>')
+vim.keymap.set('n', '<leader>tq', '<cmd>tabclose<CR>')
+
 -- enable lazyredraw, disable autocmds during macro execution
 vim.keymap.set('n', '@', function()
     local count = vim.v.count1
