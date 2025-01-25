@@ -3,21 +3,21 @@ vim.cmd.colorscheme('oxocarbon')
 vim.diagnostic.config({
     signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = '',
-            [vim.diagnostic.severity.WARN] = '',
-            [vim.diagnostic.severity.INFO] = 'i',
-            [vim.diagnostic.severity.HINT] = '󰌵',
+            [vim.diagnostic.severity.ERROR] = '',
+            [vim.diagnostic.severity.WARN] = '',
+            [vim.diagnostic.severity.INFO] = '',
+            [vim.diagnostic.severity.HINT] = '',
         },
         linehl = {},
         numhl = {
-            [vim.diagnostic.severity.ERROR] = 'LineNr',
-            [vim.diagnostic.severity.WARN] = 'LineNr',
-            [vim.diagnostic.severity.INFO] = 'LineNr',
-            [vim.diagnostic.severity.HINT] = 'LineNr',
+            [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+            [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+            [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+            [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
         },
     },
     severity_sort = true,
-    underline = false,
+    underline = true,
 })
 
 vim.api.nvim_set_hl(0, 'YankHighlight', { bg = COLORS.lightbg_darkpink })
@@ -38,26 +38,26 @@ vim.api.nvim_set_hl(0, 'CurSearch', { fg = COLORS.bg, bg = COLORS.pink, bold = t
 vim.api.nvim_set_hl(0, 'LazyNormal', { fg = COLORS.darkfg, bg = COLORS.bg })
 vim.api.nvim_set_hl(0, 'MasonNormal', { fg = COLORS.darkfg, bg = COLORS.bg })
 
-vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = COLORS.pink })
-vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = COLORS.cyan })
-vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = COLORS.darkfg })
+vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = HIGHLIGHTS.change })
+vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = HIGHLIGHTS.add })
+vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = HIGHLIGHTS.delete })
 vim.api.nvim_set_hl(0, 'GitSignsCurrentLineBlame', { fg = COLORS.darkfg2 })
 
-vim.api.nvim_set_hl(0, 'GitSignsStagedAdd', { fg = COLORS.cyan })
-vim.api.nvim_set_hl(0, 'GitSignsStagedChange', { fg = COLORS.pink })
-vim.api.nvim_set_hl(0, 'GitSignsStagedDelete', { fg = COLORS.darkfg })
-vim.api.nvim_set_hl(0, 'GitSignsStagedChangedelete', { fg = COLORS.darkfg })
+vim.api.nvim_set_hl(0, 'GitSignsStagedAdd', { fg = HIGHLIGHTS.add })
+vim.api.nvim_set_hl(0, 'GitSignsStagedChange', { fg = HIGHLIGHTS.change })
+vim.api.nvim_set_hl(0, 'GitSignsStagedDelete', { fg = HIGHLIGHTS.delete })
+vim.api.nvim_set_hl(0, 'GitSignsStagedChangedelete', { fg = HIGHLIGHTS.change })
 
-vim.api.nvim_set_hl(0, 'DiffChange', { fg = COLORS.pink })
-vim.api.nvim_set_hl(0, 'DiffChanged', { fg = COLORS.pink })
-vim.api.nvim_set_hl(0, 'DiffAdd', { fg = COLORS.cyan })
-vim.api.nvim_set_hl(0, 'DiffAdded', { fg = COLORS.cyan })
-vim.api.nvim_set_hl(0, 'DiffDelete', { fg = COLORS.darkfg })
-vim.api.nvim_set_hl(0, 'DiffRemoved', { fg = COLORS.darkfg })
+vim.api.nvim_set_hl(0, 'DiffChange', { fg = HIGHLIGHTS.change })
+vim.api.nvim_set_hl(0, 'DiffChanged', { fg = HIGHLIGHTS.change })
+vim.api.nvim_set_hl(0, 'DiffAdd', { fg = HIGHLIGHTS.add })
+vim.api.nvim_set_hl(0, 'DiffAdded', { fg = HIGHLIGHTS.add })
+vim.api.nvim_set_hl(0, 'DiffDelete', { fg = HIGHLIGHTS.delete })
+vim.api.nvim_set_hl(0, 'DiffRemoved', { fg = HIGHLIGHTS.delete })
 
-vim.api.nvim_set_hl(0, 'Added', { fg = COLORS.cyan })
-vim.api.nvim_set_hl(0, 'Changed', { fg = COLORS.pink })
-vim.api.nvim_set_hl(0, 'Removed', { fg = COLORS.darkfg })
+vim.api.nvim_set_hl(0, 'Added', { fg = HIGHLIGHTS.add })
+vim.api.nvim_set_hl(0, 'Changed', { fg = HIGHLIGHTS.change })
+vim.api.nvim_set_hl(0, 'Removed', { fg = HIGHLIGHTS.delete })
 
 vim.api.nvim_set_hl(0, 'PmenuSel', { fg = 'NONE', bg = COLORS.bg3 })
 vim.api.nvim_set_hl(0, 'Pmenu', { fg = 'NONE', bg = COLORS.bg2 })
@@ -65,18 +65,18 @@ vim.api.nvim_set_hl(0, 'Pmenu', { fg = 'NONE', bg = COLORS.bg2 })
 vim.api.nvim_set_hl(0, 'Special', { fg = COLORS.pink })
 
 vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', { fg = 'NONE', bg = 'NONE' })
--- vim.api.nvim_set_hl(0, 'DiagnosticSignHint', { fg = COLORS.darkfg, bg = 'NONE', bold = true })
--- vim.api.nvim_set_hl(0, 'DiagnosticSignInfo', { fg = COLORS.darkfg, bg = 'NONE', bold = true })
--- vim.api.nvim_set_hl(0, 'DiagnosticSignWarn', { fg = COLORS.purple, bg = 'NONE', bold = true })
--- vim.api.nvim_set_hl(0, 'DiagnosticSignError', { fg = COLORS.darkpink, bg = 'NONE', bold = true })
--- vim.api.nvim_set_hl(0, 'DiagnosticUnderlineHint', { fg = 'NONE', bg = 'NONE' })
--- vim.api.nvim_set_hl(0, 'DiagnosticUnderlineInfo', { fg = 'NONE', bg = 'NONE' })
--- vim.api.nvim_set_hl(0, 'DiagnosticUnderlineWarn', { fg = 'NONE', bg = 'NONE' })
--- vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { fg = 'NONE', bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextHint', { fg = COLORS.darkfg, bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextInfo', { fg = COLORS.darkfg, bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextWarn', { fg = COLORS.purple, bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextError', { fg = COLORS.darkpink, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'DiagnosticSignHint', { fg = HIGHLIGHTS.hint, bold = true, underline = true })
+vim.api.nvim_set_hl(0, 'DiagnosticSignInfo', { fg = HIGHLIGHTS.info, bold = true, underline = true })
+vim.api.nvim_set_hl(0, 'DiagnosticSignWarn', { fg = HIGHLIGHTS.warn, bold = true, underline = true })
+vim.api.nvim_set_hl(0, 'DiagnosticSignError', { fg = HIGHLIGHTS.error, bold = true, underline = true })
+vim.api.nvim_set_hl(0, 'DiagnosticUnderlineHint', { sp = HIGHLIGHTS.hint, undercurl = true })
+vim.api.nvim_set_hl(0, 'DiagnosticUnderlineInfo', { sp = HIGHLIGHTS.info, undercurl = true })
+vim.api.nvim_set_hl(0, 'DiagnosticUnderlineWarn', { sp = HIGHLIGHTS.warn, undercurl = true })
+vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { sp = HIGHLIGHTS.error, undercurl = true })
+vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextHint', { fg = HIGHLIGHTS.hint, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextInfo', { fg = HIGHLIGHTS.info, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextWarn', { fg = HIGHLIGHTS.warn, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextError', { fg = HIGHLIGHTS.error, bg = 'NONE' })
 
 vim.api.nvim_set_hl(0, 'SnippetTabStop', { bg = COLORS.bg2 })
 
@@ -99,31 +99,31 @@ vim.api.nvim_set_hl(0, 'BlinkCmpDocBorder', { fg = COLORS.darkfg, bg = COLORS.bg
 vim.api.nvim_set_hl(0, 'BlinkCmpSignatureHelp', { fg = COLORS.darkfg, bg = COLORS.bg1 })
 vim.api.nvim_set_hl(0, 'BlinkCmpSignatureHelpBorder', { fg = COLORS.darkfg, bg = COLORS.bg1 })
 
-vim.api.nvim_set_hl(0, 'BlinkCmpKindClass', { fg = COLORS.bg, bg = COLORS.blue2 })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindColor', { fg = COLORS.bg, bg = COLORS.darkpink })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindConstant', { fg = COLORS.bg, bg = COLORS.purple })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindConstructor', { fg = COLORS.bg, bg = COLORS.pink })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindEnum', { fg = COLORS.bg, bg = COLORS.blue2 })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindEnumMember', { fg = COLORS.bg, bg = COLORS.blue2 })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindEvent', { fg = COLORS.bg, bg = COLORS.green })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindField', { fg = COLORS.bg, bg = COLORS.purple })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindFile', { fg = COLORS.bg, bg = COLORS.lightblue })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindFolder', { fg = COLORS.bg, bg = COLORS.lightblue })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindFunction', { fg = COLORS.bg, bg = COLORS.pink })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindInterface', { fg = COLORS.bg, bg = COLORS.blue2 })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindKeyword', { fg = COLORS.bg, bg = COLORS.darkcyan })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindMethod', { fg = COLORS.bg, bg = COLORS.pink })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindModule', { fg = COLORS.bg, bg = COLORS.darkcyan })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindOperator', { fg = COLORS.bg, bg = COLORS.pink })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindProperty', { fg = COLORS.bg, bg = COLORS.purple })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindReference', { fg = COLORS.bg, bg = COLORS.purple })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindSnippet', { fg = COLORS.bg, bg = COLORS.blue })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindStruct', { fg = COLORS.bg, bg = COLORS.blue2 })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindText', { fg = COLORS.bg, bg = COLORS.darkfg })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindTypeParameter', { fg = COLORS.bg, bg = COLORS.blue2 })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindUnit', { fg = COLORS.bg, bg = COLORS.blue2 })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindValue', { fg = COLORS.bg, bg = COLORS.purple })
-vim.api.nvim_set_hl(0, 'BlinkCmpKindVariable', { fg = COLORS.bg, bg = COLORS.purple })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindClass', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.blue2 })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindColor', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.darkpink })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindConstant', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.purple })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindConstructor', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.pink })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindEnum', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.blue2 })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindEnumMember', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.blue2 })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindEvent', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.green })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindField', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.purple })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindFile', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.lightblue })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindFolder', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.lightblue })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindFunction', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.pink })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindInterface', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.blue2 })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindKeyword', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.darkcyan })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindMethod', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.pink })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindModule', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.darkcyan })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindOperator', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.pink })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindProperty', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.purple })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindReference', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.purple })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindSnippet', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.blue })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindStruct', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.blue2 })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindText', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.darkfg })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindTypeParameter', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.blue2 })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindUnit', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.blue2 })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindValue', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.purple })
+vim.api.nvim_set_hl(0, 'BlinkCmpKindVariable', { fg = HIGHLIGHTS.inverse_fg, bg = COLORS.purple })
 
 vim.api.nvim_set_hl(0, 'LspSignatureActiveParameter', { fg = 'NONE', bg = COLORS.bg3 })
 

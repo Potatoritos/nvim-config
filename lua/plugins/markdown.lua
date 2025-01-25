@@ -36,6 +36,7 @@ return {
                 style = 'normal',
                 width = 'block',
                 min_width = 80,
+                border = 'thick',
             },
             sign = {
                 enabled = false,

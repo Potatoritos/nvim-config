@@ -11,8 +11,6 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.opt.signcolumn = 'yes'
-
 vim.opt.updatetime = 500
 
 vim.opt.timeoutlen = 500
@@ -45,6 +43,6 @@ vim.opt.conceallevel = 2
 
 vim.opt.autoindent = true
 
-vim.opt.signcolumn = 'yes:2'
+vim.opt.signcolumn = 'yes:1'
 
 vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'

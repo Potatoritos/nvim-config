@@ -29,3 +29,34 @@ COLORS = {
     lightbg_blue = '#1e577d',
     lightbg_darkcyan = '#145c5b',
 }
+
+HIGHLIGHTS = {
+    error = COLORS.darkpink,
+    warn = COLORS.purple,
+    hint = COLORS.darkfg,
+    info = COLORS.darkfg,
+    add = COLORS.cyan,
+    change = COLORS.pink,
+    delete = COLORS.darkfg,
+    mode = {
+        normal = COLORS.darkcyan,
+        insert = COLORS.blue2,
+        replace = COLORS.blue,
+        command = COLORS.purple,
+        visual = COLORS.darkpink,
+        select = COLORS.cyan,
+        terminal = COLORS.purple,
+        other = COLORS.green,
+    },
+    inverse_fg = '#000000',
+}
+
+SYMBOLS = {
+    error = '',
+    warn = '',
+    hint = '',
+    info = 'i',
+    changed = '●',
+    readonly = '',
+    lsp = '',
+}
