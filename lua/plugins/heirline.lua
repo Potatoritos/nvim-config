@@ -19,7 +19,7 @@ local config = function()
                 v = 'VISUAL',
                 vs = 'VISUAL',
                 V = 'VLINES',
-                Vs = 'VISUAL',
+                Vs = 'VLINES',
                 ['\22'] = 'VBLOCK',
                 ['\22s'] = 'VBLOCK',
                 s = 'SELECT',
@@ -43,19 +43,19 @@ local config = function()
                 t = 'TERM',
             },
             mode_colors = {
-                n = COLORS.darkcyan,
-                i = COLORS.blue2,
-                v = COLORS.darkpink,
-                V = COLORS.darkpink,
-                ['\22'] = COLORS.darkpink,
-                c = COLORS.purple,
-                s = COLORS.cyan,
-                S = COLORS.cyan,
-                ['\19'] = COLORS.cyan,
-                R = COLORS.blue2,
-                r = COLORS.blue2,
-                ['!'] = COLORS.green,
-                t = COLORS.purple,
+                n = HIGHLIGHTS.mode.normal,
+                i = HIGHLIGHTS.mode.insert,
+                v = HIGHLIGHTS.mode.visual,
+                V = HIGHLIGHTS.mode.visual,
+                ['\22'] = HIGHLIGHTS.mode.visual,
+                c = HIGHLIGHTS.mode.command,
+                s = HIGHLIGHTS.mode.select,
+                S = HIGHLIGHTS.mode.select,
+                ['\19'] = HIGHLIGHTS.mode.select,
+                R = HIGHLIGHTS.mode.replace,
+                r = HIGHLIGHTS.mode.replace,
+                ['!'] = HIGHLIGHTS.mode.other,
+                t = HIGHLIGHTS.mode.terminal,
             },
         },
         provider = function(self)
@@ -63,7 +63,7 @@ local config = function()
         end,
         hl = function(self)
             local mode = self.mode:sub(1, 1)
-            return { fg = '#000000', bg = self.mode_colors[mode], bold = true }
+            return { fg = HIGHLIGHTS.inverse_fg, bg = self.mode_colors[mode], bold = true }
         end,
         update = {
             'ModeChanged',
@@ -124,14 +124,14 @@ local config = function()
             condition = function()
                 return vim.bo.modified
             end,
-            provider = ' ●',
+            provider = ' ' .. SYMBOLS.changed,
             hl = { fg = COLORS.fg },
         },
         {
             condition = function()
                 return not vim.bo.modifiable or vim.bo.readonly
             end,
-            provider = ' ',
+            provider = ' ' .. SYMBOLS.readonly,
             hl = { fg = COLORS.fg },
         },
     }
@@ -174,21 +174,21 @@ local config = function()
                 local count = self.status_dict.added or 0
                 return count > 0 and ('+' .. count .. ' ')
             end,
-            hl = { fg = COLORS.cyan },
+            hl = { fg = HIGHLIGHTS.add },
         },
         {
             provider = function(self)
                 local count = self.status_dict.removed or 0
                 return count > 0 and ('-' .. count .. ' ')
             end,
-            hl = { fg = COLORS.darkfg },
+            hl = { fg = HIGHLIGHTS.delete },
         },
         {
             provider = function(self)
                 local count = self.status_dict.changed or 0
                 return count > 0 and ('~' .. count .. ' ')
             end,
-            hl = { fg = COLORS.pink },
+            hl = { fg = HIGHLIGHTS.change },
         },
     }
 
@@ -206,10 +206,10 @@ local config = function()
         condition = conditions.has_diagnostics,
 
         static = {
-            error_icon = ' ',
-            warn_icon = ' ',
-            info_icon = 'i ',
-            hint_icon = '󰌵 ',
+            error_icon = SYMBOLS.error .. ' ',
+            warn_icon = SYMBOLS.warn .. ' ',
+            info_icon = SYMBOLS.info .. ' ',
+            hint_icon = SYMBOLS.hint .. ' ',
         },
 
         init = function(self)
@@ -225,25 +225,25 @@ local config = function()
             provider = function(self)
                 return self.errors > 0 and (self.error_icon .. self.errors .. ' ')
             end,
-            hl = { fg = COLORS.darkpink, bold = true },
+            hl = { fg = HIGHLIGHTS.error, bold = true },
         },
         {
             provider = function(self)
                 return self.warnings > 0 and (self.warn_icon .. self.warnings .. ' ')
             end,
-            hl = { fg = COLORS.purple, bold = true },
+            hl = { fg = HIGHLIGHTS.warn, bold = true },
         },
         {
             provider = function(self)
                 return self.info > 0 and (self.info_icon .. self.info .. ' ')
             end,
-            hl = { fg = COLORS.darkfg, bold = true },
+            hl = { fg = HIGHLIGHTS.info, bold = true },
         },
         {
             provider = function(self)
                 return self.hints > 0 and (self.hint_icon .. self.hints .. ' ')
             end,
-            hl = { fg = COLORS.darkfg, bold = true },
+            hl = { fg = HIGHLIGHTS.hint, bold = true },
         },
     }
 
@@ -258,14 +258,14 @@ local config = function()
                     for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
                         table.insert(names, server.name)
                     end
-                    return '  ' .. table.concat(names, ' ') .. ' '
+                    return ' ' .. SYMBOLS.lsp .. ' ' .. table.concat(names, ' ') .. ' '
                 end,
             },
         },
         {
             update = { 'LspAttach', 'LspDetach' },
             {
-                provider = '  ',
+                provider = ' ' .. SYMBOLS.lsp .. ' ',
             },
         },
         hl = { fg = COLORS.darkfg },

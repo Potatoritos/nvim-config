@@ -107,7 +107,7 @@ return {
         },
         config = function()
             ls_setup()
-            show_only_one_sign_in_sign_column()
+            -- show_only_one_sign_in_sign_column()
         end,
         dependencies = {
             'saghen/blink.cmp',
