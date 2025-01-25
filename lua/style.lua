@@ -3,17 +3,17 @@ vim.cmd.colorscheme('oxocarbon')
 vim.diagnostic.config({
     signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = '',
-            [vim.diagnostic.severity.WARN] = '',
-            [vim.diagnostic.severity.INFO] = '',
-            [vim.diagnostic.severity.HINT] = '',
+            [vim.diagnostic.severity.ERROR] = SYMBOLS.error,
+            [vim.diagnostic.severity.WARN] = SYMBOLS.warn,
+            [vim.diagnostic.severity.INFO] = SYMBOLS.info,
+            [vim.diagnostic.severity.HINT] = SYMBOLS.hint,
         },
         linehl = {},
         numhl = {
-            [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
-            [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
-            [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
-            [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
+            [vim.diagnostic.severity.ERROR] = 'LineNr',
+            [vim.diagnostic.severity.WARN] = 'LineNr',
+            [vim.diagnostic.severity.INFO] = 'LineNr',
+            [vim.diagnostic.severity.HINT] = 'LineNr',
         },
     },
     severity_sort = true,
@@ -65,10 +65,10 @@ vim.api.nvim_set_hl(0, 'Pmenu', { fg = 'NONE', bg = COLORS.bg2 })
 vim.api.nvim_set_hl(0, 'Special', { fg = COLORS.pink })
 
 vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', { fg = 'NONE', bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'DiagnosticSignHint', { fg = HIGHLIGHTS.hint, bold = true, underline = true })
-vim.api.nvim_set_hl(0, 'DiagnosticSignInfo', { fg = HIGHLIGHTS.info, bold = true, underline = true })
-vim.api.nvim_set_hl(0, 'DiagnosticSignWarn', { fg = HIGHLIGHTS.warn, bold = true, underline = true })
-vim.api.nvim_set_hl(0, 'DiagnosticSignError', { fg = HIGHLIGHTS.error, bold = true, underline = true })
+vim.api.nvim_set_hl(0, 'DiagnosticSignHint', { fg = HIGHLIGHTS.hint, bold = true })
+vim.api.nvim_set_hl(0, 'DiagnosticSignInfo', { fg = HIGHLIGHTS.info, bold = true })
+vim.api.nvim_set_hl(0, 'DiagnosticSignWarn', { fg = HIGHLIGHTS.warn, bold = true })
+vim.api.nvim_set_hl(0, 'DiagnosticSignError', { fg = HIGHLIGHTS.error, bold = true })
 vim.api.nvim_set_hl(0, 'DiagnosticUnderlineHint', { sp = HIGHLIGHTS.hint, undercurl = true })
 vim.api.nvim_set_hl(0, 'DiagnosticUnderlineInfo', { sp = HIGHLIGHTS.info, undercurl = true })
 vim.api.nvim_set_hl(0, 'DiagnosticUnderlineWarn', { sp = HIGHLIGHTS.warn, undercurl = true })

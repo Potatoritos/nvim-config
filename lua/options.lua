@@ -43,6 +43,6 @@ vim.opt.conceallevel = 2
 
 vim.opt.autoindent = true
 
-vim.opt.signcolumn = 'yes:1'
+vim.opt.signcolumn = 'yes:2'
 
 vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
