@@ -46,7 +46,7 @@ local ls_setup = function()
         settings = {
             formatterMode = 'typstyle',
             semanticTokens = 'disable',
-            exportPdf = 'onSave',
+            exportPdf = 'never',
             rootPath = '/home/potatoritos/notes/',
         },
     })

@@ -1,5 +1,25 @@
 return {
     {
+        'echasnovski/mini.ai',
+        version = false,
+        config = function()
+            local ai = require('mini.ai')
+            ai.setup({
+                custom_textobjects = {
+                    b = false,
+                    q = false,
+                    ['$'] = ai.gen_spec.pair('$', '$', { type = 'greedy' }),
+                },
+                mappings = {
+                    around_next = '',
+                    inside_next = '',
+                    around_last = '',
+                    inside_last = '',
+                },
+            })
+        end,
+    },
+    {
         'ggandor/leap.nvim',
         lazy = false,
         config = function()
@@ -29,11 +49,7 @@ return {
             {
                 '<leader>j',
                 function()
-                    require('treesj').toggle({
-                        join = {
-                            space_in_brackets = true,
-                        },
-                    })
+                    require('treesj').toggle()
                 end,
                 mode = 'n',
                 desc = 'Join block',

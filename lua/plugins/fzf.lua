@@ -19,6 +19,7 @@ return {
                     actions = {
                         ['ctrl-h'] = { toggle_hidden },
                     },
+                    fd_opts = '--color=never --type f --type l --exclude .git --exclude .obsidian',
                 })
             end,
             mode = 'n',
