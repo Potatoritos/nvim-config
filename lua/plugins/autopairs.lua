@@ -3,6 +3,10 @@ local rules = function()
     local Rule = require('nvim-autopairs.rule')
     local cond = require('nvim-autopairs.conds')
 
+    pairs.add_rules({
+        Rule('$', '$', 'typst'):with_move(cond.done()),
+    })
+
     local brackets = {
         { '(', ')' },
         { '{', '}' },
@@ -14,10 +18,15 @@ local rules = function()
         table.insert(brackets_spaced, table.concat(bracket, '  '))
     end
 
+    table.insert(brackets, { '$', '$', filetype = { 'tex', 'typst' } })
+
     pairs.add_rules({
         Rule(' ', ' ')
             :with_pair(function(opts)
                 local pair = opts.line:sub(opts.col - 1, opts.col)
+                if vim.bo.filetype == 'typst' and pair == '$$' then
+                    return true
+                end
                 return vim.tbl_contains(brackets_concat, pair)
             end)
             :with_move(cond.none())
@@ -25,13 +34,16 @@ local rules = function()
             :with_del(function(opts)
                 local col = vim.api.nvim_win_get_cursor(0)[2]
                 local context = opts.line:sub(col - 1, col + 2)
+                if vim.bo.filetype == 'typst' and context == '$  $' then
+                    return true
+                end
                 return vim.tbl_contains(brackets_spaced, context)
             end),
     })
 
     for _, bracket in ipairs(brackets) do
         pairs.add_rules({
-            Rule(bracket[1] .. ' ', ' ' .. bracket[2])
+            Rule(bracket[1] .. ' ', ' ' .. bracket[2], bracket.filetype)
                 :with_pair(cond.none())
                 :with_move(function(opts)
                     return opts.char == bracket[2]
