@@ -40,7 +40,10 @@ local ls_setup = function()
     local lsp = require('lspconfig')
     local util = require('lspconfig.util')
     lsp.basedpyright.setup({ capabilities = capabilities })
-    lsp.clangd.setup({ capabilities = capabilities })
+    lsp.clangd.setup({
+        capabilities = capabilities,
+        init_options = { fallbackFlags = { '--std=c++20' } },
+    })
     lsp.tinymist.setup({
         capabilities = capabilities,
         settings = {

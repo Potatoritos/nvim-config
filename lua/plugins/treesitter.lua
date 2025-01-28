@@ -126,6 +126,7 @@ return {
     },
     {
         'nvim-treesitter/nvim-treesitter-context',
+        enabled = false,
         dependencies = {
             'nvim-treesitter/nvim-treesitter',
         },

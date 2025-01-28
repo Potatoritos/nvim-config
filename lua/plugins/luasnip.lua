@@ -55,6 +55,7 @@ return {
                     ---@diagnostic disable-next-line: assign-type-mismatch
                     paths = '~/.config/nvim/snippets',
                 })
+                require('luasnip.loaders.from_vscode').lazy_load({ paths = './snippets' })
             end,
             mode = 'n',
             desc = 'Reload snippets',
@@ -78,12 +79,12 @@ return {
             enable_autosnippets = true,
         })
         ls.filetype_extend('markdown', { 'tex' })
-        ls.filetype_extend('cpp', { 'c' })
 
         -- require('luasnip.loaders.from_snipmate').lazy_load()
         require('luasnip.loaders.from_lua').lazy_load({
             ---@diagnostic disable-next-line: assign-type-mismatch
-            paths = '~/.config/nvim/snippets',
+            paths = './snippets',
         })
+        require('luasnip.loaders.from_vscode').lazy_load({ paths = './snippets' })
     end,
 }
