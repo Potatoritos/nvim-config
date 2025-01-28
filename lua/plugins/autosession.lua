@@ -12,6 +12,7 @@ return {
             '~/s/*/*',
             '~/.config/nvim',
             '~/notes',
+            '~/cp',
         },
     },
 }

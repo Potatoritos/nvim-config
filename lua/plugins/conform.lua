@@ -29,7 +29,7 @@ return {
         formatters = {
             ['clang-format'] = {
                 prepend_args = {
-                    '--style={"PenaltyReturnTypeOnItsOwnLine":1000,"BinPackParameters":false,"BinPackArguments":false,"AlignAfterOpenBracket":"BlockIndent","IndentWidth":4,"AllowShortFunctionsOnASingleLine":"Empty"}',
+                    '--style={"PenaltyReturnTypeOnItsOwnLine":1000,"BreakTemplateDeclarations":"Yes","BinPackParameters":false,"BinPackArguments":false,"AlignAfterOpenBracket":"BlockIndent","IndentWidth":4,"AllowShortFunctionsOnASingleLine":"Empty"}',
                 },
             },
             ['biome'] = {
@@ -39,10 +39,10 @@ return {
             },
         },
         default_format_opts = {
-            lsp_format = 'fallback',
+            lsp_format = 'never',
         },
         format_on_save = {
-            lsp_format = 'fallback',
+            lsp_format = 'never',
             timeout_ms = 500,
         },
         log_level = vim.log.levels.DEBUG,
