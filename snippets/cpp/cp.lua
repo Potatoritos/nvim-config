@@ -36,4 +36,7 @@ return {
     s('vl', t('vector<ll>')),
     s('vpi', t('vector<pair<int, int>>')),
     s('vpl', t('vector<pair<ll, ll>>')),
+    sfmt('v', 'vector<{}>', { i(1) }),
+    sfmt('ht', 'hash_table<{}>', { i(1) }),
+    sfmt('hs', 'hash_set<{}>', { i(1) }),
 }

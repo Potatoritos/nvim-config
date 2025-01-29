@@ -195,3 +195,20 @@ vim.api.nvim_set_hl(0, 'Number', { fg = COLORS.blue2, bg = 'NONE' })
 
 vim.api.nvim_set_hl(0, 'TreesitterContext', { bg = COLORS.bg })
 vim.api.nvim_set_hl(0, 'TreesitterContextBottom', { sp = COLORS.darkfg2, underline = true })
+
+vim.g.terminal_color_0 = COLORS.bg
+vim.g.terminal_color_1 = COLORS.pink
+vim.g.terminal_color_2 = COLORS.green
+vim.g.terminal_color_3 = COLORS.blue
+vim.g.terminal_color_4 = COLORS.blue2
+vim.g.terminal_color_5 = COLORS.purple
+vim.g.terminal_color_6 = COLORS.cyan
+vim.g.terminal_color_7 = COLORS.darkfg
+vim.g.terminal_color_8 = COLORS.darkfg2
+vim.g.terminal_color_9 = COLORS.darkpink
+vim.g.terminal_color_10 = COLORS.green
+vim.g.terminal_color_11 = COLORS.blue
+vim.g.terminal_color_12 = COLORS.blue2
+vim.g.terminal_color_13 = COLORS.purple
+vim.g.terminal_color_14 = COLORS.darkcyan
+vim.g.terminal_color_15 = COLORS.darkfg

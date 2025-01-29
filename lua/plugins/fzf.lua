@@ -25,7 +25,7 @@ return {
             mode = 'n',
         },
         {
-            '<F3>',
+            '<F5>',
             function()
                 require('fzf-lua').buffers({ fzf_colors = true })
             end,
