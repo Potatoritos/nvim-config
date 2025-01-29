@@ -24,8 +24,10 @@ return {
     s('nl', t("'\\n'")),
     s('ll', t('long long')),
     s('ld', t('long double')),
-    s('us', t('unordered_set')),
-    s('um', t('unordered_map')),
+    s('fi', t('first')),
+    s('se', t('second')),
+    sfmt('.pb', '.push_back({})', { i(1) }),
+    sfmt('.pf', '.push_front({})', { i(1) }),
     postfix(
         { trig = '.all' },
         f(function(_, parent)

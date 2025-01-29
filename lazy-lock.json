@@ -28,6 +28,7 @@
   "plenary.nvim": { "branch": "master", "commit": "3707cdb1e43f5cea73afb6037e6494e7ce847a66" },
   "render-markdown.nvim": { "branch": "main", "commit": "ad055861d17afe058bd835e82292e14a64b51b1d" },
   "rustaceanvim": { "branch": "master", "commit": "36ca5efec63851a5d2cb6d9fcb0f6815f21963d8" },
+  "toggleterm.nvim": { "branch": "main", "commit": "50ea089fc548917cc3cc16b46a8211833b9e3c7c" },
   "treesj": { "branch": "main", "commit": "48c1a7539f376fd40ceb9cf12d697040fcf90649" },
   "typst-preview.nvim": { "branch": "master", "commit": "c1100e8788baabe8ca8f8cd7fd63d3d479e49e36" },
   "vimtex": { "branch": "master", "commit": "3f0bdcfbe8167c081cd83153910c871b681c1d8f" },
