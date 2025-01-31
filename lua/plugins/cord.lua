@@ -12,6 +12,7 @@ return {
     build = ':Cord update',
     event = 'VeryLazy',
     opts = {
+        log_level = vim.log.levels.OFF,
         editor = {
             client = 'neovim',
             tooltip = 'hiya!! (≧▽≦) /',
@@ -32,7 +33,6 @@ return {
         },
         advanced = {
             plugin = {
-                log_level = vim.log.levels.OFF,
                 cursor_update_mode = 'none',
             },
         },

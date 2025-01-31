@@ -3,10 +3,10 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear highlights' 
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Save file' })
 vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = 'Quit file' })
 
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Focus left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Focus right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Focus lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Focus upper window' })
+vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Focus left window' })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Focus right window' })
+vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Focus lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Focus upper window' })
 
 vim.keymap.set({ 'n', 'o' }, "'", '`', { desc = 'Jump to mark', remap = true })
 
@@ -31,7 +31,7 @@ vim.keymap.set('n', '<leader>lh', '<cmd>ClangdSwitchSourceHeader<CR>', { desc = 
 vim.keymap.set('n', '<leader>vp', '`[v`]', { desc = 'Select last change' })
 
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y', { noremap = true, silent = true })
-vim.keymap.set({ 'n', 'v', 'x' }, '<leader>Y', '"+Y', { noremap = true, silent = true })
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>Y', '"+y$', { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"+p', { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>P', '"+P', { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d', { noremap = true, silent = true })
