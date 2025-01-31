@@ -10,7 +10,7 @@ return {
             '~/p/*/*/*',
             '~/s/*',
             '~/s/*/*',
-            '~/.config/nvim',
+            '~/.config/*',
             '~/notes',
             '~/cp',
             '~/cp/*',

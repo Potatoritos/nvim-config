@@ -23,7 +23,7 @@ COLORS = {
     bg_darkpink = '#442431',
     bg_darkcyan = '#153332',
     bg_blue2 = '#232e44',
-    lightbg_pink = '7d3e59',
+    lightbg_pink = '#7d3e59',
     lightbg_darkpink = '#752b49',
     lightbg_blue2 = '#3b537d',
     lightbg_blue = '#1e577d',
@@ -52,11 +52,12 @@ HIGHLIGHTS = {
 }
 
 SYMBOLS = {
-    error = '',
-    warn = '',
+    error = 'X', -- '',
+    warn = '?', -- '',
     hint = '',
     info = 'i',
     changed = '●',
     readonly = '',
     lsp = '',
+    branch = '',
 }

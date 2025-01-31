@@ -1,6 +1,14 @@
 local config = function()
     local conditions = require('heirline.conditions')
     local utils = require('heirline.utils')
+    local vi_mode_update = {
+        'ModeChanged',
+        'BufEnter',
+        pattern = '*:*',
+        callback = vim.schedule_wrap(function()
+            vim.cmd('redrawstatus')
+        end),
+    }
     local vi_mode = {
         init = function(self)
             self.mode = vim.fn.mode(1)
@@ -58,21 +66,23 @@ local config = function()
                 t = HIGHLIGHTS.mode.terminal,
             },
         },
-        provider = function(self)
-            return ' ' .. self.mode_names[self.mode] .. ' '
-        end,
+        flexible = 5,
+        {
+            update = vi_mode_update,
+            provider = function(self)
+                return ' ' .. self.mode_names[self.mode] .. ' '
+            end,
+        },
+        {
+            update = vi_mode_update,
+            provider = function(self)
+                return ' ' .. self.mode:upper() .. ' '
+            end,
+        },
         hl = function(self)
             local mode = self.mode:sub(1, 1)
             return { fg = HIGHLIGHTS.inverse_fg, bg = self.mode_colors[mode], bold = true }
         end,
-        update = {
-            'ModeChanged',
-            'BufEnter',
-            pattern = '*:*',
-            callback = vim.schedule_wrap(function()
-                vim.cmd('redrawstatus')
-            end),
-        },
     }
 
     local align = { provider = '%=' }
@@ -98,25 +108,49 @@ local config = function()
         end,
     }
 
+    local split_filename = function(filename)
+        if filename == '' then
+            return { left = '', right = '[No Name]' }
+        end
+        local index = filename:find('/[^/]*$')
+        if index == nil then
+            index = 0
+        end
+        return { left = filename:sub(1, index), right = filename:sub(index + 1) }
+    end
+
+    local file_name_inner = {
+        {
+            provider = function(self)
+                return self.split.left
+            end,
+            hl = { fg = COLORS.darkfg2 },
+        },
+        {
+            provider = function(self)
+                return self.split.right
+            end,
+            hl = { fg = COLORS.darkfg },
+        },
+    }
+
     local file_name = {
         init = function(self)
             self.lfilename = vim.fn.fnamemodify(self.filename, ':.')
-            if self.lfilename == '' then
-                self.lfilename = '[No Name]'
-            end
         end,
         flexible = 2,
         {
-            provider = function(self)
-                return self.lfilename
+            init = function(self)
+                self.split = split_filename(self.lfilename)
             end,
+            table.unpack(file_name_inner),
         },
         {
-            provider = function(self)
-                return vim.fn.pathshorten(self.lfilename)
+            init = function(self)
+                self.split = split_filename(vim.fn.pathshorten(self.lfilename))
             end,
+            table.unpack(file_name_inner),
         },
-        hl = { fg = COLORS.fg },
     }
 
     local file_flags = {
@@ -153,14 +187,16 @@ local config = function()
         init = function(self)
             self.status_dict = vim.b.gitsigns_status_dict
         end,
-
-        hl = { fg = COLORS.darkfg, bold = false },
-
+        flexible = 4,
         {
             provider = function(self)
-                return '  ' .. self.status_dict.head .. ' '
+                return ' ' .. SYMBOLS.branch .. ' ' .. self.status_dict.head .. ' '
             end,
         },
+        {
+            provider = ' ' .. SYMBOLS.branch .. ' ',
+        },
+        hl = { fg = COLORS.darkfg, bold = false },
     }
 
     local git_changes = {
@@ -205,13 +241,6 @@ local config = function()
     local diagnostics = {
         condition = conditions.has_diagnostics,
 
-        static = {
-            error_icon = SYMBOLS.error .. ' ',
-            warn_icon = SYMBOLS.warn .. ' ',
-            info_icon = SYMBOLS.info .. ' ',
-            hint_icon = SYMBOLS.hint .. ' ',
-        },
-
         init = function(self)
             self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
             self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
@@ -223,25 +252,25 @@ local config = function()
 
         {
             provider = function(self)
-                return self.errors > 0 and (self.error_icon .. self.errors .. ' ')
+                return self.errors > 0 and (SYMBOLS.error .. self.errors .. ' ')
             end,
             hl = { fg = HIGHLIGHTS.error, bold = true },
         },
         {
             provider = function(self)
-                return self.warnings > 0 and (self.warn_icon .. self.warnings .. ' ')
+                return self.warnings > 0 and (SYMBOLS.warn .. self.warnings .. ' ')
             end,
             hl = { fg = HIGHLIGHTS.warn, bold = true },
         },
         {
             provider = function(self)
-                return self.info > 0 and (self.info_icon .. self.info .. ' ')
+                return self.info > 0 and (SYMBOLS.info .. self.info .. ' ')
             end,
             hl = { fg = HIGHLIGHTS.info, bold = true },
         },
         {
             provider = function(self)
-                return self.hints > 0 and (self.hint_icon .. self.hints .. ' ')
+                return self.hints > 0 and (SYMBOLS.hint .. self.hints .. ' ')
             end,
             hl = { fg = HIGHLIGHTS.hint, bold = true },
         },
