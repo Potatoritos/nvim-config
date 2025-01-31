@@ -48,6 +48,7 @@ HIGHLIGHTS = {
         terminal = COLORS.purple,
         other = COLORS.green,
     },
+    border = COLORS.bg3,
     inverse_fg = '#000000',
 }
 

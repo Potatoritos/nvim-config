@@ -159,14 +159,14 @@ local config = function()
                 return vim.bo.modified
             end,
             provider = ' ' .. SYMBOLS.changed,
-            hl = { fg = COLORS.fg },
+            hl = { fg = COLORS.darkfg },
         },
         {
             condition = function()
                 return not vim.bo.modifiable or vim.bo.readonly
             end,
             provider = ' ' .. SYMBOLS.readonly,
-            hl = { fg = COLORS.fg },
+            hl = { fg = COLORS.darkfg },
         },
     }
 

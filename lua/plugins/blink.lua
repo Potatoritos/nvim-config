@@ -1,29 +1,29 @@
 local kind_icons = {
-    Class = ' 󰆧 ',
-    Color = ' 󰏘 ',
-    Constant = ' 󰏿 ',
-    Constructor = ' 󰡱 ',
-    Enum = '  ',
-    EnumMember = '  ',
-    Event = '  ',
-    Field = ' 󰫧 ',
-    File = '  ',
-    Folder = ' 󰉋 ',
-    Function = ' 󰊕 ',
-    Interface = ' 󱐝 ',
-    Keyword = ' 󰌋 ',
-    Method = ' 󰊕 ',
-    Module = ' 󰆦 ',
-    Operator = ' 󰦒 ',
-    Property = ' 󰜢 ',
-    Reference = '  ',
-    Snippet = ' 󰩫 ',
-    Struct = ' 󰆧 ',
-    Text = ' 󰦨 ',
-    TypeParameter = ' 󰮄 ',
-    Unit = '  ',
-    Value = ' 󰎠 ',
-    Variable = ' 󰫧 ',
+    Class = '{} ',
+    Color = '#00',
+    Constant = '(π)',
+    Constructor = 'fn ',
+    Enum = 'a-z',
+    EnumMember = '.π ',
+    Event = 'fn ',
+    Field = '(x)',
+    File = '*  ',
+    Folder = '*/ ',
+    Function = 'fn ',
+    Interface = '{}+',
+    Keyword = 'key',
+    Method = 'fn ',
+    Module = 'mod',
+    Operator = '+/-',
+    Property = '.x',
+    Reference = '&x ',
+    Snippet = '</>',
+    Struct = '{} ',
+    Text = '"" ',
+    TypeParameter = '<T>',
+    Unit = '() ',
+    Value = '123',
+    Variable = '(x)',
 }
 
 return {
@@ -131,15 +131,20 @@ return {
                 },
             },
             documentation = {
-                auto_show = true,
+                auto_show = false,
                 auto_show_delay_ms = 500,
                 update_delay_ms = 50,
                 treesitter_highlighting = true,
+                window = {
+                    border = 'single',
+                },
             },
             ghost_text = {
                 enabled = false,
             },
             menu = {
+                border = 'single',
+
                 draw = {
                     padding = { 0, 1 },
                     columns = {
@@ -150,7 +155,9 @@ return {
             },
         },
         fuzzy = {
-            use_typo_resistance = false,
+            max_typos = function(_)
+                return 0
+            end,
             use_frecency = false,
         },
         appearance = {
@@ -161,6 +168,9 @@ return {
         },
         signature = {
             enabled = true,
+            window = {
+                border = 'single',
+            },
         },
     },
     dependencies = {
