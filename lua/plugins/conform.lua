@@ -19,12 +19,13 @@ return {
             c = { 'clang-format' },
             cpp = { 'clang-format' },
             javascript = { 'biome' },
+            json = { lsp_format = 'never' },
             lua = { 'stylua' },
             python = { 'isort', 'black' },
-            rust = { lsp_format = 'first' },
+            rust = { lsp_format = 'prefer' },
             typescript = { 'biome' },
+            typst = { lsp_format = 'prefer' },
             vue = { 'biome' },
-            json = { lsp_format = 'never' },
         },
         formatters = {
             ['clang-format'] = {
@@ -42,7 +43,6 @@ return {
             lsp_format = 'never',
         },
         format_on_save = {
-            lsp_format = 'never',
             timeout_ms = 500,
         },
         log_level = vim.log.levels.DEBUG,
