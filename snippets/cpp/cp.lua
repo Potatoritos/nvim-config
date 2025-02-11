@@ -30,13 +30,41 @@ return {
     s_for('fl', '<'),
     s_for('re', '>='),
     s_for('rl', '>'),
-    s('pi', t('pair<int, int>')),
-    s('pl', t('pair<ll, ll>')),
-    s('vi', t('vector<int>')),
-    s('vl', t('vector<ll>')),
-    s('vpi', t('vector<pair<int, int>>')),
-    s('vpl', t('vector<pair<ll, ll>>')),
-    sfmt('v', 'vector<{}>', { i(1) }),
-    sfmt('ht', 'hash_table<{}>', { i(1) }),
-    sfmt('hs', 'hash_set<{}>', { i(1) }),
+    s('pi', t('std::pair<int, int>')),
+    s('pl', t('std::pair<ll, ll>')),
+    s('vi', t('std::vector<int>')),
+    s('vl', t('std::vector<ll>')),
+    s('vpi', t('std::vector<std::pair<int, int>>')),
+    s('vpl', t('std::vector<std::pair<ll, ll>>')),
+    s('ht', t('hash_table')),
+    s('hs', t('hash_set')),
+    postfix(
+        { trig = '.l' },
+        f(function(_, parent)
+            local match = parent.snippet.env.POSTFIX_MATCH
+            return 'len(' .. match .. ')'
+        end)
+    ),
+    postfix(
+        { trig = '.c' },
+        d(1, function(_, parent)
+            local match = parent.snippet.env.POSTFIX_MATCH
+            return sn(nil, {
+                t(match .. '.find('),
+                i(1),
+                t(') != ' .. match .. '.end()'),
+            })
+        end)
+    ),
+    postfix(
+        { trig = '.nc' },
+        d(1, function(_, parent)
+            local match = parent.snippet.env.POSTFIX_MATCH
+            return sn(nil, {
+                t(match .. '.find('),
+                i(1),
+                t(') == ' .. match .. '.end()'),
+            })
+        end)
+    ),
 }

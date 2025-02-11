@@ -3,7 +3,7 @@ return {
     keys = {
         {
             '<F2>',
-            '<cmd>Oil<CR>',
+            '<Cmd>Oil<CR>',
             mode = 'n',
         },
     },

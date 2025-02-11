@@ -1,12 +1,12 @@
 local kind_icons = {
     Class = '{} ',
     Color = '#00',
-    Constant = '(π)',
+    Constant = 'π',
     Constructor = 'fn ',
     Enum = 'a-z',
     EnumMember = '.π ',
     Event = 'fn ',
-    Field = '(x)',
+    Field = 'x',
     File = '*  ',
     Folder = '*/ ',
     Function = 'fn ',
@@ -23,7 +23,7 @@ local kind_icons = {
     TypeParameter = '<T>',
     Unit = '() ',
     Value = '123',
-    Variable = '(x)',
+    Variable = 'x',
 }
 
 return {
@@ -98,7 +98,7 @@ return {
                         local kind = require('blink.cmp.types').CompletionItemKind
                         for _, item in ipairs(items) do
                             if item.kind == kind.Keyword then
-                                item.score_offset = item.score_offset - 1
+                                item.score_offset = item.score_offset - 2
                             end
                         end
                         return vim.tbl_filter(function(item)
@@ -131,8 +131,8 @@ return {
                 },
             },
             documentation = {
-                auto_show = false,
-                auto_show_delay_ms = 500,
+                auto_show = true,
+                auto_show_delay_ms = 1000,
                 update_delay_ms = 50,
                 treesitter_highlighting = true,
                 window = {
@@ -146,10 +146,11 @@ return {
                 border = 'single',
 
                 draw = {
-                    padding = { 0, 1 },
+                    padding = { 0, 0 },
                     columns = {
                         { 'kind_icon' },
-                        { 'label', 'label_description', gap = 1 },
+                        { 'label' },
+                        { 'label_description' },
                     },
                 },
             },

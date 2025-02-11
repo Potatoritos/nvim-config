@@ -29,7 +29,7 @@ local opts = {
         enable = true,
     },
     indent = {
-        enable = false,
+        enable = true,
     },
     autopairs = {
         enable = false,
@@ -136,7 +136,7 @@ return {
         },
         keys = {
             {
-                '<leader>u',
+                '<Leader>u',
                 function()
                     require('treesitter-context').go_to_context(vim.v.count1)
                 end,
@@ -144,8 +144,8 @@ return {
                 desc = 'Jump to context',
             },
             {
-                '<leader>z',
-                '<cmd>TSContextToggle<CR>',
+                '<Leader>z',
+                '<Cmd>TSContextToggle<CR>',
                 mode = 'n',
                 desc = 'Toggle context',
             },

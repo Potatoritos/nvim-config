@@ -6,7 +6,7 @@ return {
         '<F3>',
         {
             '<F4>',
-            '<cmd>TermExec cmd="cld %"<CR>',
+            '<Cmd>TermExec cmd="cld %"<CR>',
             mode = 'n',
             ft = 'cpp',
         },

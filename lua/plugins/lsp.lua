@@ -43,6 +43,10 @@ local ls_setup = function()
     lsp.clangd.setup({
         capabilities = capabilities,
         init_options = { fallbackFlags = { '--std=c++20' } },
+        cmd = {
+            'clangd',
+            '--header-insertion=never',
+        },
     })
     lsp.tinymist.setup({
         capabilities = capabilities,
@@ -52,6 +56,9 @@ local ls_setup = function()
             exportPdf = 'never',
             rootPath = '/home/potatoritos/notes/',
         },
+        root_dir = function(_, _)
+            return '/home/potatoritos/notes/'
+        end,
     })
     local find = function(to_find, startpath)
         return vim.fs.dirname(vim.fs.find(to_find, { path = startpath, upward = true })[1])

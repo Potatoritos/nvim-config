@@ -5,6 +5,14 @@ vim.opt.mouse = 'a'
 vim.opt.showmode = false
 
 vim.opt.breakindent = true
+vim.opt.autoindent = true
+vim.g.python_indent = {
+    open_paren = 4,
+    closed_paren_align_last_line = false,
+}
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 
 vim.opt.undofile = true
 
@@ -27,10 +35,6 @@ vim.opt.cursorline = true
 
 vim.opt.scrolloff = 10
 
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-
 vim.opt.background = 'dark'
 
 vim.opt.completeopt = { 'menuone', 'noinsert' }
@@ -40,9 +44,30 @@ vim.opt.cursorline = false
 vim.opt.pumheight = 10
 
 vim.opt.conceallevel = 2
-
-vim.opt.autoindent = true
-
 vim.opt.signcolumn = 'yes:2'
 
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.textwidth = 120
+
 vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = SYMBOLS.error,
+            [vim.diagnostic.severity.WARN] = SYMBOLS.warn,
+            [vim.diagnostic.severity.INFO] = SYMBOLS.info,
+            [vim.diagnostic.severity.HINT] = SYMBOLS.hint,
+        },
+        linehl = {},
+        numhl = {
+            [vim.diagnostic.severity.ERROR] = 'LineNr',
+            [vim.diagnostic.severity.WARN] = 'LineNr',
+            [vim.diagnostic.severity.INFO] = 'LineNr',
+            [vim.diagnostic.severity.HINT] = 'LineNr',
+        },
+    },
+    severity_sort = true,
+    underline = true,
+})
