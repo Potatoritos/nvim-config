@@ -374,4 +374,7 @@ return {
     'rebelot/heirline.nvim',
     event = 'UiEnter',
     config = config,
+    dependencies = {
+        'nvim-tree/nvim-web-devicons',
+    },
 }

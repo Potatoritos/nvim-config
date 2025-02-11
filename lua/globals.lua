@@ -4,8 +4,8 @@ COLORS = {
     bg2 = '#262626',
     bg3 = '#393939',
     lightbg = '#525252',
-    darkfg = '#b2b4b8',
-    darkfg2 = '#77707d',
+    darkfg = '#b3bbc4', -- '#b2b4b8',
+    darkfg2 = '#6d6e78', -- '#6d7278', -- '#77707d', -- '#727c87',
     -- darkfg2 = '#7d707d',
     fg = '#dde1e6',
     fg2 = '#f2f4f8',
@@ -49,7 +49,7 @@ HIGHLIGHTS = {
         other = COLORS.green,
     },
     border = COLORS.bg3,
-    inverse_fg = '#000000',
+    inverse_fg = COLORS.bg,
 }
 
 SYMBOLS = {

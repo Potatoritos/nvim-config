@@ -4,8 +4,8 @@ return {
     version = '1.*',
     keys = {
         {
-            '<leader>lt',
-            '<cmd>TypstPreviewToggle<CR>',
+            '<Leader>lt',
+            '<Cmd>TypstPreviewToggle<CR>',
             mode = 'n',
             ft = 'typst',
         },
@@ -15,8 +15,10 @@ return {
         dependencies_bin = {
             ['tinymist'] = vim.fn.expand('~/.cargo/bin/tinymist'),
         },
-        get_root = function(_)
-            return vim.fn.expand('~/notes/')
-        end,
+        open_cmd = nil,
+        port = 1273,
+        -- get_root = function(_)
+        --     return vim.fn.expand('~/notes/')
+        -- end,
     },
 }

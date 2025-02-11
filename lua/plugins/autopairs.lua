@@ -4,21 +4,10 @@ local rules = function()
     local cond = require('nvim-autopairs.conds')
 
     pairs.add_rules({
-        Rule('$', '$', 'typst'):with_move(cond.done()),
+        Rule('$', '$', 'typst'):with_move(cond.done()):replace_map_cr(function(_)
+            return '<CR><Esc>O<Tab>'
+        end),
     })
-
-    local brackets = {
-        { '(', ')' },
-        { '{', '}' },
-    }
-    local brackets_concat = {}
-    local brackets_spaced = {}
-    for _, bracket in ipairs(brackets) do
-        table.insert(brackets_concat, table.concat(bracket))
-        table.insert(brackets_spaced, table.concat(bracket, '  '))
-    end
-
-    table.insert(brackets, { '$', '$', filetype = { 'tex', 'typst' } })
 
     pairs.add_rules({
         Rule(' ', ' ')
@@ -27,7 +16,7 @@ local rules = function()
                 if vim.bo.filetype == 'typst' and pair == '$$' then
                     return true
                 end
-                return vim.tbl_contains(brackets_concat, pair)
+                return pair == '{}'
             end)
             :with_move(cond.none())
             :with_cr(cond.none())
@@ -37,9 +26,14 @@ local rules = function()
                 if vim.bo.filetype == 'typst' and context == '$  $' then
                     return true
                 end
-                return vim.tbl_contains(brackets_spaced, context)
+                return context == '{  }'
             end),
     })
+
+    local brackets = {
+        { '{', '}' },
+        { '$', '$', filetype = { 'tex', 'typst' } },
+    }
 
     for _, bracket in ipairs(brackets) do
         pairs.add_rules({
@@ -60,6 +54,7 @@ end
 return {
     {
         'windwp/nvim-autopairs',
+        enabled = true,
         event = {
             'InsertEnter',
             'VeryLazy',
@@ -80,6 +75,8 @@ return {
                 fast_wrap = {
                     map = '<C-0>',
                 },
+                ignored_next_char = [=[[%w%%%'%[%"%.%`]]=],
+                enable_bracket_in_quote = false,
             })
             rules()
         end,

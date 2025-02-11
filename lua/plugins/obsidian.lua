@@ -14,41 +14,41 @@ return {
     },
     keys = {
         {
-            '<leader>oj',
-            '<cmd>ObsidianFollowLink<CR>',
+            '<Leader>oj',
+            '<Cmd>ObsidianFollowLink<CR>',
             mode = 'n',
             desc = 'Follow link',
             ft = 'markdown',
         },
         {
-            '<leader>of',
-            '<cmd>ObsidianLinks<CR>',
+            '<Leader>of',
+            '<Cmd>ObsidianLinks<CR>',
             mode = 'n',
             desc = 'Pick buffer links',
             ft = 'markdown',
         },
         {
-            '<leader>ob',
-            '<cmd>ObsidianBacklinks<CR>',
+            '<Leader>ob',
+            '<Cmd>ObsidianBacklinks<CR>',
             mode = 'n',
             desc = 'Pick backlinks',
             ft = 'markdown',
         },
         {
-            '<leader>oo',
-            '<cmd>ObsidianOpen<CR>',
+            '<Leader>oo',
+            '<Cmd>ObsidianOpen<CR>',
             mode = 'n',
             desc = 'Open note in obsidian',
             ft = 'markdown',
         },
         {
             '<F8>',
-            '<cmd>ObsidianQuickSwitch<CR>',
+            '<Cmd>ObsidianQuickSwitch<CR>',
             mode = 'n',
             desc = 'Switch to note',
         },
         {
-            '<leader>ox',
+            '<Leader>ox',
             function()
                 require('obsidian').util.toggle_checkbox()
             end,
@@ -57,8 +57,8 @@ return {
             ft = 'markdown',
         },
         {
-            '<leader>on',
-            '<cmd>ObsidianLinkNew<CR>',
+            '<Leader>on',
+            '<Cmd>ObsidianLinkNew<CR>',
             mode = 'n',
             desc = 'Create and link note',
             ft = 'markdown',

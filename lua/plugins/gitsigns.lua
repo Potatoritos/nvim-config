@@ -3,8 +3,8 @@ return {
     event = 'VimEnter',
     keys = {
         {
-            '<leader>b',
-            '<cmd>Gitsigns toggle_current_line_blame<CR>',
+            '<Leader>b',
+            '<Cmd>Gitsigns toggle_current_line_blame<CR>',
             mode = 'n',
             desc = 'Toggle git blame',
         },
