@@ -10,6 +10,7 @@ end
 return {
     'ibhagwan/fzf-lua',
     event = 'VeryLazy',
+    enabled = false,
     keys = {
         {
             '<F1>',
@@ -38,6 +39,15 @@ return {
                 fzf_colors = {
                     ['hl'] = false,
                     ['hl+'] = false,
+                },
+            },
+            lsp = {
+                symbols = {
+                    symbol_style = 2,
+                    symbol_icons = KIND_ICONS,
+                    symbol_fmt = function(s, _)
+                        return s
+                    end,
                 },
             },
         })

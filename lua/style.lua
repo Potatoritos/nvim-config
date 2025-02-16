@@ -11,7 +11,9 @@ hl('Comment', { fg = COLORS.darkfg2, bg = 'NONE' })
 hl('NormalNC', { fg = COLORS.darkfg, bg = 'NONE' })
 hl('Normal', { fg = COLORS.darkfg, bg = 'NONE' })
 hl('NormalFloat', { fg = COLORS.darkfg, bg = COLORS.bg })
+hl('FloatBorder', { fg = COLORS.bg3, bg = COLORS.bg })
 hl('StatusLineNC', { bg = COLORS.bg })
+hl('NonText', { fg = COLORS.darkfg2 })
 
 hl('LineNr', { fg = COLORS.darkfg2, bg = 'NONE' })
 
@@ -180,34 +182,29 @@ hl('@constructor.lua', { fg = COLORS.darkfg2, bg = 'NONE' })
 hl('@constructor', { fg = COLORS.pink, bg = 'NONE' })
 hl('Number', { fg = COLORS.blue2, bg = 'NONE' })
 hl('@variable', { fg = COLORS.darkfg })
-hl('@variable.builtin', { fg = COLORS.darkfg })
+hl('@parameter', { fg = COLORS.darkfg })
+hl('@variable.builtin', { fg = 'NONE' })
+hl('@lsp.type.operator.cpp', { fg = 'NONE' })
+hl('@lsp.typemod.class.defaultLibrary.cpp', { fg = 'NONE' })
 
 hl('TreesitterContext', { bg = COLORS.bg })
 hl('TreesitterContextBottom', { sp = COLORS.darkfg2, underline = true })
 
-hl('MiniIconsAzure', { fg = COLORS.blue })
-hl('MiniIconsBlue', { fg = COLORS.blue2 })
-hl('MiniIconsCyan', { fg = COLORS.darkcyan })
-hl('MiniIconsGreen', { fg = COLORS.green })
-hl('MiniIconsGrey', { fg = COLORS.darkfg })
-hl('MiniIconsOrange', { fg = COLORS.pink })
-hl('MiniIconsPurple', { fg = COLORS.purple })
-hl('MiniIconsRed', { fg = COLORS.red })
-hl('MiniIconsYellow', { fg = COLORS.fg })
+hl('SnacksPickerDir', { fg = COLORS.darkfg2 })
 
-vim.g.terminal_color_0 = COLORS.bg
-vim.g.terminal_color_1 = COLORS.pink
-vim.g.terminal_color_2 = COLORS.green
-vim.g.terminal_color_3 = COLORS.blue
-vim.g.terminal_color_4 = COLORS.blue2
-vim.g.terminal_color_5 = COLORS.purple
-vim.g.terminal_color_6 = COLORS.cyan
-vim.g.terminal_color_7 = COLORS.darkfg
-vim.g.terminal_color_8 = COLORS.darkfg2
-vim.g.terminal_color_9 = COLORS.darkpink
-vim.g.terminal_color_10 = COLORS.green
-vim.g.terminal_color_11 = COLORS.blue
-vim.g.terminal_color_12 = COLORS.blue2
-vim.g.terminal_color_13 = COLORS.purple
-vim.g.terminal_color_14 = COLORS.darkcyan
-vim.g.terminal_color_15 = COLORS.darkfg
+-- vim.g.terminal_color_0 = COLORS.bg
+-- vim.g.terminal_color_1 = COLORS.pink
+-- vim.g.terminal_color_2 = COLORS.green
+-- vim.g.terminal_color_3 = COLORS.blue
+-- vim.g.terminal_color_4 = COLORS.blue2
+-- vim.g.terminal_color_5 = COLORS.purple
+-- vim.g.terminal_color_6 = COLORS.cyan
+-- vim.g.terminal_color_7 = COLORS.darkfg
+-- vim.g.terminal_color_8 = COLORS.darkfg2
+-- vim.g.terminal_color_9 = COLORS.darkpink
+-- vim.g.terminal_color_10 = COLORS.green
+-- vim.g.terminal_color_11 = COLORS.blue
+-- vim.g.terminal_color_12 = COLORS.blue2
+-- vim.g.terminal_color_13 = COLORS.purple
+-- vim.g.terminal_color_14 = COLORS.darkcyan
+-- vim.g.terminal_color_15 = COLORS.darkfg

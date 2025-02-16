@@ -7,9 +7,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Auto resize splits when the terminal's window is resized
-vim.api.nvim_create_autocmd('VimResized', {
-    command = 'wincmd =',
-})
+-- vim.api.nvim_create_autocmd('VimResized', {
+--     command = 'wincmd =',
+-- })
 
 function _G.set_terminal_keymaps()
     local opts = { buffer = 0 }
