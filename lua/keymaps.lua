@@ -1,7 +1,7 @@
 vim.keymap.set('n', '<Esc>', '<Cmd>nohlsearch<CR>', { desc = 'Clear highlights' })
 
-vim.keymap.set('n', '<Leader>w', '<Cmd>w<CR>', { desc = 'Save file' })
-vim.keymap.set('n', '<Leader>q', '<Cmd>q<CR>', { desc = 'Quit file' })
+vim.keymap.set('n', '<Leader>w', '<Cmd>w<CR>', { desc = 'Save' })
+vim.keymap.set('n', '<Leader>q', '<Cmd>q<CR>', { desc = 'Quit' })
 
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Focus left window' })
 vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Focus right window' })
@@ -25,7 +25,7 @@ vim.keymap.set('n', '<Leader>lf', function()
 end, { desc = 'Show diagnostics float' })
 vim.keymap.set('n', '<Leader>lh', '<Cmd>ClangdSwitchSourceHeader<CR>', { desc = 'Switch source/header' })
 
-vim.keymap.set('n', '<Leader>vp', '`[v`]', { desc = 'Select last change' })
+vim.keymap.set('n', '<Leader>sp', '`[v`]', { desc = 'Select last change' })
 
 vim.keymap.set({ 'n', 'v', 'x' }, '<Leader>y', '"+y', { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v', 'x' }, '<Leader>Y', '"+y$', { noremap = true, silent = true })
@@ -34,15 +34,6 @@ vim.keymap.set({ 'n', 'v', 'x' }, '<Leader>P', '"+P', { noremap = true, silent =
 vim.keymap.set({ 'n', 'v', 'x' }, '<Leader>d', '"+d', { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v', 'x' }, '<Leader>D', '"+D', { noremap = true, silent = true })
 
-vim.keymap.set('n', '<Leader>1', '1gt')
-vim.keymap.set('n', '<Leader>2', '2gt')
-vim.keymap.set('n', '<Leader>3', '3gt')
-vim.keymap.set('n', '<Leader>4', '4gt')
-vim.keymap.set('n', '<Leader>5', '5gt')
-vim.keymap.set('n', '<Leader>6', '6gt')
-vim.keymap.set('n', '<Leader>7', '7gt')
-vim.keymap.set('n', '<Leader>8', '8gt')
-vim.keymap.set('n', '<Leader>9', '9gt')
 vim.keymap.set('n', '<Leader>tn', '<Cmd>tabnew<CR>')
 vim.keymap.set('n', '<Leader>tq', '<Cmd>tabclose<CR>')
 
