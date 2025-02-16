@@ -1,31 +1,3 @@
-local kind_icons = {
-    Class = '{} ',
-    Color = '#00',
-    Constant = 'π',
-    Constructor = 'fn ',
-    Enum = 'a-z',
-    EnumMember = '.π ',
-    Event = 'fn ',
-    Field = 'x',
-    File = '*  ',
-    Folder = '*/ ',
-    Function = 'fn ',
-    Interface = '{}+',
-    Keyword = 'key',
-    Method = 'fn ',
-    Module = 'mod',
-    Operator = '+/-',
-    Property = '.x',
-    Reference = '&x ',
-    Snippet = '</>',
-    Struct = '{} ',
-    Text = '"" ',
-    TypeParameter = '<T>',
-    Unit = '() ',
-    Value = '123',
-    Variable = 'x',
-}
-
 return {
     'saghen/blink.cmp',
     version = 'v0.*',
@@ -146,7 +118,6 @@ return {
                 border = 'single',
 
                 draw = {
-                    padding = { 0, 0 },
                     columns = {
                         { 'kind_icon' },
                         { 'label' },
@@ -162,7 +133,7 @@ return {
             use_frecency = false,
         },
         appearance = {
-            kind_icons = kind_icons,
+            kind_icons = KIND_ICONS,
         },
         snippets = {
             preset = 'luasnip',

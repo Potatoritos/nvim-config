@@ -8,4 +8,5 @@ require('options')
 require('lazy_setup')
 require('autocmds')
 require('keymaps')
-require('style')
+
+vim.cmd('colorscheme custom_oxocarbon')

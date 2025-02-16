@@ -51,19 +51,15 @@ local config = function()
                 t = 'TERM',
             },
             mode_colors = {
-                n = HIGHLIGHTS.mode.normal,
-                i = HIGHLIGHTS.mode.insert,
-                v = HIGHLIGHTS.mode.visual,
-                V = HIGHLIGHTS.mode.visual,
-                ['\22'] = HIGHLIGHTS.mode.visual,
-                c = HIGHLIGHTS.mode.command,
-                s = HIGHLIGHTS.mode.select,
-                S = HIGHLIGHTS.mode.select,
-                ['\19'] = HIGHLIGHTS.mode.select,
-                R = HIGHLIGHTS.mode.replace,
-                r = HIGHLIGHTS.mode.replace,
-                ['!'] = HIGHLIGHTS.mode.other,
-                t = HIGHLIGHTS.mode.terminal,
+                n = 'StatusNormal',
+                i = 'StatusInsert',
+                v = 'StatusVisual',
+                ['\22'] = 'StatusVisual',
+                c = 'StatusCommand',
+                s = 'StatusSelect',
+                ['\19'] = 'StatusSelect',
+                r = 'StatusReplace',
+                t = 'StatusTerminal',
             },
         },
         flexible = 5,
@@ -80,8 +76,11 @@ local config = function()
             end,
         },
         hl = function(self)
-            local mode = self.mode:sub(1, 1)
-            return { fg = HIGHLIGHTS.inverse_fg, bg = self.mode_colors[mode], bold = true }
+            local mode = self.mode_colors[self.mode:sub(1, 1):lower()]
+            if mode == nil then
+                return 'StatusOther'
+            end
+            return mode
         end,
     }
 
@@ -326,7 +325,7 @@ local config = function()
                     name = self.filename
                 end
                 if name:len() >= 17 then
-                    name = name:sub(1, 15) .. '..'
+                    name = name:sub(1, 15) .. '…'
                 end
                 return name .. '  '
             end,

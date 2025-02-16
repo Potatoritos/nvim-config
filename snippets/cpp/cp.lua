@@ -1,43 +1,38 @@
 ---@diagnostic disable: undefined-global
 
-local s_for = function(trig, comparison)
-    return postfix(
-        {
-            trig = trig,
-            match_pattern = '%S+%s%S+%s%S+%s$',
-        },
-        d(1, function(_, parent)
-            local line = parent.snippet.env.POSTFIX_MATCH
-            local m = {}
-
-            for match in line:gmatch('(%S+)%s') do
-                table.insert(m, match)
-            end
-            return sn(nil, {
-                t({
-                    ('for (int %s = %s; %s %s %s; %s++) {'):format(m[1], m[2], m[1], comparison, m[3], m[1]),
-                    '\t',
-                }),
-                i(1),
-                t({ '', '}' }),
-            })
-        end)
-    )
-end
-
 return {
-    s_for('fe', '<='),
-    s_for('fl', '<'),
-    s_for('re', '>='),
-    s_for('rl', '>'),
-    s('pi', t('std::pair<int, int>')),
-    s('pl', t('std::pair<ll, ll>')),
-    s('vi', t('std::vector<int>')),
-    s('vl', t('std::vector<ll>')),
-    s('vpi', t('std::vector<std::pair<int, int>>')),
-    s('vpl', t('std::vector<std::pair<ll, ll>>')),
-    s('ht', t('hash_table')),
-    s('hs', t('hash_set')),
+    sfmt(
+        'fe',
+        [[
+        for (auto &{} : {}) {{
+            {}
+        }}
+        ]],
+        { i(1), i(2), i(3) }
+    ),
+    sfmt(
+        'lt',
+        [[
+        auto {} = [&](this auto {}, {}) -> {} {{
+            {}
+        }};
+        ]],
+        {
+            i(1),
+            extras.rep(1),
+            i(2),
+            i(3, 'void'),
+            i(4),
+        }
+    ),
+    s('spi', t('std::pair<int, int>')),
+    s('spl', t('std::pair<ll, ll>')),
+    s('svi', t('std::vector<int>')),
+    s('svl', t('std::vector<ll>')),
+    sfmt('sai', 'std::array<int, {}>', { i(1) }),
+    sfmt('sal', 'std::array<ll, {}>', { i(1) }),
+    s('svpi', t('std::vector<std::pair<int, int>>')),
+    s('svpl', t('std::vector<std::pair<ll, ll>>')),
     postfix(
         { trig = '.l' },
         f(function(_, parent)
