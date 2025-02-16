@@ -12,7 +12,7 @@ require('lazy').setup({
     spec = {
         { import = 'plugins' },
     },
-    install = { colorscheme = { 'oxocarbon' } },
+    install = { colorscheme = { 'custom_oxocarbon' } },
     checker = { enabled = false },
     change_detection = { enabled = false },
 })

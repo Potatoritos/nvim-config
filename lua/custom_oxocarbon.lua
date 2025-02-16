@@ -28,6 +28,7 @@ local colors = {
     bg_cyan_dark = '#153332',
     bg_pink_dark = '#442431',
     bg_blue = '#232e44',
+    bg_light_pink_dark = '#752b49',
 }
 
 hl('Cursor', { fg = colors.bg, bg = colors.fg_light })
@@ -336,7 +337,7 @@ hl('BlinkCmpKindUnit', { fg = colors.blue, bold = true })
 hl('BlinkCmpKindValue', { fg = colors.purple, bold = true })
 hl('BlinkCmpKindVariable', { fg = colors.purple, bold = true })
 
-hl('YankHighlight', { bg = COLORS.lightbg_darkpink })
+hl('YankHighlight', { bg = colors.bg_light_pink_dark })
 
 hl('RenderMarkdownInlineHighlight', { fg = colors.blue, bg = colors.bg_blue })
 
