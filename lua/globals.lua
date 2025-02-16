@@ -30,28 +30,6 @@ COLORS = {
     lightbg_darkcyan = '#145c5b',
 }
 
-HIGHLIGHTS = {
-    error = COLORS.darkpink,
-    warn = COLORS.purple,
-    hint = COLORS.darkfg,
-    info = COLORS.darkfg,
-    add = COLORS.cyan,
-    change = COLORS.pink,
-    delete = COLORS.darkfg,
-    mode = {
-        normal = COLORS.darkcyan,
-        insert = COLORS.blue2,
-        replace = COLORS.blue,
-        command = COLORS.purple,
-        visual = COLORS.darkpink,
-        select = COLORS.cyan,
-        terminal = COLORS.purple,
-        other = COLORS.green,
-    },
-    border = COLORS.bg3,
-    inverse_fg = COLORS.bg,
-}
-
 SYMBOLS = {
     error = 'X', -- '',
     warn = '?', -- '',
