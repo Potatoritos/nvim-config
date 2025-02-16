@@ -1,6 +1,2 @@
-my neovim config :3
-
-## Requirements
-
-- [fzf](https://github.com/junegunn/fzf)
+my [neovim](https://neovim.io/) config!!! ! !! !
 

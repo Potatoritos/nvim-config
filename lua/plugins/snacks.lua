@@ -1,30 +1,76 @@
 return {
     'folke/snacks.nvim',
+    lazy = false,
+    -- stylua: ignore
     keys = {
-        {
-            '<Leader>ef',
-            function()
-                Snacks.picker.files()
-            end,
-            desc = 'Files',
-        },
-        {
-            '<Leader>et',
-            function()
-                Snacks.explorer()
-            end,
-            desc = 'File tree',
-        },
-        {
-            '<Leader>eh',
-            function()
-                Snacks.picker.highlights()
-            end,
-        },
+        { '<Leader>sb', function() Snacks.picker.buffers() end, desc = 'Buffers' },
+        { '<Leader>sc', function() Snacks.picker.command_history() end, desc = 'Command history' },
+        { '<Leader>sC', function() Snacks.picker.colorschemes() end, desc = 'Colorschemes' },
+        { '<Leader>sd', function() Snacks.picker.diagnostics_buffer() end, desc = 'Diagnostics (buffer)' },
+        { '<Leader>sD', function() Snacks.picker.diagnostics() end, desc = 'Diagnostics' },
+        { '<Leader>sf', function() Snacks.picker.files() end, desc = 'Files' },
+        { '<Leader>sg', function() Snacks.picker.grep() end, desc = 'Grep' },
+        { '<Leader>sh', function() Snacks.picker.help() end, desc = 'Help pages' },
+        { '<Leader>sH', function() Snacks.picker.highlights() end, desc = 'Highlights' },
+        { '<Leader>sj', function() Snacks.picker.jumps() end, desc = 'Jumps' },
+        { '<Leader>sk', function() Snacks.picker.keymaps() end, desc = 'Keymaps' },
+        { '<Leader>sl', function() Snacks.picker.lines() end, desc = 'Lines (buffer)' },
+        { '<Leader>sL', function() Snacks.picker.grep_buffers() end, desc = 'Lines (open buffers)' },
+        { '<Leader>sm', function() Snacks.picker.marks() end, desc = 'Marks' },
+        { '<Leader>sn', function() Snacks.picker.notifications() end, desc = 'Notification history' },
+        { '<Leader>sr', function() Snacks.picker.registers() end, desc = 'Registers' },
+        { '<Leader>su', function() Snacks.picker.undo() end, desc = 'Undo history' },
+        { '<Leader>gL', function() Snacks.picker.git_log_line() end, desc = 'Git log line' },
+        { '<Leader>gS', function() Snacks.picker.git_stash() end, desc = 'Git stash' },
+        { '<Leader>gb', function() Snacks.picker.git_branches() end, desc = 'Git branches' },
+        { '<Leader>gd', function() Snacks.picker.git_diff() end, desc = 'Git diff (hunks)' },
+        { '<Leader>gf', function() Snacks.picker.git_log_file() end, desc = 'Git log file' },
+        { '<Leader>gl', function() Snacks.picker.git_log() end, desc = 'Git log' },
+        { '<Leader>gs', function() Snacks.picker.git_status() end, desc = 'Git status' },
+        { '<Leader>ld', function() Snacks.picker.lsp_definitions() end, desc = 'Definitions' },
+        { '<Leader>lR', function() Snacks.picker.lsp_references() end, desc = 'References' },
+        { '<Leader>li', function() Snacks.picker.lsp_implementations() end, desc = 'Implementations' },
+        { '<Leader>ls', function() Snacks.picker.lsp_symbols() end, desc = 'Symbols' },
+        { '<Leader>tr', function() Snacks.explorer() end, desc = 'Toggle file tree' },
+        { '<F3>', function() Snacks.terminal.toggle() end, desc = 'Toggle terminal', mode = { 'n', 't' } },
     },
     ---@module 'snacks'
     ---@type snacks.Config
     opts = {
-        picker = {},
+        image = { enabled = false },
+        picker = {
+            finder = {
+                layout = {
+                    layout = {
+                        box = 'horizontal',
+                        backdrop = false,
+                        width = 0.7,
+                        min_width = 120,
+                        height = 0.8,
+                        {
+                            box = 'vertical',
+                            border = 'single',
+                            title = '{title} {live} {flags}',
+                            { win = 'input', height = 1, border = 'bottom' },
+                            { win = 'list', border = 'none' },
+                        },
+                        { win = 'preview', title = '{preview}', border = 'single', width = 0.5 },
+                    },
+                },
+            },
+            icons = {
+                diagnostics = {
+                    Error = SYMBOLS.error,
+                    Warn = SYMBOLS.warn,
+                    Hint = SYMBOLS.hint,
+                    Info = SYMBOLS.info,
+                },
+                kinds = KIND_ICONS,
+            },
+        },
+        terminal = {},
+    },
+    dependencies = {
+        'nvim-tree/nvim-web-devicons',
     },
 }

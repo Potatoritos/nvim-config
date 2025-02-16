@@ -95,6 +95,11 @@ local config = function()
     local file_icon = {
         init = function(self)
             local filename = self.filename
+            if filename == '' then
+                self.icon = ''
+                self.icon_color = nil
+                return
+            end
             local extension = vim.fn.fnamemodify(filename, ':e')
             self.icon, self.icon_color =
                 require('nvim-web-devicons').get_icon_color(filename, extension, { default = true })
@@ -103,13 +108,16 @@ local config = function()
             return self.icon and (self.icon .. ' ')
         end,
         hl = function(self)
+            if self.icon_color == nil then
+                return 'StatusLine'
+            end
             return { fg = self.icon_color }
         end,
     }
 
     local split_filename = function(filename)
         if filename == '' then
-            return { left = '', right = '[No Name]' }
+            return { left = '', right = '' }
         end
         local index = filename:find('/[^/]*$')
         if index == nil then
