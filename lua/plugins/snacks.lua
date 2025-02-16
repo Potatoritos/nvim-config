@@ -10,6 +10,7 @@ return {
         { '<Leader>sd', function() Snacks.picker.diagnostics_buffer() end, desc = 'Diagnostics (buffer)' },
         { '<Leader>sD', function() Snacks.picker.diagnostics() end, desc = 'Diagnostics' },
         { '<Leader>sf', function() Snacks.picker.files() end, desc = 'Files' },
+        { '<Leader>sF', function() Snacks.picker.git_files() end, desc = 'Files (git)' },
         { '<Leader>sg', function() Snacks.picker.grep() end, desc = 'Grep' },
         { '<Leader>sh', function() Snacks.picker.help() end, desc = 'Help pages' },
         { '<Leader>sH', function() Snacks.picker.highlights() end, desc = 'Highlights' },
@@ -46,6 +47,33 @@ return {
         input = {},
         lazygit = {},
         picker = {
+            win = {
+                input = {
+                    keys = {
+                        ['<Leader>f'] = { 'flash' },
+                    },
+                },
+            },
+            actions = {
+                flash = function(picker)
+                    require('flash').jump({
+                        pattern = '^',
+                        label = { after = { 0, 0 } },
+                        search = {
+                            mode = 'search',
+                            exclude = {
+                                function(win)
+                                    return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= 'snacks_picker_list'
+                                end,
+                            },
+                        },
+                        action = function(match)
+                            local idx = picker.list:row2idx(match.pos[1])
+                            picker.list:_move(idx, true, true)
+                        end,
+                    })
+                end,
+            },
             finder = {
                 layout = {
                     layout = {
