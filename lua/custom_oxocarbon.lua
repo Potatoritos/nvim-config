@@ -374,6 +374,10 @@ hl('TreesitterContext', { bg = colors.bg })
 hl('TreesitterContextBottom', { sp = colors.fg_dark, underline = true })
 
 hl('SnacksPickerDir', { fg = colors.fg_dark })
+hl('SnacksPickerTree', { fg = colors.bg_lighter })
+hl('SnacksPickerCursorLine', { bg = colors.bg_light })
+hl('SnacksPickerListCursorLine', { link = 'SnacksPickerCursorLine' })
+hl('SnacksPickerPreviewCursorLine', { link = 'SnacksPickerCursorLine' })
 
 vim.g.terminal_color_0 = colors.bg
 vim.g.terminal_color_1 = colors.pink

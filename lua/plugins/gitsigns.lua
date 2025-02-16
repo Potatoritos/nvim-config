@@ -3,7 +3,7 @@ return {
     event = 'VimEnter',
     keys = {
         {
-            '<Leader>b',
+            '<Leader>gb',
             '<Cmd>Gitsigns toggle_current_line_blame<CR>',
             mode = 'n',
             desc = 'Toggle git blame',
