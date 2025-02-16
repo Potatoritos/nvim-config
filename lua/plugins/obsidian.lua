@@ -8,7 +8,7 @@ return {
     },
     dependencies = {
         'nvim-lua/plenary.nvim',
-        'ibhagwan/fzf-lua',
+        -- 'ibhagwan/fzf-lua',
         'nvim-treesitter/nvim-treesitter',
         'saghen/blink.cmp',
     },
@@ -41,12 +41,12 @@ return {
             desc = 'Open note in obsidian',
             ft = 'markdown',
         },
-        {
-            '<F8>',
-            '<Cmd>ObsidianQuickSwitch<CR>',
-            mode = 'n',
-            desc = 'Switch to note',
-        },
+        -- {
+        --     '<F8>',
+        --     '<Cmd>ObsidianQuickSwitch<CR>',
+        --     mode = 'n',
+        --     desc = 'Switch to note',
+        -- },
         {
             '<Leader>ox',
             function()
@@ -76,9 +76,9 @@ return {
         completion = {
             nvim_cmp = true,
         },
-        picker = {
-            name = 'fzf-lua',
-        },
+        -- picker = {
+        --     name = 'fzf-lua',
+        -- },
         ui = {
             bullets = { hl_group = 'RenderMarkdownBullet' },
             external_link_icon = { char = '' },
