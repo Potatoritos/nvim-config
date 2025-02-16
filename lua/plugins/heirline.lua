@@ -123,13 +123,13 @@ local config = function()
             provider = function(self)
                 return self.split.left
             end,
-            hl = { fg = COLORS.darkfg2 },
+            hl = 'NonText',
         },
         {
             provider = function(self)
                 return self.split.right
             end,
-            hl = { fg = COLORS.darkfg },
+            hl = 'StatusLine',
         },
     }
 
@@ -153,19 +153,18 @@ local config = function()
     }
 
     local file_flags = {
+        hl = 'StatusLine',
         {
             condition = function()
                 return vim.bo.modified
             end,
             provider = ' ' .. SYMBOLS.changed,
-            hl = { fg = COLORS.darkfg },
         },
         {
             condition = function()
                 return not vim.bo.modifiable or vim.bo.readonly
             end,
             provider = ' ' .. SYMBOLS.readonly,
-            hl = { fg = COLORS.darkfg },
         },
     }
 
@@ -174,7 +173,7 @@ local config = function()
             local enc = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc
             return enc ~= 'utf-8'
         end,
-        hl = { fg = COLORS.darkfg },
+        hl = 'StatusLine',
         provider = function()
             return ' ' .. ((vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc) .. ' '
         end,
@@ -195,7 +194,7 @@ local config = function()
         {
             provider = ' ' .. SYMBOLS.branch .. ' ',
         },
-        hl = { fg = COLORS.darkfg, bold = false },
+        hl = 'StatusLine',
     }
 
     local git_changes = {
@@ -209,32 +208,32 @@ local config = function()
                 local count = self.status_dict.added or 0
                 return count > 0 and ('+' .. count .. ' ')
             end,
-            hl = { fg = HIGHLIGHTS.add },
+            hl = 'DiffAdd',
         },
         {
             provider = function(self)
                 local count = self.status_dict.removed or 0
                 return count > 0 and ('-' .. count .. ' ')
             end,
-            hl = { fg = HIGHLIGHTS.delete },
+            hl = 'DiffDelete',
         },
         {
             provider = function(self)
                 local count = self.status_dict.changed or 0
                 return count > 0 and ('~' .. count .. ' ')
             end,
-            hl = { fg = HIGHLIGHTS.change },
+            hl = 'DiffChange',
         },
     }
 
     local position = {
         provider = '%l:%c',
-        hl = { fg = COLORS.darkfg },
+        hl = 'StatusLine',
     }
 
     local ruler = {
         provider = '%P',
-        hl = { fg = COLORS.darkpink, bold = true },
+        hl = 'StatusLineRuler',
     }
 
     local diagnostics = {
@@ -248,30 +247,30 @@ local config = function()
         end,
 
         update = { 'DiagnosticChanged', 'BufEnter' },
-
+        hl = { bold = true },
         {
             provider = function(self)
                 return self.errors > 0 and (SYMBOLS.error .. self.errors .. ' ')
             end,
-            hl = { fg = HIGHLIGHTS.error, bold = true },
+            hl = 'DiagnosticSignError',
         },
         {
             provider = function(self)
                 return self.warnings > 0 and (SYMBOLS.warn .. self.warnings .. ' ')
             end,
-            hl = { fg = HIGHLIGHTS.warn, bold = true },
+            hl = 'DiagnosticSignWarn',
         },
         {
             provider = function(self)
                 return self.info > 0 and (SYMBOLS.info .. self.info .. ' ')
             end,
-            hl = { fg = HIGHLIGHTS.info, bold = true },
+            hl = 'DiagnosticSignInfo',
         },
         {
             provider = function(self)
                 return self.hints > 0 and (SYMBOLS.hint .. self.hints .. ' ')
             end,
-            hl = { fg = HIGHLIGHTS.hint, bold = true },
+            hl = 'DiagnosticSignHint',
         },
     }
 
@@ -296,7 +295,7 @@ local config = function()
                 provider = ' ' .. SYMBOLS.lsp .. ' ',
             },
         },
-        hl = { fg = COLORS.darkfg },
+        hl = 'StatusLine',
     }
 
     local tabpage = {
@@ -333,9 +332,9 @@ local config = function()
         },
         hl = function(self)
             if self.is_active then
-                return { fg = COLORS.darkfg }
+                return 'StatusLine'
             else
-                return { fg = COLORS.darkfg2 }
+                return 'NonText'
             end
         end,
     }

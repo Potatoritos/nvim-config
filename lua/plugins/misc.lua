@@ -1,8 +1,5 @@
 return {
     {
-        'nyoom-engineering/oxocarbon.nvim',
-    },
-    {
         'folke/which-key.nvim',
         event = 'VeryLazy',
         opts = {
