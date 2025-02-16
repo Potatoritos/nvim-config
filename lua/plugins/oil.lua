@@ -2,7 +2,7 @@ return {
     'stevearc/oil.nvim',
     keys = {
         {
-            '<F2>',
+            '<Leader>oi',
             '<Cmd>Oil<CR>',
             mode = 'n',
         },

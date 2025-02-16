@@ -1,6 +1,6 @@
 return {
     'saghen/blink.cmp',
-    version = 'v0.*',
+    version = '*',
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
@@ -131,6 +131,11 @@ return {
                 return 0
             end,
             use_frecency = false,
+            sorts = {
+                'exact',
+                'score',
+                'sort_text',
+            },
         },
         appearance = {
             kind_icons = KIND_ICONS,

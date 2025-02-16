@@ -3,7 +3,6 @@ return {
     event = {
         'BufNewFile',
         'BufReadPost',
-        'VeryLazy',
     },
     keys = {
         {

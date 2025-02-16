@@ -1,6 +1,7 @@
 return {
     'folke/snacks.nvim',
     lazy = false,
+    priority = 1000,
     -- stylua: ignore
     keys = {
         { '<Leader>sb', function() Snacks.picker.buffers() end, desc = 'Buffers' },
@@ -32,12 +33,18 @@ return {
         { '<Leader>li', function() Snacks.picker.lsp_implementations() end, desc = 'Implementations' },
         { '<Leader>ls', function() Snacks.picker.lsp_symbols() end, desc = 'Symbols' },
         { '<Leader>tr', function() Snacks.explorer() end, desc = 'Toggle file tree' },
+        { '<Leader>S', function() Snacks.scratch() end, desc = 'Toggle scratch buffer' },
         { '<F3>', function() Snacks.terminal.toggle() end, desc = 'Toggle terminal', mode = { 'n', 't' } },
+        { '<F7>', function() Snacks.lazygit() end, desc = 'Lazygit', mode = { 'n', 't' } },
     },
     ---@module 'snacks'
     ---@type snacks.Config
     opts = {
+        bigfile = {},
+        dashboard = {},
         image = { enabled = false },
+        input = {},
+        lazygit = {},
         picker = {
             finder = {
                 layout = {
@@ -68,6 +75,7 @@ return {
                 kinds = KIND_ICONS,
             },
         },
+        scratch = {},
         terminal = {},
     },
     dependencies = {
