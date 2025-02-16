@@ -12,6 +12,7 @@ local colors = {
     bg = '#161616',
     bg_light = '#262626',
     bg_lighter = '#393939',
+    bg_lightest = '#525252',
     fg_dark = '#6d6e78',
     fg = '#b3bbc4',
     fg_light = '#dde1e6',
@@ -252,6 +253,10 @@ hl('NvimInternalError', { link = 'Error' })
 
 hl('DiagnosticOk', { fg = colors.azure })
 hl('DiagnosticUnnecessary', {})
+hl('DiagnosticHint', { fg = colors.fg })
+hl('DiagnosticInfo', { fg = colors.azure })
+hl('DiagnosticWarn', { fg = colors.purple })
+hl('DiagnosticError', { fg = colors.pink_dark })
 hl('DiagnosticSignHint', { fg = colors.fg, bold = true })
 hl('DiagnosticSignInfo', { fg = colors.azure, bold = true })
 hl('DiagnosticSignWarn', { fg = colors.purple, bold = true })
@@ -351,9 +356,9 @@ hl('RenderMarkdownH4Bg', { link = 'RenderMarkdownH3Bg' })
 hl('RenderMarkdownH5Bg', { link = 'RenderMarkdownH3Bg' })
 hl('RenderMarkdownH6Bg', { link = 'RenderMarkdownH3Bg' })
 
-hl('RenderMarkdownTableHead', { fg = colors.bg_light })
-hl('RenderMarkdownTableRow', { fg = colors.bg_light })
-hl('RenderMarkdownTableFill', { fg = colors.bg_light })
+hl('RenderMarkdownTableHead', { fg = colors.bg_lightest })
+hl('RenderMarkdownTableRow', { fg = colors.bg_lightest })
+hl('RenderMarkdownTableFill', { fg = colors.bg_lightest })
 
 hl('@markup.raw.markdown_inline', { fg = colors.pink, bg = colors.bg_light })
 hl('@markup.list.markdown', { fg = colors.pink })
