@@ -1,56 +1,65 @@
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.o.number = true
+vim.o.relativenumber = true
 
-vim.opt.mouse = 'a'
-vim.opt.showmode = false
+vim.o.mouse = 'a'
+vim.o.showmode = false
 
-vim.opt.breakindent = true
-vim.opt.autoindent = true
+vim.o.breakindent = true
+vim.o.autoindent = true
 vim.g.python_indent = {
     open_paren = 4,
     closed_paren_align_last_line = false,
 }
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
 
-vim.opt.undofile = true
+vim.o.undofile = true
 
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
-vim.opt.updatetime = 500
+vim.o.updatetime = 500
 
-vim.opt.timeoutlen = 500
+vim.o.timeoutlen = 500
 
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.o.splitright = true
+vim.o.splitbelow = true
 
--- vim.opt.list = true
--- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- vim.o.list = true
+-- vim.o.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
-vim.opt.inccommand = 'split'
+vim.o.inccommand = 'split'
 
-vim.opt.cursorline = true
+vim.o.cursorline = true
 
-vim.opt.scrolloff = 10
+vim.o.scrolloff = 10
 
-vim.opt.background = 'dark'
+vim.o.background = 'dark'
 
-vim.opt.completeopt = { 'menuone', 'noinsert' }
-vim.opt.shortmess = vim.opt.shortmess + { c = true }
-vim.opt.cursorline = false
+-- vim.o.completeopt = { 'menuone', 'noinsert' }
+-- vim.o.shortmess = vim.o.shortmess + { c = true }
+vim.o.cursorline = false
 
-vim.opt.pumheight = 10
+vim.o.pumheight = 10
 
-vim.opt.conceallevel = 2
-vim.opt.signcolumn = 'yes:2'
+vim.o.conceallevel = 2
+vim.o.signcolumn = 'yes:2'
 
-vim.opt.wrap = true
-vim.opt.linebreak = true
-vim.opt.textwidth = 120
+vim.o.wrap = true
+vim.o.linebreak = true
+vim.o.textwidth = 120
 
-vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+
+-- vim.o.foldcolumn = '1'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldtext = require('foldtext')
+vim.o.fillchars = 'fold: '
 
 vim.diagnostic.config({
     signs = {
