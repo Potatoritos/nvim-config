@@ -1,19 +1,5 @@
 return {
     {
-        'jbyuki/nabla.nvim',
-        ft = 'markdown',
-        keys = {
-            {
-                '<leader>n',
-                function()
-                    require('nabla').toggle_virt({ autogen = true })
-                end,
-                desc = 'Toggle nabla',
-                ft = 'markdown',
-            },
-        },
-    },
-    {
         'MeanderingProgrammer/render-markdown.nvim',
         ft = 'markdown',
         dependencies = {
@@ -42,11 +28,6 @@ return {
                 enabled = false,
             },
             latex = { enabled = false },
-            on = {
-                attach = function()
-                    require('nabla').enable_virt({ autogen = true })
-                end,
-            },
             bullet = {
                 enabled = true,
                 icons = { '●' },

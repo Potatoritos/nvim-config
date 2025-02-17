@@ -379,10 +379,11 @@ hl('SnacksPickerTree', { fg = colors.bg_lighter })
 hl('SnacksPickerCursorLine', { bg = colors.bg_light })
 hl('SnacksPickerListCursorLine', { link = 'SnacksPickerCursorLine' })
 hl('SnacksPickerPreviewCursorLine', { link = 'SnacksPickerCursorLine' })
+hl('SnacksStatusColumnMark', { fg = colors.cyan_dark })
 
 hl('FlashMatch', { fg = colors.bg, bg = colors.pink, bold = true })
 hl('FlashCurrent', { link = 'FlashMatch' })
-hl('FlashLabel', { fg = colors.bg, bg = colors.cyan, bold = true, underline = true })
+hl('FlashLabel', { fg = colors.bg, bg = colors.cyan, bold = true })
 
 vim.g.terminal_color_0 = colors.bg
 vim.g.terminal_color_1 = colors.pink

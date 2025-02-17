@@ -30,6 +30,7 @@ return {
         { '<Leader>gl', function() Snacks.picker.git_log() end, desc = 'Git log' },
         { '<Leader>gs', function() Snacks.picker.git_status() end, desc = 'Git status' },
         { '<Leader>ld', function() Snacks.picker.lsp_definitions() end, desc = 'Definitions' },
+        { '<Leader>lD', function() Snacks.picker.lsp_declarations() end, desc = 'Declarations' },
         { '<Leader>lR', function() Snacks.picker.lsp_references() end, desc = 'References' },
         { '<Leader>li', function() Snacks.picker.lsp_implementations() end, desc = 'Implementations' },
         { '<Leader>ls', function() Snacks.picker.lsp_symbols() end, desc = 'Symbols' },
@@ -42,8 +43,7 @@ return {
     ---@type snacks.Config
     opts = {
         bigfile = {},
-        dashboard = {},
-        image = { enabled = false },
+        image = {},
         input = {},
         lazygit = {},
         picker = {
@@ -104,6 +104,14 @@ return {
             },
         },
         scratch = {},
+        statuscolumn = {
+            left = { 'sign', 'mark' }, -- priority of signs on the left (high to low)
+            right = { 'git', 'fold' }, -- priority of signs on the right (high to low)
+            folds = {
+                open = false,
+                git_hl = false,
+            },
+        },
         terminal = {},
     },
     dependencies = {
