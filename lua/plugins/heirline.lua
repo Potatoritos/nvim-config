@@ -1,44 +1,50 @@
-local function setup_colors()
-    local utils = require('heirline.utils')
-    local function hl(name)
-        local h = utils.get_highlight(name)
-        if next(h) == nil then
-            return utils.get_highlight('StatusLine')
-        end
-        return h
-    end
-    return {
-        normal_fg = hl('StatusNormal').fg,
-        normal_bg = hl('StatusNormal').bg,
-        insert_fg = hl('StatusInsert').fg,
-        insert_bg = hl('StatusInsert').bg,
-        visual_fg = hl('StatusVisual').fg,
-        visual_bg = hl('StatusVisual').bg,
-        command_fg = hl('StatusCommand').fg,
-        command_bg = hl('StatusCommand').bg,
-        select_fg = hl('StatusSelect').fg,
-        select_bg = hl('StatusSelect').bg,
-        replace_fg = hl('StatusReplace').fg,
-        replace_bg = hl('StatusReplace').bg,
-        terminal_fg = hl('StatusTerminal').fg,
-        terminal_bg = hl('StatusTerminal').bg,
-        fg_secondary = hl('NonText').fg,
-        fg = hl('StatusLine').fg,
-        bg = hl('StatusLine').bg,
-        add = hl('DiffAdd').fg,
-        change = hl('DiffChange').fg,
-        delete = hl('DiffDelete').fg,
-        info = hl('DiagnosticSignInfo').fg,
-        hint = hl('DiagnosticSignHint').fg,
-        warn = hl('DiagnosticSignWarn').fg,
-        error = hl('DiagnosticSignError').fg,
-        ruler = hl('DiagnosticSignError').fg,
-    }
-end
-
 local function config()
     local conditions = require('heirline.conditions')
     local utils = require('heirline.utils')
+
+    local function setup_colors()
+        local function hl(name)
+            local h = utils.get_highlight(name)
+            if next(h) == nil then
+                return utils.get_highlight('StatusLine')
+            end
+            return h
+        end
+        return {
+            normal_fg = hl('StatusNormal').fg,
+            normal_bg = hl('StatusNormal').bg,
+            insert_fg = hl('StatusInsert').fg,
+            insert_bg = hl('StatusInsert').bg,
+            visual_fg = hl('StatusVisual').fg,
+            visual_bg = hl('StatusVisual').bg,
+            command_fg = hl('StatusCommand').fg,
+            command_bg = hl('StatusCommand').bg,
+            select_fg = hl('StatusSelect').fg,
+            select_bg = hl('StatusSelect').bg,
+            replace_fg = hl('StatusReplace').fg,
+            replace_bg = hl('StatusReplace').bg,
+            terminal_fg = hl('StatusTerminal').fg,
+            terminal_bg = hl('StatusTerminal').bg,
+            fg_secondary = hl('NonText').fg,
+            fg = hl('StatusLine').fg,
+            bg = hl('StatusLine').bg,
+            add = hl('DiffAdd').fg,
+            change = hl('DiffChange').fg,
+            delete = hl('DiffDelete').fg,
+            info = hl('DiagnosticSignInfo').fg,
+            hint = hl('DiagnosticSignHint').fg,
+            warn = hl('DiagnosticSignWarn').fg,
+            error = hl('DiagnosticSignError').fg,
+            ruler = hl('DiagnosticSignError').fg,
+        }
+    end
+
+    local function is_file()
+        return not conditions.buffer_matches({
+            buftype = { 'nofile' },
+        })
+    end
+
     local vi_mode_update = {
         'ModeChanged',
         pattern = '*:*',
@@ -121,46 +127,38 @@ local function config()
         end,
     }
 
-    local align = { provider = '%=' }
-
-    local file_name_block = {
-        init = function(self)
-            self.filename = vim.api.nvim_buf_get_name(0)
-        end,
+    local align = {
+        provider = '%=',
+        hl = { bg = 'bg' },
     }
 
     local file_icon = {
         init = function(self)
             local filename = self.filename
-            if filename == '' then
-                self.icon = ''
-                self.icon_color = nil
-                return
-            end
             local extension = vim.fn.fnamemodify(filename, ':e')
             self.icon, self.icon_color =
                 require('nvim-web-devicons').get_icon_color(filename, extension, { default = true })
         end,
         provider = function(self)
-            return self.icon and (self.icon .. ' ')
+            return ' ' .. self.icon
         end,
         hl = function(self)
-            if self.icon_color == nil then
-                return { fg = 'fg' }
-            end
             return { fg = self.icon_color, bg = 'bg' }
         end,
     }
 
     local split_filename = function(filename)
         if filename == '' then
-            return { left = '', right = '' }
+            return { left = ' ', right = '[New]' }
         end
         local index = filename:find('/[^/]*$')
         if index == nil then
             index = 0
         end
-        return { left = filename:sub(1, index), right = filename:sub(index + 1) }
+        return {
+            left = ' ' .. filename:sub(1, index),
+            right = filename:sub(index + 1),
+        }
     end
 
     local file_name_inner = {
@@ -213,6 +211,15 @@ local function config()
         },
     }
 
+    local file_name_block = {
+        init = function(self)
+            self.filename = vim.api.nvim_buf_get_name(0)
+        end,
+        file_icon,
+        file_name,
+        file_flags,
+    }
+
     local file_encoding = {
         condition = function()
             local enc = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc
@@ -251,33 +258,33 @@ local function config()
         {
             provider = function(self)
                 local count = self.status_dict.added or 0
-                return count > 0 and ('+' .. count .. ' ')
+                return count > 0 and (' +' .. count)
             end,
-            hl = { fg = 'add', bold = true },
+            hl = { fg = 'add' },
         },
         {
             provider = function(self)
                 local count = self.status_dict.removed or 0
-                return count > 0 and ('-' .. count .. ' ')
+                return count > 0 and (' -' .. count)
             end,
-            hl = { fg = 'delete', bold = true },
+            hl = { fg = 'delete' },
         },
         {
             provider = function(self)
                 local count = self.status_dict.changed or 0
-                return count > 0 and ('~' .. count .. ' ')
+                return count > 0 and (' ~' .. count)
             end,
-            hl = { fg = 'change', bold = true },
+            hl = { fg = 'change' },
         },
     }
 
     local position = {
-        provider = '%l:%c',
+        provider = ' %l:%c ',
         hl = { fg = 'fg', bg = 'bg' },
     }
 
     local ruler = {
-        provider = '%P',
+        provider = ' %P ',
         hl = { fg = 'ruler', bg = 'bg', bold = true },
     }
 
@@ -349,7 +356,7 @@ local function config()
             local buf = vim.api.nvim_win_get_buf(win)
             self.filename = vim.api.nvim_buf_get_name(buf)
             if self.filename == '' then
-                self.filename = '[No Name]'
+                self.filename = '---'
             end
 
             local extension = vim.fn.fnamemodify(self.filename, ':e')
@@ -391,23 +398,19 @@ local function config()
         utils.make_tablist(tabpage),
     }
 
-    local surround = function(component)
-        return utils.surround({ ' ', ' ' }, nil, component)
-    end
-    local file_info = utils.insert(file_name_block, file_icon, file_name, file_flags)
-
     require('heirline').setup({
         statusline = {
+            condition = is_file,
             vi_mode,
-            surround(file_info),
+            file_name_block,
             git_changes,
             align,
             diagnostics,
             lsp_active,
             git_branch,
             file_encoding,
-            surround(position),
-            surround(ruler),
+            position,
+            ruler,
         },
         tabline = tabline,
         opts = {
