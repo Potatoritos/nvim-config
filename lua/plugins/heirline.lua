@@ -1,9 +1,46 @@
-local config = function()
+local function setup_colors()
+    local utils = require('heirline.utils')
+    local function hl(name)
+        local h = utils.get_highlight(name)
+        if next(h) == nil then
+            return utils.get_highlight('StatusLine')
+        end
+        return h
+    end
+    return {
+        normal_fg = hl('StatusNormal').fg,
+        normal_bg = hl('StatusNormal').bg,
+        insert_fg = hl('StatusInsert').fg,
+        insert_bg = hl('StatusInsert').bg,
+        visual_fg = hl('StatusVisual').fg,
+        visual_bg = hl('StatusVisual').bg,
+        command_fg = hl('StatusCommand').fg,
+        command_bg = hl('StatusCommand').bg,
+        select_fg = hl('StatusSelect').fg,
+        select_bg = hl('StatusSelect').bg,
+        replace_fg = hl('StatusReplace').fg,
+        replace_bg = hl('StatusReplace').bg,
+        terminal_fg = hl('StatusTerminal').fg,
+        terminal_bg = hl('StatusTerminal').bg,
+        fg_secondary = hl('NonText').fg,
+        fg = hl('StatusLine').fg,
+        bg = hl('StatusLine').bg,
+        add = hl('DiffAdd').fg,
+        change = hl('DiffChange').fg,
+        delete = hl('DiffDelete').fg,
+        info = hl('DiagnosticSignInfo').fg,
+        hint = hl('DiagnosticSignHint').fg,
+        warn = hl('DiagnosticSignWarn').fg,
+        error = hl('DiagnosticSignError').fg,
+        ruler = hl('DiagnosticSignError').fg,
+    }
+end
+
+local function config()
     local conditions = require('heirline.conditions')
     local utils = require('heirline.utils')
     local vi_mode_update = {
         'ModeChanged',
-        'BufEnter',
         pattern = '*:*',
         callback = vim.schedule_wrap(function()
             vim.cmd('redrawstatus')
@@ -51,15 +88,15 @@ local config = function()
                 t = 'TERM',
             },
             mode_colors = {
-                n = 'StatusNormal',
-                i = 'StatusInsert',
-                v = 'StatusVisual',
-                ['\22'] = 'StatusVisual',
-                c = 'StatusCommand',
-                s = 'StatusSelect',
-                ['\19'] = 'StatusSelect',
-                r = 'StatusReplace',
-                t = 'StatusTerminal',
+                n = 'normal',
+                i = 'insert',
+                v = 'visual',
+                ['\22'] = 'visual',
+                c = 'command',
+                s = 'select',
+                ['\19'] = 'select',
+                r = 'replace',
+                t = 'terminal',
             },
         },
         flexible = 5,
@@ -76,11 +113,11 @@ local config = function()
             end,
         },
         hl = function(self)
-            local mode = self.mode_colors[self.mode:sub(1, 1):lower()]
-            if mode == nil then
-                return 'StatusOther'
+            local color = self.mode_colors[self.mode:sub(1, 1):lower()]
+            if color == nil then
+                return { fg = 'fg', bg = 'bg' }
             end
-            return mode
+            return { fg = color .. '_fg', bg = color .. '_bg', bold = true }
         end,
     }
 
@@ -109,9 +146,9 @@ local config = function()
         end,
         hl = function(self)
             if self.icon_color == nil then
-                return 'StatusLine'
+                return { fg = 'fg' }
             end
-            return { fg = self.icon_color }
+            return { fg = self.icon_color, bg = 'bg' }
         end,
     }
 
@@ -131,13 +168,13 @@ local config = function()
             provider = function(self)
                 return self.split.left
             end,
-            hl = 'NonText',
+            hl = { fg = 'fg_secondary', bg = 'bg' },
         },
         {
             provider = function(self)
                 return self.split.right
             end,
-            hl = 'StatusLine',
+            hl = { fg = 'fg', bg = 'bg' },
         },
     }
 
@@ -161,7 +198,7 @@ local config = function()
     }
 
     local file_flags = {
-        hl = 'StatusLine',
+        hl = { fg = 'fg', bg = 'bg' },
         {
             condition = function()
                 return vim.bo.modified
@@ -181,7 +218,7 @@ local config = function()
             local enc = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc
             return enc ~= 'utf-8'
         end,
-        hl = 'StatusLine',
+        hl = { fg = 'fg', bg = 'bg' },
         provider = function()
             return ' ' .. ((vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc) .. ' '
         end,
@@ -202,7 +239,7 @@ local config = function()
         {
             provider = ' ' .. SYMBOLS.branch .. ' ',
         },
-        hl = 'StatusLine',
+        hl = { fg = 'fg', bg = 'bg' },
     }
 
     local git_changes = {
@@ -210,38 +247,38 @@ local config = function()
         init = function(self)
             self.status_dict = vim.b.gitsigns_status_dict
         end,
-        hl = { bold = true },
+        hl = { bold = true, bg = 'bg' },
         {
             provider = function(self)
                 local count = self.status_dict.added or 0
                 return count > 0 and ('+' .. count .. ' ')
             end,
-            hl = 'DiffAdd',
+            hl = { fg = 'add', bold = true },
         },
         {
             provider = function(self)
                 local count = self.status_dict.removed or 0
                 return count > 0 and ('-' .. count .. ' ')
             end,
-            hl = 'DiffDelete',
+            hl = { fg = 'change', bold = true },
         },
         {
             provider = function(self)
                 local count = self.status_dict.changed or 0
                 return count > 0 and ('~' .. count .. ' ')
             end,
-            hl = 'DiffChange',
+            hl = { fg = 'delete', bold = true },
         },
     }
 
     local position = {
         provider = '%l:%c',
-        hl = 'StatusLine',
+        hl = { fg = 'fg', bg = 'bg' },
     }
 
     local ruler = {
         provider = '%P',
-        hl = 'StatusLineRuler',
+        hl = { fg = 'ruler', bg = 'bg', bold = true },
     }
 
     local diagnostics = {
@@ -255,30 +292,30 @@ local config = function()
         end,
 
         update = { 'DiagnosticChanged', 'BufEnter' },
-        hl = { bold = true },
+        hl = { bold = true, bg = 'bg' },
         {
             provider = function(self)
                 return self.errors > 0 and (SYMBOLS.error .. self.errors .. ' ')
             end,
-            hl = 'DiagnosticSignError',
+            hl = { fg = 'error', bold = true },
         },
         {
             provider = function(self)
                 return self.warnings > 0 and (SYMBOLS.warn .. self.warnings .. ' ')
             end,
-            hl = 'DiagnosticSignWarn',
+            hl = { fg = 'warn', bold = true },
         },
         {
             provider = function(self)
                 return self.info > 0 and (SYMBOLS.info .. self.info .. ' ')
             end,
-            hl = 'DiagnosticSignInfo',
+            hl = { fg = 'info', bold = true },
         },
         {
             provider = function(self)
                 return self.hints > 0 and (SYMBOLS.hint .. self.hints .. ' ')
             end,
-            hl = 'DiagnosticSignHint',
+            hl = { fg = 'hint', bold = true },
         },
     }
 
@@ -303,7 +340,7 @@ local config = function()
                 provider = ' ' .. SYMBOLS.lsp .. ' ',
             },
         },
-        hl = 'StatusLine',
+        hl = { fg = 'fg', bg = 'bg' },
     }
 
     local tabpage = {
@@ -340,9 +377,9 @@ local config = function()
         },
         hl = function(self)
             if self.is_active then
-                return 'StatusLine'
+                return { fg = 'fg', bg = 'bg' }
             else
-                return 'NonText'
+                return { fg = 'fg_secondary', bg = 'bg' }
             end
         end,
     }
@@ -373,6 +410,16 @@ local config = function()
             surround(ruler),
         },
         tabline = tabline,
+        opts = {
+            colors = setup_colors(),
+        },
+    })
+    vim.api.nvim_create_augroup('Heirline', { clear = true })
+    vim.api.nvim_create_autocmd('ColorScheme', {
+        callback = function()
+            utils.on_colorscheme(setup_colors)
+        end,
+        group = 'Heirline',
     })
 end
 

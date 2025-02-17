@@ -11,11 +11,12 @@ vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Focus upper window' })
 vim.keymap.set({ 'n', 'o' }, "'", '`', { desc = 'Jump to mark', remap = true })
 
 vim.keymap.set('n', '<Leader>lr', function()
-    vim.ui.input({ prompt = 'New name: ' }, function(input)
-        if input ~= nil and input ~= '' then
-            vim.lsp.buf.rename(input)
-        end
-    end)
+    vim.lsp.buf.rename()
+    -- vim.ui.input({ prompt = 'New name: ' }, function(input)
+    --     if input ~= nil and input ~= '' then
+    --         vim.lsp.buf.rename(input)
+    --     end
+    -- end)
 end, { desc = 'Rename' })
 vim.keymap.set('n', '<Leader>la', function()
     vim.lsp.buf.code_action()
