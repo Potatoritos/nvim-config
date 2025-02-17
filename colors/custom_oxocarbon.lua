@@ -337,8 +337,6 @@ hl('BlinkCmpKindUnit', { fg = colors.blue, bold = true })
 hl('BlinkCmpKindValue', { fg = colors.purple, bold = true })
 hl('BlinkCmpKindVariable', { fg = colors.purple, bold = true })
 
-hl('YankHighlight', { bg = colors.bg_light_pink_dark })
-
 hl('RenderMarkdownInlineHighlight', { fg = colors.blue, bg = colors.bg_blue })
 
 hl('RenderMarkdownCodeInline', { fg = colors.pink })

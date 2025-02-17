@@ -74,25 +74,7 @@ return {
                     })
                 end,
             },
-            finder = {
-                layout = {
-                    layout = {
-                        box = 'horizontal',
-                        backdrop = false,
-                        width = 0.7,
-                        min_width = 120,
-                        height = 0.8,
-                        {
-                            box = 'vertical',
-                            border = 'single',
-                            title = '{title} {live} {flags}',
-                            { win = 'input', height = 1, border = 'bottom' },
-                            { win = 'list', border = 'none' },
-                        },
-                        { win = 'preview', title = '{preview}', border = 'single', width = 0.5 },
-                    },
-                },
-            },
+            finder = {},
             icons = {
                 diagnostics = {
                     Error = SYMBOLS.error,
@@ -106,7 +88,7 @@ return {
         scratch = {},
         statuscolumn = {
             left = { 'sign', 'mark' }, -- priority of signs on the left (high to low)
-            right = { 'git', 'fold' }, -- priority of signs on the right (high to low)
+            right = { 'fold', 'git' }, -- priority of signs on the right (high to low)
             folds = {
                 open = false,
                 git_hl = false,
