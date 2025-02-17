@@ -8,28 +8,54 @@ local hl = function(group, opts)
     vim.api.nvim_set_hl(0, group, opts)
 end
 
-local colors = {
-    bg = '#161616',
-    bg_light = '#262626',
-    bg_lighter = '#393939',
-    bg_lightest = '#525252',
-    fg_dark = '#6d6e78',
-    fg = '#b3bbc4',
-    fg_light = '#dde1e6',
-    cyan_dark = '#08bdba',
-    cyan = '#3ddbd9',
-    azure = '#33b1ff',
-    blue = '#78a9ff',
-    blue_light = '#82cfff',
-    pink = '#ff7eb6',
-    pink_dark = '#ee5396',
-    green = '#42be65',
-    purple = '#be95ff',
-    bg_cyan_dark = '#153332',
-    bg_pink_dark = '#442431',
-    bg_blue = '#232e44',
-    bg_light_pink_dark = '#752b49',
-}
+local colors
+if vim.o.background == 'dark' then
+    colors = {
+        bg = '#161616',
+        bg_light = '#262626',
+        bg_lighter = '#393939',
+        bg_lightest = '#525252',
+        fg_dark = '#6d6e78',
+        fg = '#b3bbc4',
+        fg_light = '#dde1e6',
+        cyan_dark = '#08bdba',
+        cyan = '#3ddbd9',
+        azure = '#33b1ff',
+        blue = '#78a9ff',
+        blue_light = '#82cfff',
+        pink = '#ff7eb6',
+        pink_dark = '#ee5396',
+        green = '#42be65',
+        purple = '#be95ff',
+        bg_cyan_dark = '#153332',
+        bg_pink_dark = '#442431',
+        bg_blue = '#232e44',
+        bg_light_pink_dark = '#752b49',
+    }
+else
+    colors = {
+        bg = '#ffffff',
+        bg_light = '#fafafa',
+        bg_lighter = '#dddddd',
+        bg_lightest = '#bfbfbf',
+        fg_dark = '#90a4ae',
+        fg = '#37474f',
+        fg_light = '#525252',
+        cyan_dark = '#08bdba',
+        cyan = '#ff7eb6',
+        azure = '#0f62fe',
+        blue = '#ee5396',
+        blue_light = '#ffab91',
+        pink = '#673ab7',
+        pink_dark = '#ff6f00',
+        green = '#42be65',
+        purple = '#be95ff',
+        bg_cyan_dark = 'NONE',
+        bg_pink_dark = 'NONE',
+        bg_blue = 'NONE',
+        bg_light_pink_dark = 'NONE',
+    }
+end
 
 hl('Cursor', { fg = colors.bg, bg = colors.fg_light })
 hl('TermCursor', { link = 'Cursor' })
@@ -58,7 +84,6 @@ hl('StatusNormal', { fg = colors.bg, bg = colors.cyan_dark, bold = true })
 hl('StatusCommand', { fg = colors.bg, bg = colors.purple, bold = true })
 hl('StatusSelect', { fg = colors.bg, bg = colors.cyan, bold = true })
 hl('StatusOther', { fg = colors.bg, bg = colors.green, bold = true })
-hl('StatusLineRuler', { fg = colors.pink_dark, bold = true })
 
 hl('TabLine', { link = 'StatusLine' })
 hl('TabLineFill', { link = 'TabLine' })
