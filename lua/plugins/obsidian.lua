@@ -1,6 +1,7 @@
 return {
     'epwalsh/obsidian.nvim',
     version = '*',
+    enabled = false,
     lazy = true,
     event = {
         'BufReadPre /home/potatoritos/notes/*.md',
@@ -80,6 +81,7 @@ return {
         --     name = 'fzf-lua',
         -- },
         ui = {
+            enable = false,
             bullets = { hl_group = 'RenderMarkdownBullet' },
             external_link_icon = { char = '' },
             hl_groups = {

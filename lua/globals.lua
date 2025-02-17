@@ -31,10 +31,10 @@ COLORS = {
 }
 
 SYMBOLS = {
-    error = 'X', -- '',
-    warn = '?', -- '',
-    hint = '',
-    info = 'i',
+    error = ' ', -- 'X', -- '',
+    warn = ' ', -- '',
+    hint = ' ',
+    info = ' ', -- 'i',
     changed = '●',
     readonly = '',
     lsp = '',
@@ -46,12 +46,12 @@ KIND_ICONS = {
     Boolean = '0/1',
     Class = '{} ',
     Color = '#00',
-    Constant = 'π  ',
+    Constant = '(π)',
     Constructor = 'fn ',
     Enum = 'a-z',
     EnumMember = '.π ',
     Event = 'fn ',
-    Field = 'x  ',
+    Field = '.x ',
     File = '*  ',
     Folder = '*/ ',
     Function = 'fn ',
@@ -73,5 +73,5 @@ KIND_ICONS = {
     TypeParameter = '<T>',
     Unit = '() ',
     Value = '123',
-    Variable = 'x  ',
+    Variable = '(x)',
 }
