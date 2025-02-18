@@ -36,6 +36,10 @@ end
 
 local ls_setup = function()
     local capabilities = require('blink.cmp').get_lsp_capabilities()
+    capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+    }
 
     local lsp = require('lspconfig')
     local util = require('lspconfig.util')

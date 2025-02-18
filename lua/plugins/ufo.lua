@@ -34,8 +34,22 @@ return {
     config = function()
         vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
         vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+        ---@diagnostic disable-next-line: missing-fields
         require('ufo').setup({
-            provider_selector = function(bufnr, filetype, _)
+            provider_selector = function(_, filetype, _)
+                local use_lsp = {
+                    'cpp',
+                    'lua',
+                    'rust',
+                    'javascript',
+                    'javascriptreact',
+                    'typescript',
+                    'typescriptreact',
+                    'vue',
+                }
+                if vim.tbl_contains(use_lsp, filetype) then
+                    return { 'lsp', 'indent' }
+                end
                 return { 'treesitter', 'indent' }
             end,
             close_fold_kinds_for_ft = {
