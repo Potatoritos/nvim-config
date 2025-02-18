@@ -1,8 +1,6 @@
 return {
     'epwalsh/obsidian.nvim',
     version = '*',
-    enabled = false,
-    lazy = true,
     event = {
         'BufReadPre /home/potatoritos/notes/*.md',
         'BufNewFile /home/potatoritos/notes/*.md',

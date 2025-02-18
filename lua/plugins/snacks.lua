@@ -47,6 +47,11 @@ return {
         input = {},
         lazygit = {},
         picker = {
+            layout = {
+                layout = {
+                    backdrop = false,
+                },
+            },
             win = {
                 input = {
                     keys = {
@@ -74,7 +79,6 @@ return {
                     })
                 end,
             },
-            finder = {},
             icons = {
                 diagnostics = {
                     Error = SYMBOLS.error,
