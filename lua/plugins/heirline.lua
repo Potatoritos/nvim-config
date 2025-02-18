@@ -155,7 +155,7 @@ local function config()
 
     local split_filename = function(filename)
         if filename == '' then
-            return { left = ' ', right = '[New]' }
+            return { left = ' ', right = '[No Name]' }
         end
         local index = filename:find('/[^/]*$')
         if index == nil then
