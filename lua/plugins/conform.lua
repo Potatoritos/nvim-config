@@ -30,7 +30,7 @@ return {
         formatters = {
             ['clang-format'] = {
                 prepend_args = {
-                    '--style={"PenaltyReturnTypeOnItsOwnLine":1000,"BreakTemplateDeclarations":"Yes","BinPackParameters":false,"BinPackArguments":false,"AlignAfterOpenBracket":"BlockIndent","IndentWidth":4,"AllowShortFunctionsOnASingleLine":"Empty","SpaceAfterTemplateKeyword":false,"SeparateDefinitionBlocks":"Always","ColumnLimit":80}',
+                    '--style={"PenaltyReturnTypeOnItsOwnLine":1000,"BreakTemplateDeclarations":"Yes","BinPackParameters":false,"BinPackArguments":false,"AlignAfterOpenBracket":"BlockIndent","IndentWidth":4,"AllowShortFunctionsOnASingleLine":"None","SpaceAfterTemplateKeyword":false,"SeparateDefinitionBlocks":"Always","ColumnLimit":80}',
                 },
             },
             ['biome'] = {

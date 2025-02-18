@@ -403,7 +403,7 @@ hl('SnacksPickerTree', { fg = colors.bg_lighter })
 hl('SnacksPickerCursorLine', { bg = colors.bg_light })
 hl('SnacksPickerListCursorLine', { link = 'SnacksPickerCursorLine' })
 hl('SnacksPickerPreviewCursorLine', { link = 'SnacksPickerCursorLine' })
-hl('SnacksStatusColumnMark', { fg = colors.cyan_dark })
+hl('SnacksStatusColumnMark', { fg = colors.bg_lightest })
 
 hl('FlashMatch', { fg = colors.bg, bg = colors.pink, bold = true })
 hl('FlashCurrent', { link = 'FlashMatch' })

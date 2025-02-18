@@ -19,7 +19,7 @@ local snippets = {
         i(2),
         t({ '', '\\end{enumerate}' }),
     }),
-    s('template', {
+    s('tm', {
         t({
             '\\documentclass[11pt]{article}',
             '\\usepackage{amsmath, amsfonts, amsthm, amssymb, color, fullpage, hyperref}',
