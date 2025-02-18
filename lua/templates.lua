@@ -20,43 +20,50 @@ local function read_file(path, callback)
 end
 
 local function parse(data)
-    local lines, folds, cursor_index, fold_stack, marks
+    local lines, manual_folds, folds, cursor_index, fold_stack, marks, index
     local function reset()
         lines = {}
         cursor_index = nil
+        manual_folds = {}
         folds = {}
         fold_stack = {}
         marks = {}
+        index = 1
     end
     reset()
 
     local split = vim.split(data, '\n')
 
-    local index = 1
     for _, line in ipairs(split) do
-        local _, i = line:find('template!')
-        if i == nil then
+        local _, cmd_index = line:find('template!')
+        if cmd_index == nil then
             table.insert(lines, line)
             index = index + 1
         else
-            i = i + 1
-            if line:find('^begin', i) ~= nil then
+            cmd_index = cmd_index + 1
+            local function find(s)
+                return line:find('^' .. s, cmd_index) ~= nil
+            end
+
+            if find('begin') then
                 reset()
-            elseif line:find('^foldbegin', i) ~= nil then
+            elseif find('foldbegin') then
                 table.insert(fold_stack, index)
-            elseif line:find('^foldend', i) ~= nil then
+            elseif find('foldend') then
                 assert(#fold_stack > 0)
                 local f = {
                     from = table.remove(fold_stack, #fold_stack),
                     to = index,
                 }
                 assert(f.from < f.to)
-                table.insert(folds, f)
-            elseif line:find('^mark', i) ~= nil then
-                local m = line:match('^%((%l)%)', i + 4)
+                table.insert(manual_folds, f)
+            elseif find('fold') then
+                table.insert(folds, index)
+            elseif find('mark') then
+                local m = line:match('^%((%l)%)', cmd_index + 4)
                 assert(m ~= nil)
                 table.insert(marks, { name = m, index = index })
-            elseif line:find('^cursor', i) ~= nil then
+            elseif find('cursor') then
                 cursor_index = index
             end
         end
@@ -68,28 +75,38 @@ local function parse(data)
         lines = lines,
         cursor_index = cursor_index,
         folds = folds,
+        manual_folds = manual_folds,
         marks = marks,
     }
 end
 
 local function insert(template)
-    local index = vim.api.nvim_win_get_cursor(0)[1]
-    vim.api.nvim_buf_set_lines(0, index, index, false, template.lines)
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    local line = cursor[1]
+    if cursor[2] == 0 and #vim.api.nvim_get_current_line() == 0 then
+        line = line - 1
+    end
+    vim.api.nvim_buf_set_lines(0, line, line, false, template.lines)
 
     for _, mark in ipairs(template.marks) do
-        vim.api.nvim_buf_set_mark(0, mark.name, index + mark.index, 0, {})
+        vim.api.nvim_buf_set_mark(0, mark.name, line + mark.index, 0, {})
     end
 
-    local key_table = {}
+    local keys = {}
 
-    for _, fold in ipairs(template.folds) do
-        table.insert(key_table, ('%dggzf%dgg'):format(index + fold.from, index + fold.to))
+    -- for _, fold_index in ipairs(template.folds) do
+    --     table.insert(keys, ('%dGzc'):format(line + fold_index))
+    -- end
+
+    for _, fold in ipairs(template.manual_folds) do
+        table.insert(keys, ('%dGzf%dG'):format(line + fold.from, line + fold.to))
     end
 
-    table.insert(key_table, (index + template.cursor_index) .. 'gg')
-
-    local keys = table.concat(key_table)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, false, true), 'n', false)
+    if template.cursor_index == nil then
+        template.cursor_index = #template.lines
+    end
+    table.insert(keys, (line + template.cursor_index) .. 'G')
+    vim.api.nvim_feedkeys(table.concat(keys), 'n', false)
 
     -- vim.api.nvim_win_set_cursor(0, { index + template.cursor_index, 0 })
 end
@@ -100,18 +117,22 @@ local function confirm(picker)
     read_file(
         file,
         vim.schedule_wrap(function(data)
-            local template = parse(data)
-            insert(template)
+            insert(parse(data))
         end)
     )
 end
 
-function M.pick()
-    local path = vim.fn.expand('~') .. '/cp/template'
+function M.insert_template()
+    local home = vim.fn.expand('~')
+
     Snacks.picker.files({
-        dirs = { path },
-        ft = 'cpp',
+        dirs = {
+            home .. '/cp/templates',
+        },
+        ft = vim.fn.expand('%:e'),
         confirm = confirm,
+        title = 'Templates',
+        auto_confirm = true,
     })
 end
 

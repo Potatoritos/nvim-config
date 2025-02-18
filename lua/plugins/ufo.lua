@@ -30,33 +30,58 @@ end
 return {
     'kevinhwang91/nvim-ufo',
     dependencies = { 'kevinhwang91/promise-async' },
-    enabled = true,
-    config = function()
-        vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-        vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-        ---@diagnostic disable-next-line: missing-fields
-        require('ufo').setup({
-            provider_selector = function(_, filetype, _)
-                local use_lsp = {
-                    'cpp',
-                    'lua',
-                    'rust',
-                    'javascript',
-                    'javascriptreact',
-                    'typescript',
-                    'typescriptreact',
-                    'vue',
-                }
-                if vim.tbl_contains(use_lsp, filetype) then
-                    return { 'lsp', 'indent' }
-                end
-                return { 'treesitter', 'indent' }
+    lazy = false,
+    keys = {
+        {
+            'zR',
+            function()
+                require('ufo').openAllFolds()
             end,
-            close_fold_kinds_for_ft = {
-                default = {},
-            },
-            open_fold_hl_timeout = 0,
-            fold_virt_text_handler = handler,
-        })
-    end,
+            desc = 'Open all folds',
+        },
+        {
+            'zM',
+            function()
+                require('ufo').closeAllFolds()
+            end,
+            desc = 'Close all folds',
+        },
+        {
+            ']z',
+            function()
+                require('ufo.action').goNextClosedFold()
+            end,
+            desc = 'Next fold',
+        },
+        {
+            '[z',
+            function()
+                require('ufo.action').goPreviousClosedFold()
+            end,
+            desc = 'Previous fold',
+        },
+    },
+    opts = {
+        provider_selector = function(_, filetype, _)
+            local use_lsp = {
+                'cpp',
+                'lua',
+                'rust',
+                'javascript',
+                'javascriptreact',
+                'typescript',
+                'typescriptreact',
+                'vue',
+            }
+            if vim.tbl_contains(use_lsp, filetype) then
+                return { 'lsp', 'indent' }
+            end
+            return { 'treesitter', 'indent' }
+        end,
+        close_fold_kinds_for_ft = {
+            default = {},
+        },
+        open_fold_hl_timeout = 0,
+        fold_virt_text_handler = handler,
+    },
 }

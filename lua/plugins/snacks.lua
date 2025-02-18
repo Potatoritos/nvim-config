@@ -79,6 +79,7 @@ return {
                     })
                 end,
             },
+            ---@diagnostic disable-next-line: missing-fields
             icons = {
                 diagnostics = {
                     Error = SYMBOLS.error,

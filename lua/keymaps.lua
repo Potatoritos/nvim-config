@@ -10,13 +10,12 @@ vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Focus upper window' })
 
 vim.keymap.set({ 'n', 'o' }, "'", '`', { desc = 'Jump to mark', remap = true })
 
+vim.keymap.set('n', '<Leader>st', function()
+    require('templates').insert_template()
+end, { desc = 'Templates' })
+
 vim.keymap.set('n', '<Leader>lr', function()
     vim.lsp.buf.rename()
-    -- vim.ui.input({ prompt = 'New name: ' }, function(input)
-    --     if input ~= nil and input ~= '' then
-    --         vim.lsp.buf.rename(input)
-    --     end
-    -- end)
 end, { desc = 'Rename' })
 vim.keymap.set('n', '<Leader>la', function()
     vim.lsp.buf.code_action()
@@ -26,7 +25,7 @@ vim.keymap.set('n', '<Leader>lf', function()
 end, { desc = 'Show diagnostics float' })
 vim.keymap.set('n', '<Leader>lh', '<Cmd>ClangdSwitchSourceHeader<CR>', { desc = 'Switch source/header' })
 
-vim.keymap.set('n', '<Leader>sp', '`[v`]', { desc = 'Select last change' })
+vim.keymap.set('n', '<Leader>vp', '`[v`]', { desc = 'Select last change' })
 
 vim.keymap.set({ 'n', 'v', 'x' }, '<Leader>y', '"+y', { noremap = true, silent = true })
 vim.keymap.set({ 'n', 'v', 'x' }, '<Leader>Y', '"+y$', { noremap = true, silent = true })
