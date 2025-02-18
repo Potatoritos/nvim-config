@@ -45,6 +45,12 @@ local function config()
         })
     end
 
+    local function not_file_tree()
+        return not conditions.buffer_matches({
+            filetype = { 'snacks_layout_box' },
+        })
+    end
+
     local vi_mode_update = {
         'ModeChanged',
         pattern = '*:*',
@@ -215,6 +221,7 @@ local function config()
         init = function(self)
             self.filename = vim.api.nvim_buf_get_name(0)
         end,
+        condition = not_file_tree,
         file_icon,
         file_name,
         file_flags,
@@ -280,11 +287,13 @@ local function config()
 
     local position = {
         provider = ' %l:%c ',
+        condition = not_file_tree,
         hl = { fg = 'fg', bg = 'bg' },
     }
 
     local ruler = {
         provider = ' %P ',
+        condition = not_file_tree,
         hl = { fg = 'ruler', bg = 'bg', bold = true },
     }
 
@@ -400,7 +409,7 @@ local function config()
 
     require('heirline').setup({
         statusline = {
-            condition = is_file,
+            -- condition = is_file,
             vi_mode,
             file_name_block,
             git_changes,

@@ -37,8 +37,8 @@ vim.o.scrolloff = 10
 
 vim.o.background = 'dark'
 
--- vim.o.completeopt = { 'menuone', 'noinsert' }
--- vim.o.shortmess = vim.o.shortmess + { c = true }
+-- vim.opt.completeopt = { 'menuone', 'noinsert' }
+-- vim.opt.shortmess = vim.opt.shortmess + { c = true }
 vim.o.cursorline = false
 
 vim.o.pumheight = 10
@@ -56,10 +56,6 @@ vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.o.foldtext = require('foldtext')
-vim.o.fillchars = 'fold: '
 
 vim.diagnostic.config({
     signs = {

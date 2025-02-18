@@ -20,6 +20,7 @@ local opts = {
         'python',
         'regex',
         'rust',
+        'scheme',
         'sql',
         'toml',
         'typescript',
