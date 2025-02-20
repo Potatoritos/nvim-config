@@ -31,6 +31,8 @@ if vim.o.background == 'dark' then
         bg_pink_dark = '#442431',
         bg_blue = '#232e44',
         bg_light_pink_dark = '#752b49',
+        bg_purple = '#332944',
+        bg_azure = '#183044',
     }
 else
     colors = {
@@ -54,6 +56,8 @@ else
         bg_pink_dark = 'NONE',
         bg_blue = 'NONE',
         bg_light_pink_dark = 'NONE',
+        bg_purple = 'NONE',
+        bg_azure = 'NONE',
     }
 end
 
@@ -100,7 +104,7 @@ hl('SignColumn', { fg = colors.fg_dark, bg = colors.bg })
 hl('Pmenu', { link = 'Normal' })
 hl('PmenuSel', { bg = colors.bg_light })
 hl('PmenuSbar', { bg = colors.bg_light })
-hl('PmenuThumb', { fg = colors.cyan })
+hl('PmenuThumb', { bg = colors.bg_lighter })
 hl('SpecialKey', { fg = colors.fg_dark, bg = colors.bg_lighter })
 
 hl('WildMenu', { fg = colors.cyan, bg = colors.bg })
@@ -215,6 +219,7 @@ hl('@reference', { fg = colors.fg })
 
 hl('@lsp.type.class', { link = 'Structure' })
 hl('@lsp.type.decorator', { link = 'Decorator' })
+hl('@lsp.type.decorator.markdown', { fg = colors.blue, bg = colors.bg_blue })
 hl('@lsp.type.function', { link = '@function' })
 hl('@lsp.type.macro', { link = 'Macro' })
 hl('@lsp.type.method', { link = '@function' })
@@ -292,10 +297,10 @@ hl('DiagnosticUnderlineHint', { sp = colors.fg, undercurl = true })
 hl('DiagnosticUnderlineInfo', { sp = colors.azure, undercurl = true })
 hl('DiagnosticUnderlineWarn', { sp = colors.purple, undercurl = true })
 hl('DiagnosticUnderlineError', { sp = colors.pink_dark, undercurl = true })
-hl('DiagnosticVirtualTextHint', { fg = colors.fg })
-hl('DiagnosticVirtualTextInfo', { fg = colors.azure })
-hl('DiagnosticVirtualTextWarn', { fg = colors.purple })
-hl('DiagnosticVirtualTextError', { fg = colors.pink_dark })
+hl('DiagnosticVirtualTextHint', { fg = colors.fg, bg = colors.bg_lighter })
+hl('DiagnosticVirtualTextInfo', { fg = colors.azure, bg = colors.bg_azure })
+hl('DiagnosticVirtualTextWarn', { fg = colors.purple, bg = colors.bg_purple })
+hl('DiagnosticVirtualTextError', { fg = colors.pink_dark, bg = colors.bg_pink_dark })
 
 hl('HealthError', { fg = colors.pink_dark })
 hl('HealthWarning', { fg = colors.purple })
@@ -362,6 +367,27 @@ hl('BlinkCmpKindTypeParameter', { fg = colors.blue, bold = true })
 hl('BlinkCmpKindUnit', { fg = colors.blue, bold = true })
 hl('BlinkCmpKindValue', { fg = colors.purple, bold = true })
 hl('BlinkCmpKindVariable', { fg = colors.purple, bold = true })
+
+hl('SnacksPickerIconFile', { link = 'BlinkCmpKindFile' })
+hl('SnacksPickerIconField', { link = 'BlinkCmpKindField' })
+hl('SnacksPickerIconMethod', { link = 'BlinkCmpKindMethod' })
+hl('SnacksPickerIconArray', { link = 'BlinkCmpKindVariable' })
+-- hl('SnacksPickerIconBoolean', { link = 'BlinkCmpKindBoolean' })
+-- -- hl('SnacksPickerIconCategory', { link = 'BlinkCmpKindCategory' })
+hl('SnacksPickerIconConstructor', { link = 'BlinkCmpKindConstructor' })
+hl('SnacksPickerIconEnum', { link = 'BlinkCmpKindEnum' })
+hl('SnacksPickerIconEnumMember', { link = 'BlinkCmpKindEnumMember' })
+hl('SnacksPickerIconFunction', { link = 'BlinkCmpKindFunction' })
+hl('SnacksPickerIconInterface', { link = 'BlinkCmpKindInterface' })
+-- hl('SnacksPickerIconKey', { link = 'BlinkCmpKindKey' })
+hl('SnacksPickerIconModule', { link = 'BlinkCmpKindModule' })
+-- hl('SnacksPickerIconName', { link = 'BlinkCmpKindName' })
+-- hl('SnacksPickerIconNamespace', { link = 'BlinkCmpKindNamespace' })
+hl('SnacksPickerIconOperator', { link = 'BlinkCmpKindOperator' })
+hl('SnacksPickerIconPackage', { link = 'BlinkCmpKindModule' })
+-- hl('SnacksPickerIconString', { link = 'BlinkCmpKindString' })
+hl('SnacksPickerIconStruct', { link = 'BlinkCmpKindStruct' })
+hl('SnacksPickerIconTypeParameter', { link = 'BlinkCmpKindTypeParameter' })
 
 hl('RenderMarkdownInlineHighlight', { fg = colors.blue, bg = colors.bg_blue })
 

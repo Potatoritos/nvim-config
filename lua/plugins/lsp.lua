@@ -44,6 +44,22 @@ local ls_setup = function()
     local lsp = require('lspconfig')
     local util = require('lspconfig.util')
     lsp.basedpyright.setup({ capabilities = capabilities })
+    lsp.markdown_oxide.setup({
+        capabilities = vim.tbl_deep_extend('force', capabilities, {
+            workspace = {
+                didChangeWatchedFiles = {
+                    dynamicRegistration = true,
+                },
+            },
+        }),
+        on_attach = function()
+            vim.api.nvim_create_user_command('Daily', function(args)
+                local input = args.args
+
+                vim.lsp.buf.execute_command({ command = 'jump', arguments = { input } })
+            end, { desc = 'Open daily note', nargs = '*' })
+        end,
+    })
     lsp.clangd.setup({
         capabilities = capabilities,
         init_options = { fallbackFlags = { '--std=c++20' } },

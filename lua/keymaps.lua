@@ -27,15 +27,8 @@ vim.keymap.set('n', '<Leader>lh', '<Cmd>ClangdSwitchSourceHeader<CR>', { desc = 
 
 vim.keymap.set('n', '<Leader>vp', '`[v`]', { desc = 'Select last change' })
 
-vim.keymap.set({ 'n', 'v', 'x' }, '<Leader>y', '"+y', { noremap = true, silent = true })
-vim.keymap.set({ 'n', 'v', 'x' }, '<Leader>Y', '"+y$', { noremap = true, silent = true })
-vim.keymap.set({ 'n', 'v', 'x' }, '<Leader>p', '"+p', { noremap = true, silent = true })
-vim.keymap.set({ 'n', 'v', 'x' }, '<Leader>P', '"+P', { noremap = true, silent = true })
-vim.keymap.set({ 'n', 'v', 'x' }, '<Leader>d', '"+d', { noremap = true, silent = true })
-vim.keymap.set({ 'n', 'v', 'x' }, '<Leader>D', '"+D', { noremap = true, silent = true })
-
-vim.keymap.set('n', '<Leader>tn', '<Cmd>tabnew<CR>')
-vim.keymap.set('n', '<Leader>tq', '<Cmd>tabclose<CR>')
+vim.keymap.set('n', '<Leader>tn', '<Cmd>tabnew<CR>', { desc = 'New tab' })
+vim.keymap.set('n', '<Leader>tq', '<Cmd>tabclose<CR>', { desc = 'Quit tab' })
 
 -- enable lazyredraw, disable autocmds during macro execution
 vim.keymap.set('n', '@', function()

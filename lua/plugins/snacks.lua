@@ -34,16 +34,24 @@ return {
         { '<Leader>lR', function() Snacks.picker.lsp_references() end, desc = 'References' },
         { '<Leader>li', function() Snacks.picker.lsp_implementations() end, desc = 'Implementations' },
         { '<Leader>ls', function() Snacks.picker.lsp_symbols() end, desc = 'Symbols' },
+        { '<leader>lw', function() Snacks.picker.lsp_workspace_symbols({ live = false }) end, desc = "Workspace symbols (static)" },
+        { '<leader>lW', function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace symbols (live)" },
         { '<Leader>tr', function() Snacks.explorer() end, desc = 'Toggle file tree' },
         { '<Leader>S', function() Snacks.scratch() end, desc = 'Toggle scratch buffer' },
         { '<F3>', function() Snacks.terminal.toggle() end, desc = 'Toggle terminal', mode = { 'n', 't' } },
         { '<F7>', function() Snacks.lazygit() end, desc = 'Lazygit', mode = { 'n', 't' } },
+        { '<Leader>go', function() Snacks.gitbrowse.open() end, desc = 'Open repo (browser)' },
     },
     ---@module 'snacks'
     ---@type snacks.Config
     opts = {
         bigfile = {},
-        image = {},
+        gitbrowse = {},
+        image = {
+            doc = {
+                conceal = false,
+            },
+        },
         input = {},
         lazygit = {},
         picker = {
@@ -91,14 +99,14 @@ return {
             },
         },
         scratch = {},
-        statuscolumn = {
-            left = { 'sign', 'mark' }, -- priority of signs on the left (high to low)
-            right = { 'fold', 'git' }, -- priority of signs on the right (high to low)
-            folds = {
-                open = false,
-                git_hl = false,
-            },
-        },
+        -- statuscolumn = {
+        --     left = { 'sign', 'mark' },
+        --     right = { 'fold', 'git' },
+        --     folds = {
+        --         open = false,
+        --         git_hl = false,
+        --     },
+        -- },
         terminal = {},
     },
     dependencies = {
