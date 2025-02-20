@@ -11,7 +11,7 @@ return {
                 require('treesj').toggle()
             end,
             mode = 'n',
-            desc = 'Join block',
+            desc = 'Split/join',
         },
     },
     dependencies = { 'nvim-treesitter/nvim-treesitter' },

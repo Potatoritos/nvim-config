@@ -30,37 +30,16 @@ return {
                 'snippets',
                 'buffer',
                 'lazydev',
-                -- 'markdown',
-                'obsidian',
-                'obsidian_new',
-                'obsidian_tags',
+                'markdown',
             },
             transform_items = function(_, items)
-                -- for _, item in ipairs(items) do
-                --     if item.kind == require('blink.cmp.types').CompletionItemKind.Snippet then
-                --         item.score_offset = item.score_offset - 3
-                --     end
-                -- end
                 return items
             end,
             providers = {
-                obsidian = {
-                    name = 'obsidian',
-                    module = 'blink.compat.source',
+                markdown = {
+                    name = 'RenderMarkdown',
+                    module = 'render-markdown.integ.blink',
                 },
-                obsidian_new = {
-                    name = 'obsidian_new',
-                    module = 'blink.compat.source',
-                    score_offset = -1,
-                },
-                obsidian_tags = {
-                    name = 'obsidian_tags',
-                    module = 'blink.compat.source',
-                },
-                -- markdown = {
-                --     name = 'RenderMarkdown',
-                --     module = 'render-markdown.integ.blink',
-                -- },
                 snippets = {
                     score_offset = 1000,
                     max_items = 1,
@@ -151,13 +130,6 @@ return {
         },
     },
     dependencies = {
-        {
-            'saghen/blink.compat',
-            version = false,
-            opts = {
-                impersonate_nvim_cmp = true,
-            },
-        },
         {
             'L3MON4D3/LuaSnip',
             version = 'v2.*',

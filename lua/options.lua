@@ -44,13 +44,14 @@ vim.o.cursorline = false
 vim.o.pumheight = 10
 
 vim.o.conceallevel = 2
-vim.o.signcolumn = 'yes:2'
+vim.o.signcolumn = 'yes:1'
 
 vim.o.wrap = true
 vim.o.linebreak = true
 vim.o.textwidth = 120
 
-vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+-- vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal'
 
 -- vim.o.foldcolumn = '1'
 vim.o.foldlevel = 99
@@ -60,17 +61,17 @@ vim.o.foldenable = true
 vim.diagnostic.config({
     signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = SYMBOLS.error,
-            [vim.diagnostic.severity.WARN] = SYMBOLS.warn,
-            [vim.diagnostic.severity.INFO] = SYMBOLS.info,
-            [vim.diagnostic.severity.HINT] = SYMBOLS.hint,
+            [vim.diagnostic.severity.ERROR] = '',
+            [vim.diagnostic.severity.WARN] = '',
+            [vim.diagnostic.severity.INFO] = '',
+            [vim.diagnostic.severity.HINT] = '',
         },
         linehl = {},
         numhl = {
-            [vim.diagnostic.severity.ERROR] = 'LineNr',
-            [vim.diagnostic.severity.WARN] = 'LineNr',
-            [vim.diagnostic.severity.INFO] = 'LineNr',
-            [vim.diagnostic.severity.HINT] = 'LineNr',
+            [vim.diagnostic.severity.ERROR] = 'DiagnosticVirtualTextError',
+            [vim.diagnostic.severity.WARN] = 'DiagnosticVirtualTextWarn',
+            [vim.diagnostic.severity.INFO] = 'DiagnosticVirtualTextInfo',
+            [vim.diagnostic.severity.HINT] = 'DiagnosticVirtualTextHint',
         },
     },
     severity_sort = true,

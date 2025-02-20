@@ -24,7 +24,7 @@ return {
             border = 'thick',
         },
         sign = {
-            enabled = true,
+            enabled = false,
         },
         latex = { enabled = false },
         bullet = {

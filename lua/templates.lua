@@ -37,7 +37,9 @@ local function parse(data)
     for _, line in ipairs(split) do
         local _, cmd_index = line:find('template!')
         if cmd_index == nil then
-            table.insert(lines, line)
+            local filename = vim.fn.expand('%:t:r')
+            local line_sub = line:gsub('%{%{filename%}%}', filename)
+            table.insert(lines, line_sub)
             index = index + 1
         else
             cmd_index = cmd_index + 1
@@ -128,6 +130,7 @@ function M.insert_template()
     Snacks.picker.files({
         dirs = {
             home .. '/cp/templates',
+            home .. '/notes/templates',
         },
         ft = vim.fn.expand('%:e'),
         confirm = confirm,
