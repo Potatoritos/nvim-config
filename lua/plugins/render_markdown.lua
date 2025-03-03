@@ -16,7 +16,7 @@ return {
             border = false,
         },
         code = {
-            enabled = true,
+            enabled = false,
             sign = false,
             style = 'normal',
             width = 'block',
@@ -28,9 +28,12 @@ return {
         },
         latex = { enabled = false },
         bullet = {
-            enabled = true,
+            enabled = false,
             icons = { '●' },
             -- icons = { '●', '■', '◆' },
+        },
+        checkbox = {
+            enabled = false,
         },
         link = {
             enabled = true,
@@ -38,11 +41,5 @@ return {
                 icon = '',
             },
         },
-        -- win_options = {
-        --     conceallevel = {
-        --         -- default = vim.api.nvim_get_option_value('conceallevel', {}),
-        --         rendered = 2,
-        --     },
-        -- },
     },
 }

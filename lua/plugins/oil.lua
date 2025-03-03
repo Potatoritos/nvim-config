@@ -4,7 +4,7 @@ return {
         {
             '<Leader>oi',
             '<Cmd>Oil<CR>',
-            mode = 'n',
+            desc = 'Oil',
         },
     },
     ---@module 'oil'
@@ -19,6 +19,9 @@ return {
         skip_confirm_for_simple_edits = false,
         view_options = {
             show_hidden = true,
+        },
+        keymaps = {
+            ['<C-h>'] = false,
         },
     },
     dependencies = {

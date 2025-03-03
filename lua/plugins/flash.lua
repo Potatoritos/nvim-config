@@ -22,12 +22,12 @@ return {
             desc = 'Flash',
         },
         {
-            '<Leader>ts',
+            '<Leader>v',
             mode = { 'n', 'x', 'o' },
             function()
                 require('flash').treesitter()
             end,
-            desc = 'Select treesitter',
+            desc = 'Select treesitter node',
         },
     },
 }

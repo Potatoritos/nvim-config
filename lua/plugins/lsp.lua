@@ -1,4 +1,4 @@
-local show_only_one_sign_in_sign_column = function()
+local function show_only_one_sign_in_sign_column()
     local ns = vim.api.nvim_create_namespace('severe-diagnostics')
 
     local orig_signs_handler = vim.diagnostic.handlers.signs
@@ -34,7 +34,7 @@ local show_only_one_sign_in_sign_column = function()
     }
 end
 
-local ls_setup = function()
+local function ls_setup()
     local capabilities = require('blink.cmp').get_lsp_capabilities()
     capabilities.textDocument.foldingRange = {
         dynamicRegistration = false,
@@ -62,7 +62,9 @@ local ls_setup = function()
     })
     lsp.clangd.setup({
         capabilities = capabilities,
-        init_options = { fallbackFlags = { '--std=c++20' } },
+        init_options = {
+            -- fallbackFlags = { '--std=c++20' },
+        },
         cmd = {
             'clangd',
             '--header-insertion=never',
