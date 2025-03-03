@@ -14,11 +14,13 @@ return {
                 function(cmp)
                     return cmp.scroll_documentation_up(8)
                 end,
+                'fallback',
             },
             ['<C-d>'] = {
                 function(cmp)
                     return cmp.scroll_documentation_down(8)
                 end,
+                'fallback',
             },
             ['<C-s>'] = { 'hide_documentation', 'show_documentation', 'fallback' },
             ['<C-space>'] = { 'hide', 'show', 'fallback' },
@@ -82,7 +84,7 @@ return {
                 },
             },
             documentation = {
-                auto_show = true,
+                auto_show = false,
                 auto_show_delay_ms = 1000,
                 update_delay_ms = 50,
                 treesitter_highlighting = true,

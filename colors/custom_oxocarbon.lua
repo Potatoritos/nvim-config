@@ -388,6 +388,7 @@ hl('SnacksPickerIconPackage', { link = 'BlinkCmpKindModule' })
 -- hl('SnacksPickerIconString', { link = 'BlinkCmpKindString' })
 hl('SnacksPickerIconStruct', { link = 'BlinkCmpKindStruct' })
 hl('SnacksPickerIconTypeParameter', { link = 'BlinkCmpKindTypeParameter' })
+hl('SnacksPickerMatch', { fg = colors.pink, bold = true })
 
 hl('RenderMarkdownInlineHighlight', { fg = colors.blue, bg = colors.bg_blue })
 

@@ -4,6 +4,7 @@ return {
     ---@module 'auto-session'
     ---@type AutoSession.Config
     opts = {
+        auto_restore = true,
         allowed_dirs = {
             '~/p/*',
             '~/p/*/*',
@@ -12,6 +13,7 @@ return {
             '~/s/*/*',
             '~/.config/*',
             '~/notes',
+            '~/notes/*',
             '~/cp',
             '~/cp/*',
         },

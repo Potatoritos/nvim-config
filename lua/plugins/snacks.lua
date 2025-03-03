@@ -8,7 +8,7 @@ return {
         { '<Leader>sc', function() Snacks.picker.command_history() end, desc = 'Command history' },
         { '<Leader>sC', function() Snacks.picker.colorschemes() end, desc = 'Colorschemes' },
         { '<Leader>sd', function() Snacks.picker.diagnostics_buffer() end, desc = 'Diagnostics (buffer)' },
-        { '<Leader>sD', function() Snacks.picker.diagnostics() end, desc = 'Diagnostics' },
+        { '<Leader>sD', function() Snacks.picker.diagnostics() end, desc = 'Diagnostics (all buffers)' },
         { '<Leader>sf', function() Snacks.picker.files() end, desc = 'Files' },
         { '<Leader>sF', function() Snacks.picker.git_files() end, desc = 'Files (git)' },
         { '<Leader>sg', function() Snacks.picker.grep() end, desc = 'Grep' },
@@ -17,7 +17,7 @@ return {
         { '<Leader>sj', function() Snacks.picker.jumps() end, desc = 'Jumps' },
         { '<Leader>sk', function() Snacks.picker.keymaps() end, desc = 'Keymaps' },
         { '<Leader>sl', function() Snacks.picker.lines() end, desc = 'Lines (buffer)' },
-        { '<Leader>sL', function() Snacks.picker.grep_buffers() end, desc = 'Lines (open buffers)' },
+        { '<Leader>sL', function() Snacks.picker.grep_buffers() end, desc = 'Lines (all buffers)' },
         { '<Leader>sm', function() Snacks.picker.marks() end, desc = 'Marks' },
         { '<Leader>sn', function() Snacks.picker.notifications() end, desc = 'Notification history' },
         { '<Leader>sr', function() Snacks.picker.registers() end, desc = 'Registers' },
@@ -34,8 +34,8 @@ return {
         { '<Leader>lR', function() Snacks.picker.lsp_references() end, desc = 'References' },
         { '<Leader>li', function() Snacks.picker.lsp_implementations() end, desc = 'Implementations' },
         { '<Leader>ls', function() Snacks.picker.lsp_symbols() end, desc = 'Symbols' },
-        { '<leader>lw', function() Snacks.picker.lsp_workspace_symbols({ live = false }) end, desc = "Workspace symbols (static)" },
-        { '<leader>lW', function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace symbols (live)" },
+        { '<leader>lw', function() Snacks.picker.lsp_workspace_symbols({ live = false }) end, desc = 'Workspace symbols (static)' },
+        { '<leader>lW', function() Snacks.picker.lsp_workspace_symbols() end, desc = 'Workspace symbols (live)' },
         { '<Leader>tr', function() Snacks.explorer() end, desc = 'Toggle file tree' },
         { '<Leader>S', function() Snacks.scratch() end, desc = 'Toggle scratch buffer' },
         { '<F3>', function() Snacks.terminal.toggle() end, desc = 'Toggle terminal', mode = { 'n', 't' } },
@@ -46,6 +46,68 @@ return {
     ---@type snacks.Config
     opts = {
         bigfile = {},
+        dashboard = {
+            enabled = false,
+            width = 40,
+            preset = {
+                keys = {
+                    {
+                        icon = '󱞩 ',
+                        key = 'r',
+                        desc = 'Restore session',
+                        action = ':SessionRestore',
+                    },
+                    {
+                        icon = ' ',
+                        key = 'f',
+                        desc = 'Find session',
+                        action = ':SessionSearch',
+                    },
+                    {
+                        icon = ' ',
+                        key = 'i',
+                        desc = 'New buffer',
+                        action = ':ene | startinsert',
+                    },
+                    {
+                        icon = '󰒲 ',
+                        key = 'p',
+                        desc = 'Plugins',
+                        action = ':Lazy',
+                    },
+                    {
+                        icon = ' ',
+                        key = 'c',
+                        desc = 'Config',
+                        action = ':cd' .. vim.fn.stdpath('config') .. ' | SessionRestore',
+                    },
+                    {
+                        icon = '󰎚 ',
+                        key = 'n',
+                        desc = 'Notes',
+                        action = ':cd ~/notes | SessionRestore',
+                    },
+                    {
+                        icon = ' ',
+                        key = 'q',
+                        desc = 'Quit',
+                        action = ':qa',
+                    },
+                },
+            },
+            sections = {
+                { text = { { 'NVIM v' .. tostring(vim.version()) } } },
+                function()
+                    local path = vim.fn.getcwd():gsub('^' .. vim.fn.expand('~'), '~')
+                    if #path > 40 then
+                        path = path:sub(1, 39) .. '…'
+                    end
+                    return { text = { { path } }, padding = 1 }
+                end,
+                { section = 'keys', padding = 1 },
+            },
+        },
+        explorer = {},
         gitbrowse = {},
         image = {
             doc = {

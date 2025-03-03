@@ -39,6 +39,21 @@ local function config()
         }
     end
 
+    local window_number = {
+        init = function(self)
+            self.number = vim.api.nvim_win_get_number(0)
+        end,
+        condition = conditions.is_not_active,
+        provider = function(self)
+            return ' ' .. self.number .. ' '
+        end,
+        hl = {
+            fg = 'normal_fg',
+            bg = 'normal_bg',
+            bold = true,
+        },
+    }
+
     local function is_file()
         return not conditions.buffer_matches({
             buftype = { 'nofile' },
@@ -62,6 +77,7 @@ local function config()
         init = function(self)
             self.mode = vim.fn.mode(1)
         end,
+        condition = conditions.is_active,
         static = {
             mode_names = {
                 n = 'NORMAL',
@@ -286,7 +302,7 @@ local function config()
     }
 
     local position = {
-        provider = ' %l:%c ',
+        provider = ' %6(%l,%c%) ',
         condition = not_file_tree,
         hl = { fg = 'fg', bg = 'bg' },
     }
@@ -408,8 +424,10 @@ local function config()
     }
 
     require('heirline').setup({
+        ---@diagnostic disable-next-line: missing-fields
         statusline = {
             -- condition = is_file,
+            window_number,
             vi_mode,
             file_name_block,
             git_changes,

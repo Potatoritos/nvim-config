@@ -20,7 +20,6 @@ local opts = {
         'python',
         'regex',
         'rust',
-        'scheme',
         'sql',
         'toml',
         'typescript',
@@ -30,7 +29,6 @@ local opts = {
         'vue',
         'xml',
         'yaml',
-        'zathurarc',
     },
     auto_install = false,
     sync_install = false,
@@ -47,7 +45,7 @@ local opts = {
         enable = false,
     },
     incremental_selection = {
-        enable = true,
+        enable = false,
         keymaps = {
             init_selection = 'gnn',
             node_incremental = 'grn',

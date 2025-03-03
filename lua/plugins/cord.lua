@@ -27,9 +27,6 @@ return {
                 return 'Workspace: ' .. opts.workspace
             end,
         },
-        display = {
-            theme = 'onyx',
-        },
         advanced = {
             plugin = {
                 cursor_update_mode = 'none',

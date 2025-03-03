@@ -33,6 +33,8 @@ return {
     sfmt('sal', 'std::array<ll, {}>', { i(1) }),
     s('svpi', t('std::vector<std::pair<int, int>>')),
     s('svpl', t('std::vector<std::pair<ll, ll>>')),
+    sfmt('p', 'std::print("{}", {});', { i(1), i(2) }),
+    sfmt('pl', 'std::println("{}", {});', { i(1), i(2) }),
     postfix(
         { trig = '.l' },
         f(function(_, parent)
