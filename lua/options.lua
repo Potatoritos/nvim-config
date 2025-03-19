@@ -74,6 +74,7 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.HINT] = 'DiagnosticVirtualTextHint',
         },
     },
+    virtual_text = false,
     severity_sort = true,
     underline = true,
     float = {

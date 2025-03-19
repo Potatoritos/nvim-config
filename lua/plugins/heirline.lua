@@ -107,7 +107,7 @@ local function config()
                 Rv = 'REPLACE',
                 Rvc = 'REPLACE',
                 Rvx = 'REPLACE',
-                c = 'COMMAND',
+                c = 'C-LINE',
                 cv = 'EX',
                 r = '...',
                 rm = '---',

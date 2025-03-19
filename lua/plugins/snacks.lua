@@ -113,6 +113,9 @@ return {
             doc = {
                 conceal = false,
             },
+            math = {
+                enabled = false,
+            },
         },
         input = {},
         lazygit = {},
