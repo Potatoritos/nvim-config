@@ -151,15 +151,6 @@ return {
         lazy = false,
         keys = {
             {
-                '<leader>la',
-                function()
-                    vim.cmd.RustLsp('codeAction')
-                end,
-                mode = 'n',
-                ft = 'rust',
-                desc = 'Code action',
-            },
-            {
                 'K',
                 function()
                     vim.cmd.RustLsp({ 'hover', 'actions' })
@@ -167,8 +158,125 @@ return {
                 mode = 'n',
                 ft = 'rust',
             },
+            {
+                '<Leader>le',
+                function()
+                    vim.cmd.RustLsp('expandMacro')
+                end,
+                mode = 'n',
+                ft = 'rust',
+                desc = 'Expand macro',
+            },
+            {
+                '<Leader>lJ',
+                function()
+                    vim.cmd.RustLsp('joinLines')
+                end,
+                mode = 'n',
+                ft = 'rust',
+                desc = 'Join lines',
+            },
+            {
+                '<Leader>lc',
+                function()
+                    vim.cmd.RustLsp('openCargo')
+                end,
+                mode = 'n',
+                ft = 'rust',
+                desc = 'Open cargo.toml',
+            },
+            {
+                '<Leader>lj',
+                function()
+                    vim.cmd.RustLsp({ 'moveItem', 'down' })
+                end,
+                mode = 'n',
+                ft = 'rust',
+                desc = 'Move item down',
+            },
+            {
+                '<Leader>lk',
+                function()
+                    vim.cmd.RustLsp({ 'moveItem', 'up' })
+                end,
+                mode = 'n',
+                ft = 'rust',
+                desc = 'Move item up',
+            },
+            {
+                '<Leader>lu',
+                function()
+                    vim.cmd.RustLsp('parentModule')
+                end,
+                mode = 'n',
+                ft = 'rust',
+                desc = 'Open parent module',
+            },
+            {
+                '<Leader>lb',
+                function()
+                    vim.cmd.RustLsp('renderDiagnostic')
+                end,
+                mode = 'n',
+                ft = 'rust',
+                desc = 'Render diagnostics',
+            },
+            {
+                '<Leader>lE',
+                function()
+                    vim.cmd.RustLsp('explainError')
+                end,
+                mode = 'n',
+                ft = 'rust',
+                desc = 'Explain error',
+            },
+            {
+                '<Leader>lB',
+                function()
+                    vim.cmd.RustLsp('rebuildProcMacros')
+                end,
+                mode = 'n',
+                ft = 'rust',
+                desc = 'Rebuild proc macros',
+            },
+            {
+                '<Leader>lt',
+                function()
+                    vim.cmd.RustLsp('syntaxTree')
+                end,
+                mode = 'n',
+                ft = 'rust',
+                desc = 'View syntax tree',
+            },
+            {
+                '<Leader>ln',
+                function()
+                    vim.cmd.RustLsp('relatedDiagnostics')
+                end,
+                mode = 'n',
+                ft = 'rust',
+                desc = 'Related diagnostics',
+            },
+            {
+                '<Leader>lx',
+                function()
+                    vim.cmd.RustLsp('openDocs')
+                end,
+                mode = 'n',
+                ft = 'rust',
+                desc = 'Open docs.rs',
+            },
         },
         dependencies = { 'saghen/blink.cmp' },
+        init = function()
+            vim.g.rustaceanvim = {
+                tools = {
+                    float_win_config = {
+                        border = 'single',
+                    },
+                },
+            }
+        end,
     },
     {
         'folke/lazydev.nvim',
