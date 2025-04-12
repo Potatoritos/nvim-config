@@ -2,7 +2,8 @@ vim.o.number = true
 vim.o.relativenumber = true
 
 vim.o.mouse = 'a'
-vim.o.showmode = false
+vim.o.showmode = true
+vim.o.showtabline = 0
 
 vim.o.breakindent = true
 vim.o.autoindent = true
@@ -33,7 +34,7 @@ vim.o.inccommand = 'split'
 
 vim.o.cursorline = true
 
-vim.o.scrolloff = 10
+vim.o.scrolloff = 5
 
 vim.o.background = 'dark'
 
@@ -53,10 +54,13 @@ vim.o.textwidth = 120
 -- vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal'
 
--- vim.o.foldcolumn = '1'
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 99
 vim.o.foldenable = true
+vim.o.foldlevel = 99
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldtext = ''
+vim.opt.foldcolumn = '0'
+vim.opt.fillchars:append({ fold = ' ' })
 
 vim.diagnostic.config({
     signs = {
@@ -77,11 +81,6 @@ vim.diagnostic.config({
     virtual_text = false,
     severity_sort = true,
     underline = true,
-    float = {
-        border = 'single',
-    },
 })
 
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'single' })
-
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'single' })
+vim.o.winborder = 'rounded'

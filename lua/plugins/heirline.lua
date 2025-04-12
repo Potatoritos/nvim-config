@@ -60,6 +60,12 @@ local function config()
         })
     end
 
+    local function not_file()
+        return conditions.buffer_matches({
+            buftype = { 'nofile' },
+        })
+    end
+
     local function not_file_tree()
         return not conditions.buffer_matches({
             filetype = { 'snacks_layout_box' },
@@ -207,13 +213,13 @@ local function config()
             init = function(self)
                 self.split = split_filename(self.lfilename)
             end,
-            table.unpack(file_name_inner),
+            unpack(file_name_inner),
         },
         {
             init = function(self)
                 self.split = split_filename(vim.fn.pathshorten(self.lfilename))
             end,
-            table.unpack(file_name_inner),
+            unpack(file_name_inner),
         },
     }
 
@@ -237,7 +243,7 @@ local function config()
         init = function(self)
             self.filename = vim.api.nvim_buf_get_name(0)
         end,
-        condition = not_file_tree,
+        condition = is_file,
         file_icon,
         file_name,
         file_flags,
@@ -302,7 +308,7 @@ local function config()
     }
 
     local position = {
-        provider = ' %6(%l,%c%) ',
+        provider = ' %6(%l:%c%) ',
         condition = not_file_tree,
         hl = { fg = 'fg', bg = 'bg' },
     }
@@ -427,8 +433,8 @@ local function config()
         ---@diagnostic disable-next-line: missing-fields
         statusline = {
             -- condition = is_file,
-            window_number,
-            vi_mode,
+            -- window_number,
+            -- vi_mode,
             file_name_block,
             git_changes,
             align,

@@ -25,7 +25,7 @@ if vim.o.background == 'dark' then
         blue_light = '#82cfff',
         pink = '#ff7eb6',
         pink_dark = '#ee5396',
-        green = '#42be65',
+        green = '#42be65', -- '#3c6e71',
         purple = '#be95ff',
         bg_cyan_dark = '#153332',
         bg_pink_dark = '#442431',
@@ -33,6 +33,11 @@ if vim.o.background == 'dark' then
         bg_light_pink_dark = '#752b49',
         bg_purple = '#332944',
         bg_azure = '#183044',
+        -- ##5D737E
+        -- #6969B3
+        -- #6969B3
+        -- #F58549
+        --
     }
 else
     colors = {
@@ -196,7 +201,7 @@ hl('@type', { link = 'Type' })
 hl('@type.builtin', { link = 'Type' })
 hl('@attribute', { fg = colors.blue_light })
 hl('@field', { fg = colors.fg })
-hl('@property', { fg = colors.pink_dark })
+hl('@property', { fg = colors.fg })
 hl('@variable', { fg = colors.fg })
 hl('@variable.builtin', { fg = colors.fg })
 hl('@constant', { fg = colors.purple })
@@ -219,6 +224,7 @@ hl('@reference', { fg = colors.fg })
 
 hl('@lsp.type.class', { link = 'Structure' })
 hl('@lsp.type.decorator', { link = 'Decorator' })
+hl('@lsp.type.decorator.rust', { link = 'Macro' })
 hl('@lsp.type.decorator.markdown', { fg = colors.blue, bg = colors.bg_blue })
 hl('@lsp.type.function', { link = '@function' })
 hl('@lsp.type.macro', { link = 'Macro' })
@@ -277,7 +283,7 @@ hl('Error', { fg = colors.pink_dark })
 
 hl('ErrorMsg', { fg = colors.pink_dark })
 hl('WarningMsg', { fg = colors.purple })
-hl('ModeMsg', { fg = colors.fg })
+hl('ModeMsg', { fg = colors.fg, bold = true })
 hl('MoreMsg', { fg = colors.cyan })
 hl('Question', { fg = colors.fg })
 
@@ -306,8 +312,8 @@ hl('HealthError', { fg = colors.pink_dark })
 hl('HealthWarning', { fg = colors.purple })
 hl('HealthSuccess', { fg = colors.green })
 
-hl('Added', { fg = colors.cyan })
-hl('DiffAdd', { fg = colors.cyan })
+hl('Added', { fg = colors.cyan_dark })
+hl('DiffAdd', { fg = colors.cyan_dark })
 hl('GitSignsAdd', { link = 'DiffAdd' })
 hl('GitSignsStagedAdd', { link = 'GitSignsAdd' })
 
