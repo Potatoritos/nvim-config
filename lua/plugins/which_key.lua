@@ -9,6 +9,10 @@ return {
         preset = 'helix',
         plugins = {
             marks = false,
+            registers = false,
+        },
+        triggers = {
+            { '<leader>', mode = { 'n', 'v' } },
         },
     },
     keys = {
