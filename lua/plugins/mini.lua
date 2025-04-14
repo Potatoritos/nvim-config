@@ -47,5 +47,16 @@ return {
             window = { suffix = '', options = {} },
             yank = { suffix = '', options = {} },
         })
+
+        require('mini.indentscope').setup({
+            draw = {
+                predicate = function()
+                    return false
+                end,
+            },
+            options = {
+                indent_at_cursor = false,
+            },
+        })
     end,
 }
