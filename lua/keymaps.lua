@@ -19,7 +19,7 @@ vim.keymap.set('n', '<Leader>lv', function()
     vim.diagnostic.config({ virtual_lines = virtual_lines })
 end, { desc = 'Toggle diagnostic virtual lines' })
 
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+-- vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
 -- enable lazyredraw, disable autocmds during macro execution
 vim.keymap.set('n', '@', function()

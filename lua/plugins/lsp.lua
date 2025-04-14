@@ -36,10 +36,6 @@ end
 
 local function ls_setup()
     local capabilities = require('blink.cmp').get_lsp_capabilities()
-    capabilities.textDocument.foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true,
-    }
 
     local lsp = require('lspconfig')
     local util = require('lspconfig.util')
@@ -155,7 +151,6 @@ return {
                 function()
                     vim.cmd.RustLsp({ 'hover', 'actions' })
                 end,
-                mode = 'n',
                 ft = 'rust',
             },
             {
@@ -163,7 +158,6 @@ return {
                 function()
                     vim.cmd.RustLsp('expandMacro')
                 end,
-                mode = 'n',
                 ft = 'rust',
                 desc = 'Expand macro',
             },
@@ -172,7 +166,6 @@ return {
                 function()
                     vim.cmd.RustLsp('joinLines')
                 end,
-                mode = 'n',
                 ft = 'rust',
                 desc = 'Join lines',
             },
@@ -181,7 +174,6 @@ return {
                 function()
                     vim.cmd.RustLsp('openCargo')
                 end,
-                mode = 'n',
                 ft = 'rust',
                 desc = 'Open cargo.toml',
             },
@@ -190,7 +182,6 @@ return {
                 function()
                     vim.cmd.RustLsp({ 'moveItem', 'down' })
                 end,
-                mode = 'n',
                 ft = 'rust',
                 desc = 'Move item down',
             },
@@ -199,7 +190,6 @@ return {
                 function()
                     vim.cmd.RustLsp({ 'moveItem', 'up' })
                 end,
-                mode = 'n',
                 ft = 'rust',
                 desc = 'Move item up',
             },
@@ -208,7 +198,6 @@ return {
                 function()
                     vim.cmd.RustLsp('parentModule')
                 end,
-                mode = 'n',
                 ft = 'rust',
                 desc = 'Open parent module',
             },
@@ -217,7 +206,6 @@ return {
                 function()
                     vim.cmd.RustLsp('renderDiagnostic')
                 end,
-                mode = 'n',
                 ft = 'rust',
                 desc = 'Render diagnostics',
             },
@@ -226,7 +214,6 @@ return {
                 function()
                     vim.cmd.RustLsp('explainError')
                 end,
-                mode = 'n',
                 ft = 'rust',
                 desc = 'Explain error',
             },
@@ -235,7 +222,6 @@ return {
                 function()
                     vim.cmd.RustLsp('rebuildProcMacros')
                 end,
-                mode = 'n',
                 ft = 'rust',
                 desc = 'Rebuild proc macros',
             },
@@ -244,7 +230,6 @@ return {
                 function()
                     vim.cmd.RustLsp('syntaxTree')
                 end,
-                mode = 'n',
                 ft = 'rust',
                 desc = 'View syntax tree',
             },
@@ -253,7 +238,6 @@ return {
                 function()
                     vim.cmd.RustLsp('relatedDiagnostics')
                 end,
-                mode = 'n',
                 ft = 'rust',
                 desc = 'Related diagnostics',
             },
@@ -262,7 +246,6 @@ return {
                 function()
                     vim.cmd.RustLsp('openDocs')
                 end,
-                mode = 'n',
                 ft = 'rust',
                 desc = 'Open docs.rs',
             },
@@ -272,7 +255,7 @@ return {
             vim.g.rustaceanvim = {
                 tools = {
                     float_win_config = {
-                        border = 'single',
+                        border = 'rounded',
                     },
                 },
             }

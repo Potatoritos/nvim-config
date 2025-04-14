@@ -11,20 +11,6 @@ local function config()
             return h
         end
         return {
-            normal_fg = hl('StatusNormal').fg,
-            normal_bg = hl('StatusNormal').bg,
-            insert_fg = hl('StatusInsert').fg,
-            insert_bg = hl('StatusInsert').bg,
-            visual_fg = hl('StatusVisual').fg,
-            visual_bg = hl('StatusVisual').bg,
-            command_fg = hl('StatusCommand').fg,
-            command_bg = hl('StatusCommand').bg,
-            select_fg = hl('StatusSelect').fg,
-            select_bg = hl('StatusSelect').bg,
-            replace_fg = hl('StatusReplace').fg,
-            replace_bg = hl('StatusReplace').bg,
-            terminal_fg = hl('StatusTerminal').fg,
-            terminal_bg = hl('StatusTerminal').bg,
             fg_secondary = hl('NonText').fg,
             fg = hl('StatusLine').fg,
             bg = hl('StatusLine').bg,
@@ -72,92 +58,19 @@ local function config()
         })
     end
 
-    local vi_mode_update = {
-        'ModeChanged',
-        pattern = '*:*',
-        callback = vim.schedule_wrap(function()
-            vim.cmd('redrawstatus')
-        end),
+    local gradient = {
+        condition = not_file_tree,
+        provider = '█▓▒░',
+        hl = { fg = '#08bdba', bg = 'bg' },
     }
-    local vi_mode = {
-        init = function(self)
-            self.mode = vim.fn.mode(1)
-        end,
-        condition = conditions.is_active,
-        static = {
-            mode_names = {
-                n = 'NORMAL',
-                no = 'NORMAL',
-                nov = 'NORMAL',
-                noV = 'NORMAL',
-                ['no\22'] = 'NORMAL',
-                niI = 'NORMAL',
-                niR = 'NORMAL',
-                niV = 'NORMAL',
-                nt = 'NORMAL',
-                v = 'VISUAL',
-                vs = 'VISUAL',
-                V = 'VLINES',
-                Vs = 'VLINES',
-                ['\22'] = 'VBLOCK',
-                ['\22s'] = 'VBLOCK',
-                s = 'SELECT',
-                S = 'SLINES',
-                ['\19'] = 'SBLOCK',
-                i = 'INSERT',
-                ic = 'INSERT',
-                ix = 'INSERT',
-                R = 'REPLACE',
-                Rc = 'REPLACE',
-                Rx = 'REPLACE',
-                Rv = 'REPLACE',
-                Rvc = 'REPLACE',
-                Rvx = 'REPLACE',
-                c = 'C-LINE',
-                cv = 'EX',
-                r = '...',
-                rm = '---',
-                ['r?'] = '?',
-                ['!'] = '!',
-                t = 'TERM',
-            },
-            mode_colors = {
-                n = 'normal',
-                i = 'insert',
-                v = 'visual',
-                ['\22'] = 'visual',
-                c = 'command',
-                s = 'select',
-                ['\19'] = 'select',
-                r = 'replace',
-                t = 'terminal',
-            },
-        },
-        flexible = 5,
-        {
-            update = vi_mode_update,
-            provider = function(self)
-                return ' ' .. self.mode_names[self.mode] .. ' '
-            end,
-        },
-        {
-            update = vi_mode_update,
-            provider = function(self)
-                return ' ' .. self.mode:upper() .. ' '
-            end,
-        },
-        hl = function(self)
-            local color = self.mode_colors[self.mode:sub(1, 1):lower()]
-            if color == nil then
-                return { fg = 'fg', bg = 'bg' }
-            end
-            return { fg = color .. '_fg', bg = color .. '_bg', bold = true }
-        end,
+
+    local a = {
+        provider = '└┘',
+        hl = { fg = '#ff7eb6', bg = 'bg' },
     }
 
     local align = {
         provider = '%=',
-        hl = { bg = 'bg' },
     }
 
     local file_icon = {
@@ -333,25 +246,25 @@ local function config()
         hl = { bold = true, bg = 'bg' },
         {
             provider = function(self)
-                return self.errors > 0 and (SYMBOLS.error .. self.errors .. ' ')
+                return self.errors > 0 and ('X' .. self.errors .. ' ')
             end,
             hl = { fg = 'error', bold = true },
         },
         {
             provider = function(self)
-                return self.warnings > 0 and (SYMBOLS.warn .. self.warnings .. ' ')
+                return self.warnings > 0 and ('?' .. self.warnings .. ' ')
             end,
             hl = { fg = 'warn', bold = true },
         },
         {
             provider = function(self)
-                return self.info > 0 and (SYMBOLS.info .. self.info .. ' ')
+                return self.info > 0 and ('i' .. self.info .. ' ')
             end,
             hl = { fg = 'info', bold = true },
         },
         {
             provider = function(self)
-                return self.hints > 0 and (SYMBOLS.hint .. self.hints .. ' ')
+                return self.hints > 0 and ('h' .. self.hints .. ' ')
             end,
             hl = { fg = 'hint', bold = true },
         },
@@ -432,9 +345,7 @@ local function config()
     require('heirline').setup({
         ---@diagnostic disable-next-line: missing-fields
         statusline = {
-            -- condition = is_file,
-            -- window_number,
-            -- vi_mode,
+            a,
             file_name_block,
             git_changes,
             align,

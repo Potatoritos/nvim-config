@@ -74,7 +74,7 @@ hl('CursorLine', {})
 hl('CursorColumn', {})
 hl('CursorLineNr', {})
 hl('QuickFixLine', {})
-hl('LineNr', { fg = colors.fg_dark })
+hl('LineNr', { fg = colors.bg_lightest })
 hl('ColorColumn', { bg = colors.bg })
 
 hl('Normal', { fg = colors.fg, bg = colors.bg })
@@ -99,7 +99,7 @@ hl('TabLineFill', { link = 'TabLine' })
 hl('TabLineSel', { link = 'TabLine' })
 
 hl('VertSplit', { fg = colors.bg_light, bg = colors.bg })
-hl('WinSeparator', { fg = colors.bg_light, bg = colors.bg })
+hl('WinSeparator', { fg = colors.bg_lighter, bg = colors.bg })
 
 hl('Folded', { fg = colors.fg_dark, bg = colors.bg_light })
 hl('FoldColumn', { fg = colors.fg_dark, bg = colors.bg })
@@ -283,7 +283,7 @@ hl('Error', { fg = colors.pink_dark })
 
 hl('ErrorMsg', { fg = colors.pink_dark })
 hl('WarningMsg', { fg = colors.purple })
-hl('ModeMsg', { fg = colors.fg, bold = true })
+hl('ModeMsg', { fg = colors.fg })
 hl('MoreMsg', { fg = colors.cyan })
 hl('Question', { fg = colors.fg })
 
@@ -424,7 +424,7 @@ hl('@markup.link.label.markdown_inline', { fg = colors.pink, underline = true })
 hl('@markup.list.checked', { fg = colors.pink })
 hl('@markup.list.unchecked', { fg = colors.fg })
 hl('@markup.quote.markdown', { fg = colors.fg })
-hl('@markup.math', { fg = colors.purple })
+hl('@markup.math', { fg = colors.fg })
 
 hl('ObsidianTag', { fg = colors.pink, bg = colors.bg_pink_dark })
 
@@ -441,6 +441,9 @@ hl('SnacksStatusColumnMark', { fg = colors.bg_lightest })
 hl('FlashMatch', { fg = colors.bg, bg = colors.pink, bold = true })
 hl('FlashCurrent', { link = 'FlashMatch' })
 hl('FlashLabel', { fg = colors.bg, bg = colors.cyan, bold = true })
+
+hl('TabpageActive', { fg = colors.fg })
+hl('TabpageInactive', { fg = colors.fg_dark })
 
 vim.g.terminal_color_0 = colors.bg
 vim.g.terminal_color_1 = colors.pink

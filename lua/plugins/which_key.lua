@@ -11,9 +11,7 @@ return {
             marks = false,
             registers = false,
         },
-        triggers = {
-            { '<leader>', mode = { 'n', 'v' } },
-        },
+        delay = 750,
     },
     keys = {
         {

@@ -22,7 +22,7 @@ vim.o.smartcase = true
 
 vim.o.updatetime = 500
 
-vim.o.timeoutlen = 500
+vim.o.timeoutlen = 1000
 
 vim.o.splitright = true
 vim.o.splitbelow = true
@@ -60,7 +60,7 @@ vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldtext = ''
 vim.opt.foldcolumn = '0'
-vim.opt.fillchars:append({ fold = ' ' })
+vim.opt.fillchars:append({ fold = ' ', vert = '+' })
 
 vim.diagnostic.config({
     signs = {

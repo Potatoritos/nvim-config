@@ -19,7 +19,40 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     callback = set_fold_hl,
 })
 
--- Auto resize splits when the terminal's window is resized
--- vim.api.nvim_create_autocmd('VimResized', {
---     command = 'wincmd =',
--- })
+vim.api.nvim_create_autocmd('TabEnter', {
+    desc = 'Display tab number',
+    group = vim.api.nvim_create_augroup('display-tab-number', { clear = true }),
+    callback = function()
+        local tabid = vim.api.nvim_get_current_tabpage()
+        local tabs = vim.api.nvim_list_tabpages()
+        local chunks = {}
+        for _, id in ipairs(tabs) do
+            local num = vim.api.nvim_tabpage_get_number(id)
+            local win = vim.api.nvim_tabpage_get_win(id)
+            local buf = vim.api.nvim_win_get_buf(win)
+            local name = vim.api.nvim_buf_get_name(buf)
+            local n = vim.fn.fnamemodify(name, ':t')
+
+            if name == '' then
+                name = '---'
+            elseif n ~= '' then
+                name = n
+            end
+
+            if name:len() > 12 then
+                name = name:sub(1, 11) .. '…'
+            end
+
+            if id == tabid then
+                table.insert(chunks, { '[', 'TabpageActive' })
+                table.insert(chunks, { '' .. num, 'TabpageActive' })
+                table.insert(chunks, { ' ' .. name .. ']', 'TabpageActive' })
+            else
+                table.insert(chunks, { ' ', 'TabpageInactive' })
+                table.insert(chunks, { '' .. num, 'TabpageInactive' })
+                table.insert(chunks, { ' ' .. name .. ' ', 'TabpageInactive' })
+            end
+        end
+        vim.api.nvim_echo(chunks, false, {})
+    end,
+})
