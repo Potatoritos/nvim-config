@@ -6,9 +6,25 @@ return {
         ai.setup({
             custom_textobjects = {
                 b = false,
+                B = { '%b{}', '^.().*().$' },
                 q = false,
-                ['$'] = ai.gen_spec.pair('$', '$', { type = 'greedy' }),
+                ['$'] = { { '%$%$().*()%$%$', '%$().*()%$' } },
+                c = { '/%*().*()%*/' },
+                C = {
+                    {
+                        '[^%a%d]()()[%l%d]*%f[^%l%d]()()',
+                        '%u[%l%d]*%f[^%l%d]',
+                    },
+                },
+                S = {
+                    {
+                        '()_+()[%a%d]+()()[^%a%d_]',
+                        '[^%a%d]()()[%a%d]+()_+()',
+                        '[^%a%d]()()[%a%d]+()()[^%a%d]',
+                    },
+                },
             },
+            n_lines = 250,
         })
 
         require('mini.surround').setup({
@@ -20,8 +36,12 @@ return {
                 highlight = '',
                 replace = 'cs',
                 update_n_lines = '',
-                suffix_last = '',
-                suffix_next = '',
+                suffix_last = 'l',
+                suffix_next = 'n',
+            },
+            custom_surroundings = {
+                ['B'] = { output = { left = '{', right = '}' } },
+                ['c'] = { output = { left = '/* ', right = ' */' } },
             },
         })
 
