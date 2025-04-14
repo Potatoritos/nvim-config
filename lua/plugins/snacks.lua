@@ -126,6 +126,6 @@ return {
         terminal = {},
     },
     dependencies = {
-        'nvim-tree/nvim-web-devicons',
+        'echasnovski/mini.nvim',
     },
 }

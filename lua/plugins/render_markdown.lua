@@ -3,17 +3,16 @@ return {
     ft = 'markdown',
     dependencies = {
         'nvim-treesitter/nvim-treesitter',
-        'nvim-tree/nvim-web-devicons',
+        'echasnovski/mini.nvim',
     },
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {
         heading = {
-            enabled = true,
+            enabled = false,
             sign = true,
             icons = { '# ', '## ', '### ', '#### ', '##### ', '###### ' },
             width = 'full',
-            border = false,
         },
         code = {
             enabled = false,
