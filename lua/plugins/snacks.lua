@@ -1,3 +1,14 @@
+local function pick_tabpages()
+    local tabpages = vim.api.nvim_list_tabpages()
+    for _, id in ipairs(tabpages) do
+        local windows = vim.api.nvim_tabpage_list_wins(id)
+    end
+
+    Snacks.picker.select(tabpages, {
+        prompt = 'prompt here:',
+    }, function(choice) end)
+end
+
 return {
     'folke/snacks.nvim',
     lazy = false,
@@ -20,6 +31,7 @@ return {
         { '<Leader>sL', function() Snacks.picker.grep_buffers() end, desc = 'Lines (all buffers)' },
         { '<Leader>sm', function() Snacks.picker.marks() end, desc = 'Marks' },
         { '<Leader>sn', function() Snacks.picker.notifications() end, desc = 'Notification history' },
+        { '<Leader>sp', pick_tabpages, desc = 'Tabpages' },
         { '<Leader>sr', function() Snacks.picker.registers() end, desc = 'Registers' },
         { '<Leader>su', function() Snacks.picker.undo() end, desc = 'Undo history' },
         { '<Leader>gL', function() Snacks.picker.git_log_line() end, desc = 'Git log line' },
@@ -46,67 +58,6 @@ return {
     ---@type snacks.Config
     opts = {
         bigfile = {},
-        dashboard = {
-            enabled = false,
-            width = 40,
-            preset = {
-                keys = {
-                    {
-                        icon = '󱞩 ',
-                        key = 'r',
-                        desc = 'Restore session',
-                        action = ':SessionRestore',
-                    },
-                    {
-                        icon = ' ',
-                        key = 'f',
-                        desc = 'Find session',
-                        action = ':SessionSearch',
-                    },
-                    {
-                        icon = ' ',
-                        key = 'i',
-                        desc = 'New buffer',
-                        action = ':ene | startinsert',
-                    },
-                    {
-                        icon = '󰒲 ',
-                        key = 'p',
-                        desc = 'Plugins',
-                        action = ':Lazy',
-                    },
-                    {
-                        icon = ' ',
-                        key = 'c',
-                        desc = 'Config',
-                        action = ':cd' .. vim.fn.stdpath('config') .. ' | SessionRestore',
-                    },
-                    {
-                        icon = '󰎚 ',
-                        key = 'n',
-                        desc = 'Notes',
-                        action = ':cd ~/notes | SessionRestore',
-                    },
-                    {
-                        icon = ' ',
-                        key = 'q',
-                        desc = 'Quit',
-                        action = ':qa',
-                    },
-                },
-            },
-            sections = {
-                { text = { { 'NVIM v' .. tostring(vim.version()) } } },
-                function()
-                    local path = vim.fn.getcwd():gsub('^' .. vim.fn.expand('~'), '~')
-                    if #path > 40 then
-                        path = path:sub(1, 39) .. '…'
-                    end
-                    return { text = { { path } }, padding = 1 }
-                end,
-                { section = 'keys', padding = 1 },
-            },
-        },
         explorer = {},
         gitbrowse = {},
         image = {
@@ -114,7 +65,7 @@ return {
                 conceal = false,
             },
             math = {
-                enabled = false,
+                enabled = true,
             },
         },
         input = {},
