@@ -32,12 +32,10 @@ if vim.o.background == 'dark' then
         bg_blue = '#232e44',
         bg_light_pink_dark = '#752b49',
         bg_purple = '#332944',
-        bg_azure = '#183044',
+        l_azure = '#183044',
+        orange = '#f58549',
         -- ##5D737E
         -- #6969B3
-        -- #6969B3
-        -- #F58549
-        --
     }
 else
     colors = {
@@ -225,7 +223,7 @@ hl('@reference', { fg = colors.fg })
 hl('@lsp.type.class', { link = 'Structure' })
 hl('@lsp.type.decorator', { link = 'Decorator' })
 hl('@lsp.type.decorator.rust', { link = 'Macro' })
-hl('@lsp.type.decorator.markdown', { fg = colors.blue, bg = colors.bg_blue })
+hl('@lsp.type.decorator.markdown', { fg = colors.cyan_dark })
 hl('@lsp.type.function', { link = '@function' })
 hl('@lsp.type.macro', { link = 'Macro' })
 hl('@lsp.type.method', { link = '@function' })
@@ -401,18 +399,18 @@ hl('RenderMarkdownInlineHighlight', { fg = colors.blue, bg = colors.bg_blue })
 hl('RenderMarkdownCodeInline', { fg = colors.pink })
 hl('RenderMarkdownCode', {})
 
-hl('@markup.heading.1.markdown', { fg = colors.pink, bg = colors.bg_pink_dark, bold = true })
-hl('@markup.heading.2.markdown', { fg = colors.cyan_dark, bg = colors.bg_cyan_dark, bold = true })
-hl('@markup.heading.3.markdown', { fg = colors.blue, bg = colors.bg_blue, bold = true })
+hl('@markup.heading.1.markdown', { fg = colors.pink, bold = true })
+hl('@markup.heading.2.markdown', { fg = colors.cyan_dark, bold = true })
+hl('@markup.heading.3.markdown', { fg = colors.blue, bold = true })
 hl('@markup.heading.4.markdown', { link = '@markup.heading.3.markdown' })
 hl('@markup.heading.5.markdown', { link = '@markup.heading.3.markdown' })
 hl('@markup.heading.6.markdown', { link = '@markup.heading.3.markdown' })
-hl('RenderMarkdownH1Bg', { bg = colors.bg_pink_dark })
-hl('RenderMarkdownH2Bg', { bg = colors.bg_cyan_dark })
-hl('RenderMarkdownH3Bg', { bg = colors.bg_blue })
-hl('RenderMarkdownH4Bg', { link = 'RenderMarkdownH3Bg' })
-hl('RenderMarkdownH5Bg', { link = 'RenderMarkdownH3Bg' })
-hl('RenderMarkdownH6Bg', { link = 'RenderMarkdownH3Bg' })
+-- hl('RenderMarkdownH1Bg', { bg = colors.bg_pink_dark })
+-- hl('RenderMarkdownH2Bg', { bg = colors.bg_cyan_dark })
+-- hl('RenderMarkdownH3Bg', { bg = colors.bg_blue })
+-- hl('RenderMarkdownH4Bg', { link = 'RenderMarkdownH3Bg' })
+-- hl('RenderMarkdownH5Bg', { link = 'RenderMarkdownH3Bg' })
+-- hl('RenderMarkdownH6Bg', { link = 'RenderMarkdownH3Bg' })
 
 hl('RenderMarkdownTableHead', { fg = colors.bg_lightest })
 hl('RenderMarkdownTableRow', { fg = colors.bg_lightest })
@@ -444,6 +442,16 @@ hl('FlashLabel', { fg = colors.bg, bg = colors.cyan, bold = true })
 
 hl('TabpageActive', { fg = colors.fg })
 hl('TabpageInactive', { fg = colors.fg_dark })
+
+hl('MiniIconsAzure', { fg = colors.azure })
+hl('MiniIconsBlue', { fg = colors.blue })
+hl('MiniIconsCyan', { fg = colors.cyan_dark })
+hl('MiniIconsGreen', { fg = colors.green })
+hl('MiniIconsGrey', { fg = colors.fg_dark })
+hl('MiniIconsOrange', { fg = colors.orange })
+hl('MiniIconsPurple', { fg = colors.purple })
+hl('MiniIconsRed', { fg = colors.pink })
+hl('MiniIconsYellow', { fg = colors.pink })
 
 vim.g.terminal_color_0 = colors.bg
 vim.g.terminal_color_1 = colors.pink

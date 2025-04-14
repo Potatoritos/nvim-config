@@ -32,7 +32,7 @@ local rules = function()
 
     local brackets = {
         { '{', '}' },
-        { '$', '$', filetype = { 'tex', 'typst' } },
+        { '$', '$', filetype = { 'tex', 'typst', 'markdown' } },
     }
 
     for _, bracket in ipairs(brackets) do
