@@ -396,9 +396,6 @@ hl('SnacksPickerMatch', { fg = colors.pink, bold = true })
 
 hl('RenderMarkdownInlineHighlight', { fg = colors.blue, bg = colors.bg_blue })
 
-hl('RenderMarkdownCodeInline', { fg = colors.pink })
-hl('RenderMarkdownCode', {})
-
 hl('@markup.heading.1.markdown', { fg = colors.pink, bold = true })
 hl('@markup.heading.2.markdown', { fg = colors.cyan_dark, bold = true })
 hl('@markup.heading.3.markdown', { fg = colors.blue, bold = true })

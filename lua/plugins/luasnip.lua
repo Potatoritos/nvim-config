@@ -28,6 +28,14 @@ local capitalize = function(str)
     return str:gsub('^%l', string.upper)
 end
 
+local function load_snippets()
+    require('luasnip.loaders.from_lua').lazy_load({
+        ---@diagnostic disable-next-line: assign-type-mismatch
+        paths = '~/.config/nvim/snippets',
+    })
+    require('luasnip.loaders.from_vscode').lazy_load({ paths = './snippets' })
+end
+
 return {
     'L3MON4D3/LuaSnip',
     version = 'v2.*',
@@ -49,15 +57,8 @@ return {
             mode = 'i',
         },
         {
-            '<F11>',
-            function()
-                require('luasnip.loaders.from_lua').lazy_load({
-                    ---@diagnostic disable-next-line: assign-type-mismatch
-                    paths = '~/.config/nvim/snippets',
-                })
-                require('luasnip.loaders.from_vscode').lazy_load({ paths = './snippets' })
-            end,
-            mode = 'n',
+            '<leader>Lr',
+            load_snippets,
             desc = 'Reload snippets',
         },
     },
@@ -78,13 +79,14 @@ return {
             },
             enable_autosnippets = true,
         })
+
+        load_snippets()
+
         ls.filetype_extend('markdown', { 'tex' })
 
-        -- require('luasnip.loaders.from_snipmate').lazy_load()
-        require('luasnip.loaders.from_lua').lazy_load({
-            ---@diagnostic disable-next-line: assign-type-mismatch
-            paths = './snippets',
-        })
-        require('luasnip.loaders.from_vscode').lazy_load({ paths = './snippets' })
+        local langs = { 'javascript', 'jsx', 'svelte', 'tsx', 'typescript', 'vue', 'xml' }
+        for _, lang in ipairs(langs) do
+            ls.filetype_extend(lang, { 'html' })
+        end
     end,
 }

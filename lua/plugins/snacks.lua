@@ -67,6 +67,11 @@ return {
             math = {
                 enabled = true,
             },
+            convert = {
+                magick = {
+                    vector = { '-density', 192, '{src}[0]', '-background', 'none', '-transparent', 'white' },
+                },
+            },
         },
         input = {},
         lazygit = {},
