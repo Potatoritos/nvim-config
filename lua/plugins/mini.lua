@@ -57,7 +57,7 @@ return {
             conflict = { suffix = '', options = {} },
             diagnostic = { suffix = '', options = {} },
             file = { suffix = '', options = {} },
-            indent = { suffix = '', options = {} },
+            indent = { suffix = 'i', options = { add_to_jumplist = true } },
             jump = { suffix = '', options = {} },
             location = { suffix = '', options = {} },
             oldfile = { suffix = '', options = {} },

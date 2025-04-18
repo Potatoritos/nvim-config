@@ -52,58 +52,31 @@ local rules = function()
 end
 
 return {
-    {
-        'windwp/nvim-autopairs',
-        enabled = true,
-        event = {
-            'InsertEnter',
-            'VeryLazy',
+    'windwp/nvim-autopairs',
+    enabled = true,
+    event = {
+        'InsertEnter',
+        'VeryLazy',
+    },
+    keys = {
+        {
+            '<C-p>',
+            function()
+                require('nvim-autopairs').toggle()
+            end,
+            mode = { 'i', 'n' },
+            desc = 'Toggle autopairs',
         },
-        keys = {
-            {
-                '<C-p>',
-                function()
-                    require('nvim-autopairs').toggle()
-                end,
-                mode = { 'i', 'n' },
-                desc = 'Toggle autopairs',
+    },
+    config = function()
+        require('nvim-autopairs').setup({
+            disable_in_macro = true,
+            fast_wrap = {
+                map = '<C-0>',
             },
-        },
-        config = function()
-            require('nvim-autopairs').setup({
-                disable_in_macro = true,
-                fast_wrap = {
-                    map = '<C-0>',
-                },
-                ignored_next_char = [=[[%w%%%'%[%"%.%`]]=],
-                enable_bracket_in_quote = false,
-            })
-            rules()
-        end,
-    },
-    {
-        'windwp/nvim-ts-autotag',
-        ft = {
-            'html',
-            'javascript',
-            'jsx',
-            -- 'markdown',
-            'svelte',
-            'tsx',
-            'typescript',
-            'vue',
-            'xml',
-        },
-        config = function()
-            ---@diagnostic disable-next-line missing-fields
-            require('nvim-ts-autotag').setup({
-                enable_close = true,
-                enable_rename = true,
-                enable_close_on_slash = false,
-            })
-        end,
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter',
-        },
-    },
+            ignored_next_char = [=[[%w%%%'%[%"%.%`]]=],
+            enable_bracket_in_quote = false,
+        })
+        rules()
+    end,
 }
