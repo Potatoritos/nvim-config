@@ -8,7 +8,7 @@ return {
                 b = false,
                 B = { '%b{}', '^.().*().$' },
                 q = false,
-                ['$'] = { { '%$%$().*()%$%$', '%$().*()%$' } },
+                ['$'] = { { '%$%$().*()%$%$', '[^%$]%$()[^%$]+()%$[^%$]' } },
                 c = { '/%*().*()%*/' },
                 C = {
                     {
@@ -29,7 +29,7 @@ return {
 
         require('mini.surround').setup({
             mappings = {
-                add = '<Leader>u',
+                add = 's',
                 delete = 'ds',
                 find = '',
                 find_left = '',
@@ -39,11 +39,24 @@ return {
                 suffix_last = 'l',
                 suffix_next = 'n',
             },
+            n_lines = 50,
             custom_surroundings = {
-                ['B'] = { output = { left = '{', right = '}' } },
-                ['c'] = { output = { left = '/* ', right = ' */' } },
+                ['B'] = {
+                    input = { '{().-()}' },
+                    output = { left = '{', right = '}' },
+                },
+                ['c'] = {
+                    input = { '/%*%s?().-()%s?%*/' },
+                    output = { left = '/* ', right = ' */' },
+                },
             },
         })
+        vim.keymap.set('n', 'ss', function()
+            return 's_'
+        end, { expr = true, remap = true })
+        vim.keymap.set('n', 'S', function()
+            return 's$'
+        end, { expr = true, remap = true })
 
         require('mini.icons').setup({
             extension = {
