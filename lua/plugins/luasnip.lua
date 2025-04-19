@@ -30,10 +30,9 @@ end
 
 local function load_snippets()
     require('luasnip.loaders.from_lua').lazy_load({
-        ---@diagnostic disable-next-line: assign-type-mismatch
-        paths = '~/.config/nvim/snippets',
+        paths = { '~/.config/nvim/snippets' },
     })
-    require('luasnip.loaders.from_vscode').lazy_load({ paths = './snippets' })
+    -- require('luasnip.loaders.from_vscode').lazy_load({ paths = './snippets' })
 end
 
 return {

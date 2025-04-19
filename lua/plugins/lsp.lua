@@ -52,15 +52,14 @@ local function ls_setup()
             vim.api.nvim_create_user_command('Daily', function(args)
                 local input = args.args
 
-                vim.lsp.buf.execute_command({ command = 'jump', arguments = { input } })
+                vim.lsp
+                    .get_clients({ name = 'markdown_oxide' })[1]
+                    :exec_cmd({ command = 'jump', arguments = { input }, title = 'daily note' })
             end, { desc = 'Open daily note', nargs = '*' })
         end,
     })
     lsp.clangd.setup({
         capabilities = capabilities,
-        init_options = {
-            -- fallbackFlags = { '--std=c++20' },
-        },
         cmd = {
             'clangd',
             '--header-insertion=never',

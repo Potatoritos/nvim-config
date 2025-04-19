@@ -10,6 +10,14 @@ local rules = function()
     })
 
     pairs.add_rules({
+        Rule('$', '$', { 'markdown', 'tex' }):with_move(function(opts)
+            local col = vim.api.nvim_win_get_cursor(0)[2]
+            local prev = opts.line:sub(col, col)
+            return prev ~= '$'
+        end),
+    })
+
+    pairs.add_rules({
         Rule(' ', ' ')
             :with_pair(function(opts)
                 local pair = opts.line:sub(opts.col - 1, opts.col)
