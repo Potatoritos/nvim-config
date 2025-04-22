@@ -11,6 +11,20 @@ local function config()
             return h
         end
         return {
+            normal_fg = hl('StatusNormal').fg,
+            normal_bg = hl('StatusNormal').bg,
+            insert_fg = hl('StatusInsert').fg,
+            insert_bg = hl('StatusInsert').bg,
+            visual_fg = hl('StatusVisual').fg,
+            visual_bg = hl('StatusVisual').bg,
+            command_fg = hl('StatusCommand').fg,
+            command_bg = hl('StatusCommand').bg,
+            select_fg = hl('StatusSelect').fg,
+            select_bg = hl('StatusSelect').bg,
+            replace_fg = hl('StatusReplace').fg,
+            replace_bg = hl('StatusReplace').bg,
+            terminal_fg = hl('StatusTerminal').fg,
+            terminal_bg = hl('StatusTerminal').bg,
             fg_secondary = hl('NonText').fg,
             fg = hl('StatusLine').fg,
             bg = hl('StatusLine').bg,
@@ -31,7 +45,7 @@ local function config()
         end,
         condition = conditions.is_not_active,
         provider = function(self)
-            return ' ' .. self.number .. ' '
+            return '--' .. self.number .. '--'
         end,
         hl = {
             fg = 'normal_fg',
@@ -58,15 +72,82 @@ local function config()
         })
     end
 
-    local gradient = {
-        condition = not_file_tree,
-        provider = '█▓▒░',
-        hl = { fg = '#08bdba', bg = 'bg' },
+    local vi_mode_update = {
+        'ModeChanged',
+        pattern = '*:*',
+        callback = vim.schedule_wrap(function()
+            vim.cmd('redrawstatus')
+        end),
     }
 
-    local a = {
-        provider = '└┘',
-        hl = { fg = '#ff7eb6', bg = 'bg' },
+    local vi_mode = {
+        init = function(self)
+            self.mode = vim.fn.mode(1)
+        end,
+        condition = conditions.is_active,
+        static = {
+            mode_names = {
+                n = 'N',
+                no = 'N',
+                nov = 'N',
+                noV = 'N',
+                ['no\22'] = 'N',
+                niI = 'N',
+                niR = 'N',
+                niV = 'N',
+                nt = 'N',
+                v = 'V',
+                vs = 'V',
+                V = 'V',
+                Vs = 'V',
+                ['\22'] = 'V',
+                ['\22s'] = 'V',
+                s = 'S',
+                S = 'S',
+                ['\19'] = 'S',
+                i = 'I',
+                ic = 'I',
+                ix = 'I',
+                R = 'R',
+                Rc = 'R',
+                Rx = 'R',
+                Rv = 'R',
+                Rvc = 'R',
+                Rvx = 'R',
+                c = 'C',
+                cv = 'X',
+                r = '-',
+                rm = '-',
+                ['r?'] = '?',
+                ['!'] = '!',
+                t = 'T',
+            },
+            mode_colors = {
+                n = 'normal',
+                i = 'insert',
+                v = 'visual',
+                ['\22'] = 'visual',
+                c = 'command',
+                s = 'select',
+                ['\19'] = 'select',
+                r = 'replace',
+                t = 'terminal',
+            },
+        },
+        {
+            update = vi_mode_update,
+            provider = function(self)
+                -- return '->N'
+                return '--' .. self.mode_names[self.mode] .. '--'
+            end,
+        },
+        hl = function(self)
+            local color = self.mode_colors[self.mode:sub(1, 1):lower()]
+            if color == nil then
+                return { fg = 'fg', bg = 'bg' }
+            end
+            return { fg = color .. '_fg', bg = color .. '_bg', bold = true }
+        end,
     }
 
     local align = {
@@ -342,7 +423,8 @@ local function config()
     require('heirline').setup({
         ---@diagnostic disable-next-line: missing-fields
         statusline = {
-            a,
+            window_number,
+            vi_mode,
             file_name_block,
             git_changes,
             align,
