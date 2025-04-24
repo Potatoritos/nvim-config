@@ -9,13 +9,13 @@ local rules = function()
         end),
     })
 
-    pairs.add_rules({
-        Rule('$', '$', { 'markdown', 'tex' }):with_move(function(opts)
-            local col = vim.api.nvim_win_get_cursor(0)[2]
-            local prev = opts.line:sub(col, col)
-            return prev ~= '$'
-        end),
-    })
+    -- pairs.add_rules({
+    --     Rule('$', '$', { 'markdown', 'tex' }):with_move(function(opts)
+    --         local col = vim.api.nvim_win_get_cursor(0)[2]
+    --         local prev = opts.line:sub(col, col)
+    --         return prev ~= '$'
+    --     end),
+    -- })
 
     pairs.add_rules({
         Rule(' ', ' ')
@@ -79,9 +79,6 @@ return {
     config = function()
         require('nvim-autopairs').setup({
             disable_in_macro = true,
-            fast_wrap = {
-                map = '<C-0>',
-            },
             ignored_next_char = [=[[%w%%%'%[%"%.%`]]=],
             enable_bracket_in_quote = false,
         })
