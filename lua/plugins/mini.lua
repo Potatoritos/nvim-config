@@ -5,18 +5,21 @@ return {
         local ai = require('mini.ai')
         ai.setup({
             custom_textobjects = {
-                b = false,
-                B = { '%b{}', '^.().*().$' },
-                q = false,
-                ['$'] = { { '%$%$().*()%$%$', '[^%$]%$()[^%$]+()%$[^%$]' } },
-                c = { '/%*().*()%*/' },
-                C = {
+                ['b'] = false,
+                ['B'] = { '%b{}', '^.().*().$' },
+                ['q'] = false,
+                ['$'] = { { '%$%$().-()%$%$', '[^%$]%$()[^%$]+()%$[^%$]' } },
+                ['c'] = { '/%*().-()%*/' },
+                ['8'] = { '%*%*().-()%*%*' },
+                ['h'] = { '==().-()==' },
+                ['L'] = { '```%a*\n?().-()\n?```' },
+                ['C'] = {
                     {
                         '[^%a%d]()()[%l%d]*%f[^%l%d]()()',
                         '%u[%l%d]*%f[^%l%d]',
                     },
                 },
-                S = {
+                ['S'] = {
                     {
                         '()_+()[%a%d]+()()[^%a%d_]',
                         '[^%a%d]()()[%a%d]+()_+()',
@@ -29,7 +32,7 @@ return {
 
         require('mini.surround').setup({
             mappings = {
-                add = 's',
+                add = 'gs',
                 delete = 'ds',
                 find = '',
                 find_left = '',
@@ -49,13 +52,25 @@ return {
                     input = { '/%*%s?().-()%s?%*/' },
                     output = { left = '/* ', right = ' */' },
                 },
+                ['8'] = {
+                    input = { '%*%*().-()%*%*' },
+                    output = { left = '**', right = '**' },
+                },
+                ['h'] = {
+                    input = { '==().-()==' },
+                    output = { left = '==', right = '==' },
+                },
+                ['L'] = {
+                    input = { '```%a*\n?().-()\n?```' },
+                    output = { left = '```\n', right = '\n```' },
+                },
             },
         })
-        vim.keymap.set('n', 'ss', function()
-            return 's_'
+        vim.keymap.set('n', 'gss', function()
+            return 'gs_'
         end, { expr = true, remap = true })
-        vim.keymap.set('n', 'S', function()
-            return 's$'
+        vim.keymap.set('n', 'gS', function()
+            return 'gs$'
         end, { expr = true, remap = true })
 
         require('mini.icons').setup({
