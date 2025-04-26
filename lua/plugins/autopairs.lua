@@ -53,7 +53,7 @@ local rules = function()
                 :with_del(cond.none())
                 :use_key(bracket[2])
                 :replace_map_cr(function(_)
-                    return '<Esc>"_2xi<CR><Esc>O'
+                    return '<C-c>"_2s<CR><C-c>O'
                 end),
         })
     end

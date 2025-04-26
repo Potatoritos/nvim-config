@@ -253,15 +253,17 @@ local function config()
     }
 
     local git_branch = {
-        condition = conditions.is_git_repo,
-
-        init = function(self)
-            self.status_dict = vim.b.gitsigns_status_dict
+        condition = function()
+            return vim.b.minigit_summary ~= nil and vim.b.minigit_summary.head_name ~= nil
         end,
+        init = function(self)
+            self.summary = vim.b.minigit_summary
+        end,
+        update = { 'User', pattern = 'MiniGitUpdated' },
         flexible = 4,
         {
             provider = function(self)
-                return ' ' .. SYMBOLS.branch .. ' ' .. self.status_dict.head .. ' '
+                return ' ' .. SYMBOLS.branch .. ' ' .. self.summary.head_name .. ' '
             end,
         },
         {
@@ -271,28 +273,31 @@ local function config()
     }
 
     local git_changes = {
-        condition = conditions.is_git_repo,
-        init = function(self)
-            self.status_dict = vim.b.gitsigns_status_dict
+        condition = function()
+            return vim.b.minidiff_summary ~= nil
         end,
+        init = function(self)
+            self.summary = vim.b.minidiff_summary
+        end,
+        update = { 'User', pattern = 'MiniDiffUpdated' },
         hl = { bold = true, bg = 'bg' },
         {
             provider = function(self)
-                local count = self.status_dict.added or 0
+                local count = self.summary.add or 0
                 return count > 0 and (' +' .. count)
             end,
             hl = { fg = 'add' },
         },
         {
             provider = function(self)
-                local count = self.status_dict.removed or 0
+                local count = self.summary.delete or 0
                 return count > 0 and (' -' .. count)
             end,
             hl = { fg = 'delete' },
         },
         {
             provider = function(self)
-                local count = self.status_dict.changed or 0
+                local count = self.summary.change or 0
                 return count > 0 and (' ~' .. count)
             end,
             hl = { fg = 'change' },
@@ -325,25 +330,25 @@ local function config()
         hl = { bold = true, bg = 'bg' },
         {
             provider = function(self)
-                return self.errors > 0 and ('X' .. self.errors .. ' ')
+                return self.errors > 0 and (SYMBOLS.error .. self.errors .. ' ')
             end,
             hl = { fg = 'error', bold = true },
         },
         {
             provider = function(self)
-                return self.warnings > 0 and ('?' .. self.warnings .. ' ')
+                return self.warnings > 0 and (SYMBOLS.warn .. self.warnings .. ' ')
             end,
             hl = { fg = 'warn', bold = true },
         },
         {
             provider = function(self)
-                return self.info > 0 and ('i' .. self.info .. ' ')
+                return self.info > 0 and (SYMBOLS.info .. self.info .. ' ')
             end,
             hl = { fg = 'info', bold = true },
         },
         {
             provider = function(self)
-                return self.hints > 0 and ('h' .. self.hints .. ' ')
+                return self.hints > 0 and (SYMBOLS.hint .. self.hints .. ' ')
             end,
             hl = { fg = 'hint', bold = true },
         },

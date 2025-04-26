@@ -2,12 +2,6 @@ vim.keymap.set('n', '<Esc>', '<Cmd>nohlsearch<CR>', { desc = 'Clear highlights' 
 
 vim.keymap.set('n', '<Leader>w', '<Cmd>w<CR>', { desc = 'Save' })
 
-vim.keymap.set('n', '<Leader>lr', function()
-    vim.lsp.buf.rename()
-end, { desc = 'Rename' })
-vim.keymap.set('n', '<Leader>la', function()
-    vim.lsp.buf.code_action()
-end, { desc = 'Code action' })
 vim.keymap.set('n', '<Leader>lh', function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = 'Toggle inlay hints' })
@@ -18,8 +12,6 @@ vim.keymap.set('n', '<Leader>lv', function()
     virtual_lines = not virtual_lines
     vim.diagnostic.config({ virtual_lines = virtual_lines })
 end, { desc = 'Toggle diagnostic virtual lines' })
-
--- vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
 -- enable lazyredraw, disable autocmds during macro execution
 vim.keymap.set('n', '@', function()

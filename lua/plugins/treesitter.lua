@@ -36,7 +36,7 @@ local opts = {
         enable = true,
     },
     indent = {
-        enable = true,
+        enable = false,
     },
     autopairs = {
         enable = false,

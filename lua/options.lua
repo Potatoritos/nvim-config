@@ -49,7 +49,7 @@ vim.o.signcolumn = 'yes:1'
 
 vim.o.wrap = true
 vim.o.linebreak = true
-vim.o.textwidth = 120
+vim.o.textwidth = 80
 
 -- vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal'
@@ -60,7 +60,7 @@ vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldtext = ''
 vim.opt.foldcolumn = '0'
-vim.opt.fillchars:append({ fold = ' ', vert = '+' })
+vim.opt.fillchars:append({ fold = '·', vert = '+' })
 
 vim.diagnostic.config({
     signs = {
@@ -72,10 +72,10 @@ vim.diagnostic.config({
         },
         linehl = {},
         numhl = {
-            [vim.diagnostic.severity.ERROR] = 'DiagnosticVirtualTextError',
-            [vim.diagnostic.severity.WARN] = 'DiagnosticVirtualTextWarn',
-            [vim.diagnostic.severity.INFO] = 'DiagnosticVirtualTextInfo',
-            [vim.diagnostic.severity.HINT] = 'DiagnosticVirtualTextHint',
+            [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+            [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+            [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+            [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
         },
     },
     virtual_text = false,
