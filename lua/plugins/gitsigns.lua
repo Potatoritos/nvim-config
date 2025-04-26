@@ -1,12 +1,13 @@
 return {
     'lewis6991/gitsigns.nvim',
     event = 'VimEnter',
+    enabled = false,
     keys = {
         {
             '<Leader>gb',
-            '<Cmd>Gitsigns toggle_current_line_blame<CR>',
+            '<Cmd>Gitsigns blame<CR>',
             mode = 'n',
-            desc = 'Toggle git blame',
+            desc = 'Git blame',
         },
     },
     opts = {

@@ -2,30 +2,17 @@ return {
     'echasnovski/mini.nvim',
     version = false,
     config = function()
-        local ai = require('mini.ai')
-        ai.setup({
+        require('mini.ai').setup({
             custom_textobjects = {
                 ['b'] = false,
                 ['B'] = { '%b{}', '^.().*().$' },
                 ['q'] = false,
                 ['$'] = { { '%$%$().-()%$%$', '[^%$]%$()[^%$]+()%$[^%$]' } },
                 ['c'] = { '/%*().-()%*/' },
-                ['8'] = { '%*%*().-()%*%*' },
+                ['e'] = { '%*%*().-()%*%*' },
                 ['h'] = { '==().-()==' },
                 ['L'] = { '```%a*\n?().-()\n?```' },
-                ['C'] = {
-                    {
-                        '[^%a%d]()()[%l%d]*%f[^%l%d]()()',
-                        '%u[%l%d]*%f[^%l%d]',
-                    },
-                },
-                ['S'] = {
-                    {
-                        '()_+()[%a%d]+()()[^%a%d_]',
-                        '[^%a%d]()()[%a%d]+()_+()',
-                        '[^%a%d]()()[%a%d]+()()[^%a%d]',
-                    },
-                },
+                ['D'] = { '"""\n?().-()\n?"""' },
             },
             n_lines = 250,
         })
@@ -52,7 +39,7 @@ return {
                     input = { '/%*%s?().-()%s?%*/' },
                     output = { left = '/* ', right = ' */' },
                 },
-                ['8'] = {
+                ['e'] = {
                     input = { '%*%*().-()%*%*' },
                     output = { left = '**', right = '**' },
                 },
@@ -64,8 +51,16 @@ return {
                     input = { '```%a*\n?().-()\n?```' },
                     output = { left = '```\n', right = '\n```' },
                 },
+                ['C'] = {
+                    input = { '```%a*\n?().-()\n?```' },
+                    output = function()
+                        local lang = vim.fn.input('Language: ')
+                        return { left = '```' .. lang .. '\n', right = '\n```' }
+                    end,
+                },
             },
         })
+
         vim.keymap.set('n', 'gss', function()
             return 'gs_'
         end, { expr = true, remap = true })
@@ -74,8 +69,13 @@ return {
         end, { expr = true, remap = true })
 
         require('mini.icons').setup({
+            default = {},
             extension = {
                 typ = { glyph = '' },
+            },
+            file = {
+                ['README.md'] = { glyph = '󰈈' },
+                ['README.txt'] = { glyph = '󰈈' },
             },
         })
 
@@ -106,5 +106,27 @@ return {
                 indent_at_cursor = false,
             },
         })
+
+        require('mini.diff').setup({
+            view = {
+                style = 'sign',
+                signs = {
+                    add = '┃',
+                    change = '┃',
+                    delete = '▁',
+                },
+            },
+            mappings = {
+                apply = '',
+                reset = '',
+                textobject = 'ih',
+            },
+        })
+
+        vim.keymap.set('n', '<Leader>gt', function()
+            MiniDiff.toggle_overlay(0)
+        end, { desc = 'Toggle overlay' })
+
+        require('mini.git').setup()
     end,
 }

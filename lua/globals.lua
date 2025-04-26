@@ -1,8 +1,8 @@
 SYMBOLS = {
-    error = ' ', -- 'X', -- '',
-    warn = ' ', -- '',
-    hint = ' ',
-    info = ' ', -- 'i',
+    error = 'e',
+    warn = 'w',
+    hint = 'h',
+    info = 'i',
     changed = '●',
     readonly = '',
     lsp = '',
