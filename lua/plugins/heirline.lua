@@ -31,11 +31,11 @@ local function config()
             add = hl('DiffAdd').fg,
             change = hl('DiffChange').fg,
             delete = hl('DiffDelete').fg,
-            info = hl('DiagnosticSignInfo').fg,
-            hint = hl('DiagnosticSignHint').fg,
-            warn = hl('DiagnosticSignWarn').fg,
-            error = hl('DiagnosticSignError').fg,
-            ruler = hl('DiagnosticSignError').fg,
+            info = hl('DiagnosticInfo').fg,
+            hint = hl('DiagnosticHint').fg,
+            warn = hl('DiagnosticWarn').fg,
+            error = hl('DiagnosticError').fg,
+            ruler = hl('DiagnosticError').fg,
         }
     end
 
@@ -256,14 +256,11 @@ local function config()
         condition = function()
             return vim.b.minigit_summary ~= nil and vim.b.minigit_summary.head_name ~= nil
         end,
-        init = function(self)
-            self.summary = vim.b.minigit_summary
-        end,
         update = { 'User', pattern = 'MiniGitUpdated' },
         flexible = 4,
         {
             provider = function(self)
-                return ' ' .. SYMBOLS.branch .. ' ' .. self.summary.head_name .. ' '
+                return ' ' .. SYMBOLS.branch .. ' ' .. vim.b.minigit_summary.head_name .. ' '
             end,
         },
         {
@@ -276,28 +273,25 @@ local function config()
         condition = function()
             return vim.b.minidiff_summary ~= nil
         end,
-        init = function(self)
-            self.summary = vim.b.minidiff_summary
-        end,
-        update = { 'User', pattern = 'MiniDiffUpdated' },
+        -- update = { 'User', pattern = 'MiniDiffUpdated' },
         hl = { bold = true, bg = 'bg' },
         {
             provider = function(self)
-                local count = self.summary.add or 0
+                local count = vim.b.minidiff_summary.add or 0
                 return count > 0 and (' +' .. count)
             end,
             hl = { fg = 'add' },
         },
         {
             provider = function(self)
-                local count = self.summary.delete or 0
+                local count = vim.b.minidiff_summary.delete or 0
                 return count > 0 and (' -' .. count)
             end,
             hl = { fg = 'delete' },
         },
         {
             provider = function(self)
-                local count = self.summary.change or 0
+                local count = vim.b.minidiff_summary.change or 0
                 return count > 0 and (' ~' .. count)
             end,
             hl = { fg = 'change' },
