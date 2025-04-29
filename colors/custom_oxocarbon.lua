@@ -8,61 +8,57 @@ local hl = function(group, opts)
     vim.api.nvim_set_hl(0, group, opts)
 end
 
-local colors
-if vim.o.background == 'dark' then
-    colors = {
-        bg = '#161616',
-        bg_light = '#262626',
-        bg_lighter = '#393939',
-        bg_lightest = '#525252',
-        fg_dark = '#6d6e78',
-        fg = '#b3bbc4',
-        fg_light = '#dde1e6',
-        cyan_dark = '#08bdba',
-        cyan = '#3ddbd9',
-        azure = '#33b1ff',
-        blue = '#78a9ff',
-        blue_light = '#82cfff',
-        pink = '#ff7eb6',
-        pink_dark = '#ee5396',
-        green = '#42be65', -- '#3c6e71',
-        purple = '#be95ff',
-        bg_cyan_dark = '#153332',
-        bg_pink_dark = '#442431',
-        bg_blue = '#232e44',
-        bg_light_pink_dark = '#752b49',
-        bg_purple = '#332944',
-        l_azure = '#183044',
-        orange = '#f58549',
-        -- ##5D737E
-        -- #6969B3
-    }
-else
-    colors = {
-        bg = '#ffffff',
-        bg_light = '#fafafa',
-        bg_lighter = '#dddddd',
-        bg_lightest = '#bfbfbf',
-        fg_dark = '#90a4ae',
-        fg = '#37474f',
-        fg_light = '#525252',
-        cyan_dark = '#08bdba',
-        cyan = '#ff7eb6',
-        azure = '#0f62fe',
-        blue = '#ee5396',
-        blue_light = '#ffab91',
-        pink = '#673ab7',
-        pink_dark = '#ff6f00',
-        green = '#42be65',
-        purple = '#be95ff',
-        bg_cyan_dark = 'NONE',
-        bg_pink_dark = 'NONE',
-        bg_blue = 'NONE',
-        bg_light_pink_dark = 'NONE',
-        bg_purple = 'NONE',
-        bg_azure = 'NONE',
-    }
-end
+local colors = {
+    bg = '#161616',
+    bg_light = '#262626',
+    bg_lighter = '#393939',
+    bg_lightest = '#525252',
+    fg_dark = '#6d6e78',
+    fg = '#b3bbc4',
+    fg_light = '#dde1e6',
+    cyan_dark = '#08bdba',
+    cyan = '#3ddbd9',
+    azure = '#33b1ff',
+    blue = '#78a9ff',
+    blue_light = '#82cfff',
+    pink = '#ff7eb6',
+    pink_dark = '#ee5396',
+    green = '#42be65', -- '#3c6e71',
+    purple = '#be95ff',
+    secondary = {
+        fg = '#696e73',
+        cyan_dark = '#136f6d',
+        cyan = '#26817f',
+        pink = '#964a6b',
+        pink_dark = '#96355e',
+        blue = '#466396',
+        purple = '#6f5796',
+        azure = '#216896',
+    },
+    bg_cyan_dark = '#153332',
+    bg_pink = '#5c2f42',
+    orange = '#f58549',
+    -- ##5D737E
+    -- #6969B3
+}
+-- colors = {
+--     bg = '#ffffff',
+--     bg_light = '#fafafa',
+--     bg_lighter = '#dddddd',
+--     bg_lightest = '#bfbfbf',
+--     fg_dark = '#90a4ae',
+--     fg = '#37474f',
+--     fg_light = '#525252',
+--     cyan_dark = '#08bdba',
+--     cyan = '#ff7eb6',
+--     azure = '#0f62fe',
+--     blue = '#ee5396',
+--     blue_light = '#ffab91',
+--     pink = '#673ab7',
+--     pink_dark = '#ff6f00',
+--     green = '#42be65',
+--     purple = '#be95ff',
+-- }
 
 hl('Cursor', { fg = colors.bg, bg = colors.fg_light })
 hl('TermCursor', { link = 'Cursor' })
@@ -288,23 +284,27 @@ hl('Question', { fg = colors.fg })
 hl('NvimInternalError', { link = 'Error' })
 
 hl('DiagnosticOk', { fg = colors.azure })
-hl('DiagnosticUnnecessary', {})
+hl('DiagnosticUnnecessary', { sp = colors.secondary.fg, undercurl = true })
 hl('DiagnosticHint', { fg = colors.fg })
 hl('DiagnosticInfo', { fg = colors.azure })
 hl('DiagnosticWarn', { fg = colors.purple })
 hl('DiagnosticError', { fg = colors.pink_dark })
-hl('DiagnosticSignHint', { fg = colors.fg, bold = true })
-hl('DiagnosticSignInfo', { fg = colors.azure, bold = true })
-hl('DiagnosticSignWarn', { fg = colors.purple, bold = true })
-hl('DiagnosticSignError', { fg = colors.pink_dark, bold = true })
-hl('DiagnosticUnderlineHint', { sp = colors.fg, undercurl = true })
-hl('DiagnosticUnderlineInfo', { sp = colors.azure, undercurl = true })
-hl('DiagnosticUnderlineWarn', { sp = colors.purple, undercurl = true })
-hl('DiagnosticUnderlineError', { sp = colors.pink_dark, undercurl = true })
-hl('DiagnosticVirtualTextHint', { fg = colors.fg })
-hl('DiagnosticVirtualTextInfo', { fg = colors.azure })
-hl('DiagnosticVirtualTextWarn', { fg = colors.purple })
-hl('DiagnosticVirtualTextError', { fg = colors.pink_dark })
+hl('DiagnosticSignHint', { fg = colors.fg_dark, bold = true })
+hl('DiagnosticSignInfo', { fg = colors.secondary.azure, bold = true })
+hl('DiagnosticSignWarn', { fg = colors.secondary.purple, bold = true })
+hl('DiagnosticSignError', { fg = colors.secondary.pink_dark, bold = true })
+hl('DiagnosticUnderlineHint', { sp = colors.secondary.fg, undercurl = true })
+hl('DiagnosticUnderlineInfo', { sp = colors.secondary.azure, undercurl = true })
+hl('DiagnosticUnderlineWarn', { sp = colors.secondary.purple, undercurl = true })
+hl('DiagnosticUnderlineError', { sp = colors.secondary.pink_dark, undercurl = true })
+hl('DiagnosticVirtualTextHint', { fg = colors.secondary.fg })
+hl('DiagnosticVirtualTextInfo', { fg = colors.secondary.azure })
+hl('DiagnosticVirtualTextWarn', { fg = colors.secondary.purple })
+hl('DiagnosticVirtualTextError', { fg = colors.secondary.pink_dark })
+hl('DiagnosticVirtualLinesHint', { fg = colors.secondary.fg })
+hl('DiagnosticVirtualLinesInfo', { fg = colors.secondary.azure })
+hl('DiagnosticVirtualLinesWarn', { fg = colors.secondary.purple })
+hl('DiagnosticVirtualLinesError', { fg = colors.secondary.pink_dark })
 
 hl('HealthError', { fg = colors.pink_dark })
 hl('HealthWarning', { fg = colors.purple })
@@ -314,17 +314,17 @@ hl('Added', { fg = colors.cyan_dark })
 hl('DiffAdd', { fg = colors.cyan_dark })
 hl('GitSignsAdd', { link = 'DiffAdd' })
 hl('GitSignsStagedAdd', { link = 'GitSignsAdd' })
-hl('MiniDiffSignAdd', { fg = colors.cyan_dark, bold = true })
+hl('MiniDiffSignAdd', { fg = colors.secondary.cyan_dark, bold = true })
 hl('MiniDiffOverAdd', { bg = colors.bg_cyan_dark })
 
-hl('DiffText', { bg = colors.bg_pink_dark })
+hl('DiffText', { bg = colors.bg_pink })
 
 hl('Changed', { fg = colors.pink })
 hl('DiffChange', { fg = colors.pink })
 hl('GitSignsChange', { link = 'DiffChange' })
 hl('GitSignsChangedelete', { link = 'GitSignsChange' })
 hl('GitSignsStagedChange', { link = 'GitSignsChange' })
-hl('MiniDiffSignChange', { fg = colors.pink, bold = true })
+hl('MiniDiffSignChange', { fg = colors.secondary.pink, bold = true })
 hl('MiniDiffOverChange', { link = 'DiffText' })
 hl('MiniDiffOverContext', { bg = colors.bg_light })
 hl('MiniDiffOverContextBuf', {})
@@ -336,7 +336,7 @@ hl('GitSignsDelete', { link = 'DiffDelete' })
 hl('GitSignsStagedDelete', { link = 'GitSignsDelete' })
 hl('GitSignsStagedChangedelete', { link = 'GitSignsDelete' })
 hl('GitSignsStagedTopdelete', { link = 'GitSignsDelete' })
-hl('MiniDiffSignDelete', { fg = colors.fg, bold = true })
+hl('MiniDiffSignDelete', { fg = colors.bg_lightest, bold = true })
 hl('MiniDiffOverDelete', { bg = colors.bg_light })
 
 hl('GitSignsUntracked', { link = 'GitSignsAdd' })
@@ -405,7 +405,7 @@ hl('SnacksPickerIconStruct', { link = 'BlinkCmpKindStruct' })
 hl('SnacksPickerIconTypeParameter', { link = 'BlinkCmpKindTypeParameter' })
 hl('SnacksPickerMatch', { fg = colors.pink, bold = true })
 
-hl('RenderMarkdownInlineHighlight', { fg = colors.blue, bg = colors.bg_blue })
+hl('RenderMarkdownInlineHighlight', { fg = colors.blue, bg = colors.secondary.bg })
 
 hl('@markup.heading.1.markdown', { fg = colors.pink, bold = true })
 hl('@markup.heading.2.markdown', { fg = colors.cyan_dark, bold = true })
@@ -431,8 +431,6 @@ hl('@markup.list.checked', { fg = colors.pink })
 hl('@markup.list.unchecked', { fg = colors.fg_dark })
 hl('@markup.quote.markdown', { fg = colors.fg })
 hl('@markup.math', { fg = colors.fg })
-
-hl('ObsidianTag', { fg = colors.pink, bg = colors.bg_pink_dark })
 
 hl('TreesitterContext', { bg = colors.bg })
 hl('TreesitterContextBottom', { sp = colors.fg_dark, underline = true })
