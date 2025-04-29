@@ -22,7 +22,8 @@ return {
                 end,
                 'fallback',
             },
-            ['<C-s>'] = { 'hide_documentation', 'show_documentation', 'fallback' },
+            ['<C-n>'] = { 'hide_documentation', 'show_documentation', 'fallback' },
+            ['<C-s>'] = { 'hide_signature', 'show_signature', 'fallback' },
             ['<C-space>'] = { 'hide', 'show', 'fallback' },
         },
         sources = {

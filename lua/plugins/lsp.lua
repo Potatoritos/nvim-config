@@ -1,45 +1,9 @@
-local function show_only_one_sign_in_sign_column()
-    local ns = vim.api.nvim_create_namespace('severe-diagnostics')
-
-    local orig_signs_handler = vim.diagnostic.handlers.signs
-
-    local filter_diagnostics = function(diagnostics)
-        if not diagnostics then
-            return {}
-        end
-
-        local most_severe = {}
-        for _, cur in pairs(diagnostics) do
-            local max = most_severe[cur.lnum]
-
-            if not max or cur.severity < max.severity then
-                most_severe[cur.lnum] = cur
-            end
-        end
-
-        return vim.tbl_values(most_severe)
-    end
-
-    vim.diagnostic.handlers.signs = {
-        show = function(_, bufnr, _, opts)
-            local diagnostics = vim.diagnostic.get(bufnr)
-            local filtered_diagnostics = filter_diagnostics(diagnostics)
-
-            orig_signs_handler.show(ns, bufnr, filtered_diagnostics, opts)
-        end,
-
-        hide = function(_, bufnr)
-            orig_signs_handler.hide(ns, bufnr)
-        end,
-    }
-end
-
 local function ls_setup()
     local capabilities = require('blink.cmp').get_lsp_capabilities()
 
     local lsp = require('lspconfig')
     local util = require('lspconfig.util')
-    lsp.basedpyright.setup({ capabilities = capabilities })
+    lsp.basedpyright.setup({})
     lsp.markdown_oxide.setup({
         capabilities = vim.tbl_deep_extend('force', capabilities, {
             workspace = {
@@ -59,14 +23,12 @@ local function ls_setup()
         end,
     })
     lsp.clangd.setup({
-        capabilities = capabilities,
         cmd = {
             'clangd',
             '--header-insertion=never',
         },
     })
     lsp.tinymist.setup({
-        capabilities = capabilities,
         settings = {
             formatterMode = 'typstyle',
             semanticTokens = 'disable',
@@ -81,7 +43,6 @@ local function ls_setup()
         return vim.fs.dirname(vim.fs.find(to_find, { path = startpath, upward = true })[1])
     end
     lsp.biome.setup({
-        capabilities = capabilities,
         root_dir = function(fname)
             return util.root_pattern('biome.json', 'biome.jsonc')(fname)
                 or find('package.json', fname)
@@ -89,9 +50,8 @@ local function ls_setup()
                 or find('.git', fname)
         end,
     })
-    lsp.lua_ls.setup({ capabilities = capabilities })
+    lsp.lua_ls.setup({})
     lsp.vtsls.setup({
-        capabilities = capabilities,
         filetypes = {
             'javascript',
             'javascriptreact',
@@ -116,7 +76,6 @@ local function ls_setup()
         },
     })
     lsp.volar.setup({
-        capabilities = capabilities,
         init_options = {
             typescript = {
                 tsdk = '/usr/local/lib/node_modules/typescript/lib/',
@@ -132,10 +91,7 @@ return {
             'BufReadPre',
             'BufNewFile',
         },
-        config = function()
-            ls_setup()
-            show_only_one_sign_in_sign_column()
-        end,
+        config = ls_setup,
         dependencies = {
             'saghen/blink.cmp',
         },
