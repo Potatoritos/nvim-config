@@ -7,7 +7,8 @@ return {
                 ['b'] = false,
                 ['B'] = { '%b{}', '^.().*().$' },
                 ['q'] = false,
-                ['$'] = { { '%$%$().-()%$%$', '[^%$]%$()[^%$]+()%$[^%$]' } },
+                ['$'] = { '%b$$', '^.().*().$' },
+                ['E'] = { '%$%$\n?().-()\n?%$%$' },
                 ['c'] = { '/%*().-()%*/' },
                 ['e'] = { '%*%*().-()%*%*' },
                 ['h'] = { '==().-()==' },
@@ -46,6 +47,10 @@ return {
                 ['h'] = {
                     input = { '==().-()==' },
                     output = { left = '==', right = '==' },
+                },
+                ['E'] = {
+                    input = { '%$%$\n?().-()\n?%$%$' },
+                    output = { left = '$$\n', right = '\n$$' },
                 },
                 ['L'] = {
                     input = { '```%a*\n?().-()\n?```' },
@@ -111,9 +116,9 @@ return {
             view = {
                 style = 'sign',
                 signs = {
-                    add = '┃',
-                    change = '┃',
-                    delete = '▁',
+                    add = '+',
+                    change = '~',
+                    delete = '–',
                 },
             },
             mappings = {
@@ -123,10 +128,14 @@ return {
             },
         })
 
-        vim.keymap.set('n', '<Leader>gt', function()
+        vim.keymap.set('n', '<Leader>go', function()
             MiniDiff.toggle_overlay(0)
         end, { desc = 'Toggle overlay' })
 
         require('mini.git').setup()
+
+        vim.keymap.set('n', '<Leader>gi', function()
+            MiniGit.show_at_cursor()
+        end, { desc = 'Show git data at cursor' })
     end,
 }

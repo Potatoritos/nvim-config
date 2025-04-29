@@ -2,14 +2,12 @@ vim.keymap.set('n', '<Esc>', '<Cmd>nohlsearch<CR>', { desc = 'Clear highlights' 
 
 vim.keymap.set('n', '<Leader>w', '<Cmd>w<CR>', { desc = 'Save' })
 
-vim.keymap.set('n', '<Leader>lh', function()
+vim.keymap.set('n', '<Leader>h', function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = 'Toggle inlay hints' })
 
-local virtual_lines = false
-
-vim.keymap.set('n', '<Leader>lv', function()
-    virtual_lines = not virtual_lines
+vim.keymap.set('n', '<Leader>d', function()
+    local virtual_lines = not vim.diagnostic.config().virtual_lines
     vim.diagnostic.config({ virtual_lines = virtual_lines })
 end, { desc = 'Toggle diagnostic virtual lines' })
 

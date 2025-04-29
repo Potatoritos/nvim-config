@@ -2,7 +2,7 @@ return {
     'stevearc/oil.nvim',
     keys = {
         {
-            '<Leader>oi',
+            '<Leader>o',
             '<Cmd>Oil<CR>',
             desc = 'Oil',
         },
