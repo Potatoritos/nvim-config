@@ -11,10 +11,6 @@ vim.keymap.set('n', '<Leader>d', function()
     vim.diagnostic.config({ virtual_lines = virtual_lines })
 end, { desc = 'Toggle diagnostic virtual lines' })
 
-vim.keymap.set('n', '<Leader>H', function()
-    vim.o.list = not vim.o.list
-end, { desc = 'Toggle listchars' })
-
 -- enable lazyredraw, disable autocmds during macro execution
 vim.keymap.set('n', '@', function()
     local count = vim.v.count1

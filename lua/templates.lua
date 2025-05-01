@@ -100,9 +100,9 @@ local function insert(template)
     --     table.insert(keys, ('%dGzc'):format(line + fold_index))
     -- end
 
-    for _, fold in ipairs(template.manual_folds) do
-        table.insert(keys, ('%dGzf%dG'):format(line + fold.from, line + fold.to))
-    end
+    -- for _, fold in ipairs(template.manual_folds) do
+    --     table.insert(keys, ('%dGzf%dG'):format(line + fold.from, line + fold.to))
+    -- end
 
     if template.cursor_index == nil then
         template.cursor_index = #template.lines
