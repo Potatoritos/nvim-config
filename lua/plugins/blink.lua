@@ -66,10 +66,10 @@ return {
                     fallbacks = { 'lsp' },
                 },
                 buffer = {
-                    min_keyword_length = 4,
+                    -- min_keyword_length = 4,
                 },
             },
-            min_keyword_length = 3,
+            -- min_keyword_length = 3,
         },
         cmdline = {
             keymap = {

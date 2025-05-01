@@ -1,12 +1,40 @@
 local function pick_tabpages()
     local tabpages = vim.api.nvim_list_tabpages()
+    local items = {}
     for _, id in ipairs(tabpages) do
-        local windows = vim.api.nvim_tabpage_list_wins(id)
+        local number = vim.api.nvim_tabpage_get_number(id)
+        items[number] = id
     end
 
-    Snacks.picker.select(tabpages, {
-        prompt = 'prompt here:',
-    }, function(choice) end)
+    local format = function(id)
+        local windows = vim.api.nvim_tabpage_list_wins(id)
+        local active_win = vim.api.nvim_tabpage_get_win(id)
+
+        local details = {}
+
+        for _, winid in ipairs(windows) do
+            local buf = vim.api.nvim_win_get_buf(winid)
+            local name = vim.api.nvim_buf_get_name(buf)
+            name = vim.fn.fnamemodify(name, ':t')
+
+            if winid == active_win then
+                table.insert(details, '[' .. name .. ']')
+            else
+                table.insert(details, name)
+            end
+        end
+
+        return table.concat(details, ', ')
+    end
+
+    Snacks.picker.select(items, {
+        prompt = 'Tabpages',
+        format_item = format,
+    }, function(choice)
+        if choice ~= nil then
+            vim.api.nvim_set_current_tabpage(choice)
+        end
+    end)
 end
 
 return {

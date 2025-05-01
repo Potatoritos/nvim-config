@@ -77,6 +77,8 @@ return {
             default = {},
             extension = {
                 typ = { glyph = '' },
+                cpp = { glyph = '' },
+                c = { glyph = '' },
             },
             file = {
                 ['README.md'] = { glyph = '󰈈' },
