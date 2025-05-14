@@ -2,15 +2,19 @@ return {
     'echasnovski/mini.nvim',
     version = false,
     config = function()
-        require('mini.ai').setup({
+        local ai = require('mini.ai')
+        ai.setup({
             custom_textobjects = {
                 ['b'] = false,
                 ['B'] = { '%b{}', '^.().*().$' },
                 ['q'] = false,
+                ['f'] = ai.gen_spec.function_call({ name_pattern = '[%w_]' }),
+                ['F'] = ai.gen_spec.function_call(),
                 ['$'] = { '%b$$', '^.().*().$' },
                 ['E'] = { '%$%$\n?().-()\n?%$%$' },
                 ['c'] = { '/%*().-()%*/' },
                 ['e'] = { '%*%*().-()%*%*' },
+                ['r'] = { '%[%[().-()%]%]' },
                 ['h'] = { '==().-()==' },
                 ['L'] = { '```%a*\n?().-()\n?```' },
                 ['D'] = { '"""\n?().-()\n?"""' },
@@ -44,6 +48,10 @@ return {
                     input = { '%*%*().-()%*%*' },
                     output = { left = '**', right = '**' },
                 },
+                ['r'] = {
+                    input = { '%[%[().-()%]%]' },
+                    output = { left = '[[', right = ']]' },
+                },
                 ['h'] = {
                     input = { '==().-()==' },
                     output = { left = '==', right = '==' },
@@ -62,6 +70,10 @@ return {
                         local lang = vim.fn.input('Language: ')
                         return { left = '```' .. lang .. '\n', right = '\n```' }
                     end,
+                },
+                ['D'] = {
+                    input = { '"""().-()"""' },
+                    output = { left = '"""', right = '"""' },
                 },
             },
         })
@@ -130,9 +142,9 @@ return {
             },
         })
 
-        vim.keymap.set('n', '<Leader>go', function()
+        vim.keymap.set('n', '<Leader>gh', function()
             MiniDiff.toggle_overlay(0)
-        end, { desc = 'Toggle overlay' })
+        end, { desc = 'Toggle hunk overlay' })
 
         require('mini.git').setup()
 
