@@ -60,28 +60,38 @@ local rules = function()
 end
 
 return {
-    'windwp/nvim-autopairs',
-    enabled = true,
-    event = {
-        'InsertEnter',
-        'VeryLazy',
+    {
+        'windwp/nvim-autopairs',
+        enabled = true,
+        event = {
+            'InsertEnter',
+            'VeryLazy',
+        },
+        keys = {
+            {
+                '<Leader>p',
+                function()
+                    require('nvim-autopairs').toggle()
+                end,
+                desc = 'Toggle autopairs',
+            },
+        },
+        config = function()
+            require('nvim-autopairs').setup({
+                disable_in_macro = true,
+                ignored_next_char = [=[[%w%%%'%[%"%.%`]]=],
+                enable_bracket_in_quote = false,
+            })
+            rules()
+        end,
     },
-    keys = {
-        {
-            '<C-p>',
-            function()
-                require('nvim-autopairs').toggle()
-            end,
-            mode = { 'i', 'n' },
-            desc = 'Toggle autopairs',
+    {
+        'windwp/nvim-ts-autotag',
+        lazy = false,
+        opts = {
+            opts = {
+                enable_rename = false,
+            },
         },
     },
-    config = function()
-        require('nvim-autopairs').setup({
-            disable_in_macro = true,
-            ignored_next_char = [=[[%w%%%'%[%"%.%`]]=],
-            enable_bracket_in_quote = false,
-        })
-        rules()
-    end,
 }

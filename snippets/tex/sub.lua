@@ -35,14 +35,15 @@ local snippets = {
     s('in', t('\\in ')),
     s('ti', t('\\times ')),
     s('ci', t('\\circ ')),
-    s('and', t('\\wedge ')),
-    s('or', t('\\vee ')),
+    s('and', t('\\land ')),
+    s('or', t('\\lor ')),
     s('un', t('\\cup ')),
     s('itr', t('\\cap ')),
     s('geq', t('\\geq ')),
     s('leq', t('\\leq ')),
     s('vd', t('\\vdash ')),
     s('ra', t('\\Rightarrow ')),
+    s('to', t('\\to ')),
     auto(' ^', '^'),
     auto(' _', '_'),
 }
@@ -52,7 +53,7 @@ local add = function(trig, sub)
 end
 
 for c in ('cfinqrz'):gmatch('.') do
-    add(c .. c, ('\\mathbb{%s}'):format(c))
+    add(c .. c, ('\\mathbb{%s}'):format(c:upper()))
 end
 
 for _, l in ipairs(greek_letters) do

@@ -82,10 +82,5 @@ return {
         load_snippets()
 
         ls.filetype_extend('markdown', { 'tex' })
-
-        local langs = { 'javascript', 'jsx', 'svelte', 'tsx', 'typescript', 'vue', 'xml' }
-        for _, lang in ipairs(langs) do
-            ls.filetype_extend(lang, { 'html' })
-        end
     end,
 }

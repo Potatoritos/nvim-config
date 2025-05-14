@@ -189,6 +189,7 @@ hl('@keyword.operator', { link = 'Keyword' })
 hl('@conditional', { fg = colors.blue })
 hl('@repeat', { fg = colors.blue })
 hl('@label', { fg = colors.blue_light })
+hl('@label.markdown', { fg = colors.fg_dark })
 hl('@include', { fg = colors.blue })
 hl('@exception', { fg = colors.blue })
 hl('@type', { link = 'Type' })
@@ -272,6 +273,7 @@ hl('@lsp.typemod.variable.defaultLibrary', { link = '@variable.builtin' })
 hl('@lsp.typemod.variable.injected', { link = '@variable' })
 
 hl('LspSignatureActiveParameter', { bg = colors.bg_lighter })
+hl('LspInlayHint', { bg = colors.bg_light, fg = colors.fg_dark })
 
 hl('Error', { fg = colors.pink_dark })
 
@@ -425,6 +427,7 @@ hl('RenderMarkdownTableRow', { fg = colors.bg_lightest })
 hl('RenderMarkdownTableFill', { fg = colors.bg_lightest })
 
 hl('@markup.raw.markdown_inline', { fg = colors.pink, bg = colors.bg_light })
+hl('@markup.raw.block.markdown', { fg = colors.fg_dark })
 hl('@markup.list.markdown', { fg = colors.fg_dark })
 hl('@markup.link.label.markdown_inline', { fg = colors.pink, underline = true })
 hl('@markup.list.checked', { fg = colors.pink })
