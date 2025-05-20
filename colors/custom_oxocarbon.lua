@@ -462,6 +462,12 @@ hl('MiniIconsPurple', { fg = colors.purple, bold = true })
 hl('MiniIconsRed', { fg = colors.pink, bold = true })
 hl('MiniIconsYellow', { fg = colors.pink, bold = true })
 
+hl('MiniClueBorder', { fg = colors.bg_lighter })
+hl('MiniClueDescGroup', { fg = colors.fg_dark, italic = true })
+hl('MiniClueNextKey', { fg = colors.blue })
+hl('MiniClueSeparator', { fg = colors.bg_light })
+hl('MiniClueTitle', { fg = colors.blue })
+
 vim.g.terminal_color_0 = colors.bg
 vim.g.terminal_color_1 = colors.pink
 vim.g.terminal_color_2 = colors.green

@@ -3,7 +3,7 @@ vim.keymap.set('n', '<Esc>', '<Cmd>nohlsearch<CR>', { desc = 'Clear highlights' 
 vim.keymap.set('n', '<Leader>w', '<Cmd>update<CR>', { desc = 'Save' })
 
 vim.keymap.set('n', '<Leader>h', function()
-    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    vim.lsp.inlay_hint.enable(vim.lsp.inlay_hint.is_enabled())
 end, { desc = 'Toggle inlay hints' })
 
 vim.keymap.set('n', '<Leader>d', function()
