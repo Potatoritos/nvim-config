@@ -1,11 +1,3 @@
-local blacklist = {
-    'notes',
-}
-
-local is_blacklisted = function(opts)
-    return vim.tbl_contains(blacklist, opts.workspace)
-end
-
 return {
     'vyfor/cord.nvim',
     build = ':Cord update',
@@ -17,12 +9,8 @@ return {
             tooltip = 'hiya!! (≧▽≦) /',
         },
         text = {
-            viewing = function(opts)
-                return is_blacklisted(opts) and 'Viewing a file' or ('Viewing ' .. opts.filename)
-            end,
-            editing = function(opts)
-                return is_blacklisted(opts) and 'Editing a file' or ('Editing ' .. opts.filename)
-            end,
+            viewing = 'Viewing text',
+            editing = 'Editing text',
             workspace = function(opts)
                 return 'Workspace: ' .. opts.workspace
             end,
