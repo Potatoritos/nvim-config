@@ -63,6 +63,7 @@ vim.opt.foldcolumn = '0'
 vim.opt.fillchars:append({ fold = '·', vert = '+' })
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'Set LSP folding if supported',
+    group = vim.api.nvim_create_augroup('lsp-folding', { clear = true }),
     callback = function(ctx)
         local client = assert(vim.lsp.get_client_by_id(ctx.data.client_id))
         if client:supports_method('textDocument/foldingRange') then
@@ -139,4 +140,13 @@ vim.api.nvim_create_autocmd('TabEnter', {
         end
         vim.api.nvim_echo(chunks, false, {})
     end,
+})
+
+vim.lsp.enable({
+    'basedpyright',
+    'biome',
+    'clangd',
+    'lua_ls',
+    'markdown_oxide',
+    'tinymist',
 })

@@ -86,9 +86,6 @@ return {
     ---@type snacks.Config
     opts = {
         bigfile = {},
-        explorer = {
-            replace_netrw = false,
-        },
         gitbrowse = {},
         image = {
             doc = {
@@ -103,14 +100,14 @@ return {
                 },
             },
         },
-        input = {
-            win = {
-                keys = {
-                    n_esc = { '<Esc>', { 'cancel' }, mode = 'n', expr = true },
-                    i_esc = { '<Esc>', '<Esc>', mode = 'i', expr = true },
-                },
-            },
-        },
+        -- input = {
+        --     win = {
+        --         keys = {
+        --             n_esc = { '<Esc>', { 'cancel' }, mode = 'n', expr = true },
+        --             i_esc = { '<Esc>', '<Esc>', mode = 'i', expr = true },
+        --         },
+        --     },
+        -- },
         lazygit = {},
         picker = {
             layout = {
