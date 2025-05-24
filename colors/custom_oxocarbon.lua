@@ -469,6 +469,24 @@ hl('MiniClueNextKey', { fg = colors.blue })
 hl('MiniClueSeparator', { fg = colors.bg_light })
 hl('MiniClueTitle', { fg = colors.blue })
 
+hl('MasonMuted', { fg = colors.fg_dark })
+hl('MasonBackdrop', { bg = colors.bg })
+hl('MasonHighlight', { fg = colors.azure })
+hl('MasonHighlightSecondary', { fg = colors.pink })
+hl('MasonMutedBlock', { fg = colors.fg_dark, bg = colors.bg_light })
+hl('MasonHighlightBlock', { fg = colors.blue, bg = colors.bg_light })
+hl('MasonHighlightBlockSecondary', { fg = colors.pink, bg = colors.bg_light })
+-- hl('MasonHeading', {})
+-- hl('MasonError', {})
+-- hl('MasonWarning', {})
+hl('MasonHeader', { fg = colors.pink, bold = true })
+hl('MasonMutedBlockBold', { fg = colors.fg_dark, bg = colors.bg_light, bold = true })
+hl('MasonHeaderSecondary', { fg = colors.pink, bg = colors.bg_light, bold = true })
+hl('MasonHighlightBlockBold', { fg = colors.pink, bg = colors.bg_light, bold = true })
+hl('MasonLink', { fg = colors.pink, underline = true })
+hl('MasonHighlightBlockBoldSecondary', { fg = colors.blue, bg = colors.bg_light, bold = true })
+-- hl('MasonNormal', {})
+
 vim.g.terminal_color_0 = colors.bg
 vim.g.terminal_color_1 = colors.pink
 vim.g.terminal_color_2 = colors.green
