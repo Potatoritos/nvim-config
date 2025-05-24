@@ -52,7 +52,7 @@ vim.o.linebreak = true
 vim.o.textwidth = 80
 
 -- vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
-vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal'
+vim.o.sessionoptions = 'blank,buffers,curdir,help,tabpages,winsize,winpos,terminal'
 
 vim.o.foldenable = true
 vim.o.foldlevel = 99
@@ -61,6 +61,16 @@ vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldtext = ''
 vim.opt.foldcolumn = '0'
 vim.opt.fillchars:append({ fold = '·', vert = '+' })
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'Set LSP folding if supported',
+    callback = function(ctx)
+        local client = assert(vim.lsp.get_client_by_id(ctx.data.client_id))
+        if client:supports_method('textDocument/foldingRange') then
+            local win = vim.api.nvim_get_current_win()
+            vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+        end
+    end,
+})
 
 vim.diagnostic.config({
     signs = {
@@ -84,3 +94,49 @@ vim.diagnostic.config({
 })
 
 vim.o.winborder = 'rounded'
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+    desc = 'Highlight on yank',
+    group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+    callback = function()
+        vim.highlight.on_yank({ higroup = 'Visual' })
+    end,
+})
+
+vim.api.nvim_create_autocmd('TabEnter', {
+    desc = 'Display tab number',
+    group = vim.api.nvim_create_augroup('display-tab-number', { clear = true }),
+    callback = function()
+        local tabid = vim.api.nvim_get_current_tabpage()
+        local tabs = vim.api.nvim_list_tabpages()
+        local chunks = {}
+        for _, id in ipairs(tabs) do
+            local num = vim.api.nvim_tabpage_get_number(id)
+            local win = vim.api.nvim_tabpage_get_win(id)
+            local buf = vim.api.nvim_win_get_buf(win)
+            local name = vim.api.nvim_buf_get_name(buf)
+            local n = vim.fn.fnamemodify(name, ':t')
+
+            if name == '' then
+                name = '---'
+            elseif n ~= '' then
+                name = n
+            end
+
+            if name:len() > 12 then
+                name = name:sub(1, 11) .. '…'
+            end
+
+            if id == tabid then
+                table.insert(chunks, { '[', 'TabpageActive' })
+                table.insert(chunks, { '' .. num, 'TabpageActive' })
+                table.insert(chunks, { ' ' .. name .. ']', 'TabpageActive' })
+            else
+                table.insert(chunks, { ' ', 'TabpageInactive' })
+                table.insert(chunks, { '' .. num, 'TabpageInactive' })
+                table.insert(chunks, { ' ' .. name .. ' ', 'TabpageInactive' })
+            end
+        end
+        vim.api.nvim_echo(chunks, false, {})
+    end,
+})

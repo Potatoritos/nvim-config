@@ -37,20 +37,5 @@ return {
             end,
             desc = 'Select treesitter node',
         },
-        {
-            '<Leader>a',
-            function()
-                require('flash').jump({
-                    action = function(match, state)
-                        vim.api.nvim_win_call(match.win, function()
-                            vim.api.nvim_win_set_cursor(match.win, match.pos)
-                            vim.lsp.buf.definition()
-                        end)
-                        state:restore()
-                    end,
-                })
-            end,
-            desc = 'Goto definition (remote)',
-        },
     },
 }

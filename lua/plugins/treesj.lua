@@ -1,9 +1,5 @@
 return {
     'Wansmer/treesj',
-    event = {
-        'BufNewFile',
-        'BufReadPost',
-    },
     keys = {
         {
             '<leader>j',

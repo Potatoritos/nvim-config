@@ -86,14 +86,16 @@ return {
     ---@type snacks.Config
     opts = {
         bigfile = {},
-        explorer = {},
+        explorer = {
+            replace_netrw = false,
+        },
         gitbrowse = {},
         image = {
             doc = {
                 conceal = false,
             },
             math = {
-                enabled = true,
+                enabled = false,
             },
             convert = {
                 magick = {
@@ -101,7 +103,14 @@ return {
                 },
             },
         },
-        input = {},
+        input = {
+            win = {
+                keys = {
+                    n_esc = { '<Esc>', { 'cancel' }, mode = 'n', expr = true },
+                    i_esc = { '<Esc>', '<Esc>', mode = 'i', expr = true },
+                },
+            },
+        },
         lazygit = {},
         picker = {
             layout = {
@@ -148,14 +157,6 @@ return {
             },
         },
         scratch = {},
-        -- statuscolumn = {
-        --     left = { 'sign', 'mark' },
-        --     right = { 'fold', 'git' },
-        --     folds = {
-        --         open = false,
-        --         git_hl = false,
-        --     },
-        -- },
         terminal = {},
     },
     dependencies = {

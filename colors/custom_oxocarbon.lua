@@ -271,6 +271,7 @@ hl('@lsp.typemod.function.builtin', { link = '@function.builtin' })
 hl('@lsp.typemod.function.readonly', { link = '@method' })
 hl('@lsp.typemod.variable.defaultLibrary', { link = '@variable.builtin' })
 hl('@lsp.typemod.variable.injected', { link = '@variable' })
+hl('@lsp.typemod.delim.math.typst', { link = 'Delimiter' })
 
 hl('LspSignatureActiveParameter', { bg = colors.bg_lighter })
 hl('LspInlayHint', { bg = colors.bg_light, fg = colors.fg_dark })

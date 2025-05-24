@@ -38,10 +38,6 @@ end
 return {
     'L3MON4D3/LuaSnip',
     version = 'v2.*',
-    event = {
-        'InsertEnter',
-        'VeryLazy',
-    },
     keys = {
         {
             '<Tab>',
@@ -56,7 +52,7 @@ return {
             mode = 'i',
         },
         {
-            '<leader>Lr',
+            '<leader>L',
             load_snippets,
             desc = 'Reload snippets',
         },

@@ -62,10 +62,7 @@ end
 return {
     {
         'windwp/nvim-autopairs',
-        event = {
-            'InsertEnter',
-            'VeryLazy',
-        },
+        event = 'InsertEnter',
         keys = {
             {
                 '<Leader>p',

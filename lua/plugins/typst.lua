@@ -8,10 +8,11 @@ return {
             '<Cmd>TypstPreviewToggle<CR>',
             mode = 'n',
             ft = 'typst',
+            desc = 'Toggle typst preview',
         },
     },
     opts = {
-        -- invert_colors = '{"rest":"always","image":"never"}',
+        invert_colors = '{"rest":"always","image":"never"}',
         dependencies_bin = {
             ['tinymist'] = vim.fn.expand('~/.cargo/bin/tinymist'),
         },
