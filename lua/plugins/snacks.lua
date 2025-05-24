@@ -157,7 +157,13 @@ return {
             },
         },
         scratch = {},
-        terminal = {},
+        terminal = {
+            win = {
+                wo = {
+                    winbar = '',
+                },
+            },
+        },
     },
     dependencies = {
         'echasnovski/mini.nvim',

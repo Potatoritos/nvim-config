@@ -96,6 +96,9 @@ return {
                 ['README.md'] = { glyph = '󰈈' },
                 ['README.txt'] = { glyph = '󰈈' },
             },
+            filetype = {
+                snacks_terminal = { glyph = '', hl = 'MiniIconsPurple' },
+            },
         })
 
         require('mini.bracketed').setup({
@@ -199,7 +202,12 @@ return {
 
         require('mini.sessions').setup()
 
+        vim.keymap.set('n', '<Leader>rl', function()
+            MiniSessions.read(MiniSessions.get_latest())
+        end, { desc = 'Restore latest session' })
+
         vim.keymap.set('n', '<Leader>re', MiniSessions.select, { desc = 'Restore session' })
+
         vim.keymap.set('n', '<Leader>rd', function()
             MiniSessions.delete(nil, { force = true })
         end, { desc = 'Delete current session' })

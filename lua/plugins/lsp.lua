@@ -75,7 +75,7 @@ local function ls_setup()
             },
         },
     })
-    lsp.volar.setup({
+    lsp.vue_ls.setup({
         init_options = {
             typescript = {
                 tsdk = '/usr/local/lib/node_modules/typescript/lib/',

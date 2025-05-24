@@ -157,7 +157,11 @@ local function config()
     local file_icon = {
         init = function(self)
             local filename = self.filename
-            self.icon, self.icon_hl = require('mini.icons').get('file', filename)
+            if vim.bo.filetype == 'snacks_terminal' then
+                self.icon, self.icon_hl = require('mini.icons').get('filetype', vim.bo.filetype)
+            else
+                self.icon, self.icon_hl = require('mini.icons').get('file', filename)
+            end
         end,
         provider = function(self)
             return ' ' .. self.icon
@@ -171,6 +175,7 @@ local function config()
         if filename == '' then
             return { left = ' ', right = '[No Name]' }
         end
+
         local index = filename:find('/[^/]*$')
         if index == nil then
             index = 0
