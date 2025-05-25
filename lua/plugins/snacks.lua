@@ -159,6 +159,9 @@ return {
                 wo = {
                     winbar = '',
                 },
+                keys = {
+                    term_normal = false,
+                },
             },
         },
     },

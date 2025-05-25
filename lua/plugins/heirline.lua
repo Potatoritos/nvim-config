@@ -137,7 +137,6 @@ local function config()
         {
             update = vi_mode_update,
             provider = function(self)
-                -- return '->N'
                 return '--' .. self.mode_names[self.mode] .. '--'
             end,
         },
@@ -326,30 +325,30 @@ local function config()
         end,
 
         update = { 'DiagnosticChanged', 'BufEnter' },
-        hl = { bold = true, bg = 'bg' },
+        hl = { bg = 'bg' },
         {
             provider = function(self)
                 return self.errors > 0 and (SYMBOLS.error .. self.errors .. ' ')
             end,
-            hl = { fg = 'error', bold = true },
+            hl = { fg = 'error' },
         },
         {
             provider = function(self)
                 return self.warnings > 0 and (SYMBOLS.warn .. self.warnings .. ' ')
             end,
-            hl = { fg = 'warn', bold = true },
+            hl = { fg = 'warn' },
         },
         {
             provider = function(self)
                 return self.info > 0 and (SYMBOLS.info .. self.info .. ' ')
             end,
-            hl = { fg = 'info', bold = true },
+            hl = { fg = 'info' },
         },
         {
             provider = function(self)
                 return self.hints > 0 and (SYMBOLS.hint .. self.hints .. ' ')
             end,
-            hl = { fg = 'hint', bold = true },
+            hl = { fg = 'hint' },
         },
     }
 

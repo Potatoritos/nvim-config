@@ -65,11 +65,12 @@ return {
         event = 'InsertEnter',
         keys = {
             {
-                '<Leader>p',
+                '<C-p>',
                 function()
                     require('nvim-autopairs').toggle()
                 end,
                 desc = 'Toggle autopairs',
+                mode = { 'i', 'n' },
             },
         },
         config = function()

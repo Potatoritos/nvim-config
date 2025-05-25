@@ -19,6 +19,12 @@ return {
                 ['l'] = { '```%a*\n?().-()\n?```' },
                 ['D'] = { '"""\n?().-()\n?"""' },
             },
+            mappings = {
+                around_next = 'an',
+                inside_next = 'in',
+                around_last = 'aN',
+                inside_last = 'iN',
+            },
             n_lines = 250,
         })
 

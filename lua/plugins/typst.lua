@@ -14,7 +14,7 @@ return {
     opts = {
         invert_colors = '{"rest":"always","image":"never"}',
         dependencies_bin = {
-            ['tinymist'] = vim.fn.expand('~/.cargo/bin/tinymist'),
+            ['tinymist'] = vim.fn.stdpath('data') .. '/mason/bin/tinymist',
         },
         open_cmd = nil,
         port = 1273,

@@ -1,3 +1,5 @@
+vim.keymap.set('t', '<C-Space>', '<C-\\><C-n>', { desc = 'Escape terminal' })
+
 vim.keymap.set('n', '<Esc>', '<Cmd>nohlsearch<CR>', { desc = 'Clear highlights' })
 
 vim.keymap.set('n', '<Leader>w', '<Cmd>update<CR>', { desc = 'Save' })
