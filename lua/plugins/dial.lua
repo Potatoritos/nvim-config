@@ -56,13 +56,13 @@ return {
 
                 while idx_start <= #line do
                     local s, e = line:find('%a+%-?%a*', idx_start)
-                    if s == nil or (cursor ~= nil and cursor > e) then
+                    if s == nil then
                         return
                     end
                     idx_start = e + 2
 
                     local n = line:sub(s, e):lower()
-                    if ordinal_map[n] ~= nil or cardinal_map[n] ~= nil then
+                    if (cursor == nil or cursor <= e) and (ordinal_map[n] ~= nil or cardinal_map[n] ~= nil) then
                         return { from = s, to = e }
                     end
                 end
@@ -92,22 +92,25 @@ return {
                 local idx_start = 1
 
                 while idx_start <= #line do
-                    local s, e = line:find('%d+', idx_start)
-                    if s == nil or (cursor ~= nil and cursor > e) then
+                    local s, e = line:find('%d+%a%a', idx_start)
+                    if s == nil then
                         return
                     end
-                    idx_start = e + 2
+                    idx_start = e + 1
 
-                    if vim.tbl_contains({ 'st', 'nd', 'th' }, line:sub(e + 1, e + 2):lower()) then
-                        return { from = s, to = e + 2 }
+                    if
+                        (cursor == nil or cursor <= e)
+                        and vim.tbl_contains({ 'st', 'nd', 'rd', 'th' }, line:sub(-2):lower())
+                    then
+                        return { from = s, to = e }
                     end
                 end
             end,
             add = function(text, addend, cursor)
                 local n = math.max(1, tonumber(text:sub(0, -3)) + addend)
-                local a = n % 100
-                local b = n % 10
-                text = n .. ((b == 1 and a ~= 11) and 'st' or ((b == 2 and a ~= 12) and 'nd' or 'th'))
+                local a = n % 10
+                local teen = (n % 100) - a == 10
+                text = n .. (teen and 'th' or (a == 1 and 'st' or (a == 2 and 'nd') or (a == 3 and 'rd' or 'th')))
                 return { text = text, cursor = #text }
             end,
         })
