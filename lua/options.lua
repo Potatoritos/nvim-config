@@ -142,6 +142,15 @@ vim.api.nvim_create_autocmd('TabEnter', {
     end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+    callback = function(details)
+        local bufnr = details.buf
+        if not pcall(vim.treesitter.start, bufnr) then
+            return
+        end
+    end,
+})
+
 vim.lsp.enable({
     'basedpyright',
     'biome',
