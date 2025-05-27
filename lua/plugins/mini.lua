@@ -42,6 +42,10 @@ return {
             },
             n_lines = 50,
             custom_surroundings = {
+                ['b'] = {
+                    input = { '%(().-()%)' },
+                    output = { left = '(', right = ')' },
+                },
                 ['B'] = {
                     input = { '{().-()}' },
                     output = { left = '{', right = '}' },

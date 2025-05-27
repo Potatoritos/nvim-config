@@ -50,7 +50,9 @@ local snippets = {
     s('tfo', t('$therefore$ ')),
     s('tf', t('therefore ')),
     s('lea', t('<=& ')),
+    s('lta', t('<& ')),
     s('gea', t('>=& ')),
+    s('gta', t('>& ')),
     s('ea', t('=& ')),
 }
 

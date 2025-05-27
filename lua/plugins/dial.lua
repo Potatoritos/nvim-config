@@ -117,8 +117,7 @@ return {
 
         return {
             dials_by_ft = {
-                markdown = 'markup',
-                tex = 'markup',
+                markdown = 'markdown',
             },
             groups = {
                 --stylua: ignore
@@ -142,18 +141,12 @@ return {
                     augend.constant.new({ elements = { 'true', 'false' }, preserve_case = true }),
                     augend.constant.alias.alpha,
                     augend.constant.alias.Alpha,
-                    augend.constant.new({ elements = { '&&', '||' }, word = false }),
-                    augend.constant.new({ elements = { 'and', 'or' }, preserve_case = true}),
                     numerals,
                     int_ordinals,
                 },
-                markup = {
+                markdown = {
                     augend.constant.new({ elements = { '[ ]', '[x]' }, word = false }),
                     augend.misc.alias.markdown_header,
-                    augend.constant.new({ elements = { 'forall', 'exists' } }),
-                    augend.constant.new({ elements = { 'land', 'lor' } }),
-                    augend.constant.new({ elements = { 'cup', 'cap' } }),
-                    augend.constant.new({ elements = { 'bigcup', 'bigcap' } }),
                 },
             },
         }
