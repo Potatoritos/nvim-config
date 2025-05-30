@@ -121,6 +121,7 @@ return {
                         ['<Leader>f'] = { 'flash' },
                     },
                 },
+                wo = {},
             },
             actions = {
                 flash = function(picker)

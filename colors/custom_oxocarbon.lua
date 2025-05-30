@@ -10,6 +10,7 @@ end
 
 local colors = {
     bg = '#161616',
+    bg_diff = '#202020',
     bg_light = '#262626',
     bg_lighter = '#393939',
     bg_lightest = '#525252',
@@ -317,30 +318,29 @@ hl('Added', { fg = colors.cyan_dark })
 hl('DiffAdd', { fg = colors.cyan_dark })
 hl('GitSignsAdd', { link = 'DiffAdd' })
 hl('GitSignsStagedAdd', { link = 'GitSignsAdd' })
-hl('MiniDiffSignAdd', { fg = colors.secondary.cyan_dark, bold = true })
+hl('MiniDiffSignAdd', { fg = colors.secondary.cyan, bold = true })
 hl('MiniDiffOverAdd', { bg = colors.bg_cyan_dark })
 
-hl('DiffText', { bg = colors.bg_pink })
-
-hl('Changed', { fg = colors.pink })
-hl('DiffChange', { fg = colors.pink })
+hl('DiffText', { fg = colors.secondary.azure, bg = colors.bg_lighter, bold = true })
+hl('Changed', { fg = colors.azure })
+hl('DiffChange', { fg = colors.azure })
 hl('GitSignsChange', { link = 'DiffChange' })
 hl('GitSignsChangedelete', { link = 'GitSignsChange' })
 hl('GitSignsStagedChange', { link = 'GitSignsChange' })
-hl('MiniDiffSignChange', { fg = colors.secondary.pink, bold = true })
+hl('MiniDiffSignChange', { fg = colors.secondary.azure, bold = true })
 hl('MiniDiffOverChange', { link = 'DiffText' })
-hl('MiniDiffOverContext', { bg = colors.bg_light })
+hl('MiniDiffOverChangeBuf', { bg = colors.bg_lighter })
+hl('MiniDiffOverContext', { fg = colors.secondary.azure, bg = colors.bg_diff })
 hl('MiniDiffOverContextBuf', {})
-hl('MiniDiffOverChangeBuf', { link = 'DiffText' })
 
-hl('Removed', { fg = colors.fg })
-hl('DiffDelete', { fg = colors.fg })
+hl('Removed', { fg = colors.pink })
+hl('DiffDelete', { fg = colors.pink })
 hl('GitSignsDelete', { link = 'DiffDelete' })
 hl('GitSignsStagedDelete', { link = 'GitSignsDelete' })
 hl('GitSignsStagedChangedelete', { link = 'GitSignsDelete' })
 hl('GitSignsStagedTopdelete', { link = 'GitSignsDelete' })
-hl('MiniDiffSignDelete', { fg = colors.bg_lightest, bold = true })
-hl('MiniDiffOverDelete', { bg = colors.bg_light })
+hl('MiniDiffSignDelete', { fg = colors.secondary.pink, bold = true })
+hl('MiniDiffOverDelete', { fg = colors.secondary.pink, bg = colors.bg_diff })
 
 hl('GitSignsUntracked', { link = 'GitSignsAdd' })
 hl('GitSignsStagedUntracked', { link = 'GitSignsAdd' })

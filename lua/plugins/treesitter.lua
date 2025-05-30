@@ -4,7 +4,7 @@ return {
     branch = 'main',
     build = ':TSUpdate',
     config = function()
-        local ensure_installed = {
+        require('nvim-treesitter').install({
             'asm',
             'bash',
             'c',
@@ -39,13 +39,6 @@ return {
             'xcompose',
             'xml',
             'yaml',
-        }
-        local already_installed = require('nvim-treesitter.config').installed_parsers()
-        local to_install = vim.iter(ensure_installed)
-            :filter(function(parser)
-                return not vim.tbl_contains(already_installed, parser)
-            end)
-            :totable()
-        require('nvim-treesitter').install(to_install)
+        })
     end,
 }
