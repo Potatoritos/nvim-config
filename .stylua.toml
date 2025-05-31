@@ -1,3 +1,5 @@
 syntax = "LuaJIT"
 indent_type = "Spaces"
 quote_style = "AutoPreferSingle"
+collapse_simple_statement = "FunctionOnly"
+column_width = 100

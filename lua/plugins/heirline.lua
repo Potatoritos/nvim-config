@@ -12,19 +12,12 @@ local function config()
         end
         return {
             normal_fg = hl('StatusNormal').fg,
-            normal_bg = hl('StatusNormal').bg,
             insert_fg = hl('StatusInsert').fg,
-            insert_bg = hl('StatusInsert').bg,
             visual_fg = hl('StatusVisual').fg,
-            visual_bg = hl('StatusVisual').bg,
             command_fg = hl('StatusCommand').fg,
-            command_bg = hl('StatusCommand').bg,
             select_fg = hl('StatusSelect').fg,
-            select_bg = hl('StatusSelect').bg,
             replace_fg = hl('StatusReplace').fg,
-            replace_bg = hl('StatusReplace').bg,
             terminal_fg = hl('StatusTerminal').fg,
-            terminal_bg = hl('StatusTerminal').bg,
             fg_secondary = hl('NonText').fg,
             fg = hl('StatusLine').fg,
             bg = hl('StatusLine').bg,
@@ -40,16 +33,12 @@ local function config()
     end
 
     local window_number = {
-        init = function(self)
-            self.number = vim.api.nvim_win_get_number(0)
-        end,
+        init = function(self) self.number = vim.api.nvim_win_get_number(0) end,
         condition = conditions.is_not_active,
-        provider = function(self)
-            return '--' .. self.number .. '--'
-        end,
+        provider = function(self) return '--' .. self.number .. '--' end,
         hl = {
             fg = 'normal_fg',
-            bg = 'normal_bg',
+            bg = 'bg',
             bold = true,
         },
     }
@@ -60,65 +49,22 @@ local function config()
         })
     end
 
-    local function not_file()
-        return conditions.buffer_matches({
-            buftype = { 'nofile' },
-        })
-    end
-
-    local function not_file_tree()
-        return not conditions.buffer_matches({
-            filetype = { 'snacks_layout_box' },
-        })
-    end
-
-    local vi_mode_update = {
-        'ModeChanged',
-        pattern = '*:*',
-        callback = vim.schedule_wrap(function()
-            vim.cmd('redrawstatus')
-        end),
-    }
-
     local vi_mode = {
-        init = function(self)
-            self.mode = vim.fn.mode(1)
-        end,
+        init = function(self) self.mode = vim.fn.mode(1) end,
         condition = conditions.is_active,
+        update = { 'ModeChanged' },
         static = {
             mode_names = {
                 n = 'N',
-                no = 'N',
-                nov = 'N',
-                noV = 'N',
-                ['no\22'] = 'N',
-                niI = 'N',
-                niR = 'N',
-                niV = 'N',
-                nt = 'N',
                 v = 'V',
-                vs = 'V',
                 V = 'V',
-                Vs = 'V',
                 ['\22'] = 'V',
-                ['\22s'] = 'V',
                 s = 'S',
-                S = 'S',
                 ['\19'] = 'S',
                 i = 'I',
-                ic = 'I',
-                ix = 'I',
                 R = 'R',
-                Rc = 'R',
-                Rx = 'R',
-                Rv = 'R',
-                Rvc = 'R',
-                Rvx = 'R',
                 c = 'C',
-                cv = 'X',
                 r = '-',
-                rm = '-',
-                ['r?'] = '?',
                 ['!'] = '!',
                 t = 'T',
             },
@@ -134,111 +80,80 @@ local function config()
                 t = 'terminal',
             },
         },
-        {
-            update = vi_mode_update,
-            provider = function(self)
-                return '--' .. self.mode_names[self.mode] .. '--'
-            end,
-        },
+        provider = function(self) return '--' .. self.mode_names[self.mode:sub(1, 1)] .. '--' end,
         hl = function(self)
             local color = self.mode_colors[self.mode:sub(1, 1):lower()]
             if color == nil then
                 return { fg = 'fg', bg = 'bg' }
             end
-            return { fg = color .. '_fg', bg = color .. '_bg', bold = true }
+            return { fg = color .. '_fg', bg = 'bg', bold = true }
         end,
     }
 
     local align = {
-        provider = '%=',
+        provider = ' %= ',
     }
 
     local file_icon = {
         init = function(self)
-            local filename = self.filename
-            if vim.bo.filetype == 'snacks_terminal' then
-                self.icon, self.icon_hl = require('mini.icons').get('filetype', vim.bo.filetype)
-            else
-                self.icon, self.icon_hl = require('mini.icons').get('file', filename)
+            local icon, hl, is_default = require('mini.icons').get('file', self.filename)
+            if is_default then
+                icon, hl, is_default = require('mini.icons').get('filetype', vim.bo.filetype)
+                if is_default and vim.bo.buftype == 'terminal' then
+                    icon, hl = '', 'MiniIconsPurple'
+                end
             end
-        end,
-        provider = function(self)
-            return ' ' .. self.icon
-        end,
-        hl = function(self)
-            return { fg = utils.get_highlight(self.icon_hl).fg, bg = 'bg' }
-        end,
-    }
 
-    local split_filename = function(filename)
-        if filename == '' then
-            return { left = ' ', right = '[No Name]' }
-        end
-
-        local index = filename:find('/[^/]*$')
-        if index == nil then
-            index = 0
-        end
-        return {
-            left = ' ' .. filename:sub(1, index),
-            right = filename:sub(index + 1),
-        }
-    end
-
-    local file_name_inner = {
-        {
-            provider = function(self)
-                return self.split.left
-            end,
-            hl = { fg = 'fg_secondary', bg = 'bg' },
-        },
-        {
-            provider = function(self)
-                return self.split.right
-            end,
-            hl = { fg = 'fg', bg = 'bg' },
-        },
+            self.icon, self.icon_hl = icon, hl
+        end,
+        provider = function(self) return ' ' .. self.icon end,
+        hl = function(self) return { fg = utils.get_highlight(self.icon_hl).fg, bg = 'bg' } end,
     }
 
     local file_name = {
         init = function(self)
-            self.lfilename = vim.fn.fnamemodify(self.filename, ':.')
+            if self.filename == '' then
+                self.file, self.directory = '[No Name]', ''
+                return
+            end
+            local filename = vim.fn.fnamemodify(self.filename, ':~:.')
+
+            if filename:match('^oil://') then
+                filename = vim.fn.fnamemodify(filename:sub(7), ':~')
+            end
+
+            local index = filename:find('/[^/]*/?$') or 0
+
+            self.directory = filename:sub(1, index)
+            self.file = filename:sub(index + 1)
         end,
-        flexible = 2,
+        hl = { fg = 'fg', bg = 'bg' },
+        { provider = ' ' },
         {
-            init = function(self)
-                self.split = split_filename(self.lfilename)
-            end,
-            unpack(file_name_inner),
+            flexible = 2,
+            { provider = function(self) return self.directory end },
+            { provider = function(self) return vim.fn.pathshorten(self.directory) end },
+            hl = { fg = 'fg_secondary' },
         },
         {
-            init = function(self)
-                self.split = split_filename(vim.fn.pathshorten(self.lfilename))
-            end,
-            unpack(file_name_inner),
+            provider = function(self) return self.file end,
         },
     }
 
     local file_flags = {
         hl = { fg = 'fg', bg = 'bg' },
         {
-            condition = function()
-                return vim.bo.modified
-            end,
+            condition = function() return vim.bo.modified end,
             provider = ' ' .. SYMBOLS.changed,
         },
         {
-            condition = function()
-                return not vim.bo.modifiable or vim.bo.readonly
-            end,
+            condition = function() return not vim.bo.modifiable or vim.bo.readonly end,
             provider = ' ' .. SYMBOLS.readonly,
         },
     }
 
     local file_name_block = {
-        init = function(self)
-            self.filename = vim.api.nvim_buf_get_name(0)
-        end,
+        init = function(self) self.filename = vim.api.nvim_buf_get_name(0) end,
         condition = is_file,
         file_icon,
         file_name,
@@ -274,10 +189,7 @@ local function config()
     }
 
     local git_changes = {
-        condition = function()
-            return vim.b.minidiff_summary ~= nil
-        end,
-        -- update = { 'User', pattern = 'MiniDiffUpdated' },
+        condition = function() return vim.b.minidiff_summary ~= nil end,
         hl = { bold = true, bg = 'bg' },
         {
             provider = function(self)
@@ -304,13 +216,11 @@ local function config()
 
     local position = {
         provider = ' %6(%l:%c%) ',
-        condition = not_file_tree,
         hl = { fg = 'fg', bg = 'bg' },
     }
 
     local ruler = {
         provider = ' %P ',
-        condition = not_file_tree,
         hl = { fg = 'ruler', bg = 'bg', bold = true },
     }
 
@@ -339,15 +249,11 @@ local function config()
             hl = { fg = 'warn' },
         },
         {
-            provider = function(self)
-                return self.info > 0 and (SYMBOLS.info .. self.info .. ' ')
-            end,
+            provider = function(self) return self.info > 0 and (SYMBOLS.info .. self.info .. ' ') end,
             hl = { fg = 'info' },
         },
         {
-            provider = function(self)
-                return self.hints > 0 and (SYMBOLS.hint .. self.hints .. ' ')
-            end,
+            provider = function(self) return self.hints > 0 and (SYMBOLS.hint .. self.hints .. ' ') end,
             hl = { fg = 'hint' },
         },
     }
@@ -389,9 +295,7 @@ local function config()
             self.icon, self.icon_hl = require('mini.icons').get('file', filename)
         end,
         {
-            provider = function(self)
-                return ' ' .. self.tabnr .. ' '
-            end,
+            provider = function(self) return ' ' .. self.tabnr .. ' ' end,
             hl = { bold = true },
         },
         {
@@ -417,9 +321,7 @@ local function config()
     }
 
     local tabline = {
-        condition = function()
-            return #vim.api.nvim_list_tabpages() >= 2
-        end,
+        condition = function() return #vim.api.nvim_list_tabpages() >= 2 end,
         utils.make_tablist(tabpage),
     }
 
@@ -432,7 +334,7 @@ local function config()
             git_changes,
             align,
             diagnostics,
-            lsp_active,
+            -- lsp_active,
             git_branch,
             file_encoding,
             position,
@@ -445,9 +347,7 @@ local function config()
     })
     vim.api.nvim_create_augroup('Heirline', { clear = true })
     vim.api.nvim_create_autocmd('ColorScheme', {
-        callback = function()
-            utils.on_colorscheme(setup_colors)
-        end,
+        callback = function() utils.on_colorscheme(setup_colors) end,
         group = 'Heirline',
     })
 end

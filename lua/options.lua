@@ -101,9 +101,7 @@ vim.o.winborder = 'rounded'
 vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'Highlight on yank',
     group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
-    callback = function()
-        vim.highlight.on_yank({ higroup = 'Visual' })
-    end,
+    callback = function() vim.highlight.on_yank({ higroup = 'Visual' }) end,
 })
 
 vim.api.nvim_create_autocmd('TabEnter', {

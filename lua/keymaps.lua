@@ -1,8 +1,10 @@
 vim.keymap.set('t', '<C-Space>', '<C-\\><C-n>', { desc = 'Escape terminal' })
-
 vim.keymap.set('n', '<Esc>', '<Cmd>nohlsearch<CR>', { desc = 'Clear highlights' })
-
 vim.keymap.set('n', '<Leader>w', '<Cmd>update<CR>', { desc = 'Save' })
+
+vim.keymap.set('n', '<Leader>S', function()
+    vim.o.spell = not vim.o.spell
+end, { desc = 'Toggle spellcheck', buffer = true })
 
 vim.keymap.set('n', '<Leader>h', function()
     vim.lsp.inlay_hint.enable(vim.lsp.inlay_hint.is_enabled())

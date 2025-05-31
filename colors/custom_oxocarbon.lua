@@ -277,6 +277,11 @@ hl('@lsp.typemod.delim.math.typst', { link = 'Delimiter' })
 hl('LspSignatureActiveParameter', { bg = colors.bg_lighter })
 hl('LspInlayHint', { bg = colors.bg_light, fg = colors.fg_dark })
 
+hl('SpellBad', { sp = colors.pink_dark, undercurl = true })
+hl('SpellCap', { sp = colors.purple, undercurl = true })
+hl('SpellLocal', { sp = colors.cyan_dark, undercurl = true })
+hl('SpellRare', { sp = colors.azure, undercurl = true })
+
 hl('Error', { fg = colors.pink_dark })
 
 hl('ErrorMsg', { fg = colors.pink_dark })
@@ -408,11 +413,12 @@ hl('SnacksPickerIconStruct', { link = 'BlinkCmpKindStruct' })
 hl('SnacksPickerIconTypeParameter', { link = 'BlinkCmpKindTypeParameter' })
 hl('SnacksPickerMatch', { fg = colors.pink, bold = true })
 
-hl('RenderMarkdownInlineHighlight', { fg = colors.blue, bg = colors.secondary.bg })
+hl('RenderMarkdownInlineHighlight', { bg = colors.bg_pink })
+hl('RenderMarkdownQuote', { fg = colors.bg_lightest })
 
 hl('@markup.heading.1.markdown', { fg = colors.pink, bold = true })
 hl('@markup.heading.2.markdown', { fg = colors.cyan_dark, bold = true })
-hl('@markup.heading.3.markdown', { fg = colors.blue, bold = true })
+hl('@markup.heading.3.markdown', { fg = colors.azure, bold = true })
 hl('@markup.heading.4.markdown', { link = '@markup.heading.3.markdown' })
 hl('@markup.heading.5.markdown', { link = '@markup.heading.3.markdown' })
 hl('@markup.heading.6.markdown', { link = '@markup.heading.3.markdown' })

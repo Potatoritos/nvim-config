@@ -100,14 +100,6 @@ return {
                 },
             },
         },
-        -- input = {
-        --     win = {
-        --         keys = {
-        --             n_esc = { '<Esc>', { 'cancel' }, mode = 'n', expr = true },
-        --             i_esc = { '<Esc>', '<Esc>', mode = 'i', expr = true },
-        --         },
-        --     },
-        -- },
         lazygit = {},
         picker = {
             layout = {
@@ -154,7 +146,6 @@ return {
                 kinds = KIND_ICONS,
             },
         },
-        scratch = {},
         terminal = {
             win = {
                 wo = {

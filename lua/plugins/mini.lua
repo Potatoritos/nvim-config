@@ -88,12 +88,8 @@ return {
             },
         })
 
-        vim.keymap.set('n', 'gss', function()
-            return 'gs_'
-        end, { expr = true, remap = true })
-        vim.keymap.set('n', 'gS', function()
-            return 'gs$'
-        end, { expr = true, remap = true })
+        vim.keymap.set('n', 'gss', function() return 'gs_' end, { expr = true, remap = true })
+        vim.keymap.set('n', 'gS', function() return 'gs$' end, { expr = true, remap = true })
 
         require('mini.icons').setup({
             default = {},
@@ -105,9 +101,6 @@ return {
             file = {
                 ['README.md'] = { glyph = '󰈈' },
                 ['README.txt'] = { glyph = '󰈈' },
-            },
-            filetype = {
-                snacks_terminal = { glyph = '', hl = 'MiniIconsPurple' },
             },
         })
 
@@ -130,9 +123,7 @@ return {
 
         require('mini.indentscope').setup({
             draw = {
-                predicate = function()
-                    return false
-                end,
+                predicate = function() return false end,
             },
             options = {
                 indent_at_cursor = false,
@@ -155,15 +146,21 @@ return {
             },
         })
 
-        vim.keymap.set('n', '<Leader>gh', function()
-            MiniDiff.toggle_overlay(0)
-        end, { desc = 'Toggle hunk overlay' })
+        vim.keymap.set(
+            'n',
+            '<Leader>gh',
+            function() MiniDiff.toggle_overlay(0) end,
+            { desc = 'Toggle hunk overlay' }
+        )
 
         require('mini.git').setup()
 
-        vim.keymap.set('n', '<Leader>gi', function()
-            MiniGit.show_at_cursor()
-        end, { desc = 'Show git data at cursor' })
+        vim.keymap.set(
+            'n',
+            '<Leader>gi',
+            function() MiniGit.show_at_cursor() end,
+            { desc = 'Show git data at cursor' }
+        )
 
         local clue = require('mini.clue')
         clue.setup({
@@ -212,15 +209,21 @@ return {
 
         require('mini.sessions').setup()
 
-        vim.keymap.set('n', '<Leader>rl', function()
-            MiniSessions.read(MiniSessions.get_latest())
-        end, { desc = 'Restore latest session' })
+        vim.keymap.set(
+            'n',
+            '<Leader>rl',
+            function() MiniSessions.read(MiniSessions.get_latest()) end,
+            { desc = 'Restore latest session' }
+        )
 
         vim.keymap.set('n', '<Leader>re', MiniSessions.select, { desc = 'Restore session' })
 
-        vim.keymap.set('n', '<Leader>rd', function()
-            MiniSessions.delete(nil, { force = true })
-        end, { desc = 'Delete current session' })
+        vim.keymap.set(
+            'n',
+            '<Leader>rd',
+            function() MiniSessions.delete(nil, { force = true }) end,
+            { desc = 'Delete current session' }
+        )
 
         vim.keymap.set('n', '<Leader>rw', function()
             vim.ui.input({ prompt = 'Session name: ' }, function(input)

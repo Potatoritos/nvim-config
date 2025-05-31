@@ -33,16 +33,11 @@ return {
                 'snippets',
                 'buffer',
                 'lazydev',
-                'markdown',
             },
             transform_items = function(_, items)
                 return items
             end,
             providers = {
-                markdown = {
-                    name = 'RenderMarkdown',
-                    module = 'render-markdown.integ.blink',
-                },
                 snippets = {
                     score_offset = 1000,
                     max_items = 1,

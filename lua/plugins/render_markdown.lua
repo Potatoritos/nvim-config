@@ -40,5 +40,9 @@ return {
                 icon = '',
             },
         },
+        quote = {
+            icon = '▌',
+        },
+        completions = { lsp = { enabled = true } },
     },
 }
