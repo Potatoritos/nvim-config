@@ -4,16 +4,14 @@ end
 
 vim.g.colors_name = 'custom_oxocarbon'
 
-local hl = function(group, opts)
-    vim.api.nvim_set_hl(0, group, opts)
-end
+local hl = function(group, opts) vim.api.nvim_set_hl(0, group, opts) end
 
 local colors = {
     bg = '#161616',
     bg_diff = '#202020',
     bg_light = '#262626',
     bg_lighter = '#393939',
-    bg_lightest = '#525252',
+    bg_lightest = '#515156', -- #343a40
     fg_dark = '#6d6e78',
     fg = '#b3bbc4',
     fg_light = '#dde1e6',
@@ -24,7 +22,7 @@ local colors = {
     blue_light = '#82cfff',
     pink = '#ff7eb6',
     pink_dark = '#ee5396',
-    green = '#42be65', -- '#3c6e71',
+    green = '#20c997',
     purple = '#be95ff',
     secondary = {
         fg = '#696e73',
@@ -35,12 +33,12 @@ local colors = {
         blue = '#466396',
         purple = '#6f5796',
         azure = '#216896',
+        green = '#197658',
     },
     bg_cyan_dark = '#153332',
+    bg_green = '#17362a',
     bg_pink = '#5c2f42',
     orange = '#f58549',
-    -- ##5D737E
-    -- #6969B3
 }
 -- colors = {
 --     bg = '#ffffff',
@@ -94,7 +92,7 @@ hl('TabLineFill', { link = 'TabLine' })
 hl('TabLineSel', { link = 'TabLine' })
 
 hl('VertSplit', { fg = colors.bg_light, bg = colors.bg })
-hl('WinSeparator', { fg = colors.bg_lighter, bg = colors.bg })
+hl('WinSeparator', { fg = colors.bg_light, bg = colors.bg })
 
 hl('Folded', { fg = colors.bg_lightest, bg = colors.bg })
 hl('FoldColumn', { fg = colors.fg_dark, bg = colors.bg })
@@ -105,7 +103,7 @@ hl('Pmenu', { link = 'Normal' })
 hl('PmenuSel', { bg = colors.bg_light })
 hl('PmenuSbar', { bg = colors.bg_light })
 hl('PmenuThumb', { bg = colors.bg_lighter })
-hl('SpecialKey', { fg = colors.fg_dark, bg = colors.bg_lighter })
+hl('SpecialKey', { fg = colors.fg_dark, bg = colors.bg_light })
 
 hl('WildMenu', { fg = colors.cyan, bg = colors.bg })
 
@@ -118,7 +116,7 @@ hl('Visual', { bg = colors.bg_lighter })
 hl('VisualNOS', { link = 'Visual' })
 hl('SnippetTabStop', { bg = colors.bg_lighter })
 
-hl('Directory', { fg = colors.cyan })
+hl('Directory', { fg = colors.azure })
 hl('EndOfBuffer', { fg = colors.bg_lighter })
 
 hl('TooLong', { bg = colors.bg_lighter })
@@ -132,7 +130,7 @@ hl('NonText', { fg = colors.fg_dark })
 hl('Title', { fg = colors.fg })
 
 hl('Macro', { fg = colors.cyan_dark })
-hl('Boolean', { fg = colors.blue })
+hl('Boolean', { fg = colors.blue, italic = true })
 hl('Character', { fg = colors.purple })
 hl('Comment', { fg = colors.fg_dark })
 hl('Conceal', {})
@@ -201,13 +199,14 @@ hl('@property', { fg = colors.fg })
 hl('@variable', { fg = colors.fg })
 hl('@variable.builtin', { fg = colors.fg })
 hl('@constant', { fg = colors.purple })
-hl('@constant.builtin', { fg = colors.cyan_dark })
+hl('@constant.builtin', { fg = colors.cyan_dark, italic = true })
+hl('@constant.builtin.rust', { fg = colors.cyan_dark })
 hl('@constant.macro', { fg = colors.cyan_dark })
 hl('@namespace', { fg = colors.cyan_dark })
 hl('@symbol', { fg = colors.blue_light, bold = true })
 hl('@text', { fg = colors.fg })
-hl('@text.strong', {})
-hl('@text.emphasis', { bold = true })
+hl('@text.strong', { bold = true })
+hl('@text.emphasis', { italic = true })
 hl('@text.underline', { underline = true })
 hl('@text.strike', { strikethrough = true })
 hl('@text.title', {})
@@ -235,7 +234,7 @@ hl('@lsp.type.boolean', { link = '@boolean' })
 hl('@lsp.type.builtinType', { link = '@type.builtin' })
 hl('@lsp.type.comment', { link = '@comment' })
 hl('@lsp.type.enum', { link = '@type' })
-hl('@lsp.type.enumMember', { link = '@constant' })
+hl('@lsp.type.enumMember', { fg = colors.cyan_dark })
 hl('@lsp.type.escapeSequence', { link = '@string.escape' })
 hl('@lsp.type.formatSpecifier', { link = '@punctuation.special' })
 hl('@lsp.type.keyword', { link = '@keyword' })
@@ -256,7 +255,7 @@ hl('@lsp.mod.builtin', { link = 'Special' })
 hl('@lsp.typemod.class.defaultLibrary', { link = '@type.builtin' })
 hl('@lsp.typemod.class.defaultLibrary.cpp', {})
 hl('@lsp.typemod.enum.defaultLibrary', { link = '@type.builtin' })
-hl('@lsp.typemod.enumMember.defaultLibrary', { link = '@constant.builtin' })
+-- hl('@lsp.typemod.enumMember.defaultLibrary', { fg = colors.cyan_dark })
 hl('@lsp.typemod.function.defaultLibrary', { link = '@function.builtin' })
 hl('@lsp.typemod.keyword.async', { link = '@keyword.coroutine' })
 hl('@lsp.typemod.macro.defaultLibrary', { link = '@function.builtin' })
@@ -273,6 +272,7 @@ hl('@lsp.typemod.function.readonly', { link = '@method' })
 hl('@lsp.typemod.variable.defaultLibrary', { link = '@variable.builtin' })
 hl('@lsp.typemod.variable.injected', { link = '@variable' })
 hl('@lsp.typemod.delim.math.typst', { link = 'Delimiter' })
+hl('@lsp.typemod.selfKeyword', { italic = true })
 
 hl('LspSignatureActiveParameter', { bg = colors.bg_lighter })
 hl('LspInlayHint', { bg = colors.bg_light, fg = colors.fg_dark })
@@ -422,12 +422,6 @@ hl('@markup.heading.3.markdown', { fg = colors.azure, bold = true })
 hl('@markup.heading.4.markdown', { link = '@markup.heading.3.markdown' })
 hl('@markup.heading.5.markdown', { link = '@markup.heading.3.markdown' })
 hl('@markup.heading.6.markdown', { link = '@markup.heading.3.markdown' })
--- hl('RenderMarkdownH1Bg', { bg = colors.bg_pink_dark })
--- hl('RenderMarkdownH2Bg', { bg = colors.bg_cyan_dark })
--- hl('RenderMarkdownH3Bg', { bg = colors.bg_blue })
--- hl('RenderMarkdownH4Bg', { link = 'RenderMarkdownH3Bg' })
--- hl('RenderMarkdownH5Bg', { link = 'RenderMarkdownH3Bg' })
--- hl('RenderMarkdownH6Bg', { link = 'RenderMarkdownH3Bg' })
 
 hl('RenderMarkdownTableHead', { fg = colors.bg_lightest })
 hl('RenderMarkdownTableRow', { fg = colors.bg_lightest })
@@ -463,7 +457,7 @@ hl('MiniIconsAzure', { fg = colors.azure, bold = true })
 hl('MiniIconsBlue', { fg = colors.blue, bold = true })
 hl('MiniIconsCyan', { fg = colors.cyan_dark, bold = true })
 hl('MiniIconsGreen', { fg = colors.green, bold = true })
-hl('MiniIconsGrey', { fg = colors.fg_dark, bold = true })
+hl('MiniIconsGrey', { fg = colors.fg, bold = true })
 hl('MiniIconsOrange', { fg = colors.orange, bold = true })
 hl('MiniIconsPurple', { fg = colors.purple, bold = true })
 hl('MiniIconsRed', { fg = colors.pink, bold = true })

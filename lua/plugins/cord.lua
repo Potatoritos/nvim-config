@@ -11,9 +11,7 @@ return {
         text = {
             viewing = 'Viewing text',
             editing = 'Editing text',
-            workspace = function(opts)
-                return 'Workspace: ' .. opts.workspace
-            end,
+            workspace = function(opts) return 'Workspace: ' .. opts.workspace end,
         },
         advanced = {
             plugin = {

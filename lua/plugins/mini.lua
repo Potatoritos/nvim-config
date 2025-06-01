@@ -97,6 +97,7 @@ return {
                 typ = { glyph = '' },
                 cpp = { glyph = '' },
                 c = { glyph = '' },
+                md = { glyph = '' },
             },
             file = {
                 ['README.md'] = { glyph = '󰈈' },

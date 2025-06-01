@@ -77,7 +77,6 @@ return {
         { '<leader>lw', function() Snacks.picker.lsp_workspace_symbols({ live = false }) end, desc = 'Workspace symbols (static)' },
         { '<leader>lW', function() Snacks.picker.lsp_workspace_symbols() end, desc = 'Workspace symbols (live)' },
         { '<Leader>T', function() Snacks.explorer() end, desc = 'Toggle file tree' },
-        { '<Leader>S', function() Snacks.scratch() end, desc = 'Toggle scratch buffer' },
         { '<F3>', function() Snacks.terminal.toggle() end, desc = 'Toggle terminal', mode = { 'n', 't' } },
         { '<F7>', function() Snacks.lazygit() end, desc = 'Lazygit', mode = { 'n', 't' } },
         { '<Leader>gx', function() Snacks.gitbrowse.open() end, desc = 'Open repo in browser' },
@@ -92,11 +91,19 @@ return {
                 conceal = false,
             },
             math = {
-                enabled = false,
+                enabled = true,
             },
             convert = {
                 magick = {
-                    vector = { '-density', 192, '{src}[0]', '-background', 'none', '-transparent', 'white' },
+                    vector = {
+                        '-density',
+                        192,
+                        '{src}[0]',
+                        '-background',
+                        'none',
+                        '-transparent',
+                        'white',
+                    },
                 },
             },
         },
@@ -124,7 +131,8 @@ return {
                             mode = 'search',
                             exclude = {
                                 function(win)
-                                    return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= 'snacks_picker_list'
+                                    return vim.bo[vim.api.nvim_win_get_buf(win)].filetype
+                                        ~= 'snacks_picker_list'
                                 end,
                             },
                         },

@@ -62,7 +62,7 @@ vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldtext = ''
 vim.opt.foldcolumn = '0'
-vim.opt.fillchars:append({ fold = '·', vert = '+' })
+vim.opt.fillchars:append({ fold = '·', vert = '%' })
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'Set LSP folding if supported',
     group = vim.api.nvim_create_augroup('lsp-folding', { clear = true }),

@@ -2,17 +2,25 @@ vim.keymap.set('t', '<C-Space>', '<C-\\><C-n>', { desc = 'Escape terminal' })
 vim.keymap.set('n', '<Esc>', '<Cmd>nohlsearch<CR>', { desc = 'Clear highlights' })
 vim.keymap.set('n', '<Leader>w', '<Cmd>update<CR>', { desc = 'Save' })
 
+local function enabled_status(s, enabled)
+    vim.api.nvim_echo({ { ('%s: %s'):format(s, enabled and 'on' or 'off') } }, false, {})
+end
+
 vim.keymap.set('n', '<Leader>S', function()
     vim.o.spell = not vim.o.spell
-end, { desc = 'Toggle spellcheck', buffer = true })
+    enabled_status('Spellcheck', vim.o.spell)
+end, { desc = 'Toggle spellcheck' })
 
 vim.keymap.set('n', '<Leader>h', function()
-    vim.lsp.inlay_hint.enable(vim.lsp.inlay_hint.is_enabled())
+    local enabled = not vim.lsp.inlay_hint.is_enabled()
+    vim.lsp.inlay_hint.enable(enabled)
+    enabled_status('Inlay hints', enabled)
 end, { desc = 'Toggle inlay hints' })
 
 vim.keymap.set('n', '<Leader>d', function()
-    local virtual_lines = not vim.diagnostic.config().virtual_lines
-    vim.diagnostic.config({ virtual_lines = virtual_lines })
+    local enabled = not vim.diagnostic.config().virtual_lines
+    vim.diagnostic.config({ virtual_lines = enabled })
+    enabled_status('Diagnostic virtual lines', enabled)
 end, { desc = 'Toggle diagnostic virtual lines' })
 
 vim.keymap.set('n', '<Leader>C', function()
@@ -21,6 +29,7 @@ vim.keymap.set('n', '<Leader>C', function()
     else
         vim.b.completion = not vim.b.completion
     end
+    enabled_status('Completion', vim.b.completion)
 end, { desc = 'Toggle completion' })
 
 -- enable lazyredraw, disable autocmds during macro execution
@@ -33,6 +42,9 @@ vim.keymap.set('n', '@', function()
     vim.opt.lazyredraw = lazyredraw
 end, { noremap = true })
 
-vim.keymap.set('n', '<Leader>st', function()
-    require('templates').insert_template()
-end, { desc = 'Templates' })
+vim.keymap.set(
+    'n',
+    '<Leader>st',
+    function() require('templates').insert_template() end,
+    { desc = 'Templates' }
+)

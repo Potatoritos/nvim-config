@@ -35,7 +35,7 @@ local function config()
     local window_number = {
         init = function(self) self.number = vim.api.nvim_win_get_number(0) end,
         condition = conditions.is_not_active,
-        provider = function(self) return '--' .. self.number .. '--' end,
+        provider = function(self) return ('N(%d)'):format(self.number) end,
         hl = {
             fg = 'normal_fg',
             bg = 'bg',
@@ -80,7 +80,12 @@ local function config()
                 t = 'terminal',
             },
         },
-        provider = function(self) return '--' .. self.mode_names[self.mode:sub(1, 1)] .. '--' end,
+        provider = function(self)
+            return ('%s(%d)'):format(
+                self.mode_names[self.mode:sub(1, 1)],
+                vim.api.nvim_win_get_number(0)
+            )
+        end,
         hl = function(self)
             local color = self.mode_colors[self.mode:sub(1, 1):lower()]
             if color == nil then
@@ -116,13 +121,14 @@ local function config()
                 self.file, self.directory = '[No Name]', ''
                 return
             end
-            local filename = vim.fn.fnamemodify(self.filename, ':~:.')
+            local path = self.filename:match('^oil://') and self.filename:sub(7) or self.filename
+            local filename = vim.fn.fnamemodify(path, ':~:.')
 
-            if filename:match('^oil://') then
-                filename = vim.fn.fnamemodify(filename:sub(7), ':~')
+            if filename == '' then
+                filename = vim.fn.fnamemodify(path, ':~')
             end
 
-            local index = filename:find('/[^/]*/?$') or 0
+            local index = filename:find('/[^/]*$') or 0
 
             self.directory = filename:sub(1, index)
             self.file = filename:sub(index + 1)
@@ -162,13 +168,30 @@ local function config()
 
     local file_encoding = {
         condition = function()
-            local enc = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc
+            local enc = vim.bo.fenc ~= '' and vim.bo.fenc or vim.o.enc
             return enc ~= 'utf-8'
         end,
+        hl = { fg = 'fg', bg = 'bg', italic = true },
+        provider = function() return ' ' .. (vim.bo.fenc ~= '' and vim.bo.fenc or vim.o.enc) .. ' ' end,
+    }
+
+    local word_count = {
+        condition = function()
+            return conditions.buffer_matches({
+                filetype = { 'markdown' },
+            })
+        end,
+        -- update = { 'BufEnter', 'InsertLeave' },
         hl = { fg = 'fg', bg = 'bg' },
         provider = function()
-            return ' ' .. ((vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc) .. ' '
+            local count = vim.fn.wordcount()
+            local mode = vim.fn.mode()
+            if mode == 'v' or mode == 'V' or mode == '\22' then
+                return (' %d/%d words '):format(count.visual_words, count.words)
+            end
+            return (' %d words '):format(count.words)
         end,
+        -- provider = function() return ' ' .. vim.fn.wordcount().words .. ' words ' end,
     }
 
     local git_branch = {
@@ -220,7 +243,21 @@ local function config()
     }
 
     local ruler = {
-        provider = ' %P ',
+        static = {
+            sbar = { '🭶', '🭷', '🭸', '🭹', '🭺', '🭻' },
+        },
+        {
+            provider = ' %P ',
+        },
+        {
+            provider = function(self)
+                local curr_line = vim.api.nvim_win_get_cursor(0)[1]
+                local lines = vim.api.nvim_buf_line_count(0)
+                local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
+                return self.sbar[i]
+            end,
+            hl = { fg = 'ruler', bg = '#5c2f42' },
+        },
         hl = { fg = 'ruler', bg = 'bg', bold = true },
     }
 
@@ -336,6 +373,7 @@ local function config()
             diagnostics,
             -- lsp_active,
             git_branch,
+            word_count,
             file_encoding,
             position,
             ruler,
