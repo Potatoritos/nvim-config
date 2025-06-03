@@ -92,6 +92,9 @@ return {
             },
             math = {
                 enabled = true,
+                latex = {
+                    font_size = 'large',
+                },
             },
             convert = {
                 magick = {
@@ -103,6 +106,16 @@ return {
                         'none',
                         '-transparent',
                         'white',
+                    },
+                    math = {
+                        '-density',
+                        '384',
+                        '{src}[0]',
+                        '-background',
+                        '#161616',
+                        '-alpha',
+                        'remove',
+                        '-trim',
                     },
                 },
             },

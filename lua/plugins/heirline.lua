@@ -189,15 +189,18 @@ local function config()
         end,
         -- update = { 'BufEnter', 'InsertLeave' },
         hl = { fg = 'fg', bg = 'bg' },
-        provider = function()
-            local count = vim.fn.wordcount()
-            local mode = vim.fn.mode()
-            if mode == 'v' or mode == 'V' or mode == '\22' then
-                return (' %d/%d words '):format(count.visual_words, count.words)
-            end
-            return (' %d words '):format(count.words)
-        end,
-        -- provider = function() return ' ' .. vim.fn.wordcount().words .. ' words ' end,
+        flexible = 3,
+        {
+            provider = function()
+                local count = vim.fn.wordcount()
+                local mode = vim.fn.mode()
+                if mode == 'v' or mode == 'V' or mode == '\22' then
+                    return (' %d/%d words '):format(count.visual_words, count.words)
+                end
+                return (' %d words '):format(count.words)
+            end,
+        },
+        { provider = '' },
     }
 
     local git_branch = {
