@@ -4,7 +4,7 @@ SYMBOLS = {
     hint = 'h',
     info = 'i',
     changed = '●',
-    readonly = '',
+    readonly = ' ',
     lsp = '',
     branch = '',
 }

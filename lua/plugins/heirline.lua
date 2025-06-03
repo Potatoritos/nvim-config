@@ -121,9 +121,15 @@ local function config()
                 self.file, self.directory = '[No Name]', ''
                 return
             end
-            local path = self.filename:match('^oil://') and self.filename:sub(7) or self.filename
-            local filename = vim.fn.fnamemodify(path, ':~:.')
 
+            local path = self.filename
+            if path:match('^oil://') then
+                path = path:sub(7)
+            elseif path:match('^term://') then
+                path = path:sub(8)
+            end
+
+            local filename = vim.fn.fnamemodify(path, ':~:.')
             if filename == '' then
                 filename = vim.fn.fnamemodify(path, ':~')
             end
