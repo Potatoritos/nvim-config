@@ -53,8 +53,7 @@ vim.o.wrap = true
 vim.o.linebreak = true
 vim.o.textwidth = 80
 
--- vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
-vim.o.sessionoptions = 'blank,buffers,curdir,help,tabpages,winsize,winpos,terminal'
+vim.o.sessionoptions = 'blank,curdir,help,tabpages,winsize,winpos,terminal'
 
 vim.o.foldenable = true
 vim.o.foldlevel = 99
@@ -153,6 +152,7 @@ vim.api.nvim_create_autocmd('FileType', {
 
 vim.lsp.enable({
     'basedpyright',
+    'bashls',
     'biome',
     'clangd',
     'lua_ls',

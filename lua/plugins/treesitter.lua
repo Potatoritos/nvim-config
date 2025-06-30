@@ -12,8 +12,10 @@ return {
             'cpp',
             'css',
             'csv',
+            'desktop',
             'diff',
             'dockerfile',
+            'fish',
             'gitignore',
             'html',
             'http',
@@ -39,6 +41,7 @@ return {
             'xcompose',
             'xml',
             'yaml',
+            'zathurarc',
         })
     end,
 }

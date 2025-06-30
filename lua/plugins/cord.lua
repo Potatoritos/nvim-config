@@ -17,6 +17,13 @@ return {
             plugin = {
                 cursor_update_mode = 'none',
             },
+            workspace = {
+                root_markers = {
+                    '.moxide.toml',
+                    '.git',
+                },
+                limit_to_cwd = true,
+            },
         },
     },
 }

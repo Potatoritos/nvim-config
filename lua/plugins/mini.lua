@@ -92,16 +92,21 @@ return {
         vim.keymap.set('n', 'gS', function() return 'gs$' end, { expr = true, remap = true })
 
         require('mini.icons').setup({
-            default = {},
-            extension = {
-                typ = { glyph = '' },
-                cpp = { glyph = '' },
-                c = { glyph = '' },
-                md = { glyph = '' },
+            default = {
+                directory = { glyph = '' },
             },
             file = {
                 ['README.md'] = { glyph = '󰈈' },
                 ['README.txt'] = { glyph = '󰈈' },
+            },
+            filetype = {
+                typst = { glyph = '' },
+                cpp = { glyph = '' },
+                c = { glyph = '' },
+                markdown = { glyph = '' },
+                fish = { glyph = '󰈺', hl = 'MiniIconsCyan' },
+                text = { hl = 'MiniIconsGrey' },
+                sh = { hl = 'MiniIconsCyan' },
             },
         })
 
@@ -214,7 +219,7 @@ return {
             'n',
             '<Leader>rl',
             function() MiniSessions.read(MiniSessions.get_latest()) end,
-            { desc = 'Restore latest session' }
+            { desc = 'Restore last session' }
         )
 
         vim.keymap.set('n', '<Leader>re', MiniSessions.select, { desc = 'Restore session' })

@@ -154,7 +154,8 @@ local derivative = function(trig, symbol)
                 spl.left = ''
             end
 
-            return line:sub(1, start - 1) .. ('\\frac{%s}{%s}'):format(symbol .. spl.left, symbol .. spl.right)
+            return line:sub(1, start - 1)
+                .. ('\\frac{%s}{%s}'):format(symbol .. spl.left, symbol .. spl.right)
         end)
     )
 end
@@ -215,7 +216,7 @@ add('bx', '\\boxed{', '}')
 
 add('pr', '\\left(', '\\right)')
 add('br', '\\left[', '\\right]')
-add('set', '\\left\\{', '\\}\\right]')
+add('set', '\\left\\{', '\\right\\}')
 add('ab', '\\left\\lvert{', '}\\right\\rvert')
 add('nr', '\\left\\lVert{', '}\\right\\rVert')
 

@@ -4,9 +4,9 @@ SYMBOLS = {
     hint = 'h',
     info = 'i',
     changed = '●',
-    readonly = ' ',
+    readonly = '[RO]',
     lsp = '',
-    branch = '',
+    branch = '󰘬',
 }
 
 KIND_ICONS = {
