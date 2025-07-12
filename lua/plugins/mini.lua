@@ -10,6 +10,8 @@ return {
                 ['q'] = false,
                 ['f'] = ai.gen_spec.function_call({ name_pattern = '[%w_]' }),
                 ['F'] = ai.gen_spec.function_call(),
+                ['g'] = { '%f[%w_][%w_]+%b<>', '^.-<().*()>$' },
+                ['G'] = { '%f[%w_%.][%w_%.]+%b<>', '^.-<().*()>$' },
                 ['$'] = { '%b$$', '^.().*().$' },
                 ['E'] = { '%$%$\n?().-()\n?%$%$' },
                 ['c'] = { '/%*().-()%*/' },
@@ -85,6 +87,46 @@ return {
                     input = { '"""().-()"""' },
                     output = { left = '"""', right = '"""' },
                 },
+                ['f'] = {
+                    input = { '%f[%w_][%w_]+%b()', '^.-%(().*()%)$' },
+                    output = function()
+                        local name = MiniSurround.user_input('Function name')
+                        if name == nil then
+                            return nil
+                        end
+                        return { left = name .. '(', right = ')' }
+                    end,
+                },
+                ['F'] = {
+                    input = { '%f[%w_%.][%w_%.]+%b()', '^.-%(().*()%)$' },
+                    output = function()
+                        local name = MiniSurround.user_input('Function name')
+                        if name == nil then
+                            return nil
+                        end
+                        return { left = name .. '(', right = ')' }
+                    end,
+                },
+                ['g'] = {
+                    input = { '%f[%w_][%w_]+%b<>', '^.-<().*()>$' },
+                    output = function()
+                        local name = MiniSurround.user_input('Type name')
+                        if name == nil then
+                            return nil
+                        end
+                        return { left = name .. '<', right = '>' }
+                    end,
+                },
+                ['G'] = {
+                    input = { '%f[%w_%.][%w_%.]+%b<>', '^.-<().*()>$' },
+                    output = function()
+                        local name = MiniSurround.user_input('Type name')
+                        if name == nil then
+                            return nil
+                        end
+                        return { left = name .. '<', right = '>' }
+                    end,
+                },
             },
         })
 
@@ -98,6 +140,9 @@ return {
             file = {
                 ['README.md'] = { glyph = '󰈈' },
                 ['README.txt'] = { glyph = '󰈈' },
+            },
+            extension = {
+                h = { glyph = '' },
             },
             filetype = {
                 typst = { glyph = '' },

@@ -5,9 +5,7 @@ return {
     keys = {
         {
             '<Leader>lq',
-            function()
-                require('conform').format({ async = true })
-            end,
+            function() require('conform').format({ async = true }) end,
             mode = 'n',
             desc = 'Format buffer',
         },
@@ -18,6 +16,7 @@ return {
         formatters_by_ft = {
             c = { 'clang-format' },
             cpp = { 'clang-format' },
+            java = { lsp_format = 'prefer' },
             javascript = { 'biome' },
             json = { lsp_format = 'never' },
             lua = { 'stylua' },
@@ -47,7 +46,5 @@ return {
         },
         log_level = vim.log.levels.DEBUG,
     },
-    init = function()
-        vim.o.formatexpr = 'v:lua.require("conform").formatexpr()'
-    end,
+    init = function() vim.o.formatexpr = 'v:lua.require("conform").formatexpr()' end,
 }

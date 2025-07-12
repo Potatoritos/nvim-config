@@ -11,15 +11,11 @@ return {
             ['<C-h>'] = { 'snippet_backward', 'fallback' },
             ['<Tab>'] = { 'select_and_accept', 'fallback' },
             ['<C-u>'] = {
-                function(cmp)
-                    return cmp.scroll_documentation_up(8)
-                end,
+                function(cmp) return cmp.scroll_documentation_up(8) end,
                 'fallback',
             },
             ['<C-d>'] = {
-                function(cmp)
-                    return cmp.scroll_documentation_down(8)
-                end,
+                function(cmp) return cmp.scroll_documentation_down(8) end,
                 'fallback',
             },
             ['<C-n>'] = { 'hide_documentation', 'show_documentation', 'fallback' },
@@ -34,9 +30,7 @@ return {
                 'buffer',
                 'lazydev',
             },
-            transform_items = function(_, items)
-                return items
-            end,
+            transform_items = function(_, items) return items end,
             providers = {
                 snippets = {
                     score_offset = 1000,
@@ -50,10 +44,12 @@ return {
                                 item.score_offset = item.score_offset - 2
                             end
                         end
-                        return vim.tbl_filter(function(item)
-                            return item.kind ~= kind.Snippet
-                        end, items)
+                        return vim.tbl_filter(
+                            function(item) return item.kind ~= kind.Snippet end,
+                            items
+                        )
                     end,
+                    max_items = 1000,
                 },
                 lazydev = {
                     name = 'LazyDev',
@@ -113,9 +109,7 @@ return {
             },
         },
         fuzzy = {
-            max_typos = function(_)
-                return 0
-            end,
+            max_typos = function(_) return 0 end,
             use_frecency = false,
             sorts = {
                 'exact',

@@ -4,10 +4,20 @@ local rules = function()
     local cond = require('nvim-autopairs.conds')
 
     pairs.add_rules({
-        Rule('$', '$', 'typst'):with_move(cond.done()):replace_map_cr(function(_)
-            return '<CR><Esc>O<Tab>'
-        end),
+        Rule('$', '$', 'typst')
+            :with_move(cond.done())
+            :replace_map_cr(function(_) return '<CR><Esc>O<Tab>' end),
     })
+
+    pairs.add_rule(
+        Rule('<', '>', {
+            '-html',
+            '-javascriptreact',
+            '-typescriptreact',
+        }):with_pair(cond.before_regex('%a+%.?:?:?$', 3)):with_move(
+            function(opts) return opts.char == '>' end
+        )
+    )
 
     -- pairs.add_rules({
     --     Rule('$', '$', { 'markdown', 'tex' }):with_move(function(opts)
@@ -47,14 +57,10 @@ local rules = function()
         pairs.add_rules({
             Rule(bracket[1] .. ' ', ' ' .. bracket[2], bracket.filetype)
                 :with_pair(cond.none())
-                :with_move(function(opts)
-                    return opts.char == bracket[2]
-                end)
+                :with_move(function(opts) return opts.char == bracket[2] end)
                 :with_del(cond.none())
                 :use_key(bracket[2])
-                :replace_map_cr(function(_)
-                    return '<C-c>"_2s<CR><C-c>O'
-                end),
+                :replace_map_cr(function(_) return '<C-c>"_2s<CR><C-c>O' end),
         })
     end
 end
@@ -66,9 +72,7 @@ return {
         keys = {
             {
                 '<C-p>',
-                function()
-                    require('nvim-autopairs').toggle()
-                end,
+                function() require('nvim-autopairs').toggle() end,
                 desc = 'Toggle autopairs',
                 mode = { 'i', 'n' },
             },
@@ -78,6 +82,19 @@ return {
                 disable_in_macro = true,
                 ignored_next_char = [=[[%w%%%'%[%"%.%`]]=],
                 enable_bracket_in_quote = false,
+                fast_wrap = {
+                    map = '<C-0>',
+                    chars = { '{', '[', '(', '"', "'" },
+                    pattern = [=[[%'%"%>%]%)%}%,]]=],
+                    end_key = '$',
+                    before_key = 'h',
+                    after_key = 'l',
+                    cursor_pos_before = true,
+                    keys = 'asdfjk;qwertyuiopzxcvbnmhl',
+                    manual_position = true,
+                    highlight = 'Search',
+                    highlight_grey = 'Comment',
+                },
             })
             rules()
         end,

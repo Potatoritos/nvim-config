@@ -1,4 +1,5 @@
 ---@diagnostic disable: undefined-global
 
-return {}
-
+return {
+    s('na', f(function() return vim.fn.expand('%:t:r') end)),
+}

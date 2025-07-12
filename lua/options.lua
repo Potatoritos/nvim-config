@@ -155,6 +155,7 @@ vim.lsp.enable({
     'bashls',
     'biome',
     'clangd',
+    'jdtls',
     'lua_ls',
     'markdown_oxide',
     'tinymist',
