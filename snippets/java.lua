@@ -1,18 +1,18 @@
 ---@diagnostic disable: undefined-global
 
 return {
-    s('pub', t('public ')),
-    s('pri', t('private ')),
-    s('pro', t('protected ')),
-    s('pubf', t('public final ')),
-    s('prif', t('private final ')),
-    s('prof', t('protected final ')),
-    s('pubs', t('public static ')),
-    s('pris', t('private static ')),
-    s('pros', t('protected static ')),
-    s('pubsf', t('public static final ')),
-    s('prisf', t('private static final ')),
-    s('prosf', t('protected static final ')),
+    s('pu', t('public ')),
+    s('pi', t('private ')),
+    s('po', t('protected ')),
+    s('puf', t('public final ')),
+    s('pif', t('private final ')),
+    s('pof', t('protected final ')),
+    s('pus', t('public static ')),
+    s('pis', t('private static ')),
+    s('pos', t('protected static ')),
+    s('pusf', t('public static final ')),
+    s('pisf', t('private static final ')),
+    s('posf', t('protected static final ')),
     s('of', { t('Optional.of('), i(1), t(')') }),
     s('ofn', { t('Optional.ofNullable('), i(1), t(')') }),
     s('emp', { t('Optional.empty()') }),
@@ -44,10 +44,29 @@ return {
         { i(0) }
     ),
     sfmt(
+        'fr',
+        [[
+        for ({}) {{
+            {}
+        }}
+        ]],
+        { i(1), i(0) }
+    ),
+    sfmt(
+        'wl',
+        [[
+        while ({}) {{
+            {}
+        }}
+        ]],
+        { i(1), i(0) }
+    ),
+    sfmt(
         'cla',
         [[
         public class {} {{
             {}
+
             public {}({}) {{
                 {}
             }}

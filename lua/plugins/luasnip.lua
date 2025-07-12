@@ -24,9 +24,7 @@ local greek_letters = {
     { name = 'omega', has_capital = true },
 }
 
-local capitalize = function(str)
-    return str:gsub('^%l', string.upper)
-end
+local capitalize = function(str) return str:gsub('^%l', string.upper) end
 
 local function load_snippets()
     require('luasnip.loaders.from_lua').lazy_load({
@@ -44,9 +42,13 @@ return {
             function()
                 local ls = require('luasnip')
                 if ls.expandable() then
-                    ls.expand()
+                    ls.expand({})
                 else
-                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', false)
+                    vim.api.nvim_feedkeys(
+                        vim.api.nvim_replace_termcodes('<Tab>', true, false, true),
+                        'n',
+                        false
+                    )
                 end
             end,
             mode = 'i',

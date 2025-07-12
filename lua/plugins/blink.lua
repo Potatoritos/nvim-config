@@ -49,7 +49,6 @@ return {
                             items
                         )
                     end,
-                    max_items = 1000,
                 },
                 lazydev = {
                     name = 'LazyDev',
@@ -109,7 +108,7 @@ return {
             },
         },
         fuzzy = {
-            max_typos = function(_) return 0 end,
+            max_typos = function(_) return 1 end,
             use_frecency = false,
             sorts = {
                 'exact',
