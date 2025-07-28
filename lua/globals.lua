@@ -3,10 +3,10 @@ SYMBOLS = {
     warn = 'w',
     hint = 'h',
     info = 'i',
-    changed = '●',
+    changed = '[+]',
     readonly = '[RO]',
     lsp = '',
-    branch = '󰘬',
+    branch = '#', -- '󰘬',
 }
 
 KIND_ICONS = {

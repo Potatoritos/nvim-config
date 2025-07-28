@@ -1,21 +1,19 @@
 ---@diagnostic disable: undefined-global
 
 return {
-    s('pu', t('public ')),
-    s('pi', t('private ')),
-    s('po', t('protected ')),
-    s('puf', t('public final ')),
-    s('pif', t('private final ')),
-    s('pof', t('protected final ')),
-    s('pus', t('public static ')),
-    s('pis', t('private static ')),
-    s('pos', t('protected static ')),
-    s('pusf', t('public static final ')),
-    s('pisf', t('private static final ')),
-    s('posf', t('protected static final ')),
+    s('pf', t('public final ')),
+    s('rf', t('private final ')),
+    s('tf', t('protected final ')),
+    s('ps', t('public static ')),
+    s('rs', t('private static ')),
+    s('ts', t('protected static ')),
+    s('psf', t('public static final ')),
+    s('rsf', t('private static final ')),
+    s('tsf', t('protected static final ')),
     s('of', { t('Optional.of('), i(1), t(')') }),
     s('ofn', { t('Optional.ofNullable('), i(1), t(')') }),
     s('emp', { t('Optional.empty()') }),
+    s('ov', { t({ '@Override', '' }) }),
     sfmt(
         'if',
         [[
@@ -64,7 +62,7 @@ return {
     sfmt(
         'cla',
         [[
-        public class {} {{
+        public final class {} {{
             {}
 
             public {}({}) {{

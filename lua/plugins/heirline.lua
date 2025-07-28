@@ -2,6 +2,28 @@ local function config()
     local conditions = require('heirline.conditions')
     local utils = require('heirline.utils')
 
+    local function subscript(n)
+        local sub = {
+            [0] = '₀',
+            [1] = '₁',
+            [2] = '₂',
+            [3] = '₃',
+            [4] = '₄',
+            [5] = '₅',
+            [6] = '₆',
+            [7] = '₇',
+            [8] = '₈',
+            [9] = '₉',
+        }
+
+        local res = ''
+        for digit in tostring(n):gmatch('.') do
+            res = res .. sub[tonumber(digit)]
+        end
+
+        return res
+    end
+
     local function setup_colors()
         local function hl(name)
             local h = utils.get_highlight(name)
@@ -35,11 +57,11 @@ local function config()
     local window_number = {
         init = function(self) self.number = vim.api.nvim_win_get_number(0) end,
         condition = conditions.is_not_active,
-        provider = function(self) return ('N(%d)'):format(self.number) end,
+        provider = function(self) return 'N' .. subscript(self.number) end,
         hl = {
             fg = 'normal_fg',
             bg = 'bg',
-            bold = true,
+            bold = false,
         },
     }
 
@@ -81,9 +103,9 @@ local function config()
             },
         },
         provider = function(self)
-            return ('%s(%d)'):format(
+            return ('%s%s'):format(
                 self.mode_names[self.mode:sub(1, 1)],
-                vim.api.nvim_win_get_number(0)
+                subscript(vim.api.nvim_win_get_number(0))
             )
         end,
         hl = function(self)
@@ -91,7 +113,7 @@ local function config()
             if color == nil then
                 return { fg = 'fg', bg = 'bg' }
             end
-            return { fg = color .. '_fg', bg = 'bg', bold = true }
+            return { fg = color .. '_fg', bg = 'bg', bold = false }
         end,
     }
 
@@ -211,18 +233,18 @@ local function config()
         flexible = 4,
         {
             provider = function(self)
-                return ' ' .. SYMBOLS.branch .. ' ' .. vim.b.minigit_summary.head_name .. ' '
+                return ' ' .. SYMBOLS.branch .. vim.b.minigit_summary.head_name .. ' '
             end,
         },
         {
-            provider = ' ' .. SYMBOLS.branch .. ' ',
+            provider = ' ' .. SYMBOLS.branch,
         },
         hl = { fg = 'fg', bg = 'bg' },
     }
 
     local git_changes = {
         condition = function() return vim.b.minidiff_summary ~= nil end,
-        hl = { bold = true, bg = 'bg' },
+        hl = { bg = 'bg' },
         {
             provider = function(self)
                 local count = vim.b.minidiff_summary.add or 0
@@ -252,22 +274,22 @@ local function config()
     }
 
     local ruler = {
-        static = {
-            sbar = { '🭶', '🭷', '🭸', '🭹', '🭺', '🭻' },
-        },
+        -- static = {
+        --     sbar = { '🭶', '🭷', '🭸', '🭹', '🭺', '🭻' },
+        -- },
         {
             provider = ' %P ',
         },
-        {
-            provider = function(self)
-                local curr_line = vim.api.nvim_win_get_cursor(0)[1]
-                local lines = vim.api.nvim_buf_line_count(0)
-                local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
-                return self.sbar[i]
-            end,
-            hl = { fg = 'ruler', bg = '#5c2f42' },
-        },
-        hl = { fg = 'ruler', bg = 'bg', bold = true },
+        -- {
+        --     provider = function(self)
+        --         local curr_line = vim.api.nvim_win_get_cursor(0)[1]
+        --         local lines = vim.api.nvim_buf_line_count(0)
+        --         local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
+        --         return self.sbar[i]
+        --     end,
+        --     hl = { fg = 'ruler', bg = '#5c2f42' },
+        -- },
+        hl = { fg = 'fg_secondary', bg = 'bg' },
     }
 
     local diagnostics = {
@@ -284,45 +306,38 @@ local function config()
         hl = { bg = 'bg' },
         {
             provider = function(self)
-                return self.errors > 0 and (SYMBOLS.error .. self.errors .. ' ')
+                return self.errors > 0 and (SYMBOLS.error .. subscript(self.errors))
             end,
             hl = { fg = 'error' },
         },
         {
             provider = function(self)
-                return self.warnings > 0 and (SYMBOLS.warn .. self.warnings .. ' ')
+                return self.warnings > 0 and (SYMBOLS.warn .. subscript(self.warnings))
             end,
             hl = { fg = 'warn' },
         },
         {
-            provider = function(self) return self.info > 0 and (SYMBOLS.info .. self.info .. ' ') end,
+            provider = function(self)
+                return self.info > 0 and (SYMBOLS.info .. subscript(self.info))
+            end,
             hl = { fg = 'info' },
         },
         {
-            provider = function(self) return self.hints > 0 and (SYMBOLS.hint .. self.hints .. ' ') end,
+            provider = function(self)
+                return self.hints > 0 and (SYMBOLS.hint .. subscript(self.hints))
+            end,
             hl = { fg = 'hint' },
         },
     }
 
     local lsp_active = {
         condition = conditions.lsp_attached,
-        flexible = 3,
         {
             update = { 'LspAttach', 'LspDetach' },
             {
                 provider = function()
-                    local names = {}
-                    for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
-                        table.insert(names, server.name)
-                    end
-                    return ' ' .. SYMBOLS.lsp .. ' ' .. table.concat(names, ' ') .. ' '
+                    return '  lsp' .. subscript(#vim.lsp.get_clients({ bufnr = 0 })) .. ' '
                 end,
-            },
-        },
-        {
-            update = { 'LspAttach', 'LspDetach' },
-            {
-                provider = ' ' .. SYMBOLS.lsp .. ' ',
             },
         },
         hl = { fg = 'fg', bg = 'bg' },
@@ -380,7 +395,7 @@ local function config()
             git_changes,
             align,
             diagnostics,
-            -- lsp_active,
+            lsp_active,
             git_branch,
             word_count,
             file_encoding,

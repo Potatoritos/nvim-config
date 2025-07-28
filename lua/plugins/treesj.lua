@@ -3,9 +3,7 @@ return {
     keys = {
         {
             '<leader>j',
-            function()
-                require('treesj').toggle()
-            end,
+            function() require('treesj').toggle() end,
             mode = 'n',
             desc = 'Split/join',
         },
