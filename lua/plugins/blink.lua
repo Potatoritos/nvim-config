@@ -80,7 +80,7 @@ return {
             accept = {
                 create_undo_point = true,
                 auto_brackets = {
-                    enabled = true,
+                    enabled = false,
                 },
             },
             documentation = {
@@ -108,7 +108,7 @@ return {
             },
         },
         fuzzy = {
-            max_typos = function(_) return 1 end,
+            max_typos = function(_) return 0 end,
             use_frecency = false,
             sorts = {
                 'exact',

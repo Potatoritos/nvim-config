@@ -2,28 +2,6 @@ local function config()
     local conditions = require('heirline.conditions')
     local utils = require('heirline.utils')
 
-    local function subscript(n)
-        local sub = {
-            [0] = '₀',
-            [1] = '₁',
-            [2] = '₂',
-            [3] = '₃',
-            [4] = '₄',
-            [5] = '₅',
-            [6] = '₆',
-            [7] = '₇',
-            [8] = '₈',
-            [9] = '₉',
-        }
-
-        local res = ''
-        for digit in tostring(n):gmatch('.') do
-            res = res .. sub[tonumber(digit)]
-        end
-
-        return res
-    end
-
     local function setup_colors()
         local function hl(name)
             local h = utils.get_highlight(name)
@@ -57,7 +35,7 @@ local function config()
     local window_number = {
         init = function(self) self.number = vim.api.nvim_win_get_number(0) end,
         condition = conditions.is_not_active,
-        provider = function(self) return 'N' .. subscript(self.number) end,
+        provider = function(self) return 'N' .. self.number end,
         hl = {
             fg = 'normal_fg',
             bg = 'bg',
@@ -105,7 +83,7 @@ local function config()
         provider = function(self)
             return ('%s%s'):format(
                 self.mode_names[self.mode:sub(1, 1)],
-                subscript(vim.api.nvim_win_get_number(0))
+                vim.api.nvim_win_get_number(0)
             )
         end,
         hl = function(self)
@@ -305,27 +283,19 @@ local function config()
         update = { 'DiagnosticChanged', 'BufEnter' },
         hl = { bg = 'bg' },
         {
-            provider = function(self)
-                return self.errors > 0 and (SYMBOLS.error .. subscript(self.errors))
-            end,
+            provider = function(self) return self.errors > 0 and (SYMBOLS.error .. self.errors) end,
             hl = { fg = 'error' },
         },
         {
-            provider = function(self)
-                return self.warnings > 0 and (SYMBOLS.warn .. subscript(self.warnings))
-            end,
+            provider = function(self) return self.warnings > 0 and (SYMBOLS.warn .. self.warnings) end,
             hl = { fg = 'warn' },
         },
         {
-            provider = function(self)
-                return self.info > 0 and (SYMBOLS.info .. subscript(self.info))
-            end,
+            provider = function(self) return self.info > 0 and (SYMBOLS.info .. self.info) end,
             hl = { fg = 'info' },
         },
         {
-            provider = function(self)
-                return self.hints > 0 and (SYMBOLS.hint .. subscript(self.hints))
-            end,
+            provider = function(self) return self.hints > 0 and (SYMBOLS.hint .. self.hints) end,
             hl = { fg = 'hint' },
         },
     }
@@ -335,9 +305,7 @@ local function config()
         {
             update = { 'LspAttach', 'LspDetach' },
             {
-                provider = function()
-                    return '  lsp' .. subscript(#vim.lsp.get_clients({ bufnr = 0 })) .. ' '
-                end,
+                provider = function() return '  lsp' .. #vim.lsp.get_clients({ bufnr = 0 }) .. ' ' end,
             },
         },
         hl = { fg = 'fg', bg = 'bg' },

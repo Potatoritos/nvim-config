@@ -15,51 +15,6 @@ return {
     s('emp', { t('Optional.empty()') }),
     s('ov', { t({ '@Override', '' }) }),
     sfmt(
-        'if',
-        [[
-        if ({}) {{
-            {}
-        }}{}
-        ]],
-        { i(1), i(2), i(0) }
-    ),
-    sfmt(
-        'elif',
-        [[
-         else if ({}) {{
-            {}
-        }}{}
-        ]],
-        { i(1), i(2), i(0) }
-    ),
-    sfmt(
-        'else',
-        [[
-         else {{
-            {}
-        }}
-        ]],
-        { i(0) }
-    ),
-    sfmt(
-        'fr',
-        [[
-        for ({}) {{
-            {}
-        }}
-        ]],
-        { i(1), i(0) }
-    ),
-    sfmt(
-        'wl',
-        [[
-        while ({}) {{
-            {}
-        }}
-        ]],
-        { i(1), i(0) }
-    ),
-    sfmt(
         'cla',
         [[
         public final class {} {{
